@@ -1,10 +1,18 @@
 {
   "name": "joshcarpenter-2019-site",
+  "description": "My website",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
+  },
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Josh <rocarpenca@gmail.com>",
-  "license": "MIT"
+  "author": "Josh Carpenter <rocarpenca@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "unified": "^8.4.1"
+  }
 }
