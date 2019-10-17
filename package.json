@@ -1,0 +1,10 @@
+{
+  "name": "joshcarpenter-2019-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Josh <rocarpenca@gmail.com>",
+  "license": "MIT"
+}
