@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Grid
+   ========================================================================== */
+
+main {
+    display: grid;
+    grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 65ch) [main-end] minmax(1em, 1fr) [full-end];
+    gap: 0em;
+}
+
+main > * {
+    grid-column: main;
+}
+
+/* p {
+    grid-column: main;
+} */
+
+/* figure {
+    grid-column: full;
+} */
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+html, body {
+    font: 16px/1.6 'Helvetica';
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 1.19rem;
+    line-height: 1.37rem;
+    padding-top: 0.368rem;
+    margin-bottom: 1.00rem;
+}
+
+h2 {
+    font-size: 1.00rem;
+    line-height: 1.63rem;
+    padding-top: 0.500rem;
+    margin-bottom: 1.13rem;
+}
+
+h3 {
+    font-size: 1.00rem;
+    line-height: 1.63rem;
+    padding-top: 0.500rem;
+    margin-bottom: 1.13rem;
+}
+
+h4 {
+    font-size: 1.00rem;
+    line-height: 1.63rem;
+    padding-top: 0.500rem;
+    margin-bottom: 1.13rem;
+}
+
+p {
+    font-size: 1.00rem;
+    line-height: 1.63rem;
+    padding-top: 0.500rem;
+    margin-bottom: 1.13rem;
+}
+
+.footnote-ref {
+    text-decoration: none;
+}
+
+.footnotes {
+    font-size: 0.8333rem;
+}
+
+.footnotes .citation, .footnotes .citation a {
+    color: gray;
+}
+
+/* Prevent sup and sub elements from altering line height of parent text.*/
+
+/* sup::before {
+    content: "\00a0 ";
+} */
+
+/* sup {
+    margin-left: 0.25em;
+} */
+
+sup, sub {
+    font-size: 0.8333em;
+    line-height: 100%;
+}
+
+.smallcaps {
+    font-variant: small-caps;
+}
