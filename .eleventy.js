@@ -5,14 +5,9 @@ const fs = require('fs');
 module.exports = function (eleventyConfig) {
 
     // -------- PASSTHROUGH FILE COPY -------- //
-    eleventyConfig.addPassthroughCopy("_input/styles")
-
-
-    // -------- PLUGINS -------- //
-    // Log config file
-    // eleventyConfig.addPlugin(function(){
-    //     console.log(eleventyConfig)
-    // })
+    // Copy css and img directories to output directory
+    eleventyConfig.addPassthroughCopy("src/styles")
+    eleventyConfig.addPassthroughCopy("src/posts/img")
 
 
     // -------- TEMPLATE LANGUAGE FILTERS -------- //
@@ -24,16 +19,16 @@ module.exports = function (eleventyConfig) {
 
 
     // -------- CITATION-JS -------- //
-    
+
     // Load references from file. My references are in CSL-JSON format.
-    const references = fs.readFileSync('_input/citations/bib.json', 'utf8')
-    
+    const references = fs.readFileSync('src/references/climate-references.json', 'utf8')
+
     // Input references into new Cite()
     const cite = new Cite(references)
-    
+
     // Load custom CSL from file, and add to plugins.config so we can access it later.
     const stylesName = 'josh-csl'
-    const styles = fs.readFileSync('_input/citations/styles.csl', 'ascii')
+    const styles = fs.readFileSync('src/references/climate-CSL-styles.csl', 'ascii')
     Cite.plugins.config.get('@csl').templates.add(stylesName, styles)
 
 
@@ -64,6 +59,27 @@ module.exports = function (eleventyConfig) {
             figcaption: true
         })
 
+    /* 
+    Hacky fix for image paths being broken by permalinks. I used permalinks, which 
+    creates parent directories for posts. This changes the relative path to images in 
+    said posts, after processing. This Markdown-It rule fixes the paths.
+    
+    This is currently *brittle*, because it relies on convention. If I change 1) where 
+    `img` directory lives in either my working or output directories, or 2) my permalink
+    nesting depths, this will break. 
+    */
+    const defaultImageRule = markdownLib.renderer.rules.image
+    markdownLib.renderer.rules.image = function (tokens, idx, options, env, self) {
+
+        let imgToken = tokens[idx]
+        let oldPath = imgToken.attrGet('src')
+        let newPath = '../' + oldPath // Add one more level of relative path nesting
+        
+        imgToken.attrSet('src', newPath)
+        
+        return defaultImageRule(tokens, idx, options, env, self)
+    }
+
     eleventyConfig.setLibrary("md", markdownLib)
 
 
@@ -93,7 +109,7 @@ module.exports = function (eleventyConfig) {
                         lang: 'en-US',
                         entry: [id]
                     })
-                   
+
                     // Find author, and replace underline text decoration with class
                     citation = citation.replace('style="text-decoration:underline;"', 'class="cite-author"')
 
@@ -107,16 +123,16 @@ module.exports = function (eleventyConfig) {
 
                     // Find title and replace with link and span, or just span
                     if (url) {
-                        
+
                         // url is an array. The first value is always the url string we need.
                         url = url[0]
-                        
+
                         // Remove URL from citation text
                         citation = citation.replace(url, '')
 
                         // Replace italic text with link and use url variable as href
                         citation = citation.replace('<i>', '<span class="title"><a href=\"' + url + '\">')
-                        citation = citation.replace('</i>', '</a></span>')                           
+                        citation = citation.replace('</i>', '</a></span>')
                     } else {
 
                         citation = citation.replace('<i>', '<span class="cite-title">')
@@ -163,20 +179,19 @@ module.exports = function (eleventyConfig) {
         // Directories
         dir: {
             // Top-level directory for templates. "." is default.
-            input: "_input",
+            input: "src",
 
-            // Directory for includes (files, partials, macros). These files are consumed by templates. "_includes" is default. Is relative to input directory.
-            includes: "_includes",
+            // Includes directory (files, partials, macros). Relative to input directory. These files are consumed by templates.
+            includes: "includes",
 
-            // Directory for layouts
-            layouts: "_layouts",
+            // Layouts directory. Relative to input directory.
+            layouts: "layouts",
 
-            // Directory for global data files, available to all templates. Is relative to input directory.
-            data: "_data",
+            // Global data files directory (data available to all templates). Relative to input directory.
+            data: "data",
 
-            // Directory templates will be written to. 
+            // Output director
             output: "_site",
-
         }
     }
 }

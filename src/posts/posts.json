@@ -1,5 +1,6 @@
 {
     "layout": "posts.njk",
+    "postsPath": "posties",
     "author": {
         "name": "Josh Carpenter",
         "twitter": "rocarpenca@gmail.com"

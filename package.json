@@ -8,7 +8,8 @@
         "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
     },
     "scripts": {
-        "start": "node index.js"
+        "build": "npx eleventy",
+        "start": "npm run build & npx eleventy --serve"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
