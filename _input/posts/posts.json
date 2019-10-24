@@ -1,0 +1,7 @@
+{
+    "layout": "posts.njk",
+    "author": {
+        "name": "Josh Carpenter",
+        "twitter": "rocarpenca@gmail.com"
+    }
+}

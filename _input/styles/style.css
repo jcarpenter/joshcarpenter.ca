@@ -2,7 +2,7 @@
    Grid
    ========================================================================== */
 
-main {
+   main {
     display: grid;
     grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 65ch) [main-end] minmax(1em, 1fr) [full-end];
     gap: 0em;
@@ -82,6 +82,14 @@ p {
 
 .footnotes .citation, .footnotes .citation a {
     color: gray;
+}
+
+cite {
+    font-style: normal;
+}
+
+cite, cite a {
+    color: gray
 }
 
 /* Prevent sup and sub elements from altering line height of parent text.*/
