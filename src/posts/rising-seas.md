@@ -16,7 +16,7 @@ Estimates of future sea level rise are typically expressed as _relative to the m
 
 ### How do we measure sea level rise?
 
-**Satellite altimeters** since Sep 1993. High quality (accuracy within few centimeters), near global coverage of both absolute and local sea levels. Satellites send microwave pulses to the surface and measure the time to return.[^2][^3]
+**Satellite altimeters** since Sep 1993. High quality (accuracy within few centimeters), near global coverage of both absolute and local sea levels. Satellites send microwave pulses to the surface and measure the time to return. ^[[@church2011]] [^3]
 
 **Coastal tide-gauges** for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion.[^4][^5]
 
