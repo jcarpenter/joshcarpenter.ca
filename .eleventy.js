@@ -60,13 +60,9 @@ module.exports = function (eleventyConfig) {
         })
 
     /* 
-    Hacky fix for image paths being broken by permalinks. I used permalinks, which 
-    creates parent directories for posts. This changes the relative path to images in 
-    said posts, after processing. This Markdown-It rule fixes the paths.
+    Hacky fix for image paths being broken by permalinks. I used ermalinks, which creates parent directories for posts. This changes the relative path to images in said posts, after processing. This Markdown-It rule fixes the paths.
     
-    This is currently *brittle*, because it relies on convention. If I change 1) where 
-    `img` directory lives in either my working or output directories, or 2) my permalink
-    nesting depths, this will break. 
+    This is currently *brittle*, because it relies on convention. If I change 1) where `img` directory lives in either my working or output directories, or 2) my permalink nesting depths, this will break. 
     */
     const defaultImageRule = markdownLib.renderer.rules.image
     markdownLib.renderer.rules.image = function (tokens, idx, options, env, self) {

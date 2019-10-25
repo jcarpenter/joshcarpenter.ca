@@ -1,4 +1,4 @@
-# Settings in the [build] context are global 
+# Settings in the [build] context are global, and apply across all deploy contexts.
 [build]
   
   # Directory (relative to root of your repo) that contains the deploy-ready
