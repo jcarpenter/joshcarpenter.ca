@@ -2,13 +2,17 @@
    Grid
    ========================================================================== */
 
-   main {
+/* body {
+    width: 100%;
+} */
+
+main {
     display: grid;
     grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 65ch) [main-end] minmax(1em, 1fr) [full-end];
     gap: 0em;
 }
 
-main > * {
+main>* {
     grid-column: main;
 }
 
@@ -35,6 +39,12 @@ img {
 html, body {
     font: 16px/1.6 'Helvetica';
     box-sizing: border-box;
+}
+
+
+body {
+    /* Prevent long strings (e.g. links) from overflowing their container */
+    word-break: break-word;
 }
 
 h1 {
