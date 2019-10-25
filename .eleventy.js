@@ -167,10 +167,10 @@ module.exports = function (eleventyConfig) {
 
         // Template engines
         markdownTemplateEngine: "njk", // Defualt
-        htmlTemplateEngine: "liquid", // Defualt
+        htmlTemplateEngine: "njk", // Defualt
 
         // Template formats to transform. https://www.11ty.io/docs/config/#template-formats
-        templateFormats: ["md", "liquid"],
+        templateFormats: ["md", "njk"],
 
         // Directories
         dir: {
