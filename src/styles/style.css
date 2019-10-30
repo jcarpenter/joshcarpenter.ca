@@ -1,3 +1,12 @@
+
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+:root {
+    --txt-small: 0.8333em;
+}
+
 /* ==========================================================================
    Grid
    ========================================================================== */
@@ -41,7 +50,6 @@ html, body {
     box-sizing: border-box;
 }
 
-
 body {
     /* Prevent long strings (e.g. links) from overflowing their container */
     word-break: break-word;
@@ -82,6 +90,12 @@ p {
     margin-bottom: 1.13rem;
 }
 
+figcaption {
+    font-style: italic;
+    color: gray;
+    font-size: var(--txt-small);
+}
+
 .footnote-ref {
     text-decoration: none;
 }
@@ -96,6 +110,10 @@ p {
 
 cite {
     font-style: normal;
+}
+
+cite title {
+    font-weight: bold;
 }
 
 cite, cite a {
@@ -113,7 +131,7 @@ cite, cite a {
 } */
 
 sup, sub {
-    font-size: 0.8333em;
+    font-size: var(--txt-small);
     line-height: 100%;
 }
 

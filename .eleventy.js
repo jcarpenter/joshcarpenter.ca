@@ -1,6 +1,6 @@
 const Cite = require('citation-js')
-const fs = require('fs');
-
+const fs = require('fs')
+const getUrls = require('get-urls')
 
 module.exports = function (eleventyConfig) {
 
@@ -70,9 +70,9 @@ module.exports = function (eleventyConfig) {
         let imgToken = tokens[idx]
         let oldPath = imgToken.attrGet('src')
         let newPath = '../' + oldPath // Add one more level of relative path nesting
-        
+
         imgToken.attrSet('src', newPath)
-        
+
         return defaultImageRule(tokens, idx, options, env, self)
     }
 
@@ -87,24 +87,37 @@ module.exports = function (eleventyConfig) {
 
         if (outputPath.endsWith(".html")) {
 
-            // Find citekeys with regex for [@authorYear]
-            let citekey = content.match(/(\[@\w\S+\d\d\d\d\])/g)
+            // Find citekeys with regex
+            // Demo: https://regex101.com/r/r0Z2tJ/1
+            let citekey = content.match(/\[@(.*?)\]/gm)
 
             if (citekey) {
                 citekey.forEach(function (c) {
+                    
+                    let id = c
+                    let locator = c.match(/(\,.*?\])/gm)
+                    
+                    if (locator) {
+                        locator = locator[0].replace(/(,\s\w\W)/gm, '') // Strip down to just digits
+                        locator = locator.replace(/\]/gm, '') // Strip down to just digits (remove right bracket)
+                        id = c.replace(/(\,.*?\])/gm, '') // Remove the locator from the id
+                    }
 
                     // Get the ID by trimming square brackets and @ symbol.
                     // Before: [@jones2019] After: jones2019.
                     // Regex test: https://regex101.com/r/j0Ml9U/1
-                    let id = c.replace(/[\[\@\]]/g, '')
+                    id = id.replace(/[\[\@\]]/g, '')
+                    // console.log("ID = " + id)
 
-                    // Get our citation(s). We use options to customize the returned data.  `format` specifies the format of the returned citation. `template` specifies the CSL style we want to use. `entry` array specifies which we want, by id.
-                    let citation = cite.format('citation', {
-                        format: 'html',
+                    // Get our citation(s). We use options to customize the returned data. `format` specifies the format of the returned citation. `template` specifies the CSL style we want to use. `entry` array specifies which we want, by id.
+                    let citation = cite.format('citation', { 
+                        entry: [id], 
                         template: stylesName,
-                        lang: 'en-US',
-                        entry: [id]
+                        format: 'html',
+                        lang: 'en-US'
                     })
+                    
+                    console.log(id)
 
                     // Find author, and replace underline text decoration with class
                     citation = citation.replace('style="text-decoration:underline;"', 'class="cite-author"')
@@ -113,26 +126,34 @@ module.exports = function (eleventyConfig) {
                     citation = citation.replace('<b>', '<span class="cite-container">')
                     citation = citation.replace('</b>', '</span>')
 
-                    // Find URL, if it exists
-                    // Regex from: http://www.regexguru.com/2008/11/detecting-urls-in-a-block-of-text/
-                    let url = citation.match(/(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm)
+                    // Find all URLs in the citation string (should be only one), as a Set.
+                    // Options are there to disable alterations that `get-urls` package 
+                    // makes by default to the URLs as they're retrieved. We need to match
+                    // the unaltered original from the source text, so we can replace() it. 
+                    // Details here: https://www.npmjs.com/package/get-urls
+                    let urls = getUrls(citation, { sortQueryParameters: false, removeTrailingSlash: false, removeQueryParameters: false, stripWWW: false, stripAuthentication: false, normalizeProtocol: false })
 
                     // Find title and replace with link and span, or just span
-                    if (url) {
+                    // If url was found, use it to make the title a link
+                    if (urls) {
 
-                        // url is an array. The first value is always the url string we need.
-                        url = url[0]
+                        // urls is a Set. I used code found below to get the first entry.
+                        // https://www.geeksforgeeks.org/sets-in-javascript/
+                        let url = urls.entries().next().value[0]
 
                         // Remove URL from citation text
                         citation = citation.replace(url, '')
 
                         // Replace italic text with link and use url variable as href
-                        citation = citation.replace('<i>', '<span class="title"><a href=\"' + url + '\">')
+                        citation = citation.replace('<i>', '<span class="cite-title"><a href="' + url + '">')
                         citation = citation.replace('</i>', '</a></span>')
                     } else {
-
                         citation = citation.replace('<i>', '<span class="cite-title">')
                         citation = citation.replace('</i>', '</span>')
+                    }
+
+                    if (locator) {
+                        citation = citation + '<span class="cite-locator">' + locator + '.</span>'
                     }
 
                     // Wrap whole citation in <cite> element
