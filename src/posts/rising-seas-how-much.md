@@ -8,11 +8,11 @@ date: 2019-10-24
 
 ### How do we define “sea level rise”?
 
-“Sea level rise” most commonly refers to **changes in the global mean sea level** (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.
-
-Estimates of future sea level rise are typically expressed as _relative to the mean of the 1986-2000 period_. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.
-
 ![Global mean sea level relative to the 1986–2005. ^[[@rep-AR5Synth-IPCC-14, p.41]]](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
+
+“Sea level rise” most commonly refers to changes in the **global mean sea level** (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.
+
+Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.
 
 ### How do we measure sea level rise?
 
@@ -42,19 +42,17 @@ GMSL rise average in mm/year:
 
 ## Greenland and Antarctica ice sheets will be the largest contributors, going forward
 
+![Contributions to the rate of global mean sea-level rise during the periods 1997–2006 (left) and 2007–2016 (right). ^[[@rep-GlobalClimate-WMO-19]]](img/GMSL-rise-contributors.png)
+
 Per a September 2019 report from the World Meteorological Organization: 
 
 > “The contribution of land ice melt from the world glaciers and the ice sheets has increased over time and now dominate the sea level budget, rather than thermal expansion.” ^[[@rep-GlobalClimate-WMO-19, p.6]]
 
-![Contributions to the rate of global mean sea-level rise during the periods 1997–2006 (left) and 2007–2016 (right). ^[[@rep-GlobalClimate-WMO-19]]](img/GMSL-rise-contributors.png)
+Greenland and Antarctic ice would raise global mean sea levels **65 m** if melted completely. Individually, they contain the following sea level rise potential:
 
-### Greenland and Antarctic ice would raise global mean sea levels **65 m** if melted completely
-
-Individually, they contain the following sea level rise potential:
-
-* [Greenland ice sheet](https://en.wikipedia.org/wiki/Greenland_ice_sheet): **7.2 m**.
-* [West Antarctic Ice Sheet (WAIS)](https://en.wikipedia.org/wiki/West_Antarctic_Ice_Sheet): **4.8 m**.
-* [East Antarctic Ice Sheet (EAIS)](https://en.wikipedia.org/wiki/East_Antarctic_Ice_Sheet): **53.3m**.
+* **7.2 m** from [Greenland ice sheet](https://en.wikipedia.org/wiki/Greenland_ice_sheet).
+* **4.8 m** from [West Antarctic Ice Sheet (WAIS)](https://en.wikipedia.org/wiki/West_Antarctic_Ice_Sheet).
+* **53.3 m** from [East Antarctic Ice Sheet (EAIS)](https://en.wikipedia.org/wiki/East_Antarctic_Ice_Sheet).
 
 ### Antarctic melting has tripled in a decade 
 
@@ -66,37 +64,35 @@ That tripling is particularly alarming given a 2016 report from James Hansen and
 
 That was the conclusion of two 2014 reports. ^[[@jrnl-WidespreadRapidGrounding-14]] ^[[@np-ScientistsWarn-AP-ma14]] These six glaciers are essentially the cork in the wine bottle for the rest of the West Antarctic Ice Sheet. Researchers made the conclusion after observing the grounding line of the glaciers retreating over 19 years. Grounding lines are the “dividing line between land and water underneath the glacier.” ^[[@vid-UnstoppableAntarctic-14]]
 
-### There are multiple hypothesized run away effects by which ice sheets could dramatically accelerate their collapse.
+## Ice sheet collapse could dramatically accelerate
 
-#### Marine ice sheet instability (MISI)
+There are multiple hypothesized run away effects by which ice sheets could dramatically accelerate their collapse:
+
+### Marine ice sheet instability (MISI)
 
 ![Diagram of marine ice cliff instability. ^[[@wiki-MarineIceSheet]]](img/marine-ice-sheet-instability-diagram.png)
 
-First proposed in 1978 by glaciologist John Mercer. ^[[@jrnl-ModelHoloceneRetreat-78]] 
-
-[Marine ice sheets](https://en.wikipedia.org/wiki/Marine_ice_sheet_instability) are ice sheets that are in the ocean, but grounded to the sea floor by their sheer mass. They are stable in this configuration. If water gets beneath them, however, they float and break up through calving. 
+First proposed in 1978 by glaciologist John Mercer. ^[[@jrnl-ModelHoloceneRetreat-78]] [Marine ice sheets](https://en.wikipedia.org/wiki/Marine_ice_sheet_instability) are ice sheets that are in the ocean, but grounded to the sea floor by their sheer mass. They are stable in this configuration. If water gets beneath them, however, they float and break up through calving. 
 
 If the ground below the marine ice sheets slopes downwards the further inland it goes (_reverse bed slope_), the grounding line accelerates as it moves forward. This is because the ice above is gets progressively thicker, and the thicker the ice is, the more vulnerable it is to floatation and calving.
+
+![Marine Ice Sheet instability hypothesis flow chart. ^[[@blog-Davies-MarineIce-14]]](img/marine-ice-sheet-instability-hypothesis.png)
 
 The trigger for this process is ice shelve breakup. Ice shelves float on the surface of the ocean, forming a buttress around the edge of the grounded ice mass. As the atmosphere and ocean warm, they accelerate the breakup of ice shelves, which  eventually advances the grounding line beneath the ice mass to the point where it is traveling down the slope of the bowl of the marine ice sheet. 
 
 This process would hit West Antarctica hardest, as it has large marine ice sheets.
 
-![Marine Ice Sheet instability hypothesis flow chart. ^[[@blog-Davies-MarineIce-14]]](img/marine-ice-sheet-instability-hypothesis.png)
-
-#### Marine ice cliff instability (MICI)
+### Marine ice cliff instability (MICI)
 
 This is a newer hypothesis, and still being debated. The idea is intuitive: ice cliffs higher than 90 meters collapse due to the physics of ice. The collapse process will accelerate if the ice mass gets thicker the further back it goes (as most do), as the ice collapsing at the edge of the mass reveals ever-higher, faster-collapsing ice behind.
 
-## Other cascade effects
+## Other cascade effects are possible
 
 ### Albedo effect
 
 > Albedo (al-bee-doh) is a measure of how much light that hits a surface is reflected without being absorbed. Something that appears white reflects most of the light that hits it (high albedo), while something that appears dark absorbs most of the light (low albedo). ^[[@web-Albedo-NCCO]]
 
-As white ice melts, it reveals darker ocean and land below. These surfaces absorb  more of the sun’s light as warmth. It has been estimated this could mean a warming “…equivalent to 25 years of global carbon emissions.” ^[[@book-UninhabitEarth, p.67]]
-
-Forest fires could also contribute to the albedo effect, by depositing black soot on ice sheets.
+As white ice melts, it reveals darker ocean and land below. These surfaces absorb  more of the sun’s light as warmth. It has been estimated this could mean a warming “…equivalent to 25 years of global carbon emissions.” ^[[@book-UninhabitEarth, p.67]] Forest fires could also contribute to the albedo effect, by depositing black soot on ice sheets.
 
 ### Methane release from melting permafrost
 
@@ -104,14 +100,13 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 
 ## There is historical precedence for rapid sea level rise driven by ice sheet breakup
 
-### “Meltwater pulses” saw sea levels rise 40-60 mm per year for centuries
 ![History of Meltwater Pulses (MWP). ^[[@wiki-MeltwaterPulse1A]]](img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.jpg)
 
-The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several “Meltwater Pulses”—periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ^[[@wiki-EarlyHoloceneSea]]
+“Meltwater pulses” saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several “Meltwater Pulses”—periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ^[[@wiki-EarlyHoloceneSea]]
 
 * **1A:** 16-25 m rise over 400-500 years, for **40–60 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1A]]
 * **1B:** Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for **40 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1B]]
-* **1C:**6.5 m rise over 140 years, for **46 mm** annual mean rate.
+* **1C:** 6.5 m rise over 140 years, for **46 mm** annual mean rate.
 
 ## Sea level rise will not be uniform
 
@@ -130,13 +125,13 @@ Per the 2019 IPCC Oceans and Cryosphere report:
 
 ## Projections of sea level rise are trending higher
 
+![A decade of increasing high-end scenarios. ^[[@vid-JeffGoodell-SALT-19, p.30:13]]](img/sea-level-rise-scenarios.png)
+
 * **IPCC 2014**: 0.52 – 0.98 m (by 2100, under RCP8.5). ^[[@rep-AR5PhySci-IPCC-13, p.1140]]
 * **IPCC  2019**: 0.61 – 1.10 m  (by 2100, under RCP8.5). ^[[@rep-OceanCryosphere-IPCC-19, p.SPM-23]]
 * **2015**: NASA: Minimum 1 m by 2100.
 * **2017**: National Oceanic and Atmospheric Administration (NOAA): 2.5 meters possible by 2100.
 * **2018**: Richard Alley: 4.5 to 6.0 m possible by 2100, “if the worst happened”. ^[[@vid-RichardAlley-18, p.40:00]]
-
-![A decade of increasing high-end scenarios. ^[[@vid-JeffGoodell-SALT-19, p.30:13]]](img/sea-level-rise-scenarios.png)
 
 Jeff Goodell says “The uncertainty is moving towards higher scenarios, rather than low.” ^[[@vid-JeffGoodell-SALT-19, p.21:14]] Richard Alley uses the graph below to plot the probability of various scenarios, and says everything we’re learning is only fattening the right side of the curve. ^[[@vid-RichardAlley-18, p.40:00]]
 
@@ -150,9 +145,9 @@ In the 2014 IPCC report, it was understood that Antarctica would be an increasin
 
 > There is low confidence in the available models’ ability to project solid ice discharge from the Antarctic ice sheet. Hence, these models likely underestimate the Antarctica ice sheet contribution. ^[[@rep-AR5Synth-IPCC-14, p.74]]
 
-2019 Oceans and Cryosphere: ^[[@rep-OceanCryosphere-IPCC-19, p.SPM-23]]
+2019 Oceans and Cryosphere:
 
-> Mean sea level rise projections are higher by 0.1 m compared to AR5 under RCP8.5 in 2100, and the likely range extends beyond 1 m in 2100 due to a larger projected ice loss from the Antarctic Ice Sheet (medium confidence)
+> Mean sea level rise projections are higher by 0.1 m compared to AR5 under RCP8.5 in 2100, and the likely range extends beyond 1 m in 2100 due to a larger projected ice loss from the Antarctic Ice Sheet (medium confidence) ^[[@rep-OceanCryosphere-IPCC-19, p.SPM-23]]
 
 In general, IPCC reports tend towards more conservative projections, in part because they reflect the consensus opinion of many authors.
 

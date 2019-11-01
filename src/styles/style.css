@@ -1,111 +1,642 @@
+/* ==========================================================================
+   Resets
+   ==========================================================================
+   */
+
+/* body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+} */
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+    font-family: "Public Sans";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/styles/fonts/PublicSans-Regular.woff2") format("woff2"), url("/styles/fonts/PublicSans-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: italic;
+    font-weight: normal;
+    src: url('/styles/fonts/PublicSans-Italic.woff2') format('woff2'), url('/styles/fonts/PublicSans-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/styles/fonts/PublicSans-Medium.woff2') format('woff2'), url('/styles/fonts/PublicSans-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: italic;
+    font-weight: 500;
+    src: url('/styles/fonts/PublicSans-MediumItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-MediumItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/styles/fonts/PublicSans-SemiBold.woff2') format('woff2'), url('/styles/fonts/PublicSans-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: url('/styles/fonts/PublicSans-SemiBoldItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-SemiBoldItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: url('/styles/fonts/PublicSans-Bold.woff2') format('woff2'), url('/styles/fonts/PublicSans-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Public Sans';
+    font-style: italic;
+    font-weight: bold;
+    src: url('/styles/fonts/PublicSans-BoldItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-BoldItalic.woff') format('woff');
+}
 
 /* ==========================================================================
    Variables
    ========================================================================== */
 
 :root {
-    --txt-small: 0.8333em;
+    
+    /* -------------- Colors -------------- */
+
+    --clr-gray-dark: rgb(84, 84, 84);
+    --clr-gray: gray;
+    --clr-gray-light: #D8D8D8;
+    --clr-blue: hsl(214, 61%, 49%);
+    --clr-blue-light: #b9d0ee;
+    --clr-blue-alpha: rgba(48, 114, 201, 0.15);
+    --clr-highlight: rgb(247, 242, 197);
+    
+    /* -------------- Type sizes -------------- */
+
+    --baseFontSize: 16px;
+    --baseLineHeight: 1.625rem;
+    
+    --font-size-scale: 1.125;
+    --font-size-lg-8:   calc(var(--font-size-lg-7) * var(--font-size-scale));
+    --font-size-lg-7:   calc(var(--font-size-lg-6) * var(--font-size-scale));
+    --font-size-lg-6:   calc(var(--font-size-lg-5) * var(--font-size-scale));
+    --font-size-lg-5:   calc(var(--font-size-lg-4) * var(--font-size-scale));
+    --font-size-lg-4:   calc(var(--font-size-lg-3) * var(--font-size-scale));
+    --font-size-lg-3:   calc(var(--font-size-lg-2) * var(--font-size-scale));
+    --font-size-lg-2:   calc(var(--font-size-lg-1) * var(--font-size-scale));
+    --font-size-lg-1:   calc(var(--font-size-base) * var(--font-size-scale));
+    --font-size-base:   1rem;
+    --font-size-sml-1:  calc(var(--font-size-base) / var(--font-size-scale));
+    --font-size-sml-2:  calc(var(--font-size-sml-1) / var(--font-size-scale));
+
+    /* -------------- Grid building blocks -------------- */
+    
+    --grid: var(--baseLineHeight);
+    --grid-2: calc(var(--grid) * 2);
+    --grid-3: calc(var(--grid) * 3);
+    --grid-4: calc(var(--grid) * 4);
+    --grid-5: calc(var(--grid) * 5);
+    --grid-6: calc(var(--grid) * 6);
+    --grid-7: calc(var(--grid) * 7);
+    --grid-8: calc(var(--grid) * 8);
+    --grid-10: calc(var(--grid) * 10);
+    --grid-12: calc(var(--grid) * 12);
+    --grid-16: calc(var(--grid) * 16);
+    --grid-24: calc(var(--grid) * 24);
+    --grid-32: calc(var(--grid) * 32);
+    --grid-subdivision-1: calc(var(--grid) * 0.25);
+    --grid-subdivision-2: calc(var(--grid) * 0.5);
+    --grid-subdivision-3: calc(var(--grid) * 0.75);
+    
+    /* -------------- Grid layouts -------------- */
+
+    --grid-layout-content:  
+        [full-start] 
+            minmax(0, 1fr)
+            [left-start] 
+                minmax(var(--grid-8), var(--grid-10)) 
+            [left-end] 
+            var(--grid-2) /* Gutter */
+            [main-start]
+                minmax(calc(var(--grid) * 18), calc(var(--grid) * 22)) 
+            [main-end] 
+            var(--grid-2)  /* Gutter */
+            [right-start]
+                minmax(var(--grid-8), var(--grid-10)) 
+            [right-end] 
+            minmax(0, 1fr) 
+        [full-end];
+    
+    /* -------------- Blocks -------------- */
+
+    --h1-margin-bottom: var(--grid);
+
+    --h2-margin-top: calc(var(--grid) * 1.5);
+    --h2-margin-bottom: var(--grid);
+    
+    --h3-margin-top: 0;
+    --h3-margin-bottom: var(--grid);
+    
+    --block-margin-top: 0;
+    --block-margin-bottom: var(--grid);
 }
 
 /* ==========================================================================
-   Grid
+   Layout
    ========================================================================== */
 
-/* body {
-    width: 100%;
-} */
+* { box-sizing: border-box; word-break: normal; }
+
+html {
+    font-size: var(--baseFontSize);
+    line-height: var(--baseLineHeight);
+}
+
+body {
+    margin: 0;
+    background: hsl(0, 0%, 98%);
+}
 
 main {
+    width: 100%;
+}
+
+main > article {
     display: grid;
-    grid-template-columns: [full-start] minmax(1em, 1fr) [main-start] minmax(0, 65ch) [main-end] minmax(1em, 1fr) [full-end];
-    gap: 0em;
+    grid-template-columns: var(--grid-layout-content);
+    position: relative;
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
 }
 
-main>* {
+main > article>* {
     grid-column: main;
 }
 
-/* p {
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+/* -------------- Header -------------- */
+
+body > header {
+    position: absolute;
+    top: calc(var(--grid-2) + var(--grid-subdivision-1));
+    left: var(--grid-2);
+    width: var(--grid-8);
+    z-index: 100;
+    font-size: var(--font-size-sml-1);
+}
+
+body > header ul {
+    list-style: none;
+    /* display: flex; */
+    margin: 0;
+    padding: 0;
+    /* flex: 2; */
+}
+
+body > header h1 {
+    font-size: var(--font-size-lg-2);
+    line-height: var(--baseLineHeight);
+    margin: 0 0 var(--grid) 0;
+}
+
+body > header address {
+    margin: var(--block-margin-top) 0 var(--block-margin-bottom) 0;
+}
+
+/* body>header h1, body>header nav {
     grid-column: main;
+    font-size: 1.00rem;
 } */
 
-/* figure {
-    grid-column: full;
+/* -------------- Footer -------------- */
+
+body > footer {
+    width: var(--grid-8);
+    margin: calc(var(--grid-4) * -1) 0 var(--grid-2) var(--grid-2);
+    padding-top: var(--grid-subdivision-2);
+    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
+    font-size: var(--txt-size-small);
+    color: var(--clr-gray);
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   Headings
+   ========================================================================== */
+
+h1, h2, h3 {
+    color: #222;
+    font-kerning: normal;
+}
+
+h1 {
+    font-size: var(--font-size-lg-8);
+    line-height: var(--grid-2);
+    font-weight: bold;
+    letter-spacing: -0.01em;
+    margin-top: var(--grid-2);
+    margin-bottom: var(--h1-margin-bottom);
+}
+
+h2 {
+    font-size: var(--font-size-lg-1);
+    font-weight: bold;
+    line-height: var(--grid);
+    margin-top: var(--h2-margin-top);
+    margin-bottom: var(--h2-margin-bottom);
+}
+
+h3 {
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    line-height: var(--grid);
+    margin-top: 0;
+    margin-bottom: var(--h3-margin-bottom);
+}
+
+h2::before {
+    position: absolute;
+    text-align: right;
+    padding-right: 1ch;
+    box-sizing: border-box;
+    margin-left: -6ch;
+    width: 6ch;
+    color: var(--clr-gray-light);
+    font-style: normal;
+}
+
+h2::before {
+    content: "##";
+}
+
+h3::before {
+    /* content: "###"; */
+}
+
+/* Reduce top-margin of headers that follow blocks to help ensure consistent vertical rhythm. */
+blockquote + h2, ol + h2, p + h2, pre + h2, table + h2, ul + h2 {
+    margin-top: calc(var(--h2-margin-top) - var(--block-margin-bottom));
+}
+
+
+/* ==========================================================================
+   Text styles
+   ========================================================================== */
+
+body {
+    font-family: 'Public Sans', sans-serif;
+    color: #444;
+}
+
+a {
+    color: var(--clr-gray-dark);
+}
+
+/* -------------- Address and Date -------------- */
+
+address {
+    font-style: normal;
+}
+
+address time {
+    font-variant: small-caps;
+    font-size: var(--font-size-sml-1);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--clr-gray);
+    /* opacity: 80%; */
+}
+
+/* -------------- Block elements -------------- */
+
+blockquote, ol, p, pre, table, ul {
+    margin-top: 0;
+    margin-bottom: var(--block-margin-bottom);
+}
+
+/* -------------- Lists -------------- */
+
+li {
+    margin-bottom: var(--grid-subdivision-1);
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+/* -------------- Figure and Img -------------- */
+
+/* TODO: Add margin-bottom to figure when they're displayed inline */
+
+article>figure {
+    grid-column: right;
+    align-self: end;
+    justify-self: end;
+    overflow: visible;
+    height: 0em;
+}
+
+/* figure::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc(var(--grid-subdivision-1) / 2);
+    background-color: var(--clr-gray-light);
 } */
 
 figure {
     margin: 0;
+    position: relative;
 }
 
-img {
+figure img {
+    /* margin: var(--grid-subdivision-2) 0 0 0; */
+    box-shadow: 0px 1px 30px -14px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
     max-width: 100%;
+    display: block;
+    box-sizing: content-box;
 }
 
-/* ==========================================================================
-   Typography
-   ========================================================================== */
-
-html, body {
-    font: 16px/1.6 'Helvetica';
-    box-sizing: border-box;
-}
-
-body {
-    /* Prevent long strings (e.g. links) from overflowing their container */
-    word-break: break-word;
-}
-
-h1 {
-    font-size: 1.19rem;
-    line-height: 1.37rem;
-    padding-top: 0.368rem;
-    margin-bottom: 1.00rem;
-}
-
-h2 {
-    font-size: 1.00rem;
-    line-height: 1.63rem;
-    padding-top: 0.500rem;
-    margin-bottom: 1.13rem;
-}
-
-h3 {
-    font-size: 1.00rem;
-    line-height: 1.63rem;
-    padding-top: 0.500rem;
-    margin-bottom: 1.13rem;
-}
-
-h4 {
-    font-size: 1.00rem;
-    line-height: 1.63rem;
-    padding-top: 0.500rem;
-    margin-bottom: 1.13rem;
-}
-
-p {
-    font-size: 1.00rem;
-    line-height: 1.63rem;
-    padding-top: 0.500rem;
-    margin-bottom: 1.13rem;
-}
+/* 
+Note: The line-height here breaks vertical rhythm. It _should_ 
+use a --grid or --grid-subdivision, but the leading for the 
+former is too large, and the later too tight. 
+*/
 
 figcaption {
-    font-style: italic;
+    /* padding: var(--grid-subdivision-2); */
+    /* background: rgba(0, 0, 0, 0.05); */
+    margin-top: var(--grid-subdivision-2);
+    /* font-style: italic; */
     color: gray;
-    font-size: var(--txt-small);
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid);
+    letter-spacing: 0.02em;
+    /* line-height: calc(var(--font-size-sml-1) * 1.5);  */
 }
+
+/* -------------- Block quote -------------- */
+
+blockquote {
+    margin: 0 0 0 1em;
+}
+
+blockquote p {
+    letter-spacing: 0.01    em;
+    font-style: italic;
+    color: var(--clr-blue);
+    padding-top: 0;
+    margin-top: 0;
+}
+
+blockquote::before {
+    content: ">";
+    font-weight: normal;
+    font-style: normal;
+    position: absolute;
+    text-align: right;
+    padding-right: 1em;
+    /* border: 1px solid red; */
+    box-sizing: border-box;
+    margin: 0 0 0 -1em;
+    width: 1em;
+    color: var(--clr-blue-light)
+}
+
+/* -------------- Strong, Emphasis, Small caps  -------------- */
+
+strong {
+    font-weight: normal;
+    background-color: var(--clr-highlight);
+    border-color: var(--clr-highlight);
+    border-style: solid;
+    border-width: 0.1em;
+    margin: -0.05em;
+}
+
+.smallcaps {
+    font-variant: small-caps;
+}
+
+/* -------------- Hanging punctuation -------------- */
+
+/* This class gets applied manually in the build process if the first character is a quote. */
+.hanging-punctuation {
+    text-indent: -0.4em;
+}
+
+/* -------------- Sub and Sup -------------- */
+/* 
+Prevent sup and sub elements from altering line height of parent text.
+Adapted from: https://gist.github.com/unruthless/413930
+*/
+
+sub, sup {
+    /* Specified in % so that the sup/sup is the
+       right size relative to the surrounding text */
+    font-size: 75%;
+    /* Zero out the line-height so that it doesn't
+       interfere with the positioning that follows */
+    line-height: 0;
+    /* Where the magic happens: makes all browsers position
+       the sup/sup properly, relative to the surrounding text */
+    position: relative;
+    /* Note that if you're using Eric Meyer's reset.css, this
+       is already set and you can remove this rule */
+    vertical-align: baseline;
+}
+
+sup {
+    /* Move the superscripted text up */
+    top: -0.5em;
+}
+
+sub {
+    /* Move the subscripted text down, but only
+       half as far down as the superscript moved up */
+    bottom: -0.25em;
+}
+
+/* sup, sub {
+    font-size: 75%;
+    line-height: 1em;
+} */
+
+/* -------------- HR -------------- */
+
+hr {
+    width: 100%;
+    height: var(--grid-subdivision-1);
+
+}
+
+
+/* ==========================================================================
+   FOOTNOTES
+   ========================================================================== */
+
+/* -------------- Links -------------- */
 
 .footnote-ref {
+    margin-left: 0.2em;
     text-decoration: none;
+    font-size: 70%;
+    line-height: 0;
+    /* Where the magic happens: makes all browsers position
+       the sup/sup properly, relative to the surrounding text */
+    position: relative;
+    /* Note that if you're using Eric Meyer's reset.css, this
+       is already set and you can remove this rule */
+    vertical-align: baseline;
+    /* margin-bottom: 0.25em; */
+    top: -0.45em;
+    color: inherit;
+    opacity: 0.5;
+    font-weight: 500;
 }
 
-.footnotes {
-    font-size: 0.8333rem;
+/* .footnote-ref {
+    border-bottom: 0.3em solid rgba(0,0,0,0.2);
+} */
+
+.footnote-ref::after {
+    opacity: 0.5;
+    /* background-color: rgba(0, 0, 0, 1); */
+    bottom: -0.25em;
+    content: '';
+    display: block;
+    height: 1.25em;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    min-width: 0.6em;
+    width: 90%;
+    box-sizing: content-box;
+    border-bottom: 0.2em solid;
 }
 
-.footnotes .citation, .footnotes .citation a {
+.footnote-ref:hover {
+    /* background-color: rgba(0, 0, 0, 0.2) */
+    opacity: 1;
+}
+
+.footnote-ref:hover.footnote-ref::after {
+    opacity: 1;
+}
+
+/* NOTE: The following works well, EXCEPT for false positives created when two footnote-refs are separated only by text content (e.g. inside a <p>). When that happens, the browser incorrectly thinks they immediately follow each other. */
+
+/* .footnote-ref + .footnote-ref {
+    padding-left: 0.1em;
+    border-width: 0 0 0 0.1em;
+    border-style: solid;
+    border-color: var(--clr-blue);
+} */
+
+/* .footnote-ref a:hover {
+    background-color: var(--clr-blue-alpha);
+    border-radius: 0.2em;
+} */
+
+
+/* -------------- Notes section -------------- */
+
+#footnotes {
+    line-height: 1.63rem;
+    margin: var(--grid-2) 0;
+    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
+}
+
+#footnotes h2::before {
+    content: initial;
+}
+
+#footnotes h2 {
+    /* border-bottom: var(--grid-subdivision-1) double var(--clr-gray-light); */
+    /* padding: var(--grid-subdivision-2) 0; */
+    margin-top: var(--grid);
+    /* text-transform: uppercase; */
+    /* letter-spacing: 0.2em; */
+    /* color: var(--clr-gray); */
+    /* text-align: center; */
+    /* font-size: var(--font-size-base); */
+
+}
+
+#footnotes ol {
+    list-style-position: outside;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    column-gap: var(--grid-2);
+    row-gap: var(--grid-subdivision-2);
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid-subdivision-3);
+}
+
+#footnotes li {
+    /* font-size: var(--txt-size-small); */
+    /* border: 1px solid gray; */
+}
+
+#footnotes p {  
+    margin: 0;
+    padding: 0;
+}
+
+#footnotes .citation, #footnotes .citation a {
     color: gray;
+}
+
+a.footnote-backref {
+    text-decoration: none;
+    color: var(--clr-gray-light);
+}
+
+a.footnote-backref:hover {
+    text-decoration: none;
+    color: var(--clr-gray);
 }
 
 cite {
@@ -118,23 +649,4 @@ cite title {
 
 cite, cite a {
     color: gray
-}
-
-/* Prevent sup and sub elements from altering line height of parent text.*/
-
-/* sup::before {
-    content: "\00a0 ";
-} */
-
-/* sup {
-    margin-left: 0.25em;
-} */
-
-sup, sub {
-    font-size: var(--txt-small);
-    line-height: 100%;
-}
-
-.smallcaps {
-    font-variant: small-caps;
 }

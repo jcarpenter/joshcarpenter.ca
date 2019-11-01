@@ -9,7 +9,9 @@
     },
     "scripts": {
         "build": "npx @11ty/eleventy",
-        "start": "npx @11ty/eleventy --serve"
+        "serve": "PROCESS_CITATIONS=true npx @11ty/eleventy --serve",
+        "serve-without-citations": "PROCESS_CITATIONS=false npx @11ty/eleventy --serve",
+        "watch": "PROCESS_CITATIONS=true npx @11ty/eleventy --watch"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",

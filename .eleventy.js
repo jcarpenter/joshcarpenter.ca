@@ -4,10 +4,12 @@ const getUrls = require('get-urls')
 
 module.exports = function (eleventyConfig) {
 
+
     // -------- PASSTHROUGH FILE COPY -------- //
     // Copy css and img directories to output directory
     eleventyConfig.addPassthroughCopy("src/styles")
     eleventyConfig.addPassthroughCopy("src/posts/img")
+    eleventyConfig.addPassthroughCopy("src/js")
 
 
     // -------- TEMPLATE LANGUAGE FILTERS -------- //
@@ -21,7 +23,7 @@ module.exports = function (eleventyConfig) {
     // -------- CITATION-JS -------- //
 
     // Load references from file. My references are in CSL-JSON format.
-    const references = fs.readFileSync('src/references/climate-references.json', 'utf8')
+    const references = require('./src/references/climate-references.json')
 
     // Input references into new Cite()
     const cite = new Cite(references)
@@ -54,15 +56,49 @@ module.exports = function (eleventyConfig) {
         .use(markdownItSup)
         .use(markdownItSub)
         .use(markdownItAnchor)
-        .use(markdownItHeaderSections)
+        // .use(markdownItHeaderSections)
         .use(markdownItImplicitFigures, {
             figcaption: true
         })
 
+    // Customize footnotes
+    // These override original markdown-it-footnote rules.
+    // Originals: https://github.com/markdown-it/markdown-it-footnote/blob/master/index.js
+    // Docs: https://github.com/markdown-it/markdown-it-footnote#customize
+    markdownLib.renderer.rules.footnote_caption = function (tokens, idx) {
+
+        let n = Number(tokens[idx].meta.id + 1).toString()
+
+        if (tokens[idx].meta.subId > 0) {
+            n += ':' + tokens[idx].meta.subId
+        }
+
+        // This is the only line we change, to remove the square brackets:s
+        return n
+    }
+
+    markdownLib.renderer.rules.footnote_ref = function (tokens, idx, options, env, slf) {
+        let id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
+        let caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
+        let refid = id;
+
+        if (tokens[idx].meta.subId > 0) {
+            refid += ':' + tokens[idx].meta.subId;
+        }
+
+        return '<a href="#fn' + id + '" class="footnote-ref" id="fnref' + refid + '">' + caption + '</a>';
+    }
+
+    markdownLib.renderer.rules.footnote_block_open = function () {
+        return '<footer id="footnotes">\n' + '<h2>Notes</h2>\n' + '<ol>\n'
+    }
+
+    markdownLib.renderer.rules.footnote_block_close = function () {
+        return '</ol>\n</footer>\n';
+    }
+
     /* 
-    Hacky fix for image paths being broken by permalinks. I used ermalinks, which creates parent directories for posts. This changes the relative path to images in said posts, after processing. This Markdown-It rule fixes the paths.
-    
-    This is currently *brittle*, because it relies on convention. If I change 1) where `img` directory lives in either my working or output directories, or 2) my permalink nesting depths, this will break. 
+    Hacky fix for image paths being broken by permalinks. I use permalinks, which creates parent directories for posts. This changes the relative path to images in said posts, after processing. This Markdown-It rule fixes the paths. WARNING: This solution is *brittle*, because it relies on convention. If I change 1) where `img` directory lives in either my working or output directories, or 2) my permalink nesting depths, this will break. 
     */
     const defaultImageRule = markdownLib.renderer.rules.image
     markdownLib.renderer.rules.image = function (tokens, idx, options, env, self) {
@@ -76,6 +112,27 @@ module.exports = function (eleventyConfig) {
         return defaultImageRule(tokens, idx, options, env, self)
     }
 
+    // // // Hanging punctuation
+    // var defaultTextRule = markdownLib.renderer.rules.text
+
+    // markdownLib.renderer.rules.text = function (tokens, idx, options, env, self) {
+        
+    //     let token = tokens[idx]
+    //     // if (token.content.charAt(0) == '“') {
+    //     //     console.log(token.content)
+    //     // }
+
+    //     // var aIndex = token.attrIndex('src') // Get index of `src` attribute
+    //     // var srcString = token.attrs[aIndex][1]
+    //     // console.log(srcString) // Output string of src attribute
+    //     // token.attrPush(['target', '_blank']); // Add attribute to element
+
+    //     return defaultTextRule(tokens, idx, options, env, self)
+    // }
+    
+    // console.log(markdownLib.renderer.rules)
+
+    // This has to go after other Markdown-It configurations (IIUC)
     eleventyConfig.setLibrary("md", markdownLib)
 
 
@@ -83,7 +140,7 @@ module.exports = function (eleventyConfig) {
     // Modify a template’s output
 
     // Insert citations
-    eleventyConfig.addTransform("", function (content, outputPath) {
+    eleventyConfig.addTransform("insert-citations", function (content, outputPath) {
 
         if (outputPath.endsWith(".html")) {
 
@@ -93,10 +150,17 @@ module.exports = function (eleventyConfig) {
 
             if (citekey) {
                 citekey.forEach(function (c) {
-                    
+
+                    // Only process citations if environment variables is set 'true'                    
+                    if (process.env.PROCESS_CITATIONS == 'false') {
+                        content.replace(c, '')
+                        return
+                    }
+
+                    // Instantiate these strings. We'll clean them up below.
                     let id = c
                     let locator = c.match(/(\,.*?\])/gm)
-                    
+
                     if (locator) {
                         locator = locator[0].replace(/(,\s\w\W)/gm, '') // Strip down to just digits
                         locator = locator.replace(/\]/gm, '') // Strip down to just digits (remove right bracket)
@@ -107,17 +171,14 @@ module.exports = function (eleventyConfig) {
                     // Before: [@jones2019] After: jones2019.
                     // Regex test: https://regex101.com/r/j0Ml9U/1
                     id = id.replace(/[\[\@\]]/g, '')
-                    // console.log("ID = " + id)
 
                     // Get our citation(s). We use options to customize the returned data. `format` specifies the format of the returned citation. `template` specifies the CSL style we want to use. `entry` array specifies which we want, by id.
-                    let citation = cite.format('citation', { 
-                        entry: [id], 
+                    let citation = cite.format('citation', {
+                        entry: [id],
                         template: stylesName,
                         format: 'html',
                         lang: 'en-US'
                     })
-                    
-                    console.log(id)
 
                     // Find author, and replace underline text decoration with class
                     citation = citation.replace('style="text-decoration:underline;"', 'class="cite-author"')
@@ -162,7 +223,6 @@ module.exports = function (eleventyConfig) {
                     // Finally, replace the citekey with our nicely formatted citation
                     content = content.replace(c, citation)
 
-                    // console.log(citation)
                 })
             }
         }
@@ -170,9 +230,27 @@ module.exports = function (eleventyConfig) {
         return content
     })
 
+    // Strip extra space before footnote links
+    eleventyConfig.addTransform("strip-spaces-before-footnote-links", function (content, outputPath) {
+        if (outputPath.endsWith(".html")) {
+            content = content.replace(/ <a href="#fn/gm, '<a href="#fn')
+        }
+
+        return content
+    })
+
+    // Hang quotes
+    // Check if first character
+    eleventyConfig.addTransform("hang-quotes", function (content, outputPath) {
+        if (outputPath.endsWith(".html")) {
+            content = content.replace(/(<p>“)/gm, '<p class="hanging-punctuation">“')
+        }
+
+        return content
+    })
+
     // Beautify HTML
     const pretty = require("pretty");
-
     eleventyConfig.addTransform("pretty", function (content, outputPath) {
         if (outputPath.endsWith(".html")) {
             let prettyHTML = pretty(content, { ocd: true });
@@ -180,7 +258,7 @@ module.exports = function (eleventyConfig) {
         }
 
         return content;
-    });
+    })
 
 
     // -------- CONFIG OPTIONS -------- //
