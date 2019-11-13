@@ -1,114 +1,12 @@
 /* ==========================================================================
-   Resets
-   ==========================================================================
-   */
-
-/* body,
-blockquote,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-figure,
-p,
-pre {
-  margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-} */
-
-/* ==========================================================================
-   Fonts
-   ========================================================================== */
-
-@font-face {
-    font-family: "Public Sans";
-    font-style: normal;
-    font-weight: normal;
-    src: url("/styles/fonts/PublicSans-Regular.woff2") format("woff2"), url("/styles/fonts/PublicSans-Regular.woff") format("woff");
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: italic;
-    font-weight: normal;
-    src: url('/styles/fonts/PublicSans-Italic.woff2') format('woff2'), url('/styles/fonts/PublicSans-Italic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 500;
-    src: url('/styles/fonts/PublicSans-Medium.woff2') format('woff2'), url('/styles/fonts/PublicSans-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: italic;
-    font-weight: 500;
-    src: url('/styles/fonts/PublicSans-MediumItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-MediumItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 600;
-    src: url('/styles/fonts/PublicSans-SemiBold.woff2') format('woff2'), url('/styles/fonts/PublicSans-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: italic;
-    font-weight: 600;
-    src: url('/styles/fonts/PublicSans-SemiBoldItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-SemiBoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: bold;
-    src: url('/styles/fonts/PublicSans-Bold.woff2') format('woff2'), url('/styles/fonts/PublicSans-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Public Sans';
-    font-style: italic;
-    font-weight: bold;
-    src: url('/styles/fonts/PublicSans-BoldItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-BoldItalic.woff') format('woff');
-}
-
-/* ==========================================================================
    Variables
    ========================================================================== */
-
 :root {
-    
-    /* -------------- Colors -------------- */
-
-    --clr-gray-dark: rgb(84, 84, 84);
-    --clr-gray: gray;
-    --clr-gray-light: #D8D8D8;
-    --clr-blue: hsl(214, 61%, 49%);
-    --clr-blue-light: #b9d0ee;
-    --clr-blue-alpha: rgba(48, 114, 201, 0.15);
-    --clr-highlight: rgb(247, 242, 197);
-    
+        
     /* -------------- Type sizes -------------- */
 
     --baseFontSize: 16px;
-    --baseLineHeight: 1.625rem;
+    --baseLineHeight: 1.625rem; /* 26px */
     
     --font-size-scale: 1.125;
     --font-size-lg-8:   calc(var(--font-size-lg-7) * var(--font-size-scale));
@@ -264,11 +162,11 @@ body > footer {
    ========================================================================== */
 
 h1, h2, h3 {
-    color: #222;
     font-kerning: normal;
 }
 
 h1 {
+    color: var(--clr-gray-darkest);
     font-size: var(--font-size-lg-8);
     line-height: var(--grid-2);
     font-weight: bold;
@@ -278,19 +176,12 @@ h1 {
 }
 
 h2 {
+    color: var(--clr-gray-darker);
     font-size: var(--font-size-lg-1);
     font-weight: bold;
     line-height: var(--grid);
     margin-top: var(--h2-margin-top);
     margin-bottom: var(--h2-margin-bottom);
-}
-
-h3 {
-    font-size: var(--font-size-base);
-    font-weight: bold;
-    line-height: var(--grid);
-    margin-top: 0;
-    margin-bottom: var(--h3-margin-bottom);
 }
 
 h2::before {
@@ -302,15 +193,18 @@ h2::before {
     width: 6ch;
     color: var(--clr-gray-light);
     font-style: normal;
-}
-
-h2::before {
     content: "##";
 }
 
-h3::before {
-    /* content: "###"; */
+h3 {
+    color: var(--clr-gray-dark);
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    line-height: var(--grid);
+    margin-top: 0;
+    margin-bottom: var(--h3-margin-bottom);
 }
+
 
 /* Reduce top-margin of headers that follow blocks to help ensure consistent vertical rhythm. */
 blockquote + h2, ol + h2, p + h2, pre + h2, table + h2, ul + h2 {
@@ -324,11 +218,27 @@ blockquote + h2, ol + h2, p + h2, pre + h2, table + h2, ul + h2 {
 
 body {
     font-family: 'Public Sans', sans-serif;
-    color: #444;
+    color: var(--clr-gray-dark);
 }
 
-a {
+/* article {
     color: var(--clr-gray-dark);
+} */
+
+a {
+    color: inherit;
+    font-weight: 500;
+    /* text-decoration: none; */
+    /* border-bottom: 2px solid var(--clr-gray-light); */
+}
+
+a:hover {
+    color: var(--clr-gray-darkest);
+    /* border-bottom: 1px solid; */
+}
+
+a:active {
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 /* -------------- Address and Date -------------- */
@@ -367,7 +277,7 @@ li:last-child {
 
 /* TODO: Add margin-bottom to figure when they're displayed inline */
 
-article>figure {
+article > figure {
     grid-column: right;
     align-self: end;
     justify-self: end;
@@ -410,7 +320,8 @@ figcaption {
     /* font-style: italic; */
     color: gray;
     font-size: var(--font-size-sml-1);
-    line-height: var(--grid);
+    line-height: var(--grid-subdivision-3);
+    /* line-height: var(--grid); */
     letter-spacing: 0.02em;
     /* line-height: calc(var(--font-size-sml-1) * 1.5);  */
 }
@@ -422,7 +333,7 @@ blockquote {
 }
 
 blockquote p {
-    letter-spacing: 0.01    em;
+    letter-spacing: 0.01em;
     font-style: italic;
     color: var(--clr-blue);
     padding-top: 0;
@@ -461,9 +372,10 @@ strong {
 /* -------------- Hanging punctuation -------------- */
 
 /* This class gets applied manually in the build process if the first character is a quote. */
-.hanging-punctuation {
+.hanging-punctuation  {
     text-indent: -0.4em;
 }
+
 
 /* -------------- Sub and Sup -------------- */
 /* 
@@ -517,31 +429,27 @@ hr {
 
 /* -------------- Links -------------- */
 
-.footnote-ref {
+/* .footnote-ref {
     margin-left: 0.2em;
     text-decoration: none;
     font-size: 70%;
     line-height: 0;
-    /* Where the magic happens: makes all browsers position
-       the sup/sup properly, relative to the surrounding text */
     position: relative;
-    /* Note that if you're using Eric Meyer's reset.css, this
-       is already set and you can remove this rule */
     vertical-align: baseline;
-    /* margin-bottom: 0.25em; */
     top: -0.45em;
     color: inherit;
-    opacity: 0.5;
     font-weight: 500;
-}
-
-/* .footnote-ref {
-    border-bottom: 0.3em solid rgba(0,0,0,0.2);
 } */
 
-.footnote-ref::after {
+/* .footnote-ref > *:not(#footnote-popup), .footnote-ref::after {
     opacity: 0.5;
-    /* background-color: rgba(0, 0, 0, 1); */
+} */
+
+/* .footnote-ref:hover > *:not(#footnote-popup), .footnote-ref:hover::after {
+    opacity: 1;
+}*/
+
+/* .footnote-ref::after {
     bottom: -0.25em;
     content: '';
     display: block;
@@ -553,30 +461,88 @@ hr {
     width: 90%;
     box-sizing: content-box;
     border-bottom: 0.2em solid;
+} */
+
+
+
+.footnote-ref {
+    top: -0.1em;
+    text-decoration: none;
+    position: relative;
+    background-color: var(--clr-gray-lightest);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    /* width: 3em; */
+    padding: 0 0.2em;
+    margin-left: 0.2em;
+    /* vertical-align: baseline; */
+    border-radius: 0.15em;
+    font-size: 0.8em;
+}
+
+.footnote-ref > span {
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 .footnote-ref:hover {
-    /* background-color: rgba(0, 0, 0, 0.2) */
+    background-color: var(--clr-gray-lighter);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.footnote-ref:hover span {
     opacity: 1;
 }
 
-.footnote-ref:hover.footnote-ref::after {
-    opacity: 1;
+.footnote-ref:active {
+    background-color: var(--clr-gray-light);
+    border-color: rgba(0, 0, 0, 0.6);
 }
 
-/* NOTE: The following works well, EXCEPT for false positives created when two footnote-refs are separated only by text content (e.g. inside a <p>). When that happens, the browser incorrectly thinks they immediately follow each other. */
+.footnote-ref:active span { 
+    opacity: 1 
+}
 
-/* .footnote-ref + .footnote-ref {
-    padding-left: 0.1em;
-    border-width: 0 0 0 0.1em;
-    border-style: solid;
-    border-color: var(--clr-blue);
-} */
 
-/* .footnote-ref a:hover {
-    background-color: var(--clr-blue-alpha);
-    border-radius: 0.2em;
-} */
+/* -------------- Link popup -------------- */
+
+#footnote-popup {
+    position: absolute;
+    min-width: var(--grid-12);
+    bottom: calc(var(--grid-subdivision-2) * -1.25);
+    left: 50%;
+    border-radius: var(--grid-subdivision-1);
+    background-color: white;
+    box-shadow: 0px 1px 15px 2px rgba(0, 0, 0, 0.15);
+    padding: var(--grid-subdivision-2);
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid-subdivision-3);
+    transform: translate(-50%, 100%);
+    margin: 0;
+    z-index: 2;
+    opacity: 1;
+    /* We add this to stop .hanging-punctuation from applying*/
+    text-indent: 0;
+}
+
+#footnote-popup::before {
+    content: '';
+    width: var(--grid-subdivision-2);
+    height: var(--grid-subdivision-2);
+    background-color: inherit;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#footnote-popup p {
+    margin: 0;
+}
+
+.popup-hide {
+    display: none;
+}
 
 
 /* -------------- Notes section -------------- */
@@ -620,33 +586,38 @@ hr {
     /* border: 1px solid gray; */
 }
 
-#footnotes p {  
+.footnote-item p {
+    font-family: 'Public Sans', sans-serif;
+    color: var(--clr-gray);
+    font-style: normal;
     margin: 0;
     padding: 0;
+    font-weight: normal;
 }
 
-#footnotes .citation, #footnotes .citation a {
-    color: gray;
+.footnote-item a {
+    /* border-bottom: 1px solid; */
+    font-weight: normal;
+    text-decoration: underline;
+    border: none;
+    color: var(--clr-gray);
+
+}
+
+.footnote-item a:hover {
+    border: none;
+    color: var(--clr-gray-dark); 
+}
+
+a.footnote-backref::before {
+    content: " ";
 }
 
 a.footnote-backref {
     text-decoration: none;
-    color: var(--clr-gray-light);
+    opacity: 0.45;
 }
 
 a.footnote-backref:hover {
-    text-decoration: none;
-    color: var(--clr-gray);
-}
-
-cite {
-    font-style: normal;
-}
-
-cite title {
-    font-weight: bold;
-}
-
-cite, cite a {
-    color: gray
+    opacity: 1;
 }

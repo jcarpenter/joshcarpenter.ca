@@ -6,13 +6,13 @@ date: 2019-10-24
 
 ## Preface
 
-### How do we define “sea level rise”?
+### How do we define “sea level rise”? 
 
-![Global mean sea level relative to the 1986–2005. ^[[@rep-AR5Synth-IPCC-14, p.41]]](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
+![Global mean sea level relative to the 1986–2005. ^[[@rep-AR5Synth-IPCC-14, p.41]] ](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
 
 “Sea level rise” most commonly refers to changes in the **global mean sea level** (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.
 
-Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.
+Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also [^relative] to the 1986-2000 mean.
 
 ### How do we measure sea level rise?
 
@@ -104,9 +104,9 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 
 “Meltwater pulses” saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several “Meltwater Pulses”—periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ^[[@wiki-EarlyHoloceneSea]]
 
-* **1A:** 16-25 m rise over 400-500 years, for **40–60 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1A]]
-* **1B:** Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for **40 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1B]]
-* **1C:** 6.5 m rise over 140 years, for **46 mm** annual mean rate.
+* **1A**: 16-25 m rise over 400-500 years, for **40–60 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1A]]
+* **1B**: Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for **40 mm** annual mean rate. ^[[@wiki-MeltwaterPulse1B]]
+* **1C**: 6.5 m rise over 140 years, for **46 mm** annual mean rate.
 
 ## Sea level rise will not be uniform
 
@@ -164,6 +164,6 @@ That seems reasonable to me. It is greater than the (outdated and conservative) 
 
 The heat already in the ocean will continue to drive sea level rise, even if we could magically stop all emissions today. But we still need to rapidly reduce emissions, because the hotter the world is, the more sea level rise we will see, and the faster it will happen.
 
-* **2°C:** Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. ^[[@book-UninhabitEarth, p.62]] Or 7.5-18 m, according to Jeff Goodell. ^[[@vid-JeffGoodell-SALT-19, p.19:21]]
-* **3°C:** It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. ^[[@book-UninhabitEarth, p.62]] The US Geological Survey 80 m, ultimately. ^[[@book-UninhabitEarth, p.68]]
-* **4°C:** “The last time the earth was 4°C warmer… there was no ice at either pole and sea level was 260’ higher. There were palm trees in the Arctic.” ^[[@book-UninhabitEarth, p.65]]
+* **2°C**: Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. ^[[@book-UninhabitEarth, p.62]] Or 7.5-18 m, according to Jeff Goodell. ^[[@vid-JeffGoodell-SALT-19, p.19:21]]
+* **3°C**: It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. ^[[@book-UninhabitEarth, p.62]] The US Geological Survey 80 m, ultimately. ^[[@book-UninhabitEarth, p.68]]
+* **4°C**: “The last time the earth was 4°C warmer… there was no ice at either pole and sea level was 260’ higher. There were palm trees in the Arctic.” ^[[@book-UninhabitEarth, p.65]]

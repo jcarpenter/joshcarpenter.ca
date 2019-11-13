@@ -361,29 +361,8 @@
 		</choose>
 	</macro>
 
-	<macro name="access">
-		<choose>
-			<if type="thesis report" match="any">
-				<choose>
-					<if variable="archive" match="any">
-						<group>
-							<text term="retrieved" text-case="capitalize-first" suffix=" "/>
-							<text term="from" suffix=" "/>
-							<text variable="archive" suffix="."/>
-							<text variable="archive_location" prefix=" (" suffix=")"/>
-						</group>
-					</if>
-					<else>
-						<group>
-							<text variable="URL"/>
-						</group>
-					</else>
-				</choose>
-			</if>
-			<else-if variable="URL">
-				<text variable="URL"/>
-			</else-if>
-		</choose>
+	<macro name="url">
+		<text variable="URL"/>
 	</macro>
 
 	<macro name="edition">
@@ -529,10 +508,10 @@
 					<text macro="publisher"/>
 					<text macro="container"/>
 				</group>
-				<text macro="issued-date" prefix=" " suffix="."/>
-				<text macro="access-date" prefix=" " suffix="."/>
-				<text macro="citation-locator"/>
-				<text macro="access" prefix=" "/>
+				<text macro="issued-date"/>
+				<text macro="access-date"/>
+				<!-- <text macro="citation-locator"/> -->
+				<text macro="url"/>
 			</group>
 		</layout>
 	</citation>
