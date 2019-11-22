@@ -10,4 +10,4 @@
     publish = "_site"
 
     # Default build command.
-    command = "npx eleventy"
+    command = "npm run download-then-build"

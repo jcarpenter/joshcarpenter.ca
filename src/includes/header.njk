@@ -6,16 +6,26 @@
         <a href="mailto:{{ josh.email }}">{{ josh.email }}</a>
     </address>
     <nav>
-        <ul>
-            <li>
-                <a href='#'>Design</a>
-            </li>
-            <li>
-                <a href='#'>Climate</a>
-            </li>
-            <li>
-                <a href='#'>About</a>
-            </li>
-        </ul>
+        {% if tags.includes("Climate") %}
+            <ul>
+                {%- for post in collections.Climate -%}
+                    <li {% if page.url == post.url %} class="active" {% endif %}>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {% else %}
+            <ul>
+                <li>
+                    <a href='#'>Design</a>
+                </li>
+                <li>
+                    <a href='#'>Climate</a>
+                </li>
+                <li>
+                    <a href='#'>About</a>
+                </li>
+            </ul>
+        {% endif %}
     </nav>
 </header>
