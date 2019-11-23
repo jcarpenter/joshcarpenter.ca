@@ -2,7 +2,7 @@
 title: "Solar"
 dateModified: 'Thu Nov 21 2019 15:20:58 GMT-0800 (Pacific Standard Time)'
 tags:
-- Climate
+- climate
 - post
 - resiliency
 ---
@@ -14,8 +14,8 @@ tags:
 
 -   **Solar panels** convert sunlight to electricity and output DC power.
 -   **Charge controller** takes DC power from panels, and regulates output.
--   **Battery bank** takes regulated DC output from controller, charges batteries, and outputs DC.[^1]
--   **Backup generator** (e.g. gasoline), also ouputs DC to the inverter.[^2]
+-   **Battery bank** takes regulated DC output from controller, charges batteries, and outputs DC.==[Best Solar Charge Controllers](https://www.renewableresourcescoalition.org/best-solar-charge-controllers/)==
+-   **Backup generator** (e.g. gasoline), also ouputs DC to the inverter.==Honda's generators are well-regarded. The [Ultra-Quiet 2200i](https://powerequipment.honda.ca/generators/EU2200i) weighs 46lbs, runs 8.1 hours on a single 3.6 litre tank, which costs \$4.60 at Nov 2019 Vancouver gas prices of \$1.30, and outputs max 2,200 watts (1,800 continuous) at 120 VAC.==
 -   **Transfer switch** switches two sources of power. In our case: the battery bank and generator. Transfer switches can be manual or automatic (e.g. switch to generator when batteries are depleted).
 -   **Inverter** takes 12 volt DC from battery bank, and outputs 120 volts AC, which is what home appliances run on.
 -   **AC load center**. E.g a circuit breaker panel w/ switches, fuses and circuit breaker. Help organize load across different outlets and devices.
@@ -24,11 +24,11 @@ tags:
 ### Misc details
 
 -   For top-rated panels, see: [Best selling panels in California for 2018](https://www.solar-estimate.org/news/what-are-the-best-solar-panels-to-buy-for-your-home-in-2019).
--   A south facing roof is best (assuming you're in the northern hemisphere). East and west facing are good. North facing is just OK. Optimal angle is 45°.[^3]
+-   A south facing roof is best (assuming you're in the northern hemisphere). East and west facing are good. North facing is just OK. Optimal angle is 45°.==[Energyhub.org](https://energyhub.org/british-columbia/#system-location)==
 -   Clouds are fine.
-    -   *"Ironically, solar panel kits work best under cold and cloudy conditions with full sun. This is because temperature af fects the efficiency of a solar panel; a 100-watt panel at room temperature will be become an 83-watt panel in 110 degrees."*[^4]
+    -   *"Ironically, solar panel kits work best under cold and cloudy conditions with full sun. This is because temperature af fects the efficiency of a solar panel; a 100-watt panel at room temperature will be become an 83-watt panel in 110 degrees."*==[Best Solar Charge Controllers](https://www.renewableresourcescoalition.org/best-solar-charge-controllers/)==
 -   Doubling your batteries gives redundancy for a critical-component.
--   Lithium Ion batteries: Lighter and cheaper than lead acid. *"Because of the better efficiency and deeper discharge depth, Lithium battery banks tend to be only 50-60% of the size of a comparable lead acid bank!"*[^5]
+-   Lithium Ion batteries: Lighter and cheaper than lead acid. *"Because of the better efficiency and deeper discharge depth, Lithium battery banks tend to be only 50-60% of the size of a comparable lead acid bank!"* ==[Off-Grid Battery Bank Sizing](https://www.wholesalesolar.com/solar-information/battery-bank-sizing)==
 -   Solar-optimized charge controller: Cheap charge controllers only prevent batteries from overcharging. A charge controller designed for solar (e.g. a [Maximum Power Point Tracking](https://www.solar-electric.com/learning-center/mppt-solar-charge-controllers.html/) (MPPT) controller) provides more efficiency by better resolving the delta between the voltage of the solar panels and the batteries. See: [Best Solar Charge Controllers](https://www.renewableresourcescoalition.org/best-solar-charge-controllers/).
 -   Pure sine-wave inverter: is better for your electronics.
 -   Motors draw significantly more power during the first few seconds of operation: Can easily be 3x. So buy inverters that have more wattage than you think you need. Some also have two ratings: "surge" and "continuous".
@@ -110,13 +110,3 @@ Auxiliary electrical system
 
 -   [Great video on technique](https://www.youtube.com/watch?v=XzfrJJ6Px3o "Great video on technique")
 -   Idea is to keep your auxiliary electrical system completely separate from your vehicle's original main system.
-
-[^1]: [Best Solar Charge Controllers](https://www.renewableresourcescoalition.org/best-solar-charge-controllers/)
-
-[^2]: Honda's generators are well-regarded. The [Ultra-Quiet 2200i](https://powerequipment.honda.ca/generators/EU2200i) weighs 46lbs, runs 8.1 hours on a single 3.6 litre tank, which costs \$4.60 at Nov 2019 Vancouver gas prices of \$1.30, and outputs max 2,200 watts (1,800 continuous) at 120 VAC.
-
-[^3]: [Energyhub.org](https://energyhub.org/british-columbia/#system-location)
-
-[^4]: [Best Solar Charge Controllers](https://www.renewableresourcescoalition.org/best-solar-charge-controllers/)
-
-[^5]: [Off-Grid Battery Bank Sizing](https://www.wholesalesolar.com/solar-information/battery-bank-sizing)

@@ -544,73 +544,123 @@ table tr:last-of-type td:last-of-type {
 
 
 /* ==========================================================================
-   FOOTNOTES
+   NOTES
    ========================================================================== */
 
-/* -------------- Footnotes section -------------- */
-
-#footnotes {
-    line-height: 1.63rem;
-    margin: var(--grid-2) 0;
-    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
+/* -------------- Note, not hovered -------------- */
+    
+.note {
+    background-color: hsl(0, 0%, 92%);
+    color: hsl(0, 0%, 40%);
+    border-radius: 0.2em;
+    padding: 0 0.2em 0.1em 0.2em;
+    font-size: 0.9em;
+    line-height: 1em;
+    position: relative;
+    margin-left: 0.1em;
+    cursor: default;
 }
 
-#footnotes h2::before {
-    content: initial;
+.note::before {
+    font-size: 0.9em;
+    content: 'fn'; 
 }
 
-#footnotes h2 {
-    margin-top: var(--grid);
+blockquote .note {
+    background-color: var(--clr-blue-lighter);
 }
 
-#footnotes ol {
-    list-style-position: outside;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    column-gap: var(--grid-2);
-    row-gap: var(--grid-subdivision-2);
-    margin: 0;
-    padding: 0;
+blockquote .note::before {
+    color: inherit;
+}
+
+blockquote .note .content {
+    font-style: normal;
+}
+
+/* -------------- Note, hovered -------------- */
+
+.note:hover {
+    background-color: hsl(0, 0%, 70%);
+    color: hsl(0, 0%, 10%);
+}
+
+blockquote .note:hover {
+    background-color: var(--clr-blue-light);
+    color: inherit;
+}
+
+/* -------------- Note popup-------------- */
+
+/* Hidden, when not hovered */
+.note .content {
+    position: absolute;
+    transform: translate(-50%, 100%);
+    bottom: -0.7em;
+    left: 50%;
+    z-index: 100;
+    width: 20em;
+    padding: var(--grid-subdivision-2);
     font-size: var(--font-size-sml-1);
     line-height: var(--grid-subdivision-3);
+    border-radius: var(--grid-subdivision-1);
+    background-color: hsl(0, 0%, 20%);
+    color: white;
+    border-radius: 0.25em;
+    white-space: normal;
+    /* Transition settings when mouse exits */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.15s, bottom 0.1s, opacity 0.1s;
+    transition-delay: 0.2s;
+    transition-timing-function: ease-out;
 }
 
-.footnote-item p {
-    font-family: 'Public Sans', sans-serif;
-    color: var(--clr-gray);
-    font-style: normal;
-    margin: 0;
-    padding: 0;
-    font-weight: normal;
-}
-
-.footnote-item a {
-    font-weight: normal;
-    text-decoration: underline;
-    border: none;
-    color: var(--clr-gray);
-
-}
-
-.footnote-item a:hover {
-    border: none;
-    color: var(--clr-gray-dark); 
-}
-
-a.footnote-backref::before {
-    content: " ";
-}
-
-a.footnote-backref {
-    text-decoration: none;
-    opacity: 0.45;
-}
-
-a.footnote-backref:hover {
+/* Show, when hovered */
+.note:hover .content {
+    visibility: visible;
     opacity: 1;
+    bottom: -0.4em;
+    /* Transition settings apply when mouse enters */
+    transition: visibility 0s, bottom 0.05s, opacity 0.05s;
+    transition-delay: 0.3s;
+    transition-timing-function: ease-in;
 }
 
-/* -------------- Links -------------- */
+/* Popup notch */
+.note .content::before {
+    content: '';
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    
+    /* transition: inherit; */
+    background-color: inherit;
+    opacity: inherit;
+}
+
+.note:hover .content a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+/* Match coloring of blockquotes */
+blockquote .note {
+    background-color: var(--clr-blue-lighter);
+    color: inherit;
+}
+
+
+
+
+
+
+
+/* -------------- Inline note tag -------------- */
 
 .footnote-ref {
     top: -0.1em;
@@ -688,6 +738,62 @@ a.footnote-backref:hover {
 
 .popup-hide {
     display: none;
+}
+
+
+/* ==========================================================================
+   REFERENCES
+   ========================================================================== */
+   
+#references {
+    line-height: 1.63rem;
+    margin: var(--grid-2) 0;
+    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
+}
+
+#references h2 {
+    margin-top: var(--grid);
+}
+
+#references h2::before {
+    content: none;
+}
+
+#references ul {
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid-subdivision-3);
+    list-style: none;
+    /* Split contents into two equal columns */
+    column-count: 2;
+    column-gap: var(--grid-2);
+}
+
+.reference {
+    margin-bottom: var(--grid-subdivision-3);
+    /*Do not let contents be broken across columns */
+    break-inside: avoid;
+}
+
+.reference p {
+    color: var(--clr-gray);
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.reference a {
+    font-weight: normal;
+    text-decoration: underline;
+    border: none;
+    color: var(--clr-gray);
+}
+
+.reference a:hover {
+    border: none;
+    color: var(--clr-gray-dark); 
 }
 
 

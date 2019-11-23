@@ -14,8 +14,11 @@
     --clr-gray-lightest: hsl(0, 0%, 92.5%);
     --clr-gray-lightestx2: hsl(0, 0%, 95%);
     
-    --clr-blue: hsl(214, 61%, 49%);
+    --clr-blue: rgb(13, 103, 220);
     --clr-blue-light: #b9d0ee;
+    --clr-blue-lighter:rgb(232, 242, 255);
     --clr-blue-alpha: rgba(48, 114, 201, 0.15);
     --clr-highlight: rgb(247, 242, 197); 
+
+
 }

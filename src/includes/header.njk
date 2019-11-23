@@ -6,9 +6,9 @@
         <a href="mailto:{{ josh.email }}">{{ josh.email }}</a>
     </address>
     <nav>
-        {% if tags.includes("Climate") %}
+        {% if tags.includes("climate") %}
             <ul>
-                {%- for post in collections.Climate -%}
+                {%- for post in collections.climate -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
                         <a href="{{ post.url }}">{{ post.data.title }}</a>
                     </li>
