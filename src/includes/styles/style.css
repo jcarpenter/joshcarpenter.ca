@@ -42,32 +42,31 @@
     
     /* -------------- Grid layouts -------------- */
 
-    --grid-layout-content:  
+    --grid-narrow:  
+        minmax(var(--grid-subdivision-3), 1fr) [content-start] minmax(calc(var(--grid) * 10), calc(var(--grid) * 22)) [content-end] minmax(var(--grid-subdivision-3), 1fr);
+
+    --grid-wide:  
+        [nav-start] minmax(calc(var(--grid) * 14), 1fr) [nav-end content-start] minmax(calc(var(--grid) * 20), calc(var(--grid) * 22)) [content-end] 1fr;
+
+
+    /* --grid-layout-content:  
         [full-start] 
             minmax(0, 1fr)
             [left-start] 
                 minmax(var(--grid-8), var(--grid-10)) 
             [left-end] 
-            var(--grid-2) /* Gutter */
+            var(--grid-2)
             [main-start]
                 minmax(calc(var(--grid) * 20), calc(var(--grid) * 22)) 
             [main-end] 
-            var(--grid-2)  /* Gutter */
+            var(--grid-2)
             [right-start]
                 minmax(var(--grid-8), var(--grid-10)) 
             [right-end] 
             minmax(0, 1fr) 
-        [full-end];
+        [full-end]; */
     
     /* -------------- Blocks -------------- */
-
-    --h1-margin-bottom: var(--grid);
-
-    --h2-margin-top: calc(var(--grid) * 1.5);
-    --h2-margin-bottom: var(--grid);
-    
-    --h3-margin-top: 0;
-    --h3-margin-bottom: var(--grid);
     
     --block-margin-top: 0;
     --block-margin-bottom: var(--grid);
@@ -78,21 +77,37 @@
    Grid
    ========================================================================== */
 
-main {
-    width: 100%;
-}
-
-main > article {
+body {
+    /* width: 100%; */
+    overflow-x: hidden;
     display: grid;
-    grid-template-columns: var(--grid-layout-content);
     position: relative;
+    grid-template-columns: var(--grid-narrow);
     grid-auto-flow: row;
     grid-auto-rows: min-content;
 }
 
-main > article > * {
-    grid-column: main;
+@media (min-width: 900px) {
+    body { 
+        grid-template-columns: var(--grid-wide); 
+    }
 }
+
+body > header { 
+    display: none;
+}
+
+@media (min-width: 900px) {
+    body > header { 
+        display: initial;
+        grid-column: nav;
+    }
+}
+
+main {
+    grid-column: content;
+}
+
 
 
 /* ==========================================================================
@@ -125,27 +140,45 @@ table {
     padding-bottom: var(--block-margin-bottom);
 }
 
+:root {
+    --h1-margin-bottom: var(--grid);
+    --h2-margin-top: calc(var(--grid) + var(--grid-subdivision-2));
+    --h2-margin-bottom: var(--grid);    
+    --h3-margin-top: 0;
+    --h3-margin-bottom: var(--grid);
+}
+
 h1 {
+    font-size: var(--font-size-lg-8);
     line-height: var(--grid-2);
     margin-top: var(--grid-2);
     margin-bottom: var(--h1-margin-bottom);
 }
 
 h2 {
+    font-size: var(--font-size-lg-3);
     line-height: var(--grid);
     margin-top: var(--h2-margin-top);
     margin-bottom: var(--h2-margin-bottom);
 }
 
 h3 {
+    font-size: var(--font-size-base);
     line-height: var(--grid);
     margin-top: 0;
     margin-bottom: var(--h3-margin-bottom);
 }
 
 /* Reduce top-margin of headers that follow blocks to help ensure consistent vertical rhythm. */
-header + h2, blockquote + h2, ol + h2, p + h2, pre + h2, table + h2, ul + h2 {
-    margin-top: calc(var(--h2-margin-top) - var(--block-margin-bottom));
+@media (min-width: 480px) {
+
+    h2{
+        font-size: var(--font-size-lg-1);
+    }
+
+    header + h2, blockquote + h2, ol + h2, p + h2, pre + h2, table + h2, ul + h2 {
+        margin-top: calc(var(--h2-margin-top) - var(--block-margin-bottom));
+    }
 }
 
 /* We have to add !important to pre styles to prevent Prism.js themes from overriding */
@@ -159,7 +192,7 @@ li > ol, li > ul {
     margin: 0;
 }
 
-
+/* horizontal rule */
 hr {
     width: 100%;
     height: var(--grid-subdivision-1);
@@ -211,52 +244,64 @@ h1, h2, h3 {
 
 h1 {
     color: var(--clr-gray-darkest);
-    font-size: var(--font-size-lg-8);
     font-weight: bold;
     letter-spacing: -0.01em;
 }
 
 h2 {
     color: var(--clr-gray-darker);
-    font-size: var(--font-size-lg-1);
     font-weight: bold;
-    line-height: var(--grid);
 
-}
-
-h2::before {
-    position: absolute;
-    text-align: right;
-    padding-right: 1ch;
-    box-sizing: border-box;
-    margin-left: -6ch;
-    width: 6ch;
-    color: var(--clr-gray-light);
-    font-style: normal;
-    content: "##";
 }
 
 h3 {
     color: var(--clr-gray-dark);
-    font-size: var(--font-size-base);
     font-weight: bold;
 }
 
-a.header-anchor {
-    left: 0.1em;
-    visibility: hidden;
-    opacity: 0.3;
-    position: relative;
-    top: 0.2em;
+/* On wider screens, show hashes on h2 */
+@media(min-width: 480px) {
+
+    h2::before {
+        position: absolute;
+        text-align: right;
+        padding-right: 1ch;
+        box-sizing: border-box;
+        margin-left: -6ch;
+        width: 6ch;
+        color: var(--clr-gray-light);
+        font-style: normal;
+        content: "##";
+    }
 }
 
-a.header-anchor:hover {
-    opacity: 0.6;
+/* On hover devices, show header anchor links */
+@media(hover) {
+
+    .header-anchor {
+        left: 0.1em;
+        visibility: hidden;
+        opacity: 0.3;
+        position: relative;
+        top: 0.2em;
+    }
+    
+    .header-anchor:hover {
+        opacity: 0.6;
+    }
+    
+    h2:hover .header-anchor, h3:hover .header-anchor {
+        visibility: visible;
+    }
 }
 
-h2:hover a.header-anchor, h3:hover a.header-anchor {
-    visibility: visible;
+/* On devices without hover, hide anchor links */
+@media(hover:none) {
+    .header-anchor {
+        display: none;
+    }
 }
+
 
 
 /* ==========================================================================
@@ -297,13 +342,40 @@ article > header time {
 }
 
 /* -------------- Lists  -------------- */
+/* TODO: Am currently aligning list markers flush with left side using magic numbers.  */
+/* Alternatively I could properly style my one, per: https://css-tricks.com/style-list-markers-css/  */
 
+/* Make list markers flush with body text, by default */
 ul {
-    padding-left: calc(var(--grid) + var(--grid-subdivision-1));
+    padding-left: 1em;
+}
+
+ol {
+    padding-left: var(--grid-subdivision-3);
+}
+
+/* Shrink numerical marker slightly. It's optically a bit too large at default 1em. */
+ol li::marker {
+    font-size: 0.95em;
+}
+
+/* Add more indentation on larger screens */
+@media(min-width: 480px) {
+    ul, ol {
+        padding-left: calc(var(--grid) + var(--grid-subdivision-1));
+    }
+}
+    
+
+/* -------------- Images & Media -------------- */
+
+/* Use relative sizes to prevent overflowing containers.  */
+
+img, embed, object, video {
+    max-width: 100%;    
 }
 
 /* -------------- Pre & Code -------------- */
-
 
 /* We have to add !important to pre styles to prevent Prism.js themes from overriding */
 pre {
@@ -326,11 +398,11 @@ code {
 /* TODO: Add margin-bottom to figure when they're displayed inline */
 
 article > figure {
-    grid-column: right;
-    align-self: end;
-    justify-self: end;
-    overflow: visible;
-    height: 0em;
+    /* grid-column: right; */
+    /* align-self: end; */
+    /* justify-self: end; */
+    /* overflow: visible; */
+    /* height: 0em; */
 }
 
 figure {
@@ -342,7 +414,7 @@ figure img {
     box-shadow: 0px 1px 30px -14px rgba(0, 0, 0, 0.3);
     object-fit: cover;
     max-width: 100%;
-    display: block;
+    /* display: block; */
     box-sizing: content-box;
 }
 
@@ -368,8 +440,10 @@ figcaption {
 /* -------------- Block quote -------------- */
 
 /* Shifted margin is to make room on side for ::before notch (see below). */
+
 blockquote {
-    margin-right: 1em;
+    margin-left: 1em;
+    margin-right: 0;
 }
 
 blockquote p {
@@ -398,6 +472,13 @@ blockquote::before {
     color: var(--clr-blue-light)
 }
 
+@media(min-width: 480px) {
+    blockquote {
+        margin-left: var(--grid);
+        margin-right: 1em;
+    }
+}
+
 /* -------------- Strong, Emphasis, Small caps  -------------- */
 
 strong {
@@ -416,10 +497,14 @@ strong {
 /* -------------- Hanging punctuation -------------- */
 
 /* This class gets applied manually in the build process if the first character is a quote. */
-.hanging-punctuation  {
+.hanging-punctuation {
     text-indent: -0.4em;
 }
 
+/* Prevent children indenting by reseting to zero */
+.hanging-punctuation * {
+    text-indent: 0;
+}
 
 /* -------------- Sub and Sup -------------- */
 /* 
@@ -544,207 +629,9 @@ table tr:last-of-type td:last-of-type {
 
 
 /* ==========================================================================
-   NOTES
-   ========================================================================== */
-
-/* -------------- Note, not hovered -------------- */
-    
-.note {
-    background-color: hsl(0, 0%, 92%);
-    color: hsl(0, 0%, 40%);
-    border-radius: 0.2em;
-    padding: 0 0.2em 0.1em 0.2em;
-    font-size: 0.9em;
-    line-height: 1em;
-    position: relative;
-    margin-left: 0.1em;
-    cursor: default;
-}
-
-.note::before {
-    font-size: 0.9em;
-    content: 'fn'; 
-}
-
-blockquote .note {
-    background-color: var(--clr-blue-lighter);
-}
-
-blockquote .note::before {
-    color: inherit;
-}
-
-blockquote .note .content {
-    font-style: normal;
-}
-
-/* -------------- Note, hovered -------------- */
-
-.note:hover {
-    background-color: hsl(0, 0%, 70%);
-    color: hsl(0, 0%, 10%);
-}
-
-blockquote .note:hover {
-    background-color: var(--clr-blue-light);
-    color: inherit;
-}
-
-/* -------------- Note popup-------------- */
-
-/* Hidden, when not hovered */
-.note .content {
-    position: absolute;
-    transform: translate(-50%, 100%);
-    bottom: -0.7em;
-    left: 50%;
-    z-index: 100;
-    width: 20em;
-    padding: var(--grid-subdivision-2);
-    font-size: var(--font-size-sml-1);
-    line-height: var(--grid-subdivision-3);
-    border-radius: var(--grid-subdivision-1);
-    background-color: hsl(0, 0%, 20%);
-    color: white;
-    border-radius: 0.25em;
-    white-space: normal;
-    /* Transition settings when mouse exits */
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.15s, bottom 0.1s, opacity 0.1s;
-    transition-delay: 0.2s;
-    transition-timing-function: ease-out;
-}
-
-/* Show, when hovered */
-.note:hover .content {
-    visibility: visible;
-    opacity: 1;
-    bottom: -0.4em;
-    /* Transition settings apply when mouse enters */
-    transition: visibility 0s, bottom 0.05s, opacity 0.05s;
-    transition-delay: 0.3s;
-    transition-timing-function: ease-in;
-}
-
-/* Popup notch */
-.note .content::before {
-    content: '';
-    width: 0.6em;
-    height: 0.6em;
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    
-    /* transition: inherit; */
-    background-color: inherit;
-    opacity: inherit;
-}
-
-.note:hover .content a {
-    text-decoration: underline;
-    color: inherit;
-}
-
-/* Match coloring of blockquotes */
-blockquote .note {
-    background-color: var(--clr-blue-lighter);
-    color: inherit;
-}
-
-
-
-
-
-
-
-/* -------------- Inline note tag -------------- */
-
-.footnote-ref {
-    top: -0.1em;
-    text-decoration: none;
-    position: relative;
-    background-color: var(--clr-gray-lightest);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    /* width: 3em; */
-    padding: 0 0.2em;
-    margin-left: 0.2em;
-    /* vertical-align: baseline; */
-    border-radius: 0.15em;
-    font-size: 0.8em;
-}
-
-.footnote-ref > span {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-.footnote-ref:hover {
-    background-color: var(--clr-gray-lighter);
-    border-color: rgba(0, 0, 0, 0.3);
-}
-
-.footnote-ref:hover span {
-    opacity: 1;
-}
-
-.footnote-ref:active {
-    background-color: var(--clr-gray-light);
-    border-color: rgba(0, 0, 0, 0.6);
-}
-
-.footnote-ref:active span { 
-    opacity: 1 
-}
-
-/* -------------- Link popup -------------- */
-
-#footnote-popup {
-    position: absolute;
-    min-width: var(--grid-12);
-    bottom: calc(var(--grid-subdivision-2) * -1.25);
-    left: 50%;
-    border-radius: var(--grid-subdivision-1);
-    background-color: white;
-    box-shadow: 0px 1px 15px 2px rgba(0, 0, 0, 0.15);
-    padding: var(--grid-subdivision-2);
-    font-size: var(--font-size-sml-1);
-    line-height: var(--grid-subdivision-3);
-    transform: translate(-50%, 100%);
-    margin: 0;
-    z-index: 2;
-    opacity: 1;
-    /* We add this to stop .hanging-punctuation from applying*/
-    text-indent: 0;
-}
-
-#footnote-popup::before {
-    content: '';
-    width: var(--grid-subdivision-2);
-    height: var(--grid-subdivision-2);
-    background-color: inherit;
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-#footnote-popup p {
-    margin: 0;
-}
-
-.popup-hide {
-    display: none;
-}
-
-
-/* ==========================================================================
    REFERENCES
    ========================================================================== */
-   
+
 #references {
     line-height: 1.63rem;
     margin: var(--grid-2) 0;
@@ -766,7 +653,7 @@ blockquote .note {
     line-height: var(--grid-subdivision-3);
     list-style: none;
     /* Split contents into two equal columns */
-    column-count: 2;
+    column-count: 1;
     column-gap: var(--grid-2);
 }
 
@@ -794,6 +681,12 @@ blockquote .note {
 .reference a:hover {
     border: none;
     color: var(--clr-gray-dark); 
+}
+
+@media (min-width: 480px) {
+    #references ul {
+        column-count: 2;
+    }
 }
 
 

@@ -149,7 +149,7 @@ Asia:
 
 ::: #references
 
-## Referenced Works
+## Referenced works
 
 * Garside, Melissa. [Number Offshore Rigs Worldwide by Region 2018](https://www.statista.com/statistics/279100/number-of-offshore-rigs-worldwide-by-region/). Statista. {.reference}
 

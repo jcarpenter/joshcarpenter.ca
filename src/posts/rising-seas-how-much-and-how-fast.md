@@ -1,6 +1,6 @@
 ---
 title: "Rising Seas: How Much and How Fast?"
-dateModified: 'Thu Nov 21 2019 15:14:44 GMT-0800 (Pacific Standard Time)'
+dateModified: 'Tue Nov 26 2019 13:41:03 GMT-0800 (Pacific Standard Time)'
 tags:
 - climate
 - post
@@ -27,12 +27,15 @@ Estimates of future sea level rise are typically expressed as relative to the me
 
 ### What causes sea level rise?
 
-1.  **Thermal expansion**: water expands in volume as it warms. Over 90% of the heat trapped by greenhouse gases is being trapped by the oceans. ==[Climate Change 2014: Synthesis Report](https://www.ipcc.ch/report/ar5/syr/). Geneva, Switzerland: IPCC. 2015. 41.==
-2.  **Melting of temperate glaciers** (glaciers that are at melting point year round.) ==[Glacier](https://en.wikipedia.org/w/index.php?title=Glacier&oldid=922420069). Wikipedia. 22 Oct 2019. Retrieved 25 Oct 2019.== E.g. Glaciers in non-polar regions.
-3.  Melting of ice sheets in **Greenland and Antarctica**.
-4.  Changes to **land water storage**. E.g. Draining an underground aquifer for drinking water, which then flows into the ocean. These have to-date represented a "small contribution", according to the IPCC. ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1139.==
+1.  Thermal expansion: water expands in volume as it warms. Over 90% of the heat trapped by greenhouse gases is being trapped by the oceans. ==[Climate Change 2014: Synthesis Report](https://www.ipcc.ch/report/ar5/syr/). Geneva, Switzerland: IPCC. 2015. 41.==
 
-IPCC AR5 report said:
+2.  Melting of temperate glaciers (glaciers that are at melting point year round.) ==[Glacier](https://en.wikipedia.org/w/index.php?title=Glacier&oldid=922420069). Wikipedia. 22 Oct 2019. Retrieved 25 Oct 2019.== E.g. Glaciers in non-polar regions.
+
+3.  Melting of ice sheets in Greenland and Antarctica.
+
+4.  Changes to land water storage. E.g. Draining an underground aquifer for drinking water, which then flows into the ocean. These have to-date represented a "small contribution", according to the IPCC. ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1139.==
+
+The IPCC AR5 report said:
 
 > Ocean thermal expansion and glacier melting have been the dominant contributors to 20th century global mean sea level rise. Observations since 1971 indicate that thermal expansion and glaciers (excluding Antarctic glaciers peripheral to the ice sheet) explain **75%** of the observed rise. ... The contribution of the Greenland and Antarctic ice sheets has increased since the early 1990s, partly from increased outflow induced by warming of the immediately adjacent ocean. ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1139.==
 
@@ -109,9 +112,9 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 
 "Meltwater pulses" saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several "Meltwater Pulses"---periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ==[Early Holocene Sea Level Rise](https://en.wikipedia.org/w/index.php?title=Early_Holocene_sea_level_rise&oldid=910127057). Wikipedia. 9 Aug 2019. Retrieved 30 Oct 2019.==
 
--   **1A**: 16-25 m rise over 400-500 years, for **40--60 mm** annual mean rate. ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.==
--   **1B**: Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for **40 mm** annual mean rate. ==[Meltwater Pulse 1B](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1B&oldid=887638672). Wikipedia. 13 Mar 2019. Retrieved 30 Oct 2019.==
--   **1C**: 6.5 m rise over 140 years, for **46 mm** annual mean rate.
+-   **1A**: 16-25 m rise over 400-500 years, for 40--60 mm annual mean rate. ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.==
+-   **1B**: Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for 40 mm annual mean rate. ==[Meltwater Pulse 1B](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1B&oldid=887638672). Wikipedia. 13 Mar 2019. Retrieved 30 Oct 2019.==
+-   **1C**: 6.5 m rise over 140 years, for 46 mm annual mean rate.
 
 ## Sea level rise will not be uniform
 
@@ -120,8 +123,11 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 Sea levels are not the same everywhere. Local coastal sea level elevations (aka: relative sea level) can vary widely from region to region, due to several factors:
 
 1.  **Variations in oceanic temperature**. The volume of warm water is greater than cold water, so variations in temperature (due to currents, etc) translate into variations in sea level. In the 22 years between Jan 1993 and Dec 2014, sea levels on the west coast of the US *dropped*, because waters there were cooled by the [pacific decadal oscillation](https://en.wikipedia.org/wiki/Pacific_decadal_oscillation). ==[Watching Rising Seas from Space](https://www.youtube.com/watch?v=z2UKvrU5rOk). NASAJPL Edu. Recorded 2 Sep 2015. Retrieved 30 Oct 2019. 1:24.==
+
 2.  **Variations in vertical land motion**. Some land masses are sinking (subsidence), while others are rising (uplift). Jakarta, for example, is rapidly subsiding due to the draining of underlying fresh water aquifers; North Jakarta has sunk 2.5m in 10 years. ==Mei Lin, Mayuri, & Hidayat, Rafki. [Jakarta, the Fastest-Sinking City in the World](https://www.bbc.com/news/world-asia-44636934). BBC News. 13 Aug 2018. Retrieved 30 Oct 2019.== Whereas in Canada, areas formerly depressed by glaciers in the last ice age are rebounding by as much as 16 mm per year (a process called [glacial isostatic adjustment](https://en.wikipedia.org/wiki/Post-glacial_rebound)). ==Lemmen, Donald Stanley et al. [Canada's Marine Coasts in a Changing Climate](http://oaresource.library.carleton.ca/wcl/2016/20160607/M174-12-2016-eng.pdf). Natural Resources Canada. 2016. Retrieved 4 Oct 2019. 47.==
+
 3.  **Gravity**. As the polar ice sheets melt, water that was bound up in them at the poles is pulled by gravity into a more even global distribution. This is experienced as greater relative rise the closer one is to the equator.
+
 4.  **Salinity**. Salinity increases the density of water (similar to the effect of a decrease in temperature) which reduces the volume.
 
 Per the 2019 IPCC Oceans and Cryosphere report:
@@ -170,12 +176,14 @@ That seems reasonable to me. It is greater than the (outdated and conservative) 
 The heat already in the ocean will continue to drive sea level rise, even if we could magically stop all emissions today. But we still need to rapidly reduce emissions, because the hotter the world is, the more sea level rise we will see, and the faster it will happen.
 
 -   **2°C**: Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 62.== Or 7.5-18 m, according to Jeff Goodell. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 19:21.==
+
 -   **3°C**: It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 62.== The US Geological Survey 80 m, ultimately. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 68.==
+
 -   **4°C**: "The last time the earth was 4°C warmer... there was no ice at either pole and sea level was 260' higher. There were palm trees in the Arctic." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 65.==
 
 ::: #references
 
-## Referenced Works
+## Referenced works
 
 * Church, John A., & White, Neil J. [Sea-Level Rise from the Late 19th to the Early 21st Century](http://link.springer.com/10.1007/s10712-011-9119-1). Surveys in Geophysics. Sep 2011. {.reference}
 
