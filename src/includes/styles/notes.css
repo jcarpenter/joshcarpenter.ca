@@ -64,6 +64,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     border-radius: 0.25em;
     white-space: normal;
     border-radius: var(--grid-subdivision-1);
+    padding: var(--grid-subdivision-2);
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid-subdivision-3);
+
 }
 
 /* -------------- Popup - For desktop and larger touch-based devices -------------- */
@@ -79,9 +83,6 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         left: 50%;
         z-index: 100;
         width: 20em;
-        padding: var(--grid-subdivision-2);
-        font-size: var(--font-size-sml-1);
-        line-height: var(--grid-subdivision-3);
         /* Transition settings when mouse exits */
         visibility: hidden;
         opacity: 0;
@@ -139,30 +140,31 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         position: fixed;
         left: 0;
         z-index: 100;
-        padding: var(--grid-subdivision-2);
-        margin: var(--grid-subdivision-2);
-        font-size: var(--baseFontSize);
-        line-height: var(--baseLineHeight);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-bottom: var(--grid);
         /* Transition settings to hidden state */
+        /* Don't set visibility until opacity tween is complete.*/
         bottom: -1em;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.1s, bottom 0.15s, opacity 0.1s;
+        transition: visibility 0.15s, opacity 0.15s, bottom 0.35s;
         transition-timing-function: ease-in;
     }
 
     /* Activated */
     .note .icon:focus + .popup {
-        /* Transition settings to visible state */
+        /* Transition settings to visible state.*/
+        /* Set visibility immediately (0s).*/
         bottom: 0em;
         visibility: visible;
         opacity: 1;
-        transition: visibility 0s, bottom 0.05s, opacity 0.05s;
+        transition: visibility 0s, opacity 0.15s, bottom 0.35s;
         transition-timing-function: ease-out;
     }
 
     /* Overlay */
-    .note .popup::after {
+    /* .note .popup::after {
         content: '';
         position: fixed;
         top: 0;
@@ -171,5 +173,5 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         right: 0;
         background-color: rgba(0, 0, 0, 0.3);
         z-index: -1;
-    }
+    } */
 }
