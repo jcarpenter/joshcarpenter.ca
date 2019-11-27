@@ -46,7 +46,7 @@ blockquote .note .popup {
 
 /* -------------- Icon :hover and :focus -------------- */
 
-.note .icon:hover, .note .icon:focus  {
+.note:hover .icon, .note .icon:focus  {
     background-color: hsl(0, 0%, 75%);
     color: hsl(0, 0%, 10%);
 }
@@ -167,6 +167,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another focusable element.
     2) Trying: `.note .icon:hover`
     */
+
+    .note:hover .icon {
+        background-color: red;
+    }
 
     .note:hover .popup {
         /* Transition settings to visible state.*/
