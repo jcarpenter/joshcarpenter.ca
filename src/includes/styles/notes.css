@@ -107,7 +107,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         opacity: inherit;
     }
 
-    /* Transition in when sibling icon is hovered or focused */
+    /* Transition in when:
+    1) Note is hovered.
+    2) Note or child is focused. Button (.icon) will be focused.
+    */
     .note:hover .popup, .note:focus-within .popup {
         visibility: visible;
         opacity: 1;
@@ -160,7 +163,13 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     }
 
     /* Activated */
-    .note:hover .popup {
+
+    /* TRYING DIFFERENT APPROACHES:
+    1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another element.
+    2) Trying: `.note .icon:hover`
+    */
+
+    .note .icon:hover .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
         bottom: 0em;
