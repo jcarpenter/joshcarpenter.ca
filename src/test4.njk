@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/focus-test.js"></script>
+    <style>
+        span {
+            background-color: gray;
+        }
+
+        .focusable:hover {
+            background-color: red;
+        }
+        
+        .focusable:focus {
+            background-color: green;
+        }
+
+        .testButton {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <main role="main">
+      <article>
+        <p>Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. <button class="testButton focusable">fn</button> IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.</p>
+      </article>
+    </main>
+  </body>
+</html>
