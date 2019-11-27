@@ -154,7 +154,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         bottom: -10em;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0.15s, opacity 0.15s, bottom 0.3s;
+        transition: visibility 0.15s, opacity 0.15s, bottom 0.25s;
         transition-timing-function: ease-in;
     }
 
@@ -162,10 +162,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     .note .icon:focus + .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
-        bottom: -1px;
+        bottom: 0em;
         visibility: visible;
         opacity: 1;
-        transition: visibility 0s, opacity 0.25s, bottom 0.35s;
+        transition: visibility 0s, opacity 0.25s, bottom 0.3s;
         transition-timing-function: ease-out;
     }
 
