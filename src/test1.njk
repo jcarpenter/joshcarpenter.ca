@@ -1,89 +1,255 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="/js/focus-test.js"></script>
-        <style>
-            span {
-                background-color: gray;
-            }
-
-            .focusable:hover {
-                background-color: red;
-            }
-
-            .focusable:focus {
-                background-color: green;
-            }
-
-            .testButton {
-                background-color: blue;
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <main role="main">
-            <article>
-                <header id="title-block-header">
-                    <h1 class="title">Rising Seas</h1>
-                    <address>
-                        <a href="https://twitter.com/joshcarpenter">Josh Carpenter</a><br/>
-                    </address>
-                </header>
-                <ul>
-                    <li>Test 1</li>
-                    <li class="focusable" tabindex="0" id="testItem">TEST ITEM</li>
-                    <li>Test 3</li>
-                    <li>Test 4</li>
-                    <li class="focusable" tabindex="0">Test 5</li>
-                </ul>
-                <p>
-                    <strong>Coastal tide-gauges</strong>
- for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. 
- <button class="focusable">fn</button>
- Church, John A., & White, Neil J. 
- <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>
- . Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. 
- <button class="focusable">fn</button>
-                    <a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>
-                    . Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.
-                </p>
-                <p>
-                    <strong>Coastal tide-gauges</strong>
- for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. 
- <button class="focusable">fn</button>
- Church, John A., & White, Neil J. 
- <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>
- . Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. 
- <button class="focusable">fn</button>
-                    <a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>
-                    . Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.
-                </p>
-                <p>
-                    <strong>Coastal tide-gauges</strong>
- for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. 
- <button class="focusable">fn</button>
- Church, John A., & White, Neil J. 
- <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>
- . Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. 
- <button class="focusable">fn</button>
-                    <a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>
-                    . Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.
-                </p>
-                <p>
-                    <strong>Coastal tide-gauges</strong>
- for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. 
- <button class="focusable">fn</button>
- Church, John A., & White, Neil J. 
- <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>
- . Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. 
- <button class="focusable">fn</button>
-                    <a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>
-                    . Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.
-                </p>
-            </article>
-        </main>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+  <body>
+    <main role="main">
+      <article>
+        <h2 id="preface">Preface <a class="header-anchor" href="#preface">¶</a></h2>
+        <h3 id="how-do-we-define-sea-level-rise">How do we define “sea level rise”? <a class="header-anchor" href="#how-do-we-define-sea-level-rise">¶</a></h3>
+        <figure><img src="../img/GMSL-1900-2010.png" alt="Global mean sea level relative to the 1986–2005. Climate Change 2014: Synthesis Report. Geneva, Switzerland: IPCC. 2015. 41." title="Graph showing rising global mean sea level from 1986-2005">
+          <figcaption>Global mean sea level relative to the 1986–2005. <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/syr/">Climate Change 2014: Synthesis Report</a>. Geneva, Switzerland: IPCC. 2015. 41.</figcaption>
+        </figure>
+        <p class="hanging-punctuation">“Sea level rise” most commonly refers to changes in the <strong>global mean sea level</strong> (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.</p>
+        <p>Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.</p>
+        <h3 id="how-do-we-measure-sea-level-rise">How do we measure sea level rise? <a class="header-anchor" href="#how-do-we-measure-sea-level-rise">¶</a></h3>
+        <p><strong>Satellite altimeters</strong> since Sep 1993. High quality (accuracy within a few centimeters), near global coverage of both absolute and local sea levels. Satellites send microwave pulses to the surface and measure the time to return. <button class="focusable">fn</button>Church, John A., &amp; White, Neil J. <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>. Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. <button class="focusable">fn</button>Thomas, Robert H., &amp; Bentley, Charles R. <a href="https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article">A Model for Holocene Retreat of the West Antarctic Ice Sheet</a>. Quaternary Research. Sep 1978. Retrieved 30 Oct 2019.</p>
+        <p><strong>Coastal tide-gauges</strong> for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. <button class="focusable">fn</button>Church, John A., &amp; White, Neil J. <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>. Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019. <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>. Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.</p>
+        <h3 id="what-causes-sea-level-rise">What causes sea level rise? <a class="header-anchor" href="#what-causes-sea-level-rise">¶</a></h3>
+        <ol>
+          <li>
+            <p>Thermal expansion: water expands in volume as it warms. Over 90% of the heat trapped by greenhouse gases is being trapped by the oceans. <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/syr/">Climate Change 2014: Synthesis Report</a>. Geneva, Switzerland: IPCC. 2015. 41.</p>
+          </li>
+          <li>
+            <p>Melting of temperate glaciers (glaciers that are at melting point year round.) <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Glacier&amp;oldid=922420069">Glacier</a>. Wikipedia. 22 Oct 2019. Retrieved 25 Oct 2019. E.g. Glaciers in non-polar regions.</p>
+          </li>
+          <li>
+            <p>Melting of ice sheets in Greenland and Antarctica.</p>
+          </li>
+          <li>
+            <p>Changes to land water storage. E.g. Draining an underground aquifer for drinking water, which then flows into the ocean. These have to-date represented a “small contribution”, according to the IPCC. <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/wg1/">Climate Change 2013: The Physical Science Basis</a>. New York: IPCC. 2014. 1139.</p>
+          </li>
+        </ol>
+        <p>The IPCC AR5 report said:</p>
+        <blockquote>
+          <p>Ocean thermal expansion and glacier melting have been the dominant contributors to 20th century global mean sea level rise. Observations since 1971 indicate that thermal expansion and glaciers (excluding Antarctic glaciers peripheral to the ice sheet) explain <strong>75%</strong> of the observed rise. … The contribution of the Greenland and Antarctic ice sheets has increased since the early 1990s, partly from increased outflow induced by warming of the immediately adjacent ocean. <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/wg1/">Climate Change 2013: The Physical Science Basis</a>. New York: IPCC. 2014. 1139.</p>
+        </blockquote>
+        <h2 id="sea-level-rise-is-accelerating">Sea level rise is accelerating <a class="header-anchor" href="#sea-level-rise-is-accelerating">¶</a></h2>
+        <p>GMSL rise average in mm/year:</p>
+        <ul>
+          <li>1901-2010 - 1.7 mm <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/syr/">Climate Change 2014: Synthesis Report</a>. Geneva, Switzerland: IPCC. 2015. 42.</li>
+          <li>1997-2006 - 3.04 mm <button class="focusable">fn</button><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019. 6.</li>
+          <li>2007-2016 - 4.36 mm <button class="focusable">fn</button><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019. 6.</li>
+          <li>2014-2019 - 5 mm <button class="focusable">fn</button><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019. 6.</li>
+        </ul>
+        <h2 id="greenland-and-antarctica-ice-sheets-will-be-the-largest-contributors-going-forward">Greenland and Antarctica ice sheets will be the largest contributors, going forward <a class="header-anchor" href="#greenland-and-antarctica-ice-sheets-will-be-the-largest-contributors-going-forward">¶</a></h2>
+        <figure><img src="../img/GMSL-rise-contributors.png" alt="Contributions to the rate of global mean sea-level rise during the periods 1997–2006 (left) and 2007–2016 (right). The Global Climate in 2015–2019. World Meteorological Organization. 22 Sep 2019.">
+          <figcaption>Contributions to the rate of global mean sea-level rise during the periods 1997–2006 (left) and 2007–2016 (right). <button class="focusable">fn</button><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019.</figcaption>
+        </figure>
+        <p>Per a September 2019 report from the World Meteorological Organization:</p>
+        <blockquote>
+          <p class="hanging-punctuation">“The contribution of land ice melt from the world glaciers and the ice sheets has increased over time and now dominate the sea level budget, rather than thermal expansion.” <button class="focusable">fn</button><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019. 6.</p>
+        </blockquote>
+        <p>Greenland and Antarctic ice would raise global mean sea levels <strong>65 m</strong> if melted completely. Individually, they have the following sea level rise potential:</p>
+        <ul>
+          <li><strong>7.2 m</strong> from <a href="https://en.wikipedia.org/wiki/Greenland_ice_sheet">Greenland ice sheet</a>.</li>
+          <li><strong>4.8 m</strong> from <a href="https://en.wikipedia.org/wiki/West_Antarctic_Ice_Sheet">West Antarctic Ice Sheet (WAIS)</a>.</li>
+          <li><strong>53.3 m</strong> from <a href="https://en.wikipedia.org/wiki/East_Antarctic_Ice_Sheet">East Antarctic Ice Sheet (EAIS)</a>.</li>
+        </ul>
+        <h3 id="antarctic-melting-has-tripled-in-a-decade">Antarctic melting has tripled in a decade <a class="header-anchor" href="#antarctic-melting-has-tripled-in-a-decade">¶</a></h3>
+        <p>A 2018 report by 80 scientists <button class="focusable">fn</button>The IMBIE team. <a href="http://www.nature.com/articles/s41586-018-0179-y">Mass Balance of the Antarctic Ice Sheet from 1992 to 2017</a>. Nature. Jun 2018. Retrieved 30 Oct 2019. said the melt rate of Antarctic ice sheets had tripled in the past decade: from 73 billion tons a decade ago, to 219 billion tons in 2012-2017. <button class="focusable">fn</button>Mooney, Chris. <a href="https://www.washingtonpost.com/news/energy-environment/wp/2018/06/13/antarctic-ice-loss-has-tripled-in-a-decade-if-that-continues-we-are-in-serious-trouble/">Antarctic Ice Loss Has Tripled in a Decade. If That Continues, We Are in Serious Trouble.</a>. Washington Post. 13 Jun 2018. Retrieved 30 Oct 2019. Most of this melting was attributed to Pine Island and Thwaites glaciers on the West Antarctic ice sheet.</p>
+        <p>That tripling is particularly alarming given a 2016 report from James Hansen and team that estimated sea levels could rise <strong>1 m</strong> over 50 years if ice melt merely <em>doubled</em> every decade. <button class="focusable">fn</button>Rignot, E. et al. <a href="http://doi.wiley.com/10.1002/2014GL060140">Widespread, Rapid Grounding Line Retreat of Pine Island, Thwaites, Smith, and Kohler Glaciers, West Antarctica, from 1992 to 2011</a>. Geophysical Research Letters. 28 May 2014. Retrieved 5 Oct 2019.</p>
+        <h3 id="west-antarctic-glaciers-have-entered-unstoppable-collapse">West Antarctic glaciers have entered “unstoppable” collapse <a class="header-anchor" href="#west-antarctic-glaciers-have-entered-unstoppable-collapse">¶</a></h3>
+        <p>That was the conclusion of two 2014 reports. <button class="focusable">fn</button>Rignot, E. et al. <a href="http://doi.wiley.com/10.1002/2014GL060140">Widespread, Rapid Grounding Line Retreat of Pine Island, Thwaites, Smith, and Kohler Glaciers, West Antarctica, from 1992 to 2011</a>. Geophysical Research Letters. 28 May 2014. Retrieved 5 Oct 2019. <button class="focusable">fn</button><a href="https://www.ctvnews.ca/sci-tech/scientists-warn-of-rising-sea-levels-as-huge-antarctic-ice-sheet-slowly-melts-1.1817870">Scientists Warn of Rising Sea Levels as Huge Antarctic Ice Sheet Slowly Melts</a>. Associated Press. 12 May 2014. Retrieved 30 Oct 2019. These six glaciers are essentially the cork in the wine bottle for the rest of the West Antarctic Ice Sheet. Researchers made the conclusion after observing the grounding line of the glaciers retreating over 19 years. Grounding lines are the “dividing line between land and water underneath the glacier.” <button class="focusable">fn</button><a href="https://www.youtube.com/watch?v=xoq2To5aleU">Unstoppable Antarctic Glacier Melt: How Scientists Figured It Out</a>. VideoFromSpace. Recorded 14 May 2014. Retrieved 30 Oct 2019.</p>
+        <h2 id="ice-sheet-collapse-could-dramatically-accelerate">Ice sheet collapse could dramatically accelerate <a class="header-anchor" href="#ice-sheet-collapse-could-dramatically-accelerate">¶</a></h2>
+        <p>There are multiple hypothesized run away effects by which ice sheets could dramatically accelerate their collapse:</p>
+        <h3 id="marine-ice-sheet-instability-misi">Marine ice sheet instability (MISI) <a class="header-anchor" href="#marine-ice-sheet-instability-misi">¶</a></h3>
+        <figure><img src="../img/marine-ice-sheet-instability-diagram.png" alt="Diagram of marine ice cliff instability. Marine Ice Sheet Instability. Wikipedia. 9 Oct 2019. Retrieved 30 Oct 2019.">
+          <figcaption>Diagram of marine ice cliff instability. <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Marine_ice_sheet_instability&amp;oldid=920345556">Marine Ice Sheet Instability</a>. Wikipedia. 9 Oct 2019. Retrieved 30 Oct 2019.</figcaption>
+        </figure>
+        <p>First proposed in 1978 by glaciologist John Mercer. <button class="focusable">fn</button>Thomas, Robert H., &amp; Bentley, Charles R. <a href="https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article">A Model for Holocene Retreat of the West Antarctic Ice Sheet</a>. Quaternary Research. Sep 1978. Retrieved 30 Oct 2019. <a href="https://en.wikipedia.org/wiki/Marine_ice_sheet_instability">Marine ice sheets</a> are ice sheets that are in the ocean, but grounded to the sea floor by their sheer mass. They are stable in this configuration. If water gets beneath them, however, they float and break up through calving.</p>
+        <p>If the ground below the marine ice sheets slopes downwards the further inland it goes (<em>reverse bed slope</em>), the grounding line accelerates as it moves forward. This is because the ice above is gets progressively thicker, and the thicker the ice is, the more vulnerable it is to floatation and calving.</p>
+        <figure><img src="../img/marine-ice-sheet-instability-hypothesis.png" alt="Marine Ice Sheet instability hypothesis flow chart. Davies, Bethan. Marine Ice Sheet Instability. AntarcticGlaciers.org. 16 Sep 2014. Retrieved 30 Oct 2019.">
+          <figcaption>Marine Ice Sheet instability hypothesis flow chart. <button class="focusable">fn</button>Davies, Bethan. <a href="http://www.antarcticglaciers.org/glaciers-and-climate/ice-ocean-interactions/marine-ice-sheets/">Marine Ice Sheet Instability</a>. <a href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>. 16 Sep 2014. Retrieved 30 Oct 2019.</figcaption>
+        </figure>
+        <p>The trigger for this process is ice shelve breakup. Ice shelves float on the surface of the ocean, forming a buttress around the edge of the grounded ice mass. As the atmosphere and ocean warm, they accelerate the breakup of ice shelves, which eventually advances the grounding line beneath the ice mass to the point where it is traveling down the slope of the bowl of the marine ice sheet.</p>
+        <p>This process would hit West Antarctica hardest, as it has large marine ice sheets.</p>
+        <h3 id="marine-ice-cliff-instability-mici">Marine ice cliff instability (MICI) <a class="header-anchor" href="#marine-ice-cliff-instability-mici">¶</a></h3>
+        <p>This is a newer hypothesis, and still being debated. The idea is intuitive: ice cliffs higher than 90 meters collapse due to the physics of ice. The collapse process will accelerate if the ice mass gets thicker the further back it goes (as most do), as the ice collapsing at the edge of the mass reveals ever-higher, faster-collapsing ice behind.</p>
+        <h2 id="other-cascade-effects-are-possible">Other cascade effects are possible <a class="header-anchor" href="#other-cascade-effects-are-possible">¶</a></h2>
+        <h3 id="albedo-effect">Albedo effect <a class="header-anchor" href="#albedo-effect">¶</a></h3>
+        <blockquote>
+          <p>Albedo (al-bee-doh) is a measure of how much light that hits a surface is reflected without being absorbed. Something that appears white reflects most of the light that hits it (high albedo), while something that appears dark absorbs most of the light (low albedo). <button class="focusable">fn</button><a href="https://climate.ncsu.edu/edu/Albedo">Albedo</a>. North Carolina Climate Office. Retrieved 29 Oct 2019.</p>
+        </blockquote>
+        <p>As white ice melts, it reveals darker ocean and land below. These surfaces absorb more of the sun’s light as warmth. It has been estimated this could mean a warming “…equivalent to 25 years of global carbon emissions.” <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 67. Forest fires could also contribute to the albedo effect, by depositing black soot on ice sheets.</p>
+        <h3 id="methane-release-from-melting-permafrost">Methane release from melting permafrost <a class="header-anchor" href="#methane-release-from-melting-permafrost">¶</a></h3>
+        <p>The Arctic contains vast quantities of frozen permafrost. As the planet warms, this permafrost melts, and has the potential to release greenhouse gases, including methane, which has a greenhouse effect several dozen times more powerful than CO2. <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 66.</p>
+        <h2 id="there-is-historical-precedence-for-rapid-sea-level-rise-driven-by-ice-sheet-breakup">There is historical precedence for rapid sea level rise driven by ice sheet breakup <a class="header-anchor" href="#there-is-historical-precedence-for-rapid-sea-level-rise-driven-by-ice-sheet-breakup">¶</a></h2>
+        <figure><img src="../img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.jpg" alt="History of Meltwater Pulses (MWP). Meltwater Pulse 1A. Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.">
+          <figcaption>History of Meltwater Pulses (MWP). <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&amp;oldid=892593416">Meltwater Pulse 1A</a>. Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.</figcaption>
+        </figure>
+        <p class="hanging-punctuation">“Meltwater pulses” saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about <strong>100 m over 17,000 years</strong>. During which there were several “Meltwater Pulses”—periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Early_Holocene_sea_level_rise&amp;oldid=910127057">Early Holocene Sea Level Rise</a>. Wikipedia. 9 Aug 2019. Retrieved 30 Oct 2019.</p>
+        <ul>
+          <li><strong>1A</strong>: 16-25 m rise over 400-500 years, for 40–60 mm annual mean rate. <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&amp;oldid=892593416">Meltwater Pulse 1A</a>. Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.</li>
+          <li><strong>1B</strong>: Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for 40 mm annual mean rate. <button class="focusable">fn</button><a href="https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1B&amp;oldid=887638672">Meltwater Pulse 1B</a>. Wikipedia. 13 Mar 2019. Retrieved 30 Oct 2019.</li>
+          <li><strong>1C</strong>: 6.5 m rise over 140 years, for 46 mm annual mean rate.</li>
+        </ul>
+        <h2 id="sea-level-rise-will-not-be-uniform">Sea level rise will not be uniform <a class="header-anchor" href="#sea-level-rise-will-not-be-uniform">¶</a></h2>
+        <figure><img src="../img/Local-sea-level-variations-1992-2004.png" alt="Local variations in sea level, 1992-2014. SVS: 22-Year Sea Level Rise - TOPEX/JASON. NASA Scientific Visualization Studio. 26 Aug 2015. Retrieved 30 Oct 2019.">
+          <figcaption>Local variations in sea level, 1992-2014. <button class="focusable">fn</button><a href="https://svs.gsfc.nasa.gov/4345">SVS: 22-Year Sea Level Rise - TOPEX/JASON</a>. NASA Scientific Visualization Studio. 26 Aug 2015. Retrieved 30 Oct 2019.</figcaption>
+        </figure>
+        <p>Sea levels are not the same everywhere. Local coastal sea level elevations (aka: relative sea level) can vary widely from region to region, due to several factors:</p>
+        <ol>
+          <li>
+            <p><strong>Variations in oceanic temperature</strong>. The volume of warm water is greater than cold water, so variations in temperature (due to currents, etc) translate into variations in sea level. In the 22 years between Jan 1993 and Dec 2014, sea levels on the west coast of the US <em>dropped</em>, because waters there were cooled by the <a href="https://en.wikipedia.org/wiki/Pacific_decadal_oscillation">pacific decadal oscillation</a>. <button class="focusable">fn</button><a href="https://www.youtube.com/watch?v=z2UKvrU5rOk">Watching Rising Seas from Space</a>. NASAJPL Edu. Recorded 2 Sep 2015. Retrieved 30 Oct 2019. 1:24.</p>
+          </li>
+          <li>
+            <p><strong>Variations in vertical land motion</strong>. Some land masses are sinking (subsidence), while others are rising (uplift). Jakarta, for example, is rapidly subsiding due to the draining of underlying fresh water aquifers; North Jakarta has sunk 2.5m in 10 years. <button class="focusable">fn</button>Mei Lin, Mayuri, &amp; Hidayat, Rafki. <a href="https://www.bbc.com/news/world-asia-44636934">Jakarta, the Fastest-Sinking City in the World</a>. BBC News. 13 Aug 2018. Retrieved 30 Oct 2019. Whereas in Canada, areas formerly depressed by glaciers in the last ice age are rebounding by as much as 16 mm per year (a process called <a href="https://en.wikipedia.org/wiki/Post-glacial_rebound">glacial isostatic adjustment</a>). <button class="focusable">fn</button>Lemmen, Donald Stanley et al. <a href="http://oaresource.library.carleton.ca/wcl/2016/20160607/M174-12-2016-eng.pdf">Canada’s Marine Coasts in a Changing Climate</a>. Natural Resources Canada. 2016. Retrieved 4 Oct 2019. 47.</p>
+          </li>
+          <li>
+            <p><strong>Gravity</strong>. As the polar ice sheets melt, water that was bound up in them at the poles is pulled by gravity into a more even global distribution. This is experienced as greater relative rise the closer one is to the equator.</p>
+          </li>
+          <li>
+            <p><strong>Salinity</strong>. Salinity increases the density of water (similar to the effect of a decrease in temperature) which reduces the volume.</p>
+          </li>
+        </ol>
+        <p>Per the 2019 IPCC Oceans and Cryosphere report:</p>
+        <blockquote>
+          <p>Sea level projections show regional differences around GMSL. Processes not driven by recent climate change, such as local subsidence caused by natural processes and human activities, are important to relative sea level changes at the coast (high confidence). While the relative importance of climate-driven sea level rise is projected to increase over time, local processes need to be considered for projections and impacts of sea level (high confidence). <button class="focusable">fn</button><a href="https://www.ipcc.ch/srocc/home/">The Ocean and Cryosphere in a Changing Climate</a>. Geneva, Switzerland: IPCC. 25 Sep 2019. SPM–23.</p>
+        </blockquote>
+        <h2 id="projections-of-sea-level-rise-are-trending-higher">Projections of sea level rise are trending higher <a class="header-anchor" href="#projections-of-sea-level-rise-are-trending-higher">¶</a></h2>
+        <figure><img src="../img/sea-level-rise-scenarios.png" alt="A decade of increasing high-end scenarios. Jeff Goodell: The Water Will Come. Long Now Foundation. Recorded 2 Apr 2019. 30:13.">
+          <figcaption>A decade of increasing high-end scenarios. <button class="focusable">fn</button><a href="http://longnow.org/seminars/02019/apr/02/water-will-come/">Jeff Goodell: The Water Will Come</a>. Long Now Foundation. Recorded 2 Apr 2019. 30:13.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>IPCC 2014</strong>: 0.52 – 0.98 m (by 2100, under RCP8.5). <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/wg1/">Climate Change 2013: The Physical Science Basis</a>. New York: IPCC. 2014. 1140.</li>
+          <li><strong>IPCC 2019</strong>: 0.61 – 1.10 m (by 2100, under RCP8.5). <button class="focusable">fn</button><a href="https://www.ipcc.ch/srocc/home/">The Ocean and Cryosphere in a Changing Climate</a>. Geneva, Switzerland: IPCC. 25 Sep 2019. SPM–23.</li>
+          <li><strong>2015</strong>: NASA: Minimum 1 m by 2100.</li>
+          <li><strong>2017</strong>: National Oceanic and Atmospheric Administration (NOAA): 2.5 meters possible by 2100.</li>
+          <li><strong>2018</strong>: Richard Alley: 4.5 to 6.0 m possible by 2100, “if the worst happened”. <button class="focusable">fn</button><a href="https://vimeo.com/292991175">Richard Alley National Climate Seminar Excerpt</a>. Bard Center for Environmental Policy. Recorded 19 Sep 2018. 40:00.</li>
+        </ul>
+        <p>Jeff Goodell says “The uncertainty is moving towards higher scenarios, rather than low.” <button class="focusable">fn</button><a href="http://longnow.org/seminars/02019/apr/02/water-will-come/">Jeff Goodell: The Water Will Come</a>. Long Now Foundation. Recorded 2 Apr 2019. 21:14. Richard Alley uses the graph below to plot the probability of various scenarios, and says everything we’re learning is only fattening the right side of the curve. <button class="focusable">fn</button><a href="https://vimeo.com/292991175">Richard Alley National Climate Seminar Excerpt</a>. Bard Center for Environmental Policy. Recorded 19 Sep 2018. 40:00.</p>
+        <figure><img src="../img/Richard-Alley-sea-level-rise-scenario-probability.png" alt="Richard Alley’s sea level rise scenario probability graph. Richard Alley National Climate Seminar Excerpt. Bard Center for Environmental Policy. Recorded 19 Sep 2018.">
+          <figcaption>Richard Alley’s sea level rise scenario probability graph. <button class="focusable">fn</button><a href="https://vimeo.com/292991175">Richard Alley National Climate Seminar Excerpt</a>. Bard Center for Environmental Policy. Recorded 19 Sep 2018.</figcaption>
+        </figure>
+        <h3 id="antarctica-is-the-primary-cause-for-increasing-projections">Antarctica is the primary cause for increasing projections <a class="header-anchor" href="#antarctica-is-the-primary-cause-for-increasing-projections">¶</a></h3>
+        <p>In the 2014 IPCC report, it was understood that Antarctica would be an increasingly important driver of sea level rise going forward, but it was felt that models of ice sheet breakup were too uncertain to incorporate into GMSL projections. Since then, we have 1) observed accelerating Antarctic melting, and 2) learned more about the processes by which ice sheets break up. And so newer reports are more confidently incorporating Antarctic melting into their projections. For example, compare the 2014 and 2019 IPCC reports:</p>
+        <p>2014 AR5:</p>
+        <blockquote>
+          <p>There is low confidence in the available models’ ability to project solid ice discharge from the Antarctic ice sheet. Hence, these models likely underestimate the Antarctica ice sheet contribution. <button class="focusable">fn</button><a href="https://www.ipcc.ch/report/ar5/syr/">Climate Change 2014: Synthesis Report</a>. Geneva, Switzerland: IPCC. 2015. 74.</p>
+        </blockquote>
+        <p>2019 Oceans and Cryosphere:</p>
+        <blockquote>
+          <p>Mean sea level rise projections are higher by 0.1 m compared to AR5 under RCP8.5 in 2100, and the likely range extends beyond 1 m in 2100 due to a larger projected ice loss from the Antarctic Ice Sheet (medium confidence) <button class="focusable">fn</button><a href="https://www.ipcc.ch/srocc/home/">The Ocean and Cryosphere in a Changing Climate</a>. Geneva, Switzerland: IPCC. 25 Sep 2019. SPM–23.</p>
+        </blockquote>
+        <p>In general, IPCC reports tend towards more conservative projections, in part because they reflect the consensus opinion of many authors.</p>
+        <h2 id="my-estimate-for-sea-level-rise-035-m-by-2050">My estimate for sea level rise: 0.35 m by 2050. <a class="header-anchor" href="#my-estimate-for-sea-level-rise-035-m-by-2050">¶</a></h2>
+        <p>Melt rates seem to be accelerating. World Meteorological Society figures from September 2019 are: annual GMSL rise of <strong>3.04 mm</strong> for 1997-2006 and <strong>4.36</strong> for 2007-2016. That’s a <strong>1.43x</strong> decade-over-decade multiplier. If we extrapolate that out over the century, we get the following rates for ten decades of (figures rounded to first decimal place): <strong>3, 4.3, 6.2, 8.9, 12.7, 18.2, 26, 37.2, 53.2, 76</strong> (mm / year). Which translates into the following estimates:</p>
+        <ul>
+          <li><strong>0.35</strong> m by 2050</li>
+          <li><strong>2.45</strong> m by 2100</li>
+        </ul>
+        <p>That seems reasonable to me. It is greater than the (outdated and conservative) IPCC AR5 worst-case figures, but also below Richard Alley’s worst case 4.5-6.0 estimate. On his scenario probability graph, my estimate sits about 75% along the x-axis.</p>
+        <h2 id="no-matter-what-we-do-some-sea-level-rise-is-baked-in">No matter what we do, some sea level rise is “baked in” <a class="header-anchor" href="#no-matter-what-we-do-some-sea-level-rise-is-baked-in">¶</a></h2>
+        <p>The heat already in the ocean will continue to drive sea level rise, even if we could magically stop all emissions today. But we still need to rapidly reduce emissions, because the hotter the world is, the more sea level rise we will see, and the faster it will happen.</p>
+        <ul>
+          <li>
+            <p><strong>2°C</strong>: Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 62. Or 7.5-18 m, according to Jeff Goodell. <button class="focusable">fn</button><a href="http://longnow.org/seminars/02019/apr/02/water-will-come/">Jeff Goodell: The Water Will Come</a>. Long Now Foundation. Recorded 2 Apr 2019. 19:21.</p>
+          </li>
+          <li>
+            <p><strong>3°C</strong>: It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 62. The US Geological Survey 80 m, ultimately. <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 68.</p>
+          </li>
+          <li>
+            <p><strong>4°C</strong>: “The last time the earth was 4°C warmer… there was no ice at either pole and sea level was 260’ higher. There were palm trees in the Arctic.” <button class="focusable">fn</button>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019. p. 65.</p>
+          </li>
+        </ul>
+        <div id="references">
+          <h2 id="referenced-works">Referenced works <a class="header-anchor" href="#referenced-works">¶</a></h2>
+          <ul>
+            <li class="reference">
+              <p>Church, John A., &amp; White, Neil J. <a href="http://link.springer.com/10.1007/s10712-011-9119-1">Sea-Level Rise from the Late 19th to the Early 21st Century</a>. Surveys in Geophysics. Sep 2011.</p>
+            </li>
+            <li class="reference">
+              <p>Davies, Bethan. <a href="http://www.antarcticglaciers.org/glaciers-and-climate/ice-ocean-interactions/marine-ice-sheets/">Marine Ice Sheet Instability</a>. <a href="http://AntarcticGlaciers.org">AntarcticGlaciers.org</a>. 16 Sep 2014.</p>
+            </li>
+            <li class="reference">
+              <p>Lemmen, Donald Stanley et al. <a href="http://oaresource.library.carleton.ca/wcl/2016/20160607/M174-12-2016-eng.pdf">Canada’s Marine Coasts in a Changing Climate</a>. Natural Resources Canada. 2016.</p>
+            </li>
+            <li class="reference">
+              <p>Mei Lin, Mayuri, &amp; Hidayat, Rafki. <a href="https://www.bbc.com/news/world-asia-44636934">Jakarta, the Fastest-Sinking City in the World</a>. BBC News. 13 Aug 2018.</p>
+            </li>
+            <li class="reference">
+              <p>Mooney, Chris. <a href="https://www.washingtonpost.com/news/energy-environment/wp/2018/06/13/antarctic-ice-loss-has-tripled-in-a-decade-if-that-continues-we-are-in-serious-trouble/">Antarctic Ice Loss Has Tripled in a Decade. If That Continues, We Are in Serious Trouble.</a>. Washington Post. 13 Jun 2018.</p>
+            </li>
+            <li class="reference">
+              <p>Rignot, E. et al. <a href="http://doi.wiley.com/10.1002/2014GL060140">Widespread, Rapid Grounding Line Retreat of Pine Island, Thwaites, Smith, and Kohler Glaciers, West Antarctica, from 1992 to 2011</a>. Geophysical Research Letters. 28 May 2014.</p>
+            </li>
+            <li class="reference">
+              <p>The IMBIE team. <a href="http://www.nature.com/articles/s41586-018-0179-y">Mass Balance of the Antarctic Ice Sheet from 1992 to 2017</a>. Nature. Jun 2018.</p>
+            </li>
+            <li class="reference">
+              <p>Thomas, Robert H., &amp; Bentley, Charles R. <a href="https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article">A Model for Holocene Retreat of the West Antarctic Ice Sheet</a>. Quaternary Research. Sep 1978.</p>
+            </li>
+            <li class="reference">
+              <p>Wallace-Wells, David. <a href="https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)">The Uninhabitable Earth: Life After Warming</a>. New York: Tim Duggan Books. 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.ipcc.ch/report/ar5/wg1/">Climate Change 2013: The Physical Science Basis</a>. New York: IPCC. 2014.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.ipcc.ch/report/ar5/syr/">Climate Change 2014: Synthesis Report</a>. Geneva, Switzerland: IPCC. 2015.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates">The Global Climate in 2015–2019</a>. World Meteorological Organization. 22 Sep 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.ipcc.ch/srocc/home/">The Ocean and Cryosphere in a Changing Climate</a>. Geneva, Switzerland: IPCC. 25 Sep 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.ctvnews.ca/sci-tech/scientists-warn-of-rising-sea-levels-as-huge-antarctic-ice-sheet-slowly-melts-1.1817870">Scientists Warn of Rising Sea Levels as Huge Antarctic Ice Sheet Slowly Melts</a>. Associated Press. 12 May 2014.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.youtube.com/watch?v=xoq2To5aleU">Unstoppable Antarctic Glacier Melt: How Scientists Figured It Out</a>. VideoFromSpace. Recorded 14 May 2014.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://svs.gsfc.nasa.gov/4345">SVS: 22-Year Sea Level Rise - TOPEX/JASON</a>. NASA Scientific Visualization Studio. 26 Aug 2015.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://www.youtube.com/watch?v=z2UKvrU5rOk">Watching Rising Seas from Space</a>. NASAJPL Edu. Recorded 2 Sep 2015.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://vimeo.com/292991175">Richard Alley National Climate Seminar Excerpt</a>. Bard Center for Environmental Policy. Recorded 19 Sep 2018.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&amp;oldid=892593416">Meltwater Pulse 1A</a>. Wikipedia. 15 Apr 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="http://longnow.org/seminars/02019/apr/02/water-will-come/">Jeff Goodell: The Water Will Come</a>. Long Now Foundation. Recorded 2 Apr 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Early_Holocene_sea_level_rise&amp;oldid=910127057">Early Holocene Sea Level Rise</a>. Wikipedia. 9 Aug 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1B&amp;oldid=887638672">Meltwater Pulse 1B</a>. Wikipedia. 13 Mar 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Sea_level_rise&amp;oldid=921947329">Sea Level Rise</a>. Wikipedia. 18 Oct 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Glacier&amp;oldid=922420069">Glacier</a>. Wikipedia. 22 Oct 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://en.wikipedia.org/w/index.php?title=Marine_ice_sheet_instability&amp;oldid=920345556">Marine Ice Sheet Instability</a>. Wikipedia. 9 Oct 2019.</p>
+            </li>
+            <li class="reference">
+              <p><a href="https://climate.ncsu.edu/edu/Albedo">Albedo</a>. North Carolina Climate Office.</p>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </main>
+  </body>
 </html>
