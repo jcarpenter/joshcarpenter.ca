@@ -11,8 +11,9 @@
 }
 
 .note .icon {
+    border-style: none;
     cursor: default;
-    background-color: hsl(0, 0%, 92%);
+    background-color: hsl(0, 0%, 90%);
     color: hsl(0, 0%, 40%);
     border-radius: 0.2em;
     font-size: 0.9em;
