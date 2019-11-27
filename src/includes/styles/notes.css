@@ -46,10 +46,10 @@ blockquote .note .popup {
 
 /* -------------- Icon :hover and :focus -------------- */
 
-.note .icon:hover, .note .icon:focus  {
+/* .note .icon:hover, .note .icon:focus  {
     background-color: hsl(0, 0%, 75%);
     color: hsl(0, 0%, 10%);
-}
+} */
 
 blockquote .note .icon:hover, blockquote .note .icon:focus {
     background-color: var(--clr-blue-light);
@@ -73,64 +73,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
 /* The popup appears directly below the note.*/
 /* It appears on both hover, and focus. So it works for both accessibility users (e.g. tab between footnotes), and Windows users with hybrid mouse/touch devices (e.g. tap the keynotes) */
 
-@media(hover), (hover:none) and (min-width: 600px) {
 
-    .note .popup {
-        position: absolute;
-        transform: translate(-50%, 100%);
-        bottom: -0.7em;
-        left: 50%;
-        z-index: 100;
-        width: 20em;
-        /* Transition settings when mouse exits */
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0.15s, bottom 0.1s, opacity 0.1s;
-        transition-delay: 0.1s;
-        transition-timing-function: ease-out;
-    }
-
-    /* Popup notch */
-    .note .popup::before {
-        content: '';
-        width: 0.6em;
-        height: 0.6em;
-        border-radius: 2px;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
-        
-        /* transition: inherit; */
-        background-color: inherit;
-        opacity: inherit;
-    }
-
-    /* Transition in when:
-    1) Note is hovered.
-    2) Note or child is focused. Button (.icon) will be focused.
-    */
-    .note:hover .popup, .note:focus-within .popup {
-        visibility: visible;
-        opacity: 1;
-        bottom: -0.4em;
-        /* These settings apply when the mouse enters the icon*/
-        transition: visibility 0s, bottom 0.05s, opacity 0.05s;
-        transition-delay: 0.2s;
-        transition-timing-function: ease-in;
-    }
-
-    .note:hover .popup a, .note:focus-within .popup a {
-        text-decoration: underline;
-        color: inherit;
-    }
-
-    /* Match coloring of blockquotes */
-    blockquote .note {
-        background-color: var(--clr-blue-lighter);
-        color: inherit;
-    }
-}
 
 /* -------------- Popup — For smaller touch-based devices -------------- */
 /* The popup appears along the bottom of the screen, and a dark overlay covers the rest of the content.*/
@@ -183,7 +126,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     }
 
     /* Overlay */
-    .note .popup::after {
+    /* .note .popup::after {
         content: '';
         position: fixed;
         display: none;
@@ -193,5 +136,5 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         right: 0;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: -1;
-    }
+    } */
 }
