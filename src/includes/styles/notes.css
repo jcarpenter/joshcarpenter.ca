@@ -1,71 +1,7 @@
-/* ==========================================================================
-   NOTES
-   ========================================================================== */
-
-/* -------------- Icon -------------- */
-
-/* -------------- Icon :hover and :focus -------------- */
-
-/* .note .icon:hover, .note .icon:focus  {
-    background-color: hsl(0, 0%, 75%);
-    color: hsl(0, 0%, 10%);
-} */
-
-blockquote .note .icon:hover, blockquote .note .icon:focus {
-    background-color: var(--clr-blue-light);
-    color: inherit;
+.focusable:hover {
+    background-color: red;
 }
 
-/* -------------- Popup - Shared styles -------------- */
-
-.note .popup {
-    background-color: hsl(0, 0%, 20%);
-    color: white;
-    border-radius: 0.25em;
-    white-space: normal;
-    border-radius: var(--grid-subdivision-1);
-    padding: var(--grid-subdivision-2);
-    font-size: var(--font-size-sml-1);
-    line-height: var(--grid-subdivision-3);
-}
-
-/* -------------- Popup - For desktop and larger touch-based devices -------------- */
-/* The popup appears directly below the note.*/
-/* It appears on both hover, and focus. So it works for both accessibility users (e.g. tab between footnotes), and Windows users with hybrid mouse/touch devices (e.g. tap the keynotes) */
-
-
-
-/* -------------- Popup — For smaller touch-based devices -------------- */
-/* The popup appears along the bottom of the screen, and a dark overlay covers the rest of the content.*/
-/* TODO: What about Windows devices with both tap and touch? They won't be able to tap. May want to use `@media (pointer:fine)` and `@media (pointer:coarse)` instead? */
-
-@media(hover:none) and (max-width: 599px) {
-
-    .note .popup {
-        display: none;
-    }
-
-    /* Activated */
-
-    /* TRYING DIFFERENT APPROACHES:
-    1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another focusable element.
-    2) Trying: `.note .icon:hover`
-    */
-
-    .icon:hover {
-        background-color: red;
-    }
-
-    /* Overlay */
-    /* .note .popup::after {
-        content: '';
-        position: fixed;
-        display: none;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: -1;
-    } */
+.focusable:focus {
+    background-color: green;
 }

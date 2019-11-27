@@ -153,7 +153,7 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addTransform("mark-to-spans", function (content, outputPath) {
         if (outputPath.endsWith(".html")) {
-            content = content.replace(/<mark>/gm, '<button class="icon">fn</button>')
+            content = content.replace(/<mark>/gm, '<button class="focusable">fn</button>')
             content = content.replace(/<\/mark>/gm, '')
         }
 
