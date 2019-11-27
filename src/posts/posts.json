@@ -1,4 +1,3 @@
 {
-    "layout": "posts.njk",
-    "postsPath": "posties"
+    "layout": "posts.njk"
 }

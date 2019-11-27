@@ -96,7 +96,8 @@ module.exports = function (eleventyConfig) {
         .use(markdownItAnchor, {
             level: [2, 3],
             permalink: true,
-            slugify: uslugify
+            slugify: uslugify,
+            permalinkSymbol: svgAnchorIcon,
         })
         .use(markdownItDiv)
         .use(markdownItMarks)
@@ -152,8 +153,8 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addTransform("mark-to-spans", function (content, outputPath) {
         if (outputPath.endsWith(".html")) {
-            content = content.replace(/<mark>/gm, '<button class="focusable">fn</button>')
-            content = content.replace(/<\/mark>/gm, '')
+            content = content.replace(/<mark>/gm, '<span class="note"><button class="icon">fn</button><span class="popup">')
+            content = content.replace(/<\/mark>/gm, '</span></span>')
         }
 
         return content
