@@ -82,26 +82,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
 @media(hover:none) and (max-width: 599px) {
 
     .note .popup {
-        position: fixed;
-        left: 0;
-        z-index: 100;
-        border-radius: var(--grid-subdivision-1) var(--grid-subdivision-2) 0 0;
-        padding: var(--grid-subdivision-3);
-        padding-bottom: calc(var(--grid) + var(--grid-subdivision-2));
-        font-size: var(--font-size-base);
-        margin-left: var(--grid-subdivision-1);
-        margin-right: var(--grid-subdivision-1);
-        /* line-height: var(--grid-subdivision-3); */
-        line-height: var(--grid);
-        box-shadow: 0px 1px 40px 14px rgba(0, 0, 0, 0.2);
-        
-        /* Transition settings to hidden state */
-        /* Don't set visibility until opacity tween is complete.*/
-        bottom: -10em;
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0.15s, opacity 0.15s, bottom 0.25s;
-        transition-timing-function: ease-in;
+        display: none;
     }
 
     /* Activated */
@@ -113,16 +94,6 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
 
     .note .icon:hover {
         background-color: red;
-    }
-
-    .note .icon:hover + .popup {
-        /* Transition settings to visible state.*/
-        /* Set visibility immediately (0s).*/
-        bottom: 0em;
-        visibility: visible;
-        opacity: 1;
-        transition: visibility 0s, opacity 0.25s, bottom 0.3s;
-        transition-timing-function: ease-out;
     }
 
     /* Overlay */
