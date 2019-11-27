@@ -96,8 +96,7 @@ module.exports = function (eleventyConfig) {
         .use(markdownItAnchor, {
             level: [2, 3],
             permalink: true,
-            slugify: uslugify,
-            permalinkSymbol: svgAnchorIcon,
+            slugify: uslugify
         })
         .use(markdownItDiv)
         .use(markdownItMarks)
