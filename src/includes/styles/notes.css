@@ -19,7 +19,6 @@
     font-size: 0.9em;
     line-height: 1em;
     font-size: 0.8em;
-    content: 'fn'; 
 }
 
 blockquote .note .icon {
@@ -165,11 +164,11 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     /* Activated */
 
     /* TRYING DIFFERENT APPROACHES:
-    1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another element.
+    1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another focusable element.
     2) Trying: `.note .icon:hover`
     */
 
-    .note .icon:hover .popup {
+    .note .icon:hover + .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
         bottom: 0em;
