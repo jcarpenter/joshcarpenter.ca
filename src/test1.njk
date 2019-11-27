@@ -9,6 +9,10 @@
                 background-color: gray;
             }
 
+            .focusable:hover {
+                background-color: red;
+            }
+            
             .focusable:focus {
                 background-color: green;
             }
@@ -16,14 +20,6 @@
             .testButton {
                 background-color: blue;
                 color: white;
-            }
-
-            .testButton:hover {
-                background-color: red;
-            }
-            
-            .testButton:focus {
-                background-color: yellow;
             }
 
 
@@ -45,7 +41,7 @@
                     <li>Test 4</li>
                     <li class="focusable" tabindex="0">Test 5</li>
                 </ul>
-                <button class="testButton">Test button</button>
+                <button class="testButton focusable">Test button</button>
                 <p>
                     <a href="" class="focusable">Testing a link</a>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
