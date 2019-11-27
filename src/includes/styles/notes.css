@@ -92,7 +92,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     2) Trying: `.note .icon:hover`
     */
 
-    .note .icon:hover {
+    .icon:hover {
         background-color: red;
     }
 
