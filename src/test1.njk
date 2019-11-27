@@ -1,26 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/focus-test.js"></script>
     <style>
-        button {
-            background-color: yellow;
+        span {
+            background-color: gray;
         }
 
         .focusable:hover {
             background-color: red;
         }
-
+        
         .focusable:focus {
             background-color: green;
         }
+
+        .testButton {
+            background-color: blue;
+            color: white;
+        }
+
+
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <main role="main">
       <article>
-        <p>Estimates of future sea level rise are typically expressed as relative to the mean of the 1986-2000 period. For example, in the following graph showing sea level rise since 1900, the zero point on the Y-axis is the 1986-2000 mean. <button class="focusable">fn</button> IPCC projections (e.g. 0.52 - 0.98 m by 2100) are also relative to the 1986-2000 mean.</p>
+          <header id="title-block-header">
+              <h1 class="title">Rising Seas</h1>
+              <address>
+                  <a href="https://twitter.com/joshcarpenter">Josh Carpenter</a><br/>
+              </address>
+          </header>
+          <ul>
+              <li>Test 1</li>
+              <li class="focusable" tabindex="0" id="testItem">TEST ITEM</li>
+              <li>Test 3</li>
+              <li>Test 4</li>
+              <li class="focusable" tabindex="0">Test 5</li>
+          </ul>
+          <p>
+              Magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <button class="testButton focusable">Test button</button>
+              <a href="" class="focusable">Testing a link</a>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+              <span tabindex="0" class="focusable">Testing</span>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          </p>
       </article>
     </main>
   </body>
