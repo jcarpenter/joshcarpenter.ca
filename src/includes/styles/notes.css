@@ -3,46 +3,6 @@
    ========================================================================== */
 
 /* -------------- Icon -------------- */
-    
-.note {
-    position: relative;
-    margin-left: 0.2em;
-    margin-right: 0.2em;
-}
-
-.note .icon {
-    border-style: none;
-    cursor: default;
-    background-color: hsl(0, 0%, 90%);
-    color: hsl(0, 0%, 40%);
-    border-radius: 0.2em;
-    font-size: 0.9em;
-    line-height: 1em;
-    font-size: 0.8em;
-}
-
-blockquote .note .icon {
-    background-color: var(--clr-blue-lighter);
-    color: inherit;
-}
-
-blockquote .note .popup {
-    font-style: normal;
-}
-
-/* Make icon larger for touch devices */
-@media(hover:none) {
-    .note .icon {
-        padding: 0.15em 0.4em;
-    }
-}
-
-/* Make icon smaller for desktop devices */
-@media(hover) {
-    .note .icon {
-        padding: 0.15em 0.25em;
-    }
-}
 
 /* -------------- Icon :hover and :focus -------------- */
 
