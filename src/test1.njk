@@ -3,10 +3,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="/js/focus-test.js"></script>
         <style>
             span {
                 background-color: gray;
             }
+
+            .focusable:focus {
+                background-color: green;
+            }
+
+            .testButton {
+                background-color: blue;
+                color: white;
+            }
+            
+            .testButton:focus {
+                background-color: yellow;
+            }
+
         </style>
     </head>
     <body>
@@ -16,21 +31,23 @@
                     <h1 class="title">Rising Seas</h1>
                     <address>
                         <a href="https://twitter.com/joshcarpenter">Josh Carpenter</a><br/>
-				    </address>
+                    </address>
                 </header>
+                <ul>
+                    <li>Test 1</li>
+                    <li class="focusable" tabindex="0" id="testItem">TEST ITEM</li>
+                    <li>Test 3</li>
+                    <li>Test 4</li>
+                    <li class="focusable" tabindex="0">Test 5</li>
+                </ul>
+                <button class="testButton" tabindex="0">Test button</button>
+                <p>
+                    <a href="" class="focusable">Testing a link</a>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    <span tabindex="0" class="focusable">Testing</span>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
             </article>
-            <ul>
-                <li>Test 1</li>            
-                <li tabindex="0">Test 2</li>            
-                <li>Test 3</li>
-                <li>Test 4</li>
-                <li tabindex="0">Test 5</li>
-            </ul>
-            <p>
-                <a href="">Testing a link</a>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                <span tabindex="0">Testing</span>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         </main>
-    </body>
-</html>
+        </body>
+    </html>
