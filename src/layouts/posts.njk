@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="{{ josh.name }}"/>
-        <meta name="copyright" content="Copyright © {{ date | date("YYYY") }}, {{ josh.name }}" />
-        <meta name="dcterms.date" content="{{ date }}"/>
-        <title>{{ title }}</title>
+        {# <meta name="author" content="{{ josh.name }}"/> #}
+        {# <meta name="copyright" content="Copyright © {{ date | date("YYYY") }}, {{ josh.name }}" /> #}
+        {# <meta name="dcterms.date" content="{{ date }}"/> #}
+        {# <title>{{ title }}</title> #}
         <link rel="stylesheet" href="/styles/style.css">
         {# <link rel="stylesheet" href="/styles/prism/prism-duotone-light.css" /> #}
         {# <script type="text/javascript" src="/js/fit-images.js"></script> #}
@@ -14,18 +14,9 @@
         {# <script type="text/javascript" src="/js/toggle-grid.js"></script> #}
     </head>
     <body>
-        {% include "header.njk" %}
         <main role="main">
-            <article>
-                <header id="title-block-header">
-                    <h1 class="title">{{ title }}</h1>
-                    <address>
-                        <a href="https://twitter.com/{{ josh.twitter }}">{{ josh.name }}</a><br/>
-                        <time datetime="{{ dateModified }}">{{ dateModified | date("D MMM YYYY") }}</time>
-				    </address>
-                </header>
+            <article>                
                 {{ content | safe }}
-                {% include "footer.njk" %}
             </article>
         </main>
     </body>
