@@ -173,7 +173,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     }
 
     /* Overlay */
-    .note .popup::after {
+    /* .note .popup::after {
         content: '';
         position: fixed;
         top: 0;
@@ -182,5 +182,5 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         right: 0;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: -1;
-    }
+    } */
 }
