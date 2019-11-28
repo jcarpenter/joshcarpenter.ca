@@ -162,7 +162,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     }
 
     /* Activated */
-    .note:hover .popup {
+    .note:focus .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
         bottom: 0em;
