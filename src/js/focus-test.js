@@ -1,76 +1,45 @@
+/* 
+Fix for Mobile Safari focus/blur behaviour
+-------------------------------------------
+
+Mobile Safari makes it difficult to deselect focused elements. Unlike other browsers, it does not deselect (blur) a focused element when the user clicks an empty area of the page. The element is only deselected when the user selects another focusable element, (or) taps the close button on the iOS keyboard. Apple probably does this to help users avoid closing the keyboard accidentally while entering forms.
+
+Our fix is simple:
+
+* Listen for pointer events on <main>
+* If the event type was touch...
+* If the `selected` variable != null, blur it, and set `selected` to null.
+* If the pointer target element == button, set it as `selected`
+
+*/
+
 (function (window, document) {
     'use strict'
 
-    // function touchEnd(e) {
-    //     console.log("touchend on TEST ITEM")
-    // }
+    function setup() {
 
-    // function touchLeave(e) {
-    //     console.log("touchleave on TEST ITEM")
-    // }
-
-    // function touchCancel(e) {
-    //     console.log("touchcancel on TEST ITEM")
-    // }
-
-    // function itemClick(e) {
-    //     if (e.handled !== true) {
-    //         e.handled = true
-    //     } else {
-    //         return false
-    //     }
-    //     console.log("click on TEST ITEM")
-    // }
-
-    function setupLinks() {
-
-        //var test = document.querySelector('#testItem')
-        //test.addEventListener("touchend", touchEnd, false); // Works
-        //test.addEventListener("click", itemClick, false) // Works
-        //test.addEventListener("touchleave", touchLeave, false);
-        //test.addEventListener("touchcancel", touchCancel, false);
-
-        var article = document.querySelector('article')
+        var main = document.querySelector('main')
         var selected
-        
+
         if (window.PointerEvent) {
 
-            article.addEventListener('pointerdown', (e) => {
+            main.addEventListener('pointerdown', (e) => {
                 if (e.pointerType == 'touch') {
-                    
-                    // console.log("article: touch detected")
-                    
+
+
                     if (selected) {
-                        // console.log("selected blurred")
                         selected.blur()
                         selected = null
                     }
 
                     if (e.target.tagName == "BUTTON") {
-                        // console.log("button tapped")
                         selected = e.target
                     }
                 }
             });
         }
-
-        // article.addEventListener('touchend', touchEnd, false)
-
     }
 
-    function touchEnd() {
-        console.log("touch ended")
-    }
-
-    // Listen for taps on article.
-    // Check if element tapped had tabindex value
-    // If yes, save element to variable.
-
-    // Listen for subequent taps on article.
-    // Check if element tapped was the saved element.
-    // If no, blur the saved element.
-
-    //Fix once on first page load
-    window.addEventListener('DOMContentLoaded', setupLinks)
+    window.addEventListener('DOMContentLoaded', setup)
 
 }(window, document))

@@ -162,16 +162,6 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     }
 
     /* Activated */
-
-    /* TRYING DIFFERENT APPROACHES:
-    1) FAIL: `.note:hover` works (these styles are triggered), but does not release hover state unless you click on another focusable element.
-    2) Trying: `.note .icon:hover`
-    */
-
-    .note:hover .icon {
-        background-color: red;
-    }
-
     .note:hover .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
@@ -186,7 +176,6 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     .note .popup::after {
         content: '';
         position: fixed;
-        display: none;
         top: 0;
         left: 0;
         bottom: 0;
