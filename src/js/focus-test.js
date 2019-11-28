@@ -26,17 +26,31 @@ Our fix is simple:
             main.addEventListener('pointerdown', (e) => {
                 if (e.pointerType == 'touch') {
 
-
                     if (selected) {
                         selected.blur()
                         selected = null
                     }
 
-                    if (e.target.tagName == "BUTTON") {
+                    if (e.target.tabIndex == 0) {
+                        console.log('works')
                         selected = e.target
                     }
                 }
             });
+
+            // main.addEventListener('pointerdown', (e) => {
+            //     if (e.pointerType == 'touch') {
+
+            //         if (selected) {
+            //             selected.blur()
+            //             selected = null
+            //         }
+
+            //         if (e.target.tagName == "BUTTON") {
+            //             selected = e.target
+            //         }
+            //     }
+            // });
         }
     }
 
