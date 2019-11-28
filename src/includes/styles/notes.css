@@ -106,7 +106,8 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         opacity: inherit;
     }
 
-    /* Transition in when:
+    /* 
+    Transition in when:
     1) Note is hovered.
     2) Note or child is focused. Button (.icon) will be focused.
     */
@@ -116,10 +117,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         bottom: -0.4em;
         /* These settings apply when the mouse enters the icon*/
         transition: visibility 0s, bottom 0.05s, opacity 0.05s;
-        transition-delay: 0.2s;
+        transition-delay: 0.1s;
         transition-timing-function: ease-in;
     }
-
+    
     .note:hover .popup a, .note:focus-within .popup a {
         text-decoration: underline;
         color: inherit;
