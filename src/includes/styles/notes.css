@@ -110,7 +110,8 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     1) Note is hovered.
     2) Note or child is focused. Button (.icon) will be focused.
     */
-    .note:hover .popup, .note:focus-within .popup {
+    /* .note:hover .popup,  */
+    .note:focus-within .popup {
         visibility: visible;
         opacity: 1;
         bottom: -0.4em;
