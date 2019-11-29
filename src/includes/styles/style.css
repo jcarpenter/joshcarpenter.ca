@@ -371,30 +371,30 @@ ol {
     padding-left: var(--grid-subdivision-3);
 } */
 
-ol, ul {
+article ol, article ul {
     list-style: none;
     counter-reset: custom-counter;
     padding-left: var(--grid-subdivision-3);
 }
 
-ol li, ul li {
+article ol li, article ul li {
     counter-increment: custom-counter;
     position: relative;
 }
 
-ol li::before {
+article ol li::before {
     content: counter(custom-counter) ".";
     font-size: 0.9em;
     color: var(--clr-gray);
 }
 
-ul li::before {
+article ul li::before {
     content: "•";
     font-size: 1.8em;
     color: var(--clr-gray-dark);
 }
 
-ol li::before, ul li::before {
+article ol li::before, article ul li::before {
     position: absolute;
     left: calc(var(--grid-subdivision-3) * -1);
 }
@@ -406,13 +406,13 @@ ol li::before, ul li::before {
 
 /* Add more indentation on larger screens */
 @media(min-width: 480px) {
-    ul, ol {
-        padding-left: var(--grid);
+    article ul, article ol {
+        padding-left: calc(var(--grid) + var(--grid-subdivision-1));
     }
 
-    ol li::before, ul li::before {
+    /* article ol li::before, article ul li::before {
         left: calc(var(--grid) * -1);
-    }
+    } */
 }
     
 /* -------------- Images & Media -------------- */
@@ -475,13 +475,13 @@ blockquote p:last-of-type {
 
 @media(min-width: 480px) {
     blockquote {
-        margin-left: var(--grid);
-        margin-right: var(--grid);
+        /* margin-left: var(--grid); */
+        margin-left: calc(var(--grid) + var(--grid-subdivision-1));
     }
 
-    blockquote::before {
+    /* blockquote::before {
         left: calc(var(--grid) * -1);
-    }
+    } */
 }
 
 /* -------------- Strong, Emphasis, Small caps  -------------- */
