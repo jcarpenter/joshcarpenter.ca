@@ -1,0 +1,88 @@
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+
+/* Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself. */
+
+/* -------------- Layout -------------- */
+
+table {
+    
+    /* Variables */
+    --tableBorderRadius: 0.2rem;
+    --tableBorderColor: var(--clr-gray-lighter);
+    --tableBackgroundColor: var(--clr-gray-lightestx2);
+
+    width: 100%;
+    border-spacing: 0;
+    text-align: left;
+    font-size: var(--font-size-sml-1);
+}
+
+table th, table td {
+    padding: var(--grid-subdivision-1);
+    margin: 0;
+}
+
+/* -------------- Typography -------------- */
+
+table th {
+    font-size: var(--font-size-sml-1);
+}
+
+/* -------------- Background color -------------- */
+
+/* Header */
+table th {
+    background: var(--tableBackgroundColor);
+}
+
+/* Alternating row colors */
+/* table tr:nth-child(2n) td {
+    background: var(--tableBackgroundColor);
+} */
+
+/* -------------- Borders -------------- */
+
+/* Border: top of each row */
+table th, table td {   
+    border-top: 1px solid var(--tableBorderColor);
+}
+
+/* Border: left side */
+th:first-of-type, td:first-of-type {
+    border-left: 1px solid var(--tableBorderColor);
+}
+
+/* Border: right side */
+th:last-of-type, td:last-of-type {
+    border-right: 1px solid var(--tableBorderColor);
+}
+
+/* Border: bottom */
+table tr:last-of-type td {
+    border-bottom: 1px solid var(--tableBorderColor);
+}
+
+/* -------------- Round corners -------------- */
+/* Note: Normally would apply to table element, but can't, because that won't work with padding. */
+
+/* Top left */
+table th:first-of-type {
+    border-top-left-radius: var(--tableBorderRadius);
+}
+
+/* Top right */
+table th:last-of-type {
+    border-top-right-radius: var(--tableBorderRadius);
+}
+
+/* Bottom left */
+table tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: var(--tableBorderRadius);
+}
+
+/* Bottom right */
+table tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: var(--tableBorderRadius);
+}

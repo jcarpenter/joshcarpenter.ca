@@ -1,6 +1,7 @@
 ---
-title: "Solar"
-dateModified: 'Thu Nov 21 2019 15:20:58 GMT-0800 (Pacific Standard Time)'
+title: 'Solar'
+created: '2019-11-18T18:01:12.889Z'
+modified: '2019-11-21T23:20:58.036Z'
 tags:
 - climate
 - post

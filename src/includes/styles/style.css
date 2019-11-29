@@ -20,6 +20,7 @@
     --font-size-base:   1rem;
     --font-size-sml-1:  calc(var(--font-size-base) / var(--font-size-scale));
     --font-size-sml-2:  calc(var(--font-size-sml-1) / var(--font-size-scale));
+    --font-size-sml-3:  calc(var(--font-size-sml-2) / var(--font-size-scale));
 
     /* -------------- Grid building blocks -------------- */
     
@@ -126,7 +127,6 @@ html {
 
 body {
     margin: 0;
-    background: hsl(0, 0%, 98%);
 }
 
 blockquote, ol, p, ul {
@@ -151,13 +151,13 @@ table {
 h1 {
     font-size: var(--font-size-lg-8);
     line-height: var(--grid-2);
-    margin-top: var(--grid-2);
+    margin-top: 0;
     margin-bottom: var(--h1-margin-bottom);
 }
 
 h2 {
     font-size: var(--font-size-lg-3);
-    line-height: var(--grid);
+    line-height: calc(var(--grid) + var(--grid-subdivision-1));
     margin-top: var(--h2-margin-top);
     margin-bottom: var(--h2-margin-bottom);
 }
@@ -200,66 +200,118 @@ hr {
 
 
 /* ==========================================================================
-   Navigation
+   Shared
    ========================================================================== */
 
-/* -------------- Header -------------- */
-
-body > header {
-    position: absolute;
-    top: calc(var(--grid-2) + var(--grid-subdivision-1));
-    left: var(--grid-2);
-    width: var(--grid-8);
-    z-index: 100;
-    font-size: var(--font-size-sml-1);
+body {
+    font-family: 'Public Sans', sans-serif;
+    color: var(--clr-gray-dark);
+    background: hsl(0, 0%, 99%);
 }
 
-body > header h1 {
-    font-size: var(--font-size-lg-2);
-    line-height: var(--baseLineHeight);
-    margin: 0 0 var(--grid) 0;
+@media(min-width: 480px) {
+    body {
+        background: hsl(0, 0%, 98%);
+    }
 }
 
-body > header ul {
-    list-style: none;
-    /* display: flex; */
-    margin: 0;
-    padding: 0;
-    /* flex: 2; */
+a {
+    color: inherit;
+    font-weight: 500;
 }
 
-body > header address {
-    margin: var(--block-margin-top) 0 var(--block-margin-bottom) 0;
-    font-style: normal;
+a:hover {
+    color: var(--clr-gray-darkest);
 }
+
+a:active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 
 
 /* ==========================================================================
-   Headers
+   Title and Address
    ========================================================================== */
+
+article {
+    margin-top: var(--grid-1);
+}
+
+@media(min-width: 600px) {
+    /* More paddding at top for larger screens */ 
+    article {
+        margin-top: var(--grid-2);
+    }
+}
+
+article .tag {
+    /* text-transform: uppercase; */
+    /* font-variant: small-caps; */
+    /* letter-spacing: 0.025em; */
+    font-size: var(--font-size-sml-1);
+    color: var(--clr-gray)
+}
+
+h1 {
+    color: var(--clr-gray-darker);
+    font-weight: bold;
+    letter-spacing: -0.01em;
+}
+
+article > header address {
+    font-style: normal;
+    /* font-variant: small-caps; */
+    /* text-transform: uppercase; */
+    /* letter-spacing: 0.025em; */
+    color: var(--clr-gray);   
+    font-size: var(--font-size-sml-1);
+    line-height: var(--grid-subdivision-3);
+    margin-bottom: var(--grid);
+}
+
+article > header address a, 
+article > header address time {
+    color: var(--clr-gray-dark);
+}
+
+article > header address a {
+    margin-right: 0.2em;
+    text-decoration: none;
+}
+
+article > header address a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* ==========================================================================
+   Copy
+   ========================================================================== */
+
+
+
+/* -------------- Headers -------------- */
 
 h1, h2, h3 {
     font-kerning: normal;
 }
 
-h1 {
-    color: var(--clr-gray-darkest);
-    font-weight: bold;
-    letter-spacing: -0.01em;
-}
-
 h2 {
-    color: var(--clr-gray-darker);
     font-weight: bold;
-
+    color: var(--clr-gray-darker);
 }
 
 h3 {
-    color: var(--clr-gray-dark);
+    color: var(--clr-gray-darker);
     font-weight: bold;
 }
 
-/* On wider screens, show hashes on h2 */
+/* On wider screens:
+- Show hashes before h2 
+- Make h3 bit lighter
+*/
 @media(min-width: 480px) {
 
     h2::before {
@@ -272,6 +324,17 @@ h3 {
         color: var(--clr-gray-light);
         font-style: normal;
         content: "##";
+    }
+
+    h3 {
+        color: var(--clr-gray-dark);
+    }
+}
+
+/* On devices without hover, hide anchor links */
+@media(hover:none) {
+    .header-anchor {
+        display: none;
     }
 }
 
@@ -295,78 +358,63 @@ h3 {
     }
 }
 
-/* On devices without hover, hide anchor links */
-@media(hover:none) {
-    .header-anchor {
-        display: none;
-    }
-}
-
-
-
-/* ==========================================================================
-   Text styles
-   ========================================================================== */
-
-body {
-    font-family: 'Public Sans', sans-serif;
-    color: var(--clr-gray-dark);
-}
-
-a {
-    color: inherit;
-    font-weight: 500;
-}
-
-a:hover {
-    color: var(--clr-gray-darkest);
-}
-
-a:active {
-    background-color: rgba(0, 0, 0, 0.15);
-}
-
-/* -------------- Address and Date -------------- */
-
-article > header address {
-    font-style: normal;
-    display: none;
-}
-
-article > header time {
-    font-variant: small-caps;
-    font-size: var(--font-size-sml-1);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--clr-gray);
-}
-
 /* -------------- Lists  -------------- */
 /* TODO: Am currently aligning list markers flush with left side using magic numbers.  */
 /* Alternatively I could properly style my one, per: https://css-tricks.com/style-list-markers-css/  */
 
 /* Make list markers flush with body text, by default */
-ul {
+/* ul {
     padding-left: 1em;
 }
 
 ol {
     padding-left: var(--grid-subdivision-3);
+} */
+
+ol, ul {
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: var(--grid-subdivision-3);
+}
+
+ol li, ul li {
+    counter-increment: custom-counter;
+    position: relative;
+}
+
+ol li::before {
+    content: counter(custom-counter) ".";
+    font-size: 0.9em;
+    color: var(--clr-gray);
+}
+
+ul li::before {
+    content: "•";
+    font-size: 1.8em;
+    color: var(--clr-gray-dark);
+}
+
+ol li::before, ul li::before {
+    position: absolute;
+    left: calc(var(--grid-subdivision-3) * -1);
 }
 
 /* Shrink numerical marker slightly. It's optically a bit too large at default 1em. */
-ol li::marker {
+/* ol li::marker {
     font-size: 0.95em;
-}
+} */
 
 /* Add more indentation on larger screens */
 @media(min-width: 480px) {
     ul, ol {
-        padding-left: calc(var(--grid) + var(--grid-subdivision-1));
+        padding-left: var(--grid);
+    }
+
+    ol li::before, ul li::before {
+        left: calc(var(--grid) * -1);
     }
 }
     
-
 /* -------------- Images & Media -------------- */
 
 /* Use relative sizes to prevent overflowing containers.  */
@@ -393,63 +441,29 @@ code {
     background-color: rgba(0, 0, 0, 0) !important;
 }
 
-/* -------------- Figure and Img -------------- */
-
-/* TODO: Add margin-bottom to figure when they're displayed inline */
-
-article > figure {
-    /* grid-column: right; */
-    /* align-self: end; */
-    /* justify-self: end; */
-    /* overflow: visible; */
-    /* height: 0em; */
-}
-
-figure {
-    margin: 0;
-    position: relative;
-}
-
-figure img {
-    box-shadow: 0px 1px 30px -14px rgba(0, 0, 0, 0.3);
-    object-fit: cover;
-    max-width: 100%;
-    /* display: block; */
-    box-sizing: content-box;
-}
-
-/* 
-Note: The line-height here breaks vertical rhythm. It _should_ 
-use a --grid or --grid-subdivision, but the leading for the 
-former is too large, and the later too tight. 
-*/
-
-figcaption {
-    /* padding: var(--grid-subdivision-2); */
-    /* background: rgba(0, 0, 0, 0.05); */
-    margin-top: var(--grid-subdivision-2);
-    /* font-style: italic; */
-    color: gray;
-    font-size: var(--font-size-sml-1);
-    line-height: var(--grid-subdivision-3);
-    /* line-height: var(--grid); */
-    letter-spacing: 0.02em;
-    /* line-height: calc(var(--font-size-sml-1) * 1.5);  */
-}
-
 /* -------------- Block quote -------------- */
 
 /* Shifted margin is to make room on side for ::before notch (see below). */
 
 blockquote {
-    margin-left: 1em;
+    margin-left: var(--grid-subdivision-3);
     margin-right: 0;
+    position: relative;
+}
+
+blockquote::before {
+    content: ">";
+    font-weight: normal;
+    font-style: normal;
+    position: absolute;
+    left: calc(var(--grid-subdivision-3) * -1);
+    color: var(--clr-blue-lightest)
 }
 
 blockquote p {
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
     font-style: italic;
-    color: var(--clr-blue);
+    color: var(--clr-blue-dark);
     padding-top: 0;
     margin-top: 0;
 }
@@ -459,23 +473,14 @@ blockquote p:last-of-type {
     margin-bottom: 0;
 }
 
-blockquote::before {
-    content: ">";
-    font-weight: normal;
-    font-style: normal;
-    position: absolute;
-    text-align: right;
-    padding-right: 1em;
-    box-sizing: border-box;
-    margin: 0 0 0 -1em;
-    width: 1em;
-    color: var(--clr-blue-light)
-}
-
 @media(min-width: 480px) {
     blockquote {
         margin-left: var(--grid);
-        margin-right: 1em;
+        margin-right: var(--grid);
+    }
+
+    blockquote::before {
+        left: calc(var(--grid) * -1);
     }
 }
 
@@ -536,171 +541,4 @@ sub {
     /* Move the subscripted text down, but only
        half as far down as the superscript moved up */
     bottom: -0.25em;
-}
-
-
-/* ==========================================================================
-   TABLES
-   ========================================================================== */
-
-/* Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself. */
-
-/* -------------- Layout -------------- */
-
-table {
-    
-    /* Variables */
-    --tableBorderRadius: 0.2rem;
-    --tableBorderColor: var(--clr-gray-lighter);
-    --tableBackgroundColor: var(--clr-gray-lightestx2);
-
-    border-spacing: 0;
-    text-align: left;
-    font-size: var(--font-size-sml-1);
-}
-
-table th, table td {
-    padding: var(--grid-subdivision-1);
-    margin: 0;
-}
-
-/* -------------- Typography -------------- */
-
-table th {
-    font-size: var(--font-size-sml-1);
-}
-
-/* -------------- Background color -------------- */
-
-/* Header */
-table th {
-    background: var(--tableBackgroundColor);
-}
-
-/* Alternating row colors */
-/* table tr:nth-child(2n) td {
-    background: var(--tableBackgroundColor);
-} */
-
-/* -------------- Borders -------------- */
-
-/* Border: top of each row */
-table th, table td {   
-    border-top: 1px solid var(--tableBorderColor);
-}
-
-/* Border: left side */
-th:first-of-type, td:first-of-type {
-    border-left: 1px solid var(--tableBorderColor);
-}
-
-/* Border: right side */
-th:last-of-type, td:last-of-type {
-    border-right: 1px solid var(--tableBorderColor);
-}
-
-/* Border: bottom */
-table tr:last-of-type td {
-    border-bottom: 1px solid var(--tableBorderColor);
-}
-
-/* -------------- Round corners -------------- */
-/* Note: Normally would apply to table element, but can't, because that won't work with padding. */
-
-/* Top left */
-table th:first-of-type {
-    border-top-left-radius: var(--tableBorderRadius);
-}
-
-/* Top right */
-table th:last-of-type {
-    border-top-right-radius: var(--tableBorderRadius);
-}
-
-/* Bottom left */
-table tr:last-of-type td:first-of-type {
-    border-bottom-left-radius: var(--tableBorderRadius);
-}
-
-/* Bottom right */
-table tr:last-of-type td:last-of-type {
-    border-bottom-right-radius: var(--tableBorderRadius);
-}
-
-
-/* ==========================================================================
-   REFERENCES
-   ========================================================================== */
-
-#references {
-    line-height: 1.63rem;
-    margin: var(--grid-2) 0;
-    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
-}
-
-#references h2 {
-    margin-top: var(--grid);
-}
-
-#references h2::before {
-    content: none;
-}
-
-#references ul {
-    margin: 0;
-    padding: 0;
-    font-size: var(--font-size-sml-1);
-    line-height: var(--grid-subdivision-3);
-    list-style: none;
-    /* Split contents into two equal columns */
-    column-count: 1;
-    column-gap: var(--grid-2);
-}
-
-.reference {
-    margin-bottom: var(--grid-subdivision-3);
-    /*Do not let contents be broken across columns */
-    break-inside: avoid;
-}
-
-.reference p {
-    color: var(--clr-gray);
-    font-style: normal;
-    margin: 0;
-    padding: 0;
-    font-weight: normal;
-}
-
-.reference a {
-    font-weight: normal;
-    text-decoration: underline;
-    border: none;
-    color: var(--clr-gray);
-}
-
-.reference a:hover {
-    border: none;
-    color: var(--clr-gray-dark); 
-}
-
-@media (min-width: 480px) {
-    #references ul {
-        column-count: 2;
-    }
-}
-
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-
-/* Footer contains copyright info */
-
-article > footer {
-    grid-column: main;
-    margin-top: var(--grid-2);
-    padding: var(--grid) 0;
-    border-top: var(--grid-subdivision-1) solid var(--clr-gray-light);
-    font-size: var(--txt-size-small);
-    color: var(--clr-gray);
 }

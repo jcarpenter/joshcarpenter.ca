@@ -1,6 +1,7 @@
 ---
-title: "Storms"
-dateModified: 'Thu Nov 21 2019 22:22:55 GMT-0800 (Pacific Standard Time)'
+title: 'Storms'
+created: '2019-11-15T23:35:13.199Z'
+modified: '2019-11-29T00:11:04.443Z'
 tags:
 - climate
 - post
@@ -17,21 +18,21 @@ In 2017 alone, Hurricane Irma was so strong that scientists proposed a new "Cate
 
 Per the 2019 IPCC Ocean and Cryosphere report:
 
-> "\[C\]limate change...is increasingly driving extreme climate and weather events across the globe including compound events (high confidence)...\[T\]he number of recent studies and wide range of phenomena addressed suggests increasing influence of climate change on extreme events."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--10.==
+> \[C\]limate change...is increasingly driving extreme climate and weather events across the globe including compound events (high confidence)...\[T\]he number of recent studies and wide range of phenomena addressed suggests increasing influence of climate change on extreme events.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--10.==
 
 ### Hurricanes
 
 Climate change has increased the intensity of hurricanes.
 
-> "Anthropogenic climate change has increased precipitation, winds and extreme sea level events associated with a number of observed tropical- and extra-tropical cyclones (high confidence). For example, studies have shown that the rainfall intensity of tropical cyclone Harvey increased by at least 8% due to climate change."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--3.==
+> Anthropogenic climate change has increased precipitation, winds and extreme sea level events associated with a number of observed tropical- and extra-tropical cyclones (high confidence). For example, studies have shown that the rainfall intensity of tropical cyclone Harvey increased by at least 8% due to climate change.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--3.==
 
 [Hurricane Irma](https://en.wikipedia.org/wiki/Hurricane_Irma) and [Maria](https://en.wikipedia.org/wiki/Hurricane_Maria) were each "once in a generation", Category 5 storms. They came within two weeks of each other, in 2017. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 81.== Irma is regarded as the "worst natural disaster in recorded history" for the islands of Puerto Rico, the US Virgin Islands, and Dominican Republic.==[Hurricane Maria](https://en.wikipedia.org/w/index.php?title=Hurricane_Maria&oldid=923504199). Wikipedia. 28 Oct 2019. Retrieved 22 Nov 2019.==
 
-> "Three major Caribbean storms, Harvey, Irma and Maria, occurred in 2017, with loss and damage to the tourism industries of Dominica, the British Virgin Islands, and Antigua and Barbuda estimated at US \$2.2 billion, and environmental recovery costs estimated at US \$6.8 million (UNDP, 2017)."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
+> Three major Caribbean storms, Harvey, Irma and Maria, occurred in 2017, with loss and damage to the tourism industries of Dominica, the British Virgin Islands, and Antigua and Barbuda estimated at US \$2.2 billion, and environmental recovery costs estimated at US \$6.8 million (UNDP, 2017).==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
 
 Confidence varies on the degree to which human factors are the cause.==Worth remembering that IPCC estimates and assertions of confidence tend to be conservative.==
 
-> "\[T\]he report says there is "medium confidence" that human-caused climate change has already increased the amount of rainfall associated with some cyclones, as well as "low confidence" around increased wind speeds and "high confidence" of increases in their associated extreme sea level events."==[In-Depth Q&A: The IPCC's Special Report on the Ocean and Cryosphere](https://www.carbonbrief.org/in-depth-qa-the-ipccs-special-report-on-the-ocean-and-cryosphere). Carbon Brief. 25 Sep 2019. Retrieved 15 Nov 2019.==
+> \[T\]he report says there is "medium confidence" that human-caused climate change has already increased the amount of rainfall associated with some cyclones, as well as "low confidence" around increased wind speeds and "high confidence" of increases in their associated extreme sea level events.==[In-Depth Q&A: The IPCC's Special Report on the Ocean and Cryosphere](https://www.carbonbrief.org/in-depth-qa-the-ipccs-special-report-on-the-ocean-and-cryosphere). Carbon Brief. 25 Sep 2019. Retrieved 15 Nov 2019.==
 
 Climate change makes hurricanes worse by... TODO
 
@@ -62,7 +63,7 @@ Climate change makes hurricanes worse by... TODO
 
 ### Wave heights
 
-> "Extreme wave heights across the globe have increased by around 5% over the past three decades (medium confidence)."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--3.==
+> Extreme wave heights across the globe have increased by around 5% over the past three decades (medium confidence).==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--3.==
 
 ### Industrial spills
 
@@ -81,9 +82,9 @@ Asia:
 
 Tropical islands:
 
-> "Natural disasters already cost Pacific Island Countries and Territories between 0.5‒ 6.6 % of GDP per year (World Bank, 2017), with localized damages and losses from individual storms far exceeding these estimates (e.g., 64% of Vanuatu's GDP for Cyclone Pam in 2015)."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
+> Natural disasters already cost Pacific Island Countries and Territories between 0.5‒ 6.6 % of GDP per year (World Bank, 2017), with localized damages and losses from individual storms far exceeding these estimates (e.g., 64% of Vanuatu's GDP for Cyclone Pam in 2015).==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
 
-> "In 2015, tropical storm Erika devastated Dominica causing \$483 million USD in damages and losses (mostly related to transport, housing and agriculture), equivalent to 90% of Dominica's GDP (World Bank, 2017)"==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
+> In 2015, tropical storm Erika devastated Dominica causing \$483 million USD in damages and losses (mostly related to transport, housing and agriculture), equivalent to 90% of Dominica's GDP (World Bank, 2017)==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
 
 ## The more we emit, the worse that future storms will be
 
@@ -95,29 +96,29 @@ Tropical islands:
 
 ### Hurricanes intensity and impacts will increase
 
-> "An increase in the average intensity of tropical cyclones, and the associated average precipitation rates is projected for a 2°C global temperature rise (medium confidence), although there is low confidence in future frequency changes at the global scale. Rising sea levels will contribute to higher extreme sea levels associated with tropical cyclones in the future (very high confidence). Projections show that the proportion of Category 4 and 5 \[tropical cyclones\] will increase (medium confidence). Such changes will affect storm surge frequency and intensity, and impact coastal infrastructure and mortality."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
+> An increase in the average intensity of tropical cyclones, and the associated average precipitation rates is projected for a 2°C global temperature rise (medium confidence), although there is low confidence in future frequency changes at the global scale. Rising sea levels will contribute to higher extreme sea levels associated with tropical cyclones in the future (very high confidence). Projections show that the proportion of Category 4 and 5 \[tropical cyclones\] will increase (medium confidence). Such changes will affect storm surge frequency and intensity, and impact coastal infrastructure and mortality.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
 
 ### El Niño and La Niña events will become more frequent and severe
 
-> "Extreme El Niño and La Niña events are likely to occur more frequently with global warming and are likely to intensify existing impacts, with drier or wetter responses in several regions across the globe, even at relatively low levels of future global warming (medium confidence)."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
+> Extreme El Niño and La Niña events are likely to occur more frequently with global warming and are likely to intensify existing impacts, with drier or wetter responses in several regions across the globe, even at relatively low levels of future global warming (medium confidence).==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
 
 ### Increasing wave heights
 
-> "Wave heights are projected to increase across the Southern Ocean, tropical eastern Pacific and Baltic Sea and decrease over the North Atlantic and Mediterranean Sea under RCP 4.5 and RCP 8.5 (high confidence). There is still limited knowledge on projected wave period and direction. Accounting for the multiple contributions of waves, tides, storm surges and sea level rise, probabilistic projections of extreme sea levels predict the global average 100-year extreme sea level to very likely increase by 34--76 cm and 58-- 172 cm, under RCP4.5 and RCP8.5, respectively between 2000 and 2100."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
+> Wave heights are projected to increase across the Southern Ocean, tropical eastern Pacific and Baltic Sea and decrease over the North Atlantic and Mediterranean Sea under RCP 4.5 and RCP 8.5 (high confidence). There is still limited knowledge on projected wave period and direction. Accounting for the multiple contributions of waves, tides, storm surges and sea level rise, probabilistic projections of extreme sea levels predict the global average 100-year extreme sea level to very likely increase by 34--76 cm and 58-- 172 cm, under RCP4.5 and RCP8.5, respectively between 2000 and 2100.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--4.==
 
 ### Costs will skyrocket
 
 Per the 2019 IPCC Ocean and Cryosphere report:
 
-> "Impacts from further changes in tropical and extra-tropical cyclones, marine heatwaves, extreme El Niño and La Niña events and other extremes will exceed the limits of resilience and adaptation of ecosystems and people, leading to unavoidable loss and damage"==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--5.==
+> Impacts from further changes in tropical and extra-tropical cyclones, marine heatwaves, extreme El Niño and La Niña events and other extremes will exceed the limits of resilience and adaptation of ecosystems and people, leading to unavoidable loss and damage==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 6--5.==
 
 In particular, for coastal regions (tropic islands especially):
 
-> "Overall, there is high confidence that sea level rise, increases in storm intensity and other extreme events will impact the values of coastal real estates and infrastructure, particularly in tropical SIDS, through the risk and impacts of direct physical damages."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--95.==
+> Overall, there is high confidence that sea level rise, increases in storm intensity and other extreme events will impact the values of coastal real estates and infrastructure, particularly in tropical SIDS, through the risk and impacts of direct physical damages.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--95.==
 
 USA:
 
-> "For the USA, Ackerman and Stanton (2007) forecast that annual real estate losses due to climate change could increase from 0.17% of GDP in 2025 to 0.36% in 2100, with Atlantic and Gulf Coast states being the most vulnerable."==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
+> For the USA, Ackerman and Stanton (2007) forecast that annual real estate losses due to climate change could increase from 0.17% of GDP in 2025 to 0.36% in 2100, with Atlantic and Gulf Coast states being the most vulnerable.==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. 5--94.==
 
 Florida:
 

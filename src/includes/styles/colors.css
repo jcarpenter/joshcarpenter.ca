@@ -4,19 +4,26 @@
 
 :root {
 
-    --clr-gray-darkestx2: hsl(0, 0%, 5%);
-    --clr-gray-darkest: hsl(0, 0%, 7.5%);
-    --clr-gray-darker: hsl(0, 0%, 15%);
-    --clr-gray-dark: hsl(0, 0%, 30%);
-    --clr-gray: hsl(0, 0%, 50%);
-    --clr-gray-light: hsl(0, 0%, 70%);
-    --clr-gray-lighter: hsl(0, 0%, 85%);
-    --clr-gray-lightest: hsl(0, 0%, 92.5%);
-    --clr-gray-lightestx2: hsl(0, 0%, 95%);
+    --clr-gray-darkestx2:   hsl(0, 0%, 5%);
+    --clr-gray-darkest:     hsl(0, 0%, 7.5%);
+    --clr-gray-darker:      hsl(0, 0%, 15%);
+    --clr-gray-dark:        hsl(0, 0%, 30%);
+    --clr-gray:             hsl(0, 0%, 50%);
+    --clr-gray-light:       hsl(0, 0%, 70%);
+    --clr-gray-lighter:     hsl(0, 0%, 85%);
+    --clr-gray-lightest:    hsl(0, 0%, 92.5%);
+    --clr-gray-lightestx2:  hsl(0, 0%, 95%);
     
-    --clr-blue: rgb(13, 103, 220);
-    --clr-blue-light: #b9d0ee;
-    --clr-blue-lighter:rgb(232, 242, 255);
-    --clr-blue-alpha: rgba(48, 114, 201, 0.15);
-    --clr-highlight: rgb(247, 242, 197); 
+    --clr-blue-darkestx2:     hsl(214, 95%, 20%);
+    --clr-blue-darkest:     hsl(214, 95%, 30%);
+    --clr-blue-darker:      hsl(214, 90%, 35%);
+    --clr-blue-dark:        hsl(214, 85%, 40%);
+    --clr-blue:             hsl(214, 80%, 50%);
+    --clr-blue-light:       hsl(214, 75%, 60%);
+    --clr-blue-lighter:     hsl(214, 70%, 75%);
+    --clr-blue-lightest:    hsl(214, 65%, 80%);
+    --clr-blue-lightestx2:    hsl(214, 65%, 90%);
+    --clr-blue-lightestx3:    hsl(214, 65%, 95%);
+
+    --clr-highlight:        rgb(247, 242, 197); 
 }

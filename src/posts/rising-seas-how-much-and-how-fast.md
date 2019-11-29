@@ -1,6 +1,7 @@
 ---
-title: "Rising Seas: How Much and How Fast?"
-dateModified: 'Tue Nov 26 2019 13:41:03 GMT-0800 (Pacific Standard Time)'
+title: 'Rising Seas: How Much and How Fast?'
+created: '2019-11-14T06:52:26.811Z'
+modified: '2019-11-29T00:39:15.858Z'
 tags:
 - climate
 - post
@@ -9,9 +10,7 @@ tags:
 ---
 
 
-## Preface
-
-### How do we define "sea level rise"?
+## Preface: How do we define "sea level rise"?
 
 ![Global mean sea level relative to the 1986--2005. ==[Climate Change 2014: Synthesis Report](https://www.ipcc.ch/report/ar5/syr/). Geneva, Switzerland: IPCC. 2015. 41.==](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
 
@@ -108,7 +107,7 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 
 ## There is historical precedence for rapid sea level rise driven by ice sheet breakup
 
-![History of Meltwater Pulses (MWP). ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.==](img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.jpg)
+![History of Meltwater Pulses (MWP). ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.==](img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.png)
 
 "Meltwater pulses" saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several "Meltwater Pulses"---periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ==[Early Holocene Sea Level Rise](https://en.wikipedia.org/w/index.php?title=Early_Holocene_sea_level_rise&oldid=910127057). Wikipedia. 9 Aug 2019. Retrieved 30 Oct 2019.==
 
@@ -138,8 +137,8 @@ Per the 2019 IPCC Oceans and Cryosphere report:
 
 ![A decade of increasing high-end scenarios. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 30:13.==](img/sea-level-rise-scenarios.png)
 
--   **IPCC 2014**: 0.52 -- 0.98 m (by 2100, under RCP8.5). ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1140.==
--   **IPCC 2019**: 0.61 -- 1.10 m (by 2100, under RCP8.5). ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. SPM--23.==
+-   **2014**: IPCC: 0.52 -- 0.98 m (by 2100, under RCP8.5). ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1140.==
+-   **2019**: IPCC: 0.61 -- 1.10 m (by 2100, under RCP8.5). ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. SPM--23.==
 -   **2015**: NASA: Minimum 1 m by 2100.
 -   **2017**: National Oceanic and Atmospheric Administration (NOAA): 2.5 meters possible by 2100.
 -   **2018**: Richard Alley: 4.5 to 6.0 m possible by 2100, "if the worst happened". ==[Richard Alley National Climate Seminar Excerpt](https://vimeo.com/292991175). Bard Center for Environmental Policy. Recorded 19 Sep 2018. 40:00.==

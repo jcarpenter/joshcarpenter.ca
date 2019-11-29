@@ -2,59 +2,71 @@
    NOTES
    ========================================================================== */
 
-/* -------------- Icon -------------- */
-    
 .note {
     position: relative;
     margin-left: 0.2em;
-    margin-right: 0.2em;
+    bottom: 0.1em;
+}
+
+/* -------------- Icon -------------- */
+    
+/* Reset Mobile Safari default button styles  */
+.note button  {
+    margin: 0;
+    border-style: none;
 }
 
 .note .icon {
-    border-style: none;
     cursor: default;
     background-color: hsl(0, 0%, 90%);
     color: hsl(0, 0%, 40%);
     border-radius: 0.2em;
-    font-size: 0.9em;
     line-height: 1em;
     font-size: 0.8em;
+    /* We need to re-declare font-family or Mobile Safari doesn't apply it to buttons :p */
+    font-family: "Public Sans", sans-serif;
 }
-
-blockquote .note .icon {
-    background-color: var(--clr-blue-lighter);
-    color: inherit;
-}
-
-blockquote .note .popup {
-    font-style: normal;
-}
-
-/* Make icon larger for touch devices */
-@media(hover:none) {
-    .note .icon {
-        padding: 0.15em 0.4em;
-    }
-}
-
-/* Make icon smaller for desktop devices */
-@media(hover) {
-    .note .icon {
-        padding: 0.15em 0.25em;
-    }
-}
-
-/* -------------- Icon :hover and :focus -------------- */
 
 .note:hover .icon, .note .icon:focus  {
     background-color: hsl(0, 0%, 75%);
     color: hsl(0, 0%, 10%);
 }
 
+/* Larger icon for touch devices */
+@media(hover:none) {
+    .note .icon {
+        padding: 0.2em 0.45em;
+    }
+}
+
+/* Smaller icon for desktop devices */
+@media(hover) {
+    .note .icon {
+        padding: 0.15em 0.25em 0.2em;
+    }
+}
+
+/* -------------- Blockquote and Figure variations -------------- */
+
+blockquote .note .icon {
+    background-color: var(--clr-blue-lightestx3);
+    color: var(--clr-blue);
+}
+
+blockquote .note .popup {
+    font-style: normal;
+}
+
 blockquote .note .icon:hover, blockquote .note .icon:focus {
-    background-color: var(--clr-blue-light);
+    background-color: var(--clr-blue-lightest);
     color: inherit;
 }
+
+/* Figcaption text is smaller, so we set .note to 1em so it's not too small. */
+figcaption .note {
+    font-size: 1em;
+}
+
 
 /* -------------- Popup - Shared styles -------------- */
 
@@ -125,12 +137,6 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         text-decoration: underline;
         color: inherit;
     }
-
-    /* Match coloring of blockquotes */
-    blockquote .note {
-        background-color: var(--clr-blue-lighter);
-        color: inherit;
-    }
 }
 
 /* -------------- Popup — For smaller touch-based devices -------------- */
@@ -145,7 +151,7 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
         z-index: 100;
         border-radius: var(--grid-subdivision-1) var(--grid-subdivision-2) 0 0;
         padding: var(--grid-subdivision-3);
-        padding-bottom: calc(var(--grid) + var(--grid-subdivision-2));
+        padding-bottom: calc(var(--grid) + var(--grid-subdivision-1));
         font-size: var(--font-size-base);
         margin-left: var(--grid-subdivision-1);
         margin-right: var(--grid-subdivision-1);
@@ -166,10 +172,10 @@ blockquote .note .icon:hover, blockquote .note .icon:focus {
     .note:hover .popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/
-        bottom: 0em;
+        bottom: -0.5em;
         visibility: visible;
         opacity: 1;
-        transition: visibility 0s, opacity 0.25s, bottom 0.3s;
+        transition: visibility 0s, opacity 0.25s, bottom 0.25s;
         transition-timing-function: ease-out;
     }
 
