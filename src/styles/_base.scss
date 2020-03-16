@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Site layout
+   ========================================================================== */
+
+body {
+    overflow-x: hidden;
+    display: grid;
+    position: relative;
+    grid-template-columns: var(--layout-narrow);
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
+}
+
+@media (min-width: 900px) {
+    body { 
+        grid-template-columns: var(--layout-wide); 
+    }
+}
+
+body > header { 
+    display: none;
+}
+
+@media (min-width: 900px) {
+    body > header { 
+        display: initial;
+        grid-column: nav;
+    }
+}
+
+main {
+    grid-column: content;
+}
+
+
+/* ==========================================================================
+   Common elements
+   ========================================================================== */
+
+// Reset box-sizing to border-box for all elements (including pseudo elements)
+// Set on html, and then tell all elements to inherit. This allows elements to override.
+// Per: https://css-tricks.com/box-sizing/ ("Universal Box Sizing with Inheritance")
+
+html {
+    font-size: var(--baseFontSize);
+    line-height: var(--baseLineHeight);
+    box-sizing: border-box; 
+}
+
+*, *:before, *:after { 
+    box-sizing: inherit;
+    word-break: normal;
+    line-height: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Public Sans', sans-serif;
+    color: var(--clr-gray-dark);
+    background: hsl(0, 0%, 99%);
+}
+
+@media(min-width: 480px) {
+    body {
+        background: hsl(0, 0%, 98%);
+    }
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: var(--clr-gray-darkestx2);
+}
+
+a:active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Set whitespace for common block elements*/
+blockquote, 
+ol, 
+ul,  
+p {
+    margin-top: 0;
+    margin-bottom: var(--block-margin-bottom);
+}
+
+/* Stop child lists from having full breaks */
+li > ol, li > ul {
+    margin: 0;
+}
+
+/* Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself. */
+table {
+    margin: 0;
+    padding-bottom: var(--block-margin-bottom);
+}
+
+/* We have to add !important to pre styles to prevent Prism.js themes from overriding */
+pre {
+    margin-top: 0 !important;
+    margin-bottom: var(--block-margin-bottom) !important;
+}
+
+
+/* ==========================================================================
+   Shared styles
+   ========================================================================== */
+
+.thick-border {
+    // border-top: var(--grid-quarter) solid var(--clr-gray-light);
+    // margin: var(--grid) 0 var(--grid);
+    // padding: var(--grid) 0;
+}
+
+.thick-border::before {
+    content: '';
+    background-color: var(--clr-gray-light);
+    // border-top: var(--grid-quarter) solid var(--clr-gray-light);
+    height: var(--grid-quarter);
+    display: block;
+    margin: var(--grid) 0;
+    // padding: var(--grid) 0;
+}
+
+// .thick-border + .thick-border {
+//     margin: 0;
+// }

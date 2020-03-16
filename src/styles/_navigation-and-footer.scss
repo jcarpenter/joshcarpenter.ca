@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+/* -------------- Header -------------- */
+
+body > header {
+    // position: absolute;
+    // top: var(--grid-2);
+    // left: var(--grid);
+    margin: var(--grid-2) 0 0 var(--grid);
+    width: var(--grid-9);
+    // font-size: var(--font-base-size);
+    // line-height: var(--baseLineHeight);
+    font-size: var(--font-sml-1);
+    line-height: var(--grid-three-quarters);
+}
+
+body > header h1 {
+    font-size: var(--font-lg-2);
+    line-height: var(--baseLineHeight);
+    margin: 0 0 var(--grid) 0;
+}
+
+body > header h2 {
+    font-size: var(--font-sml-1);
+    // line-height: var(--baseLineHeight);
+    margin: var(--grid) 0 0 0;
+    font-weight: 700;
+}
+
+body > header h2::before,
+body > header h3::before {
+    content: none;
+}
+
+body > header h3 {
+    font-size: var(--font-sml-1);
+    line-height: var(--baseLineHeight);
+    margin: var(--grid-half) 0 0 0;
+    padding: var(--grid-half) 0 0 0;
+    border-top: 1px solid var(--clr-gray-lighter);
+    font-weight: 700;
+}
+
+body > header p {
+    color: var(--clr-gray);
+}
+
+/* -------------- Text and Links -------------- */
+
+body > header a {
+    text-decoration: none;
+}
+
+body > header a:hover {
+    text-decoration: underline;
+}
+
+body > header ul {
+    list-style: none;
+    /* display: flex; */
+    margin: 0;
+    padding: 0;
+    /* flex: 2; */
+}
+
+body > header li {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body > header address {
+    margin: var(--block-margin-top) 0 var(--block-margin-bottom) 0;
+    font-style: normal;
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+/* Footer contains copyright info */
+
+article > footer {
+    grid-column: main;
+    font-size: var(--txt-size-small);
+    color: var(--clr-gray);
+    margin-bottom: var(--grid);
+}

@@ -16,18 +16,18 @@ table {
     width: 100%;
     border-spacing: 0;
     text-align: left;
-    font-size: var(--font-size-sml-1);
+    font-size: var(--font-sml-1);
 }
 
 table th, table td {
-    padding: var(--grid-subdivision-1);
+    padding: var(--grid-quarter);
     margin: 0;
 }
 
 /* -------------- Typography -------------- */
 
 table th {
-    font-size: var(--font-size-sml-1);
+    font-size: var(--font-sml-1);
 }
 
 /* -------------- Background color -------------- */

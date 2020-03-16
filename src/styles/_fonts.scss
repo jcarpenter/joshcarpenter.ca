@@ -16,19 +16,19 @@
     src: url('/styles/fonts/PublicSans-Italic.woff2') format('woff2');
 }
 
-@font-face {
-    font-family: 'Public Sans';
-    font-style: normal;
-    font-weight: 500;
-    src: url('/styles/fonts/PublicSans-Medium.woff2') format('woff2');
-}
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: normal;
+//     font-weight: 500;
+//     src: url('/styles/fonts/PublicSans-Medium.woff2') format('woff2');
+// }
 
-@font-face {
-    font-family: 'Public Sans';
-    font-style: italic;
-    font-weight: 500;
-    src: url('/styles/fonts/PublicSans-MediumItalic.woff2') format('woff2');
-}
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: italic;
+//     font-weight: 500;
+//     src: url('/styles/fonts/PublicSans-MediumItalic.woff2') format('woff2');
+// }
 
 @font-face {
     font-family: 'Public Sans';
@@ -47,13 +47,13 @@
 @font-face {
     font-family: 'Public Sans';
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     src: url('/styles/fonts/PublicSans-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Public Sans';
     font-style: italic;
-    font-weight: bold;
+    font-weight: 700;
     src: url('/styles/fonts/PublicSans-BoldItalic.woff2') format('woff2'), url('/styles/fonts/PublicSans-BoldItalic.woff') format('woff');
 }

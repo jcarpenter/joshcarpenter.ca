@@ -1,0 +1,45 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} | Josh Carpenter</title>
+<meta name="description" content="{{ summary }}">
+<meta name="dcterms.date" content="{{ modified }}"/>
+{# <meta name="author" content="{{ josh.name }}"/> #}
+{# <meta name="copyright" content="Copyright © {{ date | date("YYYY") }}, {{ josh.name }}"/> #}
+
+<!-- Social -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ title }} | Josh Carpenter">
+<meta property="og:url" content="https://joshcarpenter.ca{{ page.url}}">
+<meta property="og:description" content="{{ summary }}">
+{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+<meta property="og:updated_time" content="{{ modified }}">
+<meta property="article:modified_time" content="{{ modified }}">
+<meta property="og:site_name" content="Josh Carpenter">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@joshcarpenter">
+<meta name="twitter:creator" content="@joshcarpenter">
+
+{#
+<!-- Favicon -->
+<!-- 3rd-gen iPad w/ Retina display: -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/TODO.png">
+<!-- iPhone w/ Retina display: -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/TODO.png">
+<!-- 1st-and 2nd-gen iPad: --> 
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/TODO.png">
+<!-- Non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+<link rel="apple-touch-icon-precomposed" href="/img/TODO.png">
+<!-- Basic favicon -->
+<link rel="shortcut icon" href="/img/TODO.png">
+#}
+
+<!-- Styles -->
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="stylesheet" href="/styles/prism/prism-duotone-light.css"/>
+
+<!-- Scripts -->
+<script src="/js/fit-images.js"></script>
+<script src="/js/blur-notes.js"></script>
+<script src="/js/lightbox.js"></script>
+{# <script type="text/javascript" src="/js/toggle-grid.js"></script> #}

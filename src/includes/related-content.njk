@@ -1,0 +1,40 @@
+<nav id="related-content">
+    <header>
+        <h2>More climate research notes</h2>
+    </header>
+    <ul>
+        {%- for post in collections.post -%}
+            {% if page.url != post.url %}
+                <li>
+
+                    <a href="{{ post.url }}" class="title">{{ post.data.title }}</a>
+
+                    <ul id="tags">
+
+                        {% if tags.includes("problem") %}
+                            {% if tags.includes("canada") %}
+                                <li class="tag">
+                                    <a href="">Impacts (Canada)</a>
+                                </li>
+                                {%else%}
+                                <li class="tag">
+                                    <a href="">Impacts</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+
+                    </ul>
+
+                    <p>
+                        {%if post.data.summary %}
+                            {{ post.data.summary }}
+                            {%else%}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    {%endif%}
+                        </p>
+
+                    </li>
+                {% endif %}
+            {%- endfor -%}
+        </ul>
+    </nav>

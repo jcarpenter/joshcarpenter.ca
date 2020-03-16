@@ -1,18 +1,17 @@
 ---
-title: 'Rising Seas: How Much and How Fast?'
-created: '2019-11-14T06:52:26.811Z'
-modified: '2019-11-29T00:39:15.858Z'
+title: 'Rising seas'
+created: '2020-02-27T18:45:37.536Z'
+modified: '2020-03-16T19:07:22.816Z'
+summary: 'How much will sea levels rise, and how fast? What are the drivers?'
 tags:
 - climate
-- post
 - problem
-- futures
 ---
 
 
-## Preface: How do we define "sea level rise"?
+## How do we define "sea level rise"?
 
-![Global mean sea level relative to the 1986--2005. ==[Climate Change 2014: Synthesis Report](https://www.ipcc.ch/report/ar5/syr/). Geneva, Switzerland: IPCC. 2015. 41.==](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
+![Global mean sea level relative to the 1986--2005. ==[Climate Change 2014: Synthesis Report](https://www.ipcc.ch/report/ar5/syr/). Geneva, Switzerland: IPCC. 2015. 41.== ](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
 
 "Sea level rise" most commonly refers to changes in the **global mean sea level** (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.
 
@@ -20,7 +19,7 @@ Estimates of future sea level rise are typically expressed as relative to the me
 
 ### How do we measure sea level rise?
 
-**Satellite altimeters** since Sep 1993. High quality (accuracy within a few centimeters), near global coverage of both absolute and local sea levels. Satellites send microwave pulses to the surface and measure the time to return. ==Church, John A., & White, Neil J. [Sea-Level Rise from the Late 19th to the Early 21st Century](http://link.springer.com/10.1007/s10712-011-9119-1). Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019.== ==Thomas, Robert H., & Bentley, Charles R. [A Model for Holocene Retreat of the West Antarctic Ice Sheet](https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article). Quaternary Research. Sep 1978. Retrieved 30 Oct 2019.==
+**Satellite altimeters** since Sep 1993. High quality (accuracy within a few centimeters), near global coverage of both absolute and local sea levels. ==Union of Concerned Scientists. [Underwater: Rising Seas, Chronic Floods, and the Implications for US Coastal Real Estate](https://www.ucsusa.org/global-warming/global-warming-impacts/sea-level-rise-chronic-floods-and-us-coastal-real-estate-implications). Union of Concerned Scientists. 2018.== Satellites send microwave pulses to the surface and measure the time to return. ==Church, John A., & White, Neil J. [Sea-Level Rise from the Late 19th to the Early 21st Century](http://link.springer.com/10.1007/s10712-011-9119-1). Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019.== ==Thomas, Robert H., & Bentley, Charles R. [A Model for Holocene Retreat of the West Antarctic Ice Sheet](https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article). Quaternary Research. Sep 1978. Retrieved 30 Oct 2019.==
 
 **Coastal tide-gauges** for prior to 1993. Gathered from a network of gauges around the world. They provide only local sea levels. There are geographical gaps in coverage; more so the further back we go. Collection started in 1675 in Amsterdam. Converting into global mean sea level is done by comparing with overlapping satellite altimeter data, and eliminating regional variations caused by factors such as vertical land motion. ==Church, John A., & White, Neil J. [Sea-Level Rise from the Late 19th to the Early 21st Century](http://link.springer.com/10.1007/s10712-011-9119-1). Surveys in Geophysics. Sep 2011. Retrieved 25 Oct 2019.== ==[Sea Level Rise](https://en.wikipedia.org/w/index.php?title=Sea_level_rise&oldid=921947329). Wikipedia. 18 Oct 2019. Retrieved 25 Oct 2019.==
 
@@ -49,7 +48,7 @@ GMSL rise average in mm/year:
 
 ## Greenland and Antarctica ice sheets will be the largest contributors, going forward
 
-![Contributions to the rate of global mean sea-level rise during the periods 1997--2006 (left) and 2007--2016 (right). ==[The Global Climate in 2015--2019](https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates). World Meteorological Organization. 22 Sep 2019.==](img/GMSL-rise-contributors.png)
+![Contributions to the rate of global mean sea-level rise during the periods 1997--2006 (left) and 2007--2016 (right). ==[The Global Climate in 2015--2019](https://public.wmo.int/en/media/press-release/global-climate-2015-2019-climate-change-accelerates). World Meteorological Organization. 22 Sep 2019.== ](img/GMSL-rise-contributors.png)
 
 Per a September 2019 report from the World Meteorological Organization:
 
@@ -77,13 +76,13 @@ There are multiple hypothesized run away effects by which ice sheets could drama
 
 ### Marine ice sheet instability (MISI)
 
-![Diagram of marine ice cliff instability. ==[Marine Ice Sheet Instability](https://en.wikipedia.org/w/index.php?title=Marine_ice_sheet_instability&oldid=920345556). Wikipedia. 9 Oct 2019. Retrieved 30 Oct 2019.==](img/marine-ice-sheet-instability-diagram.png)
+![Diagram of marine ice cliff instability. ==[Marine Ice Sheet Instability](https://en.wikipedia.org/w/index.php?title=Marine_ice_sheet_instability&oldid=920345556). Wikipedia. 9 Oct 2019. Retrieved 30 Oct 2019.== ](img/marine-ice-sheet-instability-diagram.png)
 
 First proposed in 1978 by glaciologist John Mercer. ==Thomas, Robert H., & Bentley, Charles R. [A Model for Holocene Retreat of the West Antarctic Ice Sheet](https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article). Quaternary Research. Sep 1978. Retrieved 30 Oct 2019.== [Marine ice sheets](https://en.wikipedia.org/wiki/Marine_ice_sheet_instability) are ice sheets that are in the ocean, but grounded to the sea floor by their sheer mass. They are stable in this configuration. If water gets beneath them, however, they float and break up through calving.
 
 If the ground below the marine ice sheets slopes downwards the further inland it goes (*reverse bed slope*), the grounding line accelerates as it moves forward. This is because the ice above is gets progressively thicker, and the thicker the ice is, the more vulnerable it is to floatation and calving.
 
-![Marine Ice Sheet instability hypothesis flow chart. ==Davies, Bethan. [Marine Ice Sheet Instability](http://www.antarcticglaciers.org/glaciers-and-climate/ice-ocean-interactions/marine-ice-sheets/). AntarcticGlaciers.org. 16 Sep 2014. Retrieved 30 Oct 2019.==](img/marine-ice-sheet-instability-hypothesis.png)
+![Marine Ice Sheet instability hypothesis flow chart. ==Davies, Bethan. [Marine Ice Sheet Instability](http://www.antarcticglaciers.org/glaciers-and-climate/ice-ocean-interactions/marine-ice-sheets/). AntarcticGlaciers.org. 16 Sep 2014. Retrieved 30 Oct 2019.== ](img/marine-ice-sheet-instability-hypothesis.png)
 
 The trigger for this process is ice shelve breakup. Ice shelves float on the surface of the ocean, forming a buttress around the edge of the grounded ice mass. As the atmosphere and ocean warm, they accelerate the breakup of ice shelves, which eventually advances the grounding line beneath the ice mass to the point where it is traveling down the slope of the bowl of the marine ice sheet.
 
@@ -91,7 +90,7 @@ This process would hit West Antarctica hardest, as it has large marine ice sheet
 
 ### Marine ice cliff instability (MICI)
 
-This is a newer hypothesis, and still being debated. The idea is intuitive: ice cliffs higher than 90 meters collapse due to the physics of ice. The collapse process will accelerate if the ice mass gets thicker the further back it goes (as most do), as the ice collapsing at the edge of the mass reveals ever-higher, faster-collapsing ice behind.
+This is a newer hypothesis, and still being debated. The idea is intuitive: ice cliffs higher than 90 meters collapse due to the physics of ice. The collapse process will accelerate if the ice mass gets thicker the further back it goes (as most do), as the ice collapsing at the edge of the mass reveals ever-higher, faster-collapsing ice behind. ==[Marine Ice Sheet Instability](https://en.wikipedia.org/w/index.php?title=Marine_ice_sheet_instability&oldid=920345556). Wikipedia. 9 Oct 2019. Retrieved 30 Oct 2019.==
 
 ## Other cascade effects are possible
 
@@ -99,15 +98,15 @@ This is a newer hypothesis, and still being debated. The idea is intuitive: ice 
 
 > Albedo (al-bee-doh) is a measure of how much light that hits a surface is reflected without being absorbed. Something that appears white reflects most of the light that hits it (high albedo), while something that appears dark absorbs most of the light (low albedo). ==[Albedo](https://climate.ncsu.edu/edu/Albedo). North Carolina Climate Office. Retrieved 29 Oct 2019.==
 
-As white ice melts, it reveals darker ocean and land below. These surfaces absorb more of the sun's light as warmth. It has been estimated this could mean a warming "...equivalent to 25 years of global carbon emissions." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 67.== Forest fires could also contribute to the albedo effect, by depositing black soot on ice sheets.
+As white ice melts, it reveals darker ocean and land below. These surfaces absorb more of the sun's light as warmth. It has been estimated this could mean a warming "...equivalent to 25 years of global carbon emissions." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 67.== Forest fires could also contribute to the albedo effect, by depositing black soot on ice sheets.
 
 ### Methane release from melting permafrost
 
-The Arctic contains vast quantities of frozen permafrost. As the planet warms, this permafrost melts, and has the potential to release greenhouse gases, including methane, which has a greenhouse effect several dozen times more powerful than CO2. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 66.==
+The Arctic contains vast quantities of frozen permafrost. As the planet warms, this permafrost melts, and has the potential to release greenhouse gases, including methane, which has a greenhouse effect several dozen times more powerful than CO2. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 66.==
 
 ## There is historical precedence for rapid sea level rise driven by ice sheet breakup
 
-![History of Meltwater Pulses (MWP). ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.==](img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.png)
+![History of Meltwater Pulses (MWP). ==[Meltwater Pulse 1A](https://en.wikipedia.org/w/index.php?title=Meltwater_pulse_1A&oldid=892593416). Wikipedia. 15 Apr 2019. Retrieved 30 Oct 2019.== ](img/Postglacial_Sea_level_Rise_Curve_and_Meltwater_Pulses.png)
 
 "Meltwater pulses" saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several "Meltwater Pulses"---periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: ==[Early Holocene Sea Level Rise](https://en.wikipedia.org/w/index.php?title=Early_Holocene_sea_level_rise&oldid=910127057). Wikipedia. 9 Aug 2019. Retrieved 30 Oct 2019.==
 
@@ -117,7 +116,7 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 
 ## Sea level rise will not be uniform
 
-![Local variations in sea level, 1992-2014. ==[SVS: 22-Year Sea Level Rise - TOPEX/JASON](https://svs.gsfc.nasa.gov/4345). NASA Scientific Visualization Studio. 26 Aug 2015. Retrieved 30 Oct 2019.==](img/Local-sea-level-variations-1992-2004.png)
+![Local variations in sea level, 1992-2014. ==[SVS: 22-Year Sea Level Rise - TOPEX/JASON](https://svs.gsfc.nasa.gov/4345). NASA Scientific Visualization Studio. 26 Aug 2015. Retrieved 30 Oct 2019.== ](img/Local-sea-level-variations-1992-2004.png)
 
 Sea levels are not the same everywhere. Local coastal sea level elevations (aka: relative sea level) can vary widely from region to region, due to several factors:
 
@@ -135,7 +134,7 @@ Per the 2019 IPCC Oceans and Cryosphere report:
 
 ## Projections of sea level rise are trending higher
 
-![A decade of increasing high-end scenarios. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 30:13.==](img/sea-level-rise-scenarios.png)
+![A decade of increasing high-end scenarios. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 30:13.== ](img/sea-level-rise-scenarios.png)
 
 -   **2014**: IPCC: 0.52 -- 0.98 m (by 2100, under RCP8.5). ==[Climate Change 2013: The Physical Science Basis](https://www.ipcc.ch/report/ar5/wg1/). New York: IPCC. 2014. 1140.==
 -   **2019**: IPCC: 0.61 -- 1.10 m (by 2100, under RCP8.5). ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. SPM--23.==
@@ -145,7 +144,7 @@ Per the 2019 IPCC Oceans and Cryosphere report:
 
 Jeff Goodell says "The uncertainty is moving towards higher scenarios, rather than low." ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 21:14.== Richard Alley uses the graph below to plot the probability of various scenarios, and says everything we're learning is only fattening the right side of the curve. ==[Richard Alley National Climate Seminar Excerpt](https://vimeo.com/292991175). Bard Center for Environmental Policy. Recorded 19 Sep 2018. 40:00.==
 
-![Richard Alley's sea level rise scenario probability graph. ==[Richard Alley National Climate Seminar Excerpt](https://vimeo.com/292991175). Bard Center for Environmental Policy. Recorded 19 Sep 2018.==](img/Richard-Alley-sea-level-rise-scenario-probability.png)
+![Richard Alley's sea level rise scenario probability graph. ==[Richard Alley National Climate Seminar Excerpt](https://vimeo.com/292991175). Bard Center for Environmental Policy. Recorded 19 Sep 2018.== ](img/Richard-Alley-sea-level-rise-scenario-probability.png)
 
 ### Antarctica is the primary cause for increasing projections
 
@@ -174,11 +173,11 @@ That seems reasonable to me. It is greater than the (outdated and conservative) 
 
 The heat already in the ocean will continue to drive sea level rise, even if we could magically stop all emissions today. But we still need to rapidly reduce emissions, because the hotter the world is, the more sea level rise we will see, and the faster it will happen.
 
--   **2°C**: Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 62.== Or 7.5-18 m, according to Jeff Goodell. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 19:21.==
+-   **2°C**: Even if we reduce emissions enough to keep ourselves to (optimistic) 2°C warming, sea levels will eventually (over millennia) rise six meters. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 62.== Or 7.5-18 m, according to Jeff Goodell. ==[Jeff Goodell: The Water Will Come](http://longnow.org/seminars/02019/apr/02/water-will-come/). Long Now Foundation. Recorded 2 Apr 2019. 19:21.==
 
--   **3°C**: It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 62.== The US Geological Survey 80 m, ultimately. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 68.==
+-   **3°C**: It may take centuries or even millennia, but at just 3°C warming, sea level will rise at least 50 m says ocean chemist David Archer. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 62.== The US Geological Survey 80 m, ultimately. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 68.==
 
--   **4°C**: "The last time the earth was 4°C warmer... there was no ice at either pole and sea level was 260' higher. There were palm trees in the Arctic." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. p. 65.==
+-   **4°C**: "The last time the earth was 4°C warmer... there was no ice at either pole and sea level was 260' higher. There were palm trees in the Arctic." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 65.==
 
 ::: #references
 
@@ -199,6 +198,8 @@ The heat already in the ocean will continue to drive sea level rise, even if we 
 * The IMBIE team. [Mass Balance of the Antarctic Ice Sheet from 1992 to 2017](http://www.nature.com/articles/s41586-018-0179-y). Nature. Jun 2018. {.reference}
 
 * Thomas, Robert H., & Bentley, Charles R. [A Model for Holocene Retreat of the West Antarctic Ice Sheet](https://www.cambridge.org/core/product/identifier/S003358940002963X/type/journal_article). Quaternary Research. Sep 1978. {.reference}
+
+* Union of Concerned Scientists. [Underwater: Rising Seas, Chronic Floods, and the Implications for US Coastal Real Estate](https://www.ucsusa.org/global-warming/global-warming-impacts/sea-level-rise-chronic-floods-and-us-coastal-real-estate-implications). Union of Concerned Scientists. 2018. {.reference}
 
 * Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. {.reference}
 

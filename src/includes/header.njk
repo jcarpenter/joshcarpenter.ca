@@ -1,31 +1,58 @@
 <header>
-    <h1>{{ josh.name }}</h1>
-    <address>
+    <a href="/">
+        <h1>{{ josh.name }}</h1>
+    </a>
+    {# <address>
         Product Designer<br>
         Vancouver, Canada<br>
         <a href="mailto:{{ josh.email }}">{{ josh.email }}</a>
-    </address>
+    </address> #}
     <nav>
         {% if tags.includes("climate") %}
+            <h2>Climate research</h2>
+            <h3>Impacts</h3>
             <ul>
-                {%- for post in collections.climate -%}
+                {%- for post in collections.climateImpacts -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
                         <a href="{{ post.url }}">{{ post.data.title }}</a>
                     </li>
                 {%- endfor -%}
             </ul>
-        {% else %}
+            <h3>Impacts (Canada)</h3>
             <ul>
-                <li>
-                    <a href='#'>Design</a>
-                </li>
-                <li>
-                    <a href='#'>Climate</a>
-                </li>
-                <li>
-                    <a href='#'>About</a>
-                </li>
+                {%- for post in collections.climateImpactsCanada -%}
+                    <li {% if page.url == post.url %} class="active" {% endif %}>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
             </ul>
+            <h3>Solutions</h3>
+            <ul>
+                {%- for post in collections.climateSolutions -%}
+                    <li {% if page.url == post.url %} class="active" {% endif %}>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            <h3>Resiliency</h3>
+            <ul>
+                {%- for post in collections.climateResiliency -%}
+                    <li {% if page.url == post.url %} class="active" {% endif %}>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            <h3>Other posts</h3>
+            <ul>
+                {%- for post in collections.other -%}
+                    <li {% if page.url == post.url %} class="active" {% endif %}>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+
+        {% else %}
+
         {% endif %}
     </nav>
 </header>

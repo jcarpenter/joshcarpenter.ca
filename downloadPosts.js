@@ -3,19 +3,20 @@ const fsp = require('fs').promises
 const downloadGitRepo = require('download-git-repo')
 const rimraf = require("rimraf")
 const path = require('path')
+const imagemin = require('imagemin');
+const imageminJpegtran = require('imagemin-jpegtran');
+const imageminPngquant = require('imagemin-pngquant');
 
 
-let tmpPostsPath = path.join(__dirname, 'src/posts/tmp')
-let tmpImgPath = path.join(__dirname, 'src/posts/tmp/img')
-
+let tmpPath = path.join(__dirname, 'src/posts/tmp')
 
 // Check if temp folder already exists. If yes, delete the contents.
 // https://stackoverflow.com/questions/18052762/remove-directory-which-is-not-empty
 
-function cleanupTempDirectory() {
+function cleanupFiles() {
     return new Promise((resolve, reject) => {
-        if (fs.existsSync(tmpPostsPath)) {
-            rimraf(tmpPostsPath, (err) => {
+        if (fs.existsSync(tmpPath)) {
+            rimraf(tmpPath, (err) => {
                 if (err) {
                     reject(err)
                 } else {
@@ -33,7 +34,7 @@ function cleanupTempDirectory() {
 // which is setup like a gh-pages branch (e.g. has no source files).
 // Am using https://www.npmjs.com/package/download-git-repo. clone = true
 // is necessary for private repos. 
-// If tmp foldere doesn't exist, download-git-repo will create it.
+// If tmp folder does not exist, download-git-repo will create it.
 
 function downloadLatestFromRepo() {
     return new Promise((resolve, reject) => {
@@ -47,8 +48,8 @@ function downloadLatestFromRepo() {
     })
 }
 
-
-// Make a promise-compatible forEach loop
+// Copy markdown files
+// Uses a promise-compatible forEach loop
 // Per: https://developers.google.com/web/fundamentals/primers/promises?#creating_a_sequence
 
 function copyPosts(posts) {
@@ -78,56 +79,42 @@ function copyPosts(posts) {
     return sequence
 }
 
-// Same approach as copyPosts
-function copyImgs(images) {
 
-    let sequence = Promise.resolve();
+// Optimize images with pngquant and jpegtran, then copy them
 
-    images.forEach((img) => {
+function copyImgs() {
 
-        let oldPath = path.join(__dirname, 'src/posts/tmp/img', img);
-        let newPath = path.join(__dirname, 'src/posts/img', img);
+    let inputFiles = path.join(__dirname, 'src/posts/tmp/img/*.{png,jpg}');
+    let outputDir = path.join(__dirname, 'src/posts/img');
 
-        // Add these actions to the end of the sequence
-        sequence = sequence.then(() => {
-            return fsp.rename(oldPath, newPath)
-        })
+    return imagemin([inputFiles], {
+        destination: outputDir,
+        plugins: [
+            imageminJpegtran(),
+            imageminPngquant({
+                quality: [0.6, 0.8],
+                strip: true
+            })
+        ]
     })
-
-    // Return the sequence
-    return sequence
 }
 
 
 // Sequence of promises
 
-// Empty tmp directory. It shouldn't exist, but just in case.
-cleanupTempDirectory()
-
-    // Download latest from climate-research repo
-    .then(() => downloadLatestFromRepo())
+downloadLatestFromRepo()
     .catch(err => console.log(err))
 
     // Copy posts out of tmp/
-    .then(() => { return fsp.readdir(tmpPostsPath) })
+    .then(() => { return fsp.readdir(tmpPath) })
     .catch(err => console.log(err))
     .then(posts => copyPosts(posts))
     .catch(err => console.log(err))
 
     // Copy images out of tmp/img/
-    .then(() => { return fsp.readdir(tmpImgPath) })
-    .catch(err => console.log(err))
-    .then(images => copyImgs(images))
+    .then(() => copyImgs())
     .catch(err => console.log(err))
 
     // Delete tmp files
-    .then(() => cleanupTempDirectory)
-    .catch(err => console.log(err))
-
-    // Delete tmp/img directoy 
-    .then(() => { return fsp.rmdir(tmpImgPath) })
-    .catch(err => console.log(err))
-
-    // Delete tmp directory
-    .then(() => { return fsp.rmdir(tmpPostsPath) })
+    .then(() => cleanupFiles())
     .catch(err => console.log(err))

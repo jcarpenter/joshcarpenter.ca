@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="{{ josh.name }}"/>
         <title>Josh Carpenter</title>
-        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/main.css">
     </head>
     <body>
         <main role="main">
@@ -14,9 +14,38 @@
                     <h1 class="title">{{ josh.name }}</h1>
                     <address>
                         <a href="https://twitter.com/{{ josh.twitter }}">@{{ josh.twitter }}</a><br/>
-				    </address>
+                    </address>
                     <p>Lapsed UX designer, currently exploring climate in Vancouver, Canada. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of A-Frame, and interaction design lead for Firefox OS.</p>
                 </header>
+            </section>
+            <section>
+                <h2>Climate</h2>
+                <p>These are my research notes on climate change. I’m trying to better understand: the nature of the problem; projected impacts, both at the global and Canadian levels; potential solutions; and potential resiliency strategies. Started fall 2019, and ongoing.</p>
+                <h3>Global</h3>
+                <ul>
+                    {%- for post in collections.globalProblems -%}
+                        <li {% if page.url == post.url %} class="active" {% endif %}>
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+                <h3>Canada</h3>
+                <ul>
+                    {%- for post in collections.canadaProblems -%}
+                        <li {% if page.url == post.url %} class="active" {% endif %}>
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+                <h3>Solutions</h3>
+                <ul>
+                    {%- for post in collections.solution -%}
+                        <li {% if page.url == post.url %} class="active" {% endif %}>
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+
             </section>
         </main>
     </body>

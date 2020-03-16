@@ -128,12 +128,12 @@ pre[class*="language-"] {
 
 .token.id {
 	color: #c792ea;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 .token.important {
 	color: #c792ea;
-	font-weight: bold;
+	font-weight: 700;
 }
 
 .token.inserted {

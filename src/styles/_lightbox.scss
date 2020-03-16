@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Lightbox
+   ========================================================================== */
+
+article > figure img {
+    cursor: pointer;
+}
+
+#lightbox {
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.15s, bottom 0.15s, opacity 0.15s;
+    transition-timing-function: ease-out;
+}
+
+#lightbox #itemHolder {
+    max-width: 84vw;
+    max-height: 84vh;
+    // overflow: hidden;
+}
+
+#lightbox #itemHolder figure {
+    z-index: 10;
+    max-height: 100%;
+}
+
+#lightbox #itemHolder img {
+    display: block;
+    object-fit: contain;
+    // width: 100%;
+    // height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: initial;
+}
+
+#lightbox #itemHolder figcaption {
+    padding-top: var(--grid-half);
+    color: var(--clr-gray-light);
+}
+
+#lightbox .note .icon {
+    background-color: var(--clr-gray-dark);
+    color: var(--clr-gray-light);
+}
+
+#lightbox .note:hover .icon {
+    background-color: var(--clr-gray);
+}
+
+
+#lightbox #close{
+    position: absolute;
+    top: var(--grid);
+    right: var(--grid);
+    height: var(--grid);
+    width: var(--grid);
+    margin: 0;
+    border-style: none;
+    cursor: pointer;
+    z-index: 1;
+    text-align: center;
+    opacity: 0.4;
+}
+
+#lightbox #close img { 
+    width: 100%;
+    height: 100%;
+}
+
+#lightbox #close:hover{
+    opacity: 1;
+}
+
+#lightbox #background{
+    background-color: rgba(20, 20, 20, 0.92);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    cursor: default;
+}
+
+#lightbox.show {
+    /* display: initial; */
+    visibility: visible;
+    opacity: 1;
+    /* These settings apply when the mouse enters the icon*/
+    transition: visibility 0s, opacity 0.1s;
+    transition-timing-function: ease-in;
+}
