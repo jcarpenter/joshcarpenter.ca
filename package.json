@@ -8,10 +8,10 @@
         "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
     },
     "scripts": {
+        "download-posts":   "gulp downloadPosts",
         "dev":              "export IMAGES=\"true\" && gulp dev",
         "dev_no_images":    "export IMAGES=\"false\" && gulp dev",
-        "deploy":           "export IMAGES=\"true\" && gulp deploy",
-        "download-posts":   "gulp downloadPosts"
+        "deploy":           "export IMAGES=\"true\" && gulp deploy"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
