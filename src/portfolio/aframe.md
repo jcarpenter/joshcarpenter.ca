@@ -1,7 +1,6 @@
 ---
 title: 'A-Frame'
 year: '2015'
-layout: 'portfolio.njk'
 image: ''
 tags:
 - portfolio

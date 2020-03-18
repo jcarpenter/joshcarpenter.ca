@@ -314,38 +314,50 @@ ol {
     padding-left: var(--grid-three-quarters);
 } */
 
-article > ol, article > ul {
+// Set list-style and padding for all top-level lists, and nested child lists
+article > ol,
+article > ol ul,
+article > ol ol,
+article > ul,
+article > ul ul,
+article > ul ol{
     list-style: none;
-    counter-reset: custom-counter;
     padding-left: var(--grid-three-quarters);
 }
 
-article > ol li, article > ul li {
-    counter-increment: custom-counter;
-    position: relative;
+article > ol {
+    counter-reset: custom-counter;
+
+    li {
+        counter-increment: custom-counter;
+    }
 }
 
+//  Style <ol> numbers
 article > ol li::before {
     content: counter(custom-counter) ".";
     font-size: 0.9em;
     color: var(--clr-gray);
 }
 
+// Style <ul> bullets
 article > ul li::before {
     content: "•";
     font-size: 1.8em;
     color: var(--clr-gray-dark);
 }
 
-article > ol li::before, article > ul li::before {
+// Position numbers and bullets
+article > ol li, 
+article > ul li {
+    position: relative;
+}
+
+article > ol li::before,
+article > ul li::before {
     position: absolute;
     left: calc(var(--grid-three-quarters) * -1);
 }
-
-/* Shrink numerical marker slightly. It's optically a bit too large at default 1em. */
-/* ol li::marker {
-    font-size: 0.95em;
-} */
 
 /* Add more indentation on larger screens */
 @media(min-width: 480px) {

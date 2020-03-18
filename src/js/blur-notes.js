@@ -14,31 +14,31 @@ Our fix is simple:
 */
 
 (function (window, document) {
-    'use strict'
+  'use strict'
 
-    function setup() {
+  function setup() {
 
-        var main = document.querySelector('main')
-        var selected
+    var main = document.querySelector('main')
+    var selected
 
-        if (window.PointerEvent) {
+    if (window.PointerEvent) {
 
-            main.addEventListener('pointerdown', (e) => {
-                if (e.pointerType == 'touch') {
+      main.addEventListener('pointerdown', (e) => {
+        if (e.pointerType === 'touch') {
 
-                    if (selected) {
-                        selected.blur()
-                        selected = null
-                    }
+          if (selected) {
+            selected.blur()
+            selected = null
+          }
 
-                    if (e.target.tagName == "BUTTON") {
-                        selected = e.target
-                    }
-                }
-            });
+          if (e.target.tagName === "BUTTON") {
+            selected = e.target
+          }
         }
+      })
     }
+  }
 
-    window.addEventListener('DOMContentLoaded', setup)
+  window.addEventListener('DOMContentLoaded', setup)
 
 }(window, document))

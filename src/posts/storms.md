@@ -1,5 +1,6 @@
 ---
 title: 'Storms'
+image: ''
 created: '2020-02-27T18:45:37.538Z'
 modified: '2020-03-16T18:12:44.385Z'
 tags:
@@ -34,12 +35,12 @@ Confidence varies on the degree to which human factors are the cause. ==Worth re
 
 Climate change makes hurricanes worse by... TODO
 
--   25-30% increase in Category 4 and 5 hurricanes for 1°C warming. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 81.== TODO: Check citation.
+-   25-30% increase in Category 4 and 5 hurricanes for 1°C warming. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 81.== [TODO: Check citation]{.todo}.
 
 ### El Niño and La Niña
 
 -   Increasing in occurrence and severity.
--   TODO: Pull from IPCC report for data.
+-   [TODO: Pull from IPCC report for data]{.todo}.
 
 ### Rain
 
@@ -57,7 +58,7 @@ Climate change makes hurricanes worse by... TODO
 -   April 2011: 758 tornadoes in US countryside. Up from 267 in 2010. Previous April record was 542. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 82.==
 -   "Tornado alley" has moved 500 miles in 30 years. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 82.==
 -   Destruction paths are getting longer, and wider. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 83.==
--   Scientists unsure if climate change increases tornado formation. But thunderstorms---which create tornadoes---are increasing. The number of days on which they are possible could grow as much as 40% by 2100. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 83.== TODO: Check citation.
+-   Scientists unsure if climate change increases tornado formation. But thunderstorms---which create tornadoes---are increasing. The number of days on which they are possible could grow as much as 40% by 2100. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 83.== [TODO: Check citation]{.todo}.
 
 ### Wave heights
 
@@ -88,9 +89,9 @@ Tropical islands:
 
 -   4°C scenarios.
 -   Hurricane Sandy, NYC. By 2100, floods of that scale will be 17x more frequent. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 81.== .
-    -   TODO: Check citation for details.
+    -   [TODO: Check citation for details]{.todo}.
 -   Katrina-level hurricanes will double in frequency. ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 81.== .
-    -   TODO: Check citation for details.
+    -   [TODO: Check citation for details]{.todo}.
 
 ### Hurricanes intensity and impacts will increase
 
@@ -143,10 +144,10 @@ Asia:
 -   So far we keep rebuilding. Especially in rich countries.
     -   New Orleans after Katrina.
 -   At some point, people will walk away.
-    -   Puerto Ricans leaving the territory after Maria. TODO: Find numbers.
-    -   TODO: Find the 3 strategies for sea level rise. Adapt, Retreat, Abandon?
+    -   Puerto Ricans leaving the territory after Maria. [TODO: Find numbers]{.todo}.
+    -   [TODO: Find the 3 strategies for sea level rise]{.todo}. Adapt, Retreat, Abandon?
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

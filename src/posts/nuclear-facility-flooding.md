@@ -1,5 +1,6 @@
 ---
 title: 'Nuclear facility flooding'
+image: ''
 created: '2020-02-27T18:45:37.531Z'
 modified: '2020-03-16T19:07:38.554Z'
 tags:
@@ -50,7 +51,7 @@ Older plants did not factor in sea level rise. And current IAEA regulations (201
 -   Concrete sea wall 12.5 meters, 900 meters long.
 -   +50 year operating life span. Approx 100 years until reactors are decommissioned.
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

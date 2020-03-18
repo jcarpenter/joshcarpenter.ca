@@ -1,20 +1,21 @@
 const gulp = require('gulp')
 const gulpif = require('gulp-if');
+const rollup = require("gulp-rollup");
 const modifyFile = require('gulp-modify-file')
 const responsive = require('gulp-responsive')
 const sass = require('gulp-sass')
+const eslint = require("gulp-eslint");
 const del = require('del')
 const cp = require('child_process')
 const browserSync = require('browser-sync')
-
 
 // -------- VARIABLES -------- //
 
 // The folowing converts a string to bool. 
 // Per https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
 const shouldProcessImages = (process.env.IMAGES == 'true')
-const buildSrc = 'src'
-const buildDest = '_site'
+const SRC = 'src'
+const BUILD = '_site'
 
 
 // -------- DOWNLOAD LATEST POSTS FROM `climate-research` REPO -------- //
@@ -23,10 +24,10 @@ const buildDest = '_site'
 // See: https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-shell-commands.md
 // And: https://www.cyberciti.biz/faq/run-execute-sh-shell-script/ (have to set permissions first)
 function downloadPosts(cb) {
-    return cp.exec('./download-latest-posts.sh', (err, stdout, stderr) => {
-        if (err) throw err
-        console.log(stdout)
-    })
+  return cp.exec('./download-latest-posts.sh', (err, stdout, stderr) => {
+    if (err) throw err
+    console.log(stdout)
+  })
 }
 
 
@@ -34,104 +35,122 @@ function downloadPosts(cb) {
 
 // Make sure destination folder exists
 function setup() {
-    return gulp
-        .src('*.*', { read: false })
-        .pipe(gulp.dest(`./${buildDest}`))
+  return gulp
+    .src('*.*', { read: false })
+    .pipe(gulp.dest(`./${BUILD}`))
 }
 
 // Delete contents of _site
 // See: https://github.com/gulpjs/gulp/blob/master/docs/recipes/delete-files-folder.md
 function clean() {
-    return del([
-        `./${buildDest}/**/*`
-    ])
+  return del([
+    `./${BUILD}/**/*`
+  ])
+}
+
+// -------- PROCESS JS -------- //
+
+function js() {
+  return gulp
+    .src(`${SRC}/js/*.js`)
+    .pipe(eslint({
+      fix: true
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    // .pipe(rollup({
+    //   format: "umd",
+    //   moduleName: "LazyLoad",
+    //   entry: "./src/lazyload.js"
+    // }))
+    .pipe(gulp.dest(`${BUILD}/js`))
 }
 
 
 // -------- PREP MARKDOWN OF POSTS -------- //
 
-function prep_posts_markdown() {
-    return gulp
-        .src(`${buildSrc}/posts/*.md`)
-        .pipe(modifyFile((content, path, file) => {
+function markdown() {
+  return gulp
+    .src(`${SRC}/posts/*.md`)
+    .pipe(modifyFile((content, path, file) => {
 
-            let titleField = content.match(/^title.*/m)
+      let titleField = content.match(/^title.*/m)
 
-            // -------- Wrap TODOs in span  -------- //
+      // -------- Wrap TODOs in span  -------- //
 
-            // Find TODOs: from `TODO` to next period. 
-            // Ignore ones with `{` in them; they're already wrapped in spans.
-            // This is important; we don't want to re-wrap TODOs.
-            // Demo: https://regex101.com/r/bwqY8T/2
+      // Find TODOs: from `TODO` to next period. 
+      // Ignore ones with `{` in them; they're already wrapped in spans.
+      // This is important; we don't want to re-wrap TODOs.
+      // Demo: https://regex101.com/r/bwqY8T/2
 
-            let todoReg = new RegExp(/(TODO:(?:[^.]+)[^{])\./, 'gm')
-            content = content.replace(todoReg, '[$1]{.todo}.')
+      let todoReg = new RegExp(/(TODO:(?:[^.]+)[^{])\./, 'gm')
+      content = content.replace(todoReg, '[$1]{.todo}.')
 
 
-            // -------- Add a class to #references  -------- //
-            
-            content = content.replace("::: #references\n", "::: #references .thick-border\n")
+      // -------- Add a class to #references  -------- //
 
-            // -------- Make sure the `image` front matter field is populated. -------- //
+      content = content.replace("::: #references\n", "::: #references .thick-border\n")
 
-            // If image field is missing (null) or present but has no value, 
-            // populate it with the first image in the document.
+      // -------- Make sure the `image` front matter field is populated. -------- //
 
-            // Get image field (if present) and current value
-            // Demo: https://regex101.com/r/hXzirJ/1
-            let imageField = content.match(/^image:(.*?'(.*?)')?/m)
-            let imagePath = imageField ? imageField[2] : null
+      // If image field is missing (null) or present but has no value, 
+      // populate it with the first image in the document.
 
-            // If image field exists and is populated, exit this function w/o making changes
-            if (imagePath != null && imagePath != '') {
-                return content
-            }
+      // Get image field (if present) and current value
+      // Demo: https://regex101.com/r/hXzirJ/1
+      let imageField = content.match(/^image:(.*?'(.*?)')?/m)
+      let imagePath = imageField ? imageField[2] : null
 
-            // If image field is missing, add one and leave it empty.
-            // We'll populate it in the next step.
-            if (imageField == null) {
-                content = content.replace(titleField, `${titleField}\nimage: ''`)
-            }
+      // If image field exists and is populated, exit this function w/o making changes
+      if (imagePath != null && imagePath != '') {
+        return content
+      }
 
-            // If image field is present but empty, and there's an image(s) in the doc,
-            // get the first image, and populate the field with it.
-            if (imagePath == null || imagePath == '') {
+      // If image field is missing, add one and leave it empty.
+      // We'll populate it in the next step.
+      if (imageField == null) {
+        content = content.replace(titleField, `${titleField}\nimage: ''`)
+      }
 
-                imageField = content.match(/^image.*/m)
+      // If image field is present but empty, and there's an image(s) in the doc,
+      // get the first image, and populate the field with it.
+      if (imagePath == null || imagePath == '') {
 
-                // Demo: https://regex101.com/r/uQLtoT/1
-                let firstImage = content.match(/img\/(.*?)(.png|.jpg)/m)
+        imageField = content.match(/^image.*/m)
 
-                if (firstImage) {
+        // Demo: https://regex101.com/r/uQLtoT/1
+        let firstImage = content.match(/img\/(.*?)(.png|.jpg)/m)
 
-                    let imgName = firstImage[1]
-                    let imgExt = firstImage[2]
+        if (firstImage) {
 
-                    // We add '-900px' to the file name so we end up targeting the
-                    // 900px version of the image generated by gulp-responsive, later
-                    // in this file.
-                    let newImageField = `image: '../img/${imgName}-900px${imgExt}'`
+          let imgName = firstImage[1]
+          let imgExt = firstImage[2]
 
-                    content = content.replace(imageField, newImageField)
+          // We add '-900px' to the file name so we end up targeting the
+          // 900px version of the image generated by gulp-responsive, later
+          // in this file.
+          let newImageField = `image: '../img/${imgName}-900px${imgExt}'`
 
-                }
-            }
+          content = content.replace(imageField, newImageField)
 
-            return content
-        }))
-        .pipe(gulp.dest(`${buildSrc}/posts/`))
+        }
+      }
+
+      return content
+    }))
+    .pipe(gulp.dest(`${SRC}/posts`))
 }
 
 
 // -------- PROCESS SASS -------- //
 
-function process_sass() {
-    return gulp
-        .src(`${buildSrc}/styles/main.scss`)
-        .pipe(sass({
-            outputStyle: "expanded"
-        }).on('error', sass.logError))
-        .pipe(gulp.dest(`${buildDest}/styles`))
+function css() {
+  return gulp
+    .src(`${SRC}/styles/main.scss`)
+    .pipe(sass({
+      outputStyle: "expanded"
+    }).on('error', sass.logError))
+    .pipe(gulp.dest(`${BUILD}/styles`))
 }
 
 
@@ -142,60 +161,60 @@ function process_sass() {
 // Convert to JPEG. Compress. Strip metadata.
 
 const images_config = {
-    '**/*': [{
-        width: 600, rename: { suffix: '-600px', extname: '.jpg' },
-    }, {
-        width: 900, rename: { suffix: '-900px', extname: '.jpg' }
-    }, {
-        width: 1440, rename: { suffix: '-1440px', extname: '.jpg' }
-    }],
+  '**/*': [{
+    width: 600, rename: { suffix: '-600px', extname: '.jpg' },
+  }, {
+    width: 900, rename: { suffix: '-900px', extname: '.jpg' }
+  }, {
+    width: 1440, rename: { suffix: '-1440px', extname: '.jpg' }
+  }],
 }
 
 const images_options = {
-    // The output quality for JPEG, WebP and TIFF output formats
-    quality: 85,
-    // Use progressive (interlace) scan for JPEG and PNG output
-    progressive: true,
-    // Strip all metadata
-    withMetadata: false,
-    // Do not enlarge the output image if the input image are already less than the required dimensions.
-    withoutEnlargement: true,
-    skipOnEnlargement: false, // that option copy original file with/without renaming
-    errorOnEnlargement: false,
-    background: '#fff',
-    flatten: true,
-    // Do not emit the error when image is enlarged.
-    // errorOnUnusedImage: false,
+  // The output quality for JPEG, WebP and TIFF output formats
+  quality: 85,
+  // Use progressive (interlace) scan for JPEG and PNG output
+  progressive: true,
+  // Strip all metadata
+  withMetadata: false,
+  // Do not enlarge the output image if the input image are already less than the required dimensions.
+  withoutEnlargement: true,
+  skipOnEnlargement: false, // that option copy original file with/without renaming
+  errorOnEnlargement: false,
+  background: '#fff',
+  flatten: true,
+  // Do not emit the error when image is enlarged.
+  // errorOnUnusedImage: false,
 }
 
-function generate_post_images() {
-    return gulp
-        .src(`${buildSrc}/posts/img/**/*.{jpg,png}`)
-        .pipe(gulpif(shouldProcessImages, responsive(
-            images_config, 
-            images_options
-        )))
-        .pipe(gulp.dest(`${buildDest}/posts/img`))
+function post_images() {
+  return gulp
+    .src(`${SRC}/posts/img/**/*.{jpg,png}`)
+    .pipe(gulpif(shouldProcessImages, responsive(
+      images_config,
+      images_options
+    )))
+    .pipe(gulp.dest(`${BUILD}/posts/img`))
 }
 
-function generate_portfolio_images() {
-    return gulp
-        .src(`${buildSrc}/portfolio/img/**/*.{jpg,png}`)
-        .pipe(gulpif(shouldProcessImages, responsive(
-            images_config, 
-            images_options
-        )))
-        .pipe(gulp.dest(`${buildDest}/portfolio/img`))
+function portfolio_images() {
+  return gulp
+    .src(`${SRC}/portfolio/img/**/*.{jpg,png}`)
+    .pipe(gulpif(shouldProcessImages, responsive(
+      images_config,
+      images_options
+    )))
+    .pipe(gulp.dest(`${BUILD}/portfolio/img`))
 }
 
 
 // -------- ELEVENTY -------- //
 
 function eleventy() {
-    return cp.exec('npx @11ty/eleventy', (err, stdout, stderr) => {
-        if (err) throw err
-        console.log(stdout)
-    })
+  return cp.exec('npx @11ty/eleventy', (err, stdout, stderr) => {
+    if (err) throw err
+    console.log(stdout)
+  })
 }
 
 
@@ -204,26 +223,36 @@ function eleventy() {
 const server = browserSync.create()
 
 function serve(cb) {
-    server.init({
-        server: {
-            baseDir: buildDest,
-        },
-        open: false
-    })
-    cb()
+  server.init({
+    server: {
+      baseDir: BUILD,
+    },
+    open: false
+  })
+  cb()
 }
 
 
 // -------- WATCH -------- //
 
 function watch() {
-    gulp.watch(`${buildSrc}/posts/img/**/*`, gulp.parallel(generate_post_images, generate_portfolio_images))
-    gulp.watch(`${buildSrc}/styles/*.scss`, gulp.parallel(process_sass))
-    gulp.watch(`${buildSrc}/**/*.js`, gulp.parallel(eleventy))
-    gulp.watch(`${buildSrc}/**/*.njk`, gulp.parallel(eleventy))
-    gulp.watch(`${buildSrc}/**/*.md`, gulp.series(eleventy))
-    gulp.watch(`${buildSrc}/**/*.json`, gulp.parallel(eleventy))
-    gulp.watch(`.eleventy.js`, gulp.parallel(eleventy))
+
+  gulp.watch(`${SRC}/**/*.js`, js)
+
+  gulp.watch(`${SRC}/styles/*.scss`, sass)
+
+  gulp.watch(`${SRC}/posts/img/**/*`, gulp.parallel(
+    post_images,
+    portfolio_images
+  ))
+
+  gulp.watch([
+    `${SRC}/**/*.njk`,
+    `${SRC}/**/*.md`,
+    `${SRC}/**/*.json`,
+    `.eleventy.js`
+  ], eleventy)
+
 }
 
 
@@ -232,28 +261,30 @@ function watch() {
 exports.downloadPosts = downloadPosts
 
 exports.dev = gulp.series(
-    setup,
-    clean,
-    gulp.parallel(
-        process_sass,
-        prep_posts_markdown,
-        generate_post_images,
-        generate_portfolio_images
-    ),
-    eleventy, 
-    serve, 
-    watch
+  setup,
+  clean,
+  gulp.parallel(
+    js,
+    css,
+    markdown,
+    post_images,
+    portfolio_images
+  ),
+  eleventy,
+  serve,
+  watch
 )
 
 exports.deploy = gulp.series(
-    downloadPosts, 
-    setup,
-    clean,
-    gulp.parallel(
-        process_sass,
-        prep_posts_markdown,
-        generate_post_images,
-        generate_portfolio_images
-    ),
-    eleventy
+  downloadPosts,
+  setup,
+  clean,
+  gulp.parallel(
+    js,
+    css,
+    markdown,
+    post_images,
+    portfolio_images
+  ),
+  eleventy
 )

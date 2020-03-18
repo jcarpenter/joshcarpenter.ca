@@ -1,5 +1,6 @@
 ---
 title: 'Rising seas'
+image: '../img/GMSL-1900-2010-900px.png'
 created: '2020-02-27T18:45:37.536Z'
 modified: '2020-03-16T19:07:22.816Z'
 summary: 'How much will sea levels rise, and how fast? What are the drivers?'
@@ -179,7 +180,7 @@ The heat already in the ocean will continue to drive sea level rise, even if we 
 
 -   **4°C**: "The last time the earth was 4°C warmer... there was no ice at either pole and sea level was 260' higher. There were palm trees in the Arctic." ==Wallace-Wells, David. [The Uninhabitable Earth: Life After Warming](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)). New York: Tim Duggan Books. 2019. 65.==
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

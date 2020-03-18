@@ -1,5 +1,5 @@
 {
-    "layout": "posts.njk",
+    "layout": "portfolio.njk",
     "js": ["fit-images.js", "blur-notes.js", "lightbox.js"] ,
     "css": ["main.css", "prism/prism-duotone-light.css"]
 }

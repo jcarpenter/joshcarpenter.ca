@@ -1,9 +1,12 @@
 ---
 title: 'Coronavirus'
+image: '../img/flatten-the-curve-900px.png'
 created: '2020-03-13T04:02:21.824Z'
 modified: '2020-03-16T19:06:31.604Z'
 tags:
 - hide
+js:
+- coronavirus-graph.js
 ---
 
 
@@ -83,7 +86,7 @@ Per [Vox](https://www.vox.com/2020/3/3/21161232/coronavirus-usa-quarantine-isola
 
 ## How can we catch it?
 
-In terms of likelihood (based on podcast TODO: Get link.)
+In terms of likelihood (based on podcast [TODO: Get link]{.todo}.)
 
 1.  Aerosol transmission
 2.  Hand to mouth / face
@@ -106,7 +109,7 @@ If you're under 70, and don't have lung or cardio-vascular problems:
 If you're 70+, and/or have lung or cardio-vascular problems:
 
 -   Take them to the ER
--   Also do this if: you're having trouble breathing, or fever is very high and unmanaged with meds. TODO: Citation needed.
+-   Also do this if: you're having trouble breathing, or fever is very high and unmanaged with meds. [TODO: Citation needed]{.todo}.
 
 At the hospital:
 
@@ -131,7 +134,7 @@ At the hospital:
 
 -   Pneumonia shot may be helpful. Doesn't prevent COVID-19, but reduces chance of being weakened, which makes COVID-19 more dangerous. For same reason, get flu shot next fall. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
 
--   Buy meds for symptoms. TODO: Citation and additional detail needed.
+-   Buy meds for symptoms. [TODO: Citation and additional detail needed]{.todo}.
 
     -   "You basically just want to prepare as though you know you're going to get a nasty respiratory bug like bronchitis or pneumonia."
     -   Kleenex
@@ -146,7 +149,7 @@ At the hospital:
 
 > We at UCSF are moving our 'at risk' parents back from nursing homes, etc, to their own homes. Then are not letting them out of the house. The other members of the family are washing hands the moment they come in. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

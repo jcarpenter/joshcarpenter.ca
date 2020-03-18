@@ -1,5 +1,6 @@
 ---
 title: 'Dematerialization'
+image: ''
 created: '2020-02-27T18:45:37.514Z'
 modified: '2020-03-16T05:35:40.036Z'
 tags:
@@ -58,7 +59,7 @@ And Reid Hoffman's:
 
 > I've always believed that technological progress and entrepreneurship make our lives better. Here, Andrew McAfee shows how these powerful forces are helping us make our planet better too, instead of degrading it. For anyone who wants to help create a future that is both sustainable and abundant, this book is essential reading
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

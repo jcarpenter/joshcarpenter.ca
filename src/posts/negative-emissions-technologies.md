@@ -1,5 +1,6 @@
 ---
 title: 'Negative emissions technologies'
+image: ''
 created: '2020-02-27T18:45:37.530Z'
 modified: '2020-03-16T06:06:50.958Z'
 tags:
@@ -8,7 +9,7 @@ tags:
 ---
 
 
-TODO: Read [The Capital: Carbon Dioxide into Stone: UVic's Revolutionary Plan to Reverse Climate Change](https://capnews.ca/climate-change-negative-emissions-uvic/).
+[TODO: Read [The Capital: Carbon Dioxide into Stone: UVic's Revolutionary Plan to Reverse Climate Change](https://capnews]{.todo}.ca/climate-change-negative-emissions-uvic/).
 
 Technologies that remove CO2 from the atmosphere. Appealing because they promise the ability to avert climate change without changing our behavior (transforming the global economy, phasing out fossil fuels, etc)
 
@@ -75,7 +76,7 @@ NET *will* have a role, but at smaller scale:
 
 > Nevertheless, the report notes that NETs may still have a useful role to play in addressing climate change, albeit at a smaller scale. The feasibility of implementing these technologies is likely to be location-, technology-, and circumstance-specific.
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

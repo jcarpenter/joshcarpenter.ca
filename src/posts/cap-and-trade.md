@@ -1,5 +1,6 @@
 ---
 title: 'Cap and trade'
+image: ''
 created: '2020-02-27T18:45:37.505Z'
 modified: '2020-03-16T19:07:08.571Z'
 tags:
@@ -23,7 +24,7 @@ Earlier work (e.g. 1993 paper "Rolling the Dice") recognized threat of global w
 
 More recently has revised his models: "His most recent work implies an optimum tax on carbon at \$31 a ton, which, in real terms, is about three times his too-low 1992 estimate." ==Linden, Eugene. [The Economics Nobel Went to a Guy Who Enabled Climate Change Denial and Delay - Los Angeles Times](https://www.latimes.com/opinion/op-ed/la-oe-linden-nobel-economics-mistake-20181025-story.html). Los Angeles Times. 25 Oct 2018. Retrieved 9 Nov 2019.==
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

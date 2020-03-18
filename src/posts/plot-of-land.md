@@ -1,5 +1,6 @@
 ---
 title: 'Plot of land'
+image: ''
 created: '2020-02-27T18:45:37.532Z'
 modified: '2020-03-16T19:07:13.264Z'
 tags:

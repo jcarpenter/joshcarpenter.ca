@@ -1,5 +1,6 @@
 ---
 title: 'Earthquakes in BC'
+image: '../img/vic-earthquake-map-1-900px.png'
 created: '2020-02-27T18:45:37.503Z'
 modified: '2020-03-16T19:06:49.615Z'
 tags:
@@ -214,7 +215,7 @@ Be prepared, or you'll be a burden. Estimated only 25% have emergency kits. Firs
 
 ![GVRD earthquake hazard map](img/gvrd-earthquake-hazard-map.png)
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

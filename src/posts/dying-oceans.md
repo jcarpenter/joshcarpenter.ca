@@ -1,5 +1,6 @@
 ---
 title: 'Dying oceans'
+image: '../img/Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere-900px.jpg'
 created: '2020-02-27T18:45:37.520Z'
 modified: '2020-03-16T19:06:17.506Z'
 tags:
@@ -20,7 +21,7 @@ Coastal wetlands
 
 > Vegetated coastal ecosystems protect the coastline from storms and erosion and help buffer the impacts of sea level rise. Nearly 50% of coastal wetlands have been lost over the last 100 years, as a result of the combined effects of localised human pressures, sea level rise, warming and extreme climate events (high confidence). ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. SPM--13.==
 
-TODO: Coral reefs, Kelp beds, Seagrass.
+[TODO: Coral reefs, Kelp beds, Seagrass]{.todo}.
 
 ### Decrease in maximum catch potential
 
@@ -146,7 +147,7 @@ More frequent and severe marine heatwaves. 50x and 20x frequency increase (by 20
 
 > Almost all warm-water coral reefs are projected to suffer significant losses of area and local extinctions, even if global warming is limited to 1.5°C (high confidence). ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019. SPM--29.==
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 

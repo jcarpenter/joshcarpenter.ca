@@ -1,5 +1,6 @@
 ---
 title: 'Dying oceans: BC'
+image: '../img/marine-heatwave-2019-blobs-900px.jpg'
 created: '2020-02-27T18:45:37.517Z'
 modified: '2020-03-16T19:07:04.734Z'
 tags:
@@ -10,11 +11,11 @@ tags:
 ---
 
 
-TODO: Grab stats from "Canada's Marine Coasts in a Changing Climate".
+[TODO: Grab stats from "Canada's Marine Coasts in a Changing Climate"]{.todo}.
 
 ## Fisheries declines
 
-TODO: Flesh this out further. All I have is the following article on economic impacts on commercial fisherman in 2019.
+[TODO: Flesh this out further]{.todo}. All I have is the following article on economic impacts on commercial fisherman in 2019.
 
 The federal government cites climate change as the primary cause of declines in ocean fisheries. In 2019 the returns were so bad for some species and regions that commercial fisherman requested government relief: ==Chan, Cheryl. [Unfolding Disaster in B.C. Salmon Fishing Industry Has Hit Workers Hard](https://vancouversun.com/business/local-business/advocates-sound-alarm-on-unfolding-disaster-in-b-c-salmon-fishing-industry). The Vancouver Sun. 10 Sep 2019. Retrieved 5 Oct 2019.==
 
@@ -66,7 +67,7 @@ Per the 2019 IPCC Ocean and Cryosphere report:
 
 > "Evidence from recent studies on projected climate risks on recreational fishing is equivocal, with the direction of impacts depending on the location, /species targeted and societal context. For example: poleward range shifts of marine fish (Section 5.2.3) could yield new opportunities for recreational fishing in mid- to high latitude regions (DiSegni and Shechter, 2013); projected increases in air temperature may enable longer fishing days in some area (Dundas and von Haefen, 2015); and extreme events may alter the composition of recreational fishing catches (Santos et al., 2016). Since climate risks to recreational fishing vary largely depending on the responses of the targeted species to climate-related pressures, there is low confidence in the overall risk to the activity." ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/). Geneva, Switzerland: IPCC. 25 Sep 2019.==
 
-::: #references
+::: #references .thick-border
 
 ## Referenced works
 
