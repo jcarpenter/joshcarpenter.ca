@@ -1,5 +1,9 @@
 {
     "layout": "posts.njk",
-    "js": ["fit-images.js", "blur-notes.js", "lightbox.js"] ,
+    "js": [
+        {"file": "fit-images.js", "type": "js"}, 
+        {"file": "blur-notes.js", "type": "js"}, 
+        {"file": "lightbox.js", "type": "js"}
+    ],
     "css": ["main.css", "prism/prism-duotone-light.css"]
 }

@@ -15,6 +15,7 @@
     --clr-gray-lighter:     hsl(0, 0%, 85%);
     --clr-gray-lightest:    hsl(0, 0%, 92.5%);
     --clr-gray-lightestx2:  hsl(0, 0%, 95%);
+    --clr-gray-lightestx3:  hsl(0, 0%, 97%);
     
     --clr-blue-darkestx2:   hsl(214, 95%, 20%);
     --clr-blue-darkest:     hsl(214, 95%, 30%);
@@ -73,6 +74,7 @@
     --grid-9: calc(var(--grid) * 9);
     --grid-10: calc(var(--grid) * 10);
     --grid-12: calc(var(--grid) * 12);
+    --grid-14: calc(var(--grid) * 14);
     --grid-16: calc(var(--grid) * 16);
     --grid-24: calc(var(--grid) * 24);
     --grid-32: calc(var(--grid) * 32);

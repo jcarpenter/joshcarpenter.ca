@@ -8,17 +8,20 @@
         "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
     },
     "scripts": {
-        "download-posts": "gulp downloadPosts",
-        "dev": "export IMAGES=\"true\" && gulp dev",
-        "dev_no_images": "export IMAGES=\"false\" && gulp dev",
-        "deploy": "export IMAGES=\"true\" && gulp deploy"
+        "fetch-climate-posts": "bash utils/fetch-climate-posts.sh",
+        "update-coronavirus-stats": "node utils/fetch-coronavirus-stats.js && bash utils/push-update.sh",
+        "dev": "gulp dev",
+        "dev_without_images": "gulp dev_without_images",
+        "build": "npm run fetch-climate-posts && gulp build"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
     "devDependencies": {
         "@11ty/eleventy": "^0.10.0",
         "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
+        "axios": "^0.19.2",
         "browser-sync": "^2.26.7",
+        "cheerio": "^1.0.0-rc.3",
         "child-process": "^1.0.2",
         "del": "^5.1.0",
         "download-git-repo": "^3.0.2",
@@ -34,9 +37,9 @@
         "gulp-if": "^3.0.0",
         "gulp-modify-file": "^1.0.1",
         "gulp-responsive": "^3.0.1",
-        "gulp-rollup": "^2.17.0",
         "gulp-sass": "^4.0.2",
         "html-minifier": "^4.0.0",
+        "luxon": "^1.22.0",
         "markdown-it": "^10.0.0",
         "markdown-it-anchor": "^5.2.5",
         "markdown-it-attrs": "^3.0.1",
@@ -56,6 +59,7 @@
         "uslug": "^1.0.4"
     },
     "dependencies": {
+        "apexcharts": "^3.17.0",
         "chart.js": "^2.9.3",
         "debug": "^4.1.1"
     }

@@ -634,3 +634,16 @@ sub {
     padding: var(--grid-three-quarters);
     margin-bottom: 0;
 }
+
+
+/* ==========================================================================
+   Posts: Charts
+   ========================================================================== */
+
+.chart {
+    border: 1px solid var(--clr-gray-lightest);
+    background-color: var(--clr-gray-lightestx3);
+    margin-bottom: var(--grid);
+    width: 100%;
+    height: var(--grid-14);
+}

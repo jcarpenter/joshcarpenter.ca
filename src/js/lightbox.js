@@ -69,6 +69,7 @@ TODO:
     let img = clone.querySelector('img')
     if (img) {
       img.setAttribute('sizes', '100vw')
+      img.removeAttribute('style')
     }
     itemHolder.appendChild(clone)
   }

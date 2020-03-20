@@ -1,6 +1,4 @@
 const gulp = require('gulp')
-const gulpif = require('gulp-if');
-const rollup = require("gulp-rollup");
 const modifyFile = require('gulp-modify-file')
 const responsive = require('gulp-responsive')
 const sass = require('gulp-sass')
@@ -9,11 +7,9 @@ const del = require('del')
 const cp = require('child_process')
 const browserSync = require('browser-sync')
 
+
 // -------- VARIABLES -------- //
 
-// The folowing converts a string to bool. 
-// Per https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
-const shouldProcessImages = (process.env.IMAGES == 'true')
 const SRC = 'src'
 const BUILD = '_site'
 
@@ -23,12 +19,12 @@ const BUILD = '_site'
 // Download latest posts from climate-research "exported-posts" branch to src.
 // See: https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-shell-commands.md
 // And: https://www.cyberciti.biz/faq/run-execute-sh-shell-script/ (have to set permissions first)
-function downloadPosts(cb) {
-  return cp.exec('./download-latest-posts.sh', (err, stdout, stderr) => {
-    if (err) throw err
-    console.log(stdout)
-  })
-}
+// function downloadPosts(cb) {
+//   return cp.exec('./utils/fetch-climate-posts.sh', (err, stdout, stderr) => {
+//     if (err) throw err
+//     console.log(stdout)
+//   })
+// }
 
 
 // -------- PREP TARGET DIRECTORY (_SITE) -------- //
@@ -53,18 +49,27 @@ function clean() {
 function js() {
   return gulp
     .src(`${SRC}/js/*.js`)
-    .pipe(eslint({
-      fix: true
-    }))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-    // .pipe(rollup({
-    //   format: "umd",
-    //   moduleName: "LazyLoad",
-    //   entry: "./src/lazyload.js"
+    // .pipe(eslint({
+    //   fix: true
     // }))
+    // .pipe(eslint.format())
+    // .pipe(eslint.failAfterError())
     .pipe(gulp.dest(`${BUILD}/js`))
 }
+
+
+// function js_rollup() {
+//   return gulp
+//     .src(`${BUILD}/js/*.js`)
+//     .pipe(rollup({
+//       input: `${BUILD}/js/coronavirus-chart.js`,
+//       output: {
+//         file: 'bundle.js',
+//         format: 'iife'
+//       }
+//     }))
+//     .pipe(gulp.dest(`${BUILD}/js`))
+// }
 
 
 // -------- PREP MARKDOWN OF POSTS -------- //
@@ -190,20 +195,20 @@ const images_options = {
 function post_images() {
   return gulp
     .src(`${SRC}/posts/img/**/*.{jpg,png}`)
-    .pipe(gulpif(shouldProcessImages, responsive(
+    .pipe(responsive(
       images_config,
       images_options
-    )))
+    ))
     .pipe(gulp.dest(`${BUILD}/posts/img`))
 }
 
 function portfolio_images() {
   return gulp
     .src(`${SRC}/portfolio/img/**/*.{jpg,png}`)
-    .pipe(gulpif(shouldProcessImages, responsive(
+    .pipe(responsive(
       images_config,
       images_options
-    )))
+    ))
     .pipe(gulp.dest(`${BUILD}/portfolio/img`))
 }
 
@@ -225,7 +230,7 @@ const server = browserSync.create()
 function serve(cb) {
   server.init({
     server: {
-      baseDir: BUILD,
+      baseDir: BUILD
     },
     open: false
   })
@@ -239,7 +244,7 @@ function watch() {
 
   gulp.watch(`${SRC}/**/*.js`, js)
 
-  gulp.watch(`${SRC}/styles/*.scss`, sass)
+  gulp.watch(`${SRC}/styles/*.scss`, css)
 
   gulp.watch(`${SRC}/posts/img/**/*`, gulp.parallel(
     post_images,
@@ -258,8 +263,6 @@ function watch() {
 
 // -------- EXPORTS -------- //
 
-exports.downloadPosts = downloadPosts
-
 exports.dev = gulp.series(
   setup,
   clean,
@@ -275,8 +278,21 @@ exports.dev = gulp.series(
   watch
 )
 
-exports.deploy = gulp.series(
-  downloadPosts,
+exports.dev_without_images = gulp.series(
+  setup,
+  clean,
+  gulp.parallel(
+    js,
+    css,
+    markdown,
+  ),
+  eleventy,
+  serve,
+  watch
+)
+
+
+exports.build = gulp.series(
   setup,
   clean,
   gulp.parallel(

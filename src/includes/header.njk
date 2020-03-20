@@ -8,8 +8,8 @@
         <a href="mailto:{{ josh.email }}">{{ josh.email }}</a>
     </address> #}
     <nav>
-        {% if tags.includes("climate") %}
-            <h2>Climate research</h2>
+        {# {% if tags.includes("climate") %} #}
+            <h2 class="thick-border">Climate research</h2>
             <h3>Impacts</h3>
             <ul>
                 {%- for post in collections.climateImpacts -%}
@@ -42,7 +42,8 @@
                     </li>
                 {%- endfor -%}
             </ul>
-            <h3>Other posts</h3>
+            
+            <h2 class="thick-border">Other posts</h3>
             <ul>
                 {%- for post in collections.other -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
@@ -51,8 +52,8 @@
                 {%- endfor -%}
             </ul>
 
-        {% else %}
+        {# {% else %}
 
-        {% endif %}
+        {% endif %} #}
     </nav>
 </header>

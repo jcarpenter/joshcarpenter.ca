@@ -2,8 +2,9 @@
 title: 'Cap and trade'
 image: ''
 created: '2020-02-27T18:45:37.505Z'
-modified: '2020-03-16T19:07:08.571Z'
+modified: '2020-03-20T23:00:35.536Z'
 tags:
+- wip
 - climate
 - capitalism
 - solution

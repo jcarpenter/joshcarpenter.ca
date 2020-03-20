@@ -1,28 +1,32 @@
 ---
-title: 'Coronavirus'
-image: '../img/flatten-the-curve-900px.png'
+title: 'Covid-19'
+image: '../img/covid19-infection-rates-900px.jpg'
 created: '2020-03-13T04:02:21.824Z'
-modified: '2020-03-16T19:06:31.604Z'
-tags:
-- hide
 js:
-- coronavirus-graph.js
+- file: 'covid19-chart.js'
+  type: module
+modified: '2020-03-20T22:41:30.961Z'
+summary: 'A collection of notes and statistics on COVID-19, compiled for my own clarity, and for friends and family.'
+tags:
+- covid19
+- wip
 ---
 
 
-## The wave is coming
+## Confirmed cases in Canada
 
-[Tweet](https://twitter.com/zeynep/status/1237850255971856389): It's just a little more than two weeks from when Italy had *less* than a hundred confirmed COVID-19 cases, and not only have they imposed severe travel restrictions on the whole country, they just decided to shut down *all* stores except food and pharmacy...
+::: {#covid19-cases-canada .chart}
+:::
 
-[Tweet](https://twitter.com/jburnmurdoch/status/1237737352879112194): Many western countries may soon face Italy's situation. Case numbers since outbreaks began in several countries have tracked a `~33%` daily rise. This is as true for UK, France, Germany as Italy; the latter is simply further down the path https://ft.com/content/a26fbf7e-48f8-11ea-aeb3-955839e06441
+Number of confirmed cases per province, sampled daily from the Government of Canada's [COVID-19: Outbreak Update](https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html#a1) site. RPT stands for "repatriated travellers".
 
-[Tweet](https://twitter.com/LegoSabine101/status/1237839783063244801): Listen to the folks in Italy who are warning us about what's coming if we don't take action. (Contains screenshots from FB post from Italian)
+Chart inspired by Maclean's excellent article, [Coronavirus in Canada](https://www.macleans.ca/society/health/coronavirus-in-canada-these-charts-show-how-our-fight-to-flatten-the-curve-is-going/), which contains multiple charts capturing different aspects of COVID-19's spread in Canada. I wanted to see if I could create a dynamic, automatically-updating web version of their static images charts.
 
-[WaPo](https://www.washingtonpost.com/opinions/2020/03/10/coronavirus-what-matters-isnt-what-you-can-see-what-you-cant/): When a danger is growing exponentially, everything looks fine until it doesn't
+## Cumulative deaths per country
 
-> The crisis in northern Italy is what happens when a fast doubling rate meets a "threshold effect," where the character of an event can massively change once its size hits a certain threshold.
+Per [John Burn-Murdoch](https://twitter.com/jburnmurdoch/) of the Financial Times, [Mar 20](https://twitter.com/jburnmurdoch/status/1241091873621643266):
 
-> ...the virus is here, and it is spreading quickly, even though everything looks normal. Right now, the United States has more reported cases than Italy had in late February. What matters isn't what you can see but what you can't: the patients who will need ICU care in two to six weeks.
+![Cumulative COVID-10 deaths, by country](img/covid19-infection-rates.jpg "Chart showing cumulative COVID-10 deaths, by country")
 
 ## 30-70% could become infected
 
@@ -53,21 +57,15 @@ js:
 
 > ...the threshold is things such as ICU beds. If the epidemic is small enough, doctors can provide respiratory support to the significant fraction of patients who develop complications, and relatively few will die. But once the number of critical patients exceeds the number of ventilators and ICU beds and other critical-care facilities, mortality rates spike.
 
-## Strategy is to flatten the curve
+## The immediate goal is to "flatten the curve"
 
-![Impact of protective measures](img/flatten-the-curve.png)
+![Impact of protective measures](img/flatten-the-curve.png "Chart depicting two scenarios for infection numbers, with and without protective measures")
 
--   Slow the rate at which people are infected...
--   To keep healthcare providers from being swamped (ala Italy)
--   To buy time until treatments can be developed.
+"Flattening the curve" means lowering the rate at which people are infected, to keep healthcare providers from being swamped (ala Italy), and to buy time until treatments can be developed. The broader goal being to lower mortality rates.
 
 ## We slow the spread by keeping people apart
 
 Countries that keep people apart are slowing COVID-19 spread. E.g. Signapore, Hong Kong. Countries that are not, are seeing massive outbreaks. E.g. Iran, Italy, China.
-
-Per [Financial Times](https://www.ft.com/content/a26fbf7e-48f8-11ea-aeb3-955839e06441), Mar 12:
-
-![Infection rates by country](img/infection-rates-march-12.png)
 
 Per Globe & Mail:
 
@@ -84,9 +82,17 @@ Per [Vox](https://www.vox.com/2020/3/3/21161232/coronavirus-usa-quarantine-isola
 -   **Isolation** is separating those with confirmed infections from other people, so that they can get better without infecting anyone else.
 -   **Quarantine** is restricting the movement of, or isolating, people who might have been exposed to an infection but who aren't yet sick.
 
-## How can we catch it?
+## Social distancing will probably last until late April
 
-In terms of likelihood (based on podcast [TODO: Get link]{.todo}.)
+Per Dr. Anthony Fauci (Director of the National Institute of Allergy and Infectious Diseases and member of the White House task force), on Mar 20:
+
+> "If you look at the trajectory of the curves of outbreaks in other areas, it's at least going to be several weeks," Fauci told NBC "Today Show" host Savannah Guthrie. "I cannot see that all of a sudden, next week or two weeks from now, it's going to be over," he continued. "I don't think there's a chance of that. I think it's going to be several weeks." ==Cabrera, Cristina. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks). Talking Points Memo. 20 Mar 2020. Retrieved 20 Mar 2020.==
+
+## How is it transmitted?
+
+[TODO: Mar 20: Refresh with latest information]{.todo}.
+
+In terms of likelihood, per Michael Osterholm: ==[JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw). Recorded 10 Mar 2020. Retrieved 20 Mar 2020.==
 
 1.  Aerosol transmission
 2.  Hand to mouth / face
@@ -95,6 +101,8 @@ In terms of likelihood (based on podcast [TODO: Get link]{.todo}.)
 Virus lasts 4-20 hrs on surfaces (maybe few days), depending on type. No consensus yet, though. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
 
 ## How long are we infectious?
+
+[TODO: Mar 20: Refresh with latest information]{.todo}.
 
 -   Can be infectious before symptoms appear.
 -   "We currently think folks are infectious 2 days before, through 14 days after onset of symptoms (T-2 to T+14 onset)". ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
@@ -113,7 +121,7 @@ If you're 70+, and/or have lung or cardio-vascular problems:
 
 At the hospital:
 
--   Covid-19 causes primary pneumonia in a significant number of cases. Requires ICU to survive. Many patients need to stay on mechanical ventilators as long as 4 weeks. ==Gale, Jason. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals). Bloomberg.com. 23 Feb 2020. Retrieved 13 Mar 2020. "More than two-thirds of critically ill patients required invasive breathing support, doctors at the Jin Yintan hospital in the central Chinese city of Wuhan found in a study of 52 such cases at the outbreak's epicenter."==
+-   COVID-19 causes primary pneumonia in a significant number of cases. Requires ICU to survive. Many patients need to stay on mechanical ventilators as long as 4 weeks. ==Gale, Jason. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals). Bloomberg.com. 23 Feb 2020. Retrieved 13 Mar 2020. "More than two-thirds of critically ill patients required invasive breathing support, doctors at the Jin Yintan hospital in the central Chinese city of Wuhan found in a study of 52 such cases at the outbreak's epicenter."==
 -   There is no accepted treatment yet.
 -   Hospital will give supportive care (IV fluids, oxygen, etc) to help patient stay alive, while their body fights the disease.
 -   If someone is high risk (both old, and has lung or cardio issues), they may be able to enroll for compassionate use of Remdesivir, a drug currently in clinical trials at UCSF and in China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
@@ -128,26 +136,24 @@ At the hospital:
 
 ## What should we do to prepare?
 
-### Everyone:
+Buy the same medications and follow the same procedures that you would for a typical bad respiratory bug like bronchitis or pneumonia:
 
--   Stockpile critical prescription meds. Many supply chains run through China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   Acetominophen/Paracetamol (e.g. Tylenol) and Ibuprofen (e.g. Advil). Alternate every 4 hours.
+-   Mucinex
+-   Cough medicine. E.g. Robitussin, DayQuil/NyQuil.
+-   Humidifer (can also turn on hot shower and sit in bathroom, or make pot of steaming water).
+-   Thermometer
+-   Kleenex
 
--   Pneumonia shot may be helpful. Doesn't prevent COVID-19, but reduces chance of being weakened, which makes COVID-19 more dangerous. For same reason, get flu shot next fall. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+Stockpile critical prescription meds. Many supply chains run through China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
 
--   Buy meds for symptoms. [TODO: Citation and additional detail needed]{.todo}.
+Pneumonia shot may be helpful. Doesn't prevent COVID-19, but reduces chance of being weakened, which makes COVID-19 more dangerous. For same reason, get flu shot next fall. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.== [TODO: Find another citation for this]{.todo}.
 
-    -   "You basically just want to prepare as though you know you're going to get a nasty respiratory bug like bronchitis or pneumonia."
-    -   Kleenex
-    -   Acetominophen (Tylenol) - 350 mg tablets
-    -   Ibuprofen (Advil) - 200 mg tablets
-    -   Mucinex
-    -   Cough medicine. E.g. Robitussin, DayQuil/NyQuil.
-    -   Humidifer (can also turn on hot shower and sit in bathroom, or make pot of steaming water).
-    -   Thermometer
+## Is Ibuprofen safe?
 
-### Elderly
+Expert consensus as of Mar 20 is that there is little hard evidence of ibuprofen worsening COVID-19. ==Szklarski, Cassandra. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/). The Globe and Mail. 19 Mar 2020. Retrieved 20 Mar 2020.== The WHO tweeted on Mar 18: "Based on currently available information, WHO does not recommend against the use of ibuprofen." And the FDA released a [statement](https://www.fda.gov/drugs/drug-safety-and-availability/fda-advises-patients-use-non-steroidal-anti-inflammatory-drugs-nsaids-covid-19) Mar 19 saying, "At this time, FDA is not aware of scientific evidence connecting the use of NSAIDs, like ibuprofen, with worsening COVID-19 symptoms."
 
-> We at UCSF are moving our 'at risk' parents back from nursing homes, etc, to their own homes. Then are not letting them out of the house. The other members of the family are washing hands the moment they come in. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+Ibuprofen concerns arose when the French health minister [tweeted on Mar 14](https://twitter.com/olivierveran/status/1238776545398923264) that, "taking anti-inflammatory drugs (ibuprofen, cortisone . . .) could be an aggravating factor for the infection. If you have a fever, take paracetamol".
 
 ::: #references .thick-border
 
@@ -155,11 +161,17 @@ At the hospital:
 
 * Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. {.reference}
 
+* Cabrera, Cristina. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks). Talking Points Memo. 20 Mar 2020. {.reference}
+
 * CDC. [Coronavirus Disease 2019 (COVID-19)](https://www.cdc.gov/coronavirus/2019-ncov/php/risk-assessment.html). Centers for Disease Control and Prevention. 9 Mar 2020. {.reference}
 
 * Gale, Jason. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals). Bloomberg.com. 23 Feb 2020. {.reference}
 
+* Szklarski, Cassandra. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/). The Globe and Mail. 19 Mar 2020. {.reference}
+
 * Weeks, Carly. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/). The Globe and Mail. 11 Mar 2020. {.reference}
+
+* [JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw). Recorded 10 Mar 2020. {.reference}
 
 * [UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. {.reference}
 :::

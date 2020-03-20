@@ -29,7 +29,8 @@ module.exports = function (eleventyConfig) {
   // -------- Passthrough file copy -------- //
   // Copy files and directories to output directories
 
-  // eleventyConfig.addPassthroughCopy("src/js")
+  eleventyConfig.addPassthroughCopy("src/js/third-party/")
+  eleventyConfig.addPassthroughCopy("src/js/*.json")
   eleventyConfig.addPassthroughCopy("src/styles/fonts")
   eleventyConfig.addPassthroughCopy("src/styles/prism")
   eleventyConfig.addPassthroughCopy("src/posts/img/*.svg")
