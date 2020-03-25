@@ -18,7 +18,7 @@ Our fix is simple:
 
   function setup() {
 
-    var main = document.querySelector('main')
+    var main = document.querySelector('main > article')
     var selected
 
     if (window.PointerEvent) {

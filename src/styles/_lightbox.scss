@@ -2,10 +2,6 @@
    Lightbox
    ========================================================================== */
 
-article > figure img {
-    cursor: pointer;
-}
-
 #lightbox {
     /* display: none; */
     position: fixed;
@@ -25,7 +21,7 @@ article > figure img {
 }
 
 #lightbox #itemHolder {
-    max-width: 84vw;
+    max-width: 94vw;
     max-height: 84vh;
     // overflow: hidden;
 }

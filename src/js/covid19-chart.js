@@ -78,23 +78,30 @@ function drawChart(stats) {
     // "The DateTime String which you provide should return true when parsed through JavaScript’s Date.parse() function"
     // Docs: https://apexcharts.com/docs/series/
     xaxis: {
+
       type: 'datetime',
-      // labels: {
-      //   rotate: -45
-      // },
+
+      labels: {
+        show: true,
+        rotate: -90,
+        rotateAlways: true,
+        hideOverlappingLabels: false,
+        minHeight: 50,
+        maxHeight: 140,
+        format: 'MM / dd',
+        // tickAmount: 'dataPoints',
+        // tickPlacement: 'on',
+        // range: '20',
+        style: {
+          colors: ['#676767'],
+          fontSize: '10px',
+        },
+        offsetX: 0,
+        offsetY: -4,
+      },
+
       categories: [],
     },
-
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        legend: {
-          position: 'bottom',
-          offsetX: 14,
-          offsetY: 0
-        }
-      }
-    }],
 
     // Hide data labels
     // Docs: https://apexcharts.com/docs/datalabels/
@@ -109,18 +116,52 @@ function drawChart(stats) {
     },
 
     legend: {
-      position: 'bottom',
-      offsetY: 14,
+      position: 'right',
+      offsetY: 16,
+      // height: 60,
       fontSize: '12px',
+      inverseOrder: true,
       itemMargin: {
-        horizontal: 3,
-        vertical: 10
+        horizontal: 0,
+        vertical: 0
+      },
+      markers: {
+        width: 10,
+        height: 10,
+        // offsetY: -4,
+        radius: 1,
+      },
+      onItemClick: {
+        toggleDataSeries: true
       },
     },
 
     fill: {
       opacity: 1
-    }
+    },
+
+    responsive: [{
+      breakpoint: 680,
+      options: {
+        chart: {
+          height: 312, // 14 * 26px grid size
+        },
+        legend: {
+          // width: 50,
+          offsetY: 8,
+          markers: {
+            // width: 10,
+            // height: 10,
+            // offsetY: -4,
+            // radius: 1,
+          },
+          itemMargin: {
+            horizontal: 0,
+            vertical: -2
+          },
+        }
+      }
+    }]
 
   }
 
@@ -131,10 +172,10 @@ function drawChart(stats) {
     options.xaxis.categories.push(date)
 
     for (let i = 0; i < options.series.length; i++) {
-      
+
       let prov = options.series[i].name.toLowerCase()
       let data = options.series[i].data
-      
+
       data.push(figures_for_date[prov])
 
     }

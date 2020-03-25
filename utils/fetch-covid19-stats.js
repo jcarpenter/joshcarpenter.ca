@@ -10,7 +10,7 @@ const cheerio = require('cheerio')
 const { DateTime } = require("luxon");
 
 // Load the note, so we can work with it
-let file = fs.readFileSync('src/js/coronavirus-canada-data.json', 'utf8')
+let file = fs.readFileSync('src/js/covid19-canada-data.json', 'utf8')
 
 // Convert JSON string into JS object
 let obj = JSON.parse(file);
@@ -26,10 +26,10 @@ let today_YVR = DateTime.fromISO(today_UTC, { zone: timezone }).toISODate()
 
 // Check if today's stats are already recorded in the JSON. 
 // We don't want to overwrite them
-if (obj.hasOwnProperty(today_YVR)) {
-  console.log("Today's stats already recorded")
-  return
-}
+// if (obj.hasOwnProperty(today_YVR)) {
+//   console.log("Today's stats already recorded")
+//   return
+// }
 
 // The URL to grab
 const url = 'https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html'
@@ -60,12 +60,20 @@ axios(url)
     const $ = cheerio.load(html)
     const stats = $('h2#a1 + table tbody tr')
 
-    // Populate `latest` provinces from table rows
+    // Populate `latest` with data from table rows
     stats.each(function () {
 
-      const province = $(this).find('td').first().text()
+      // Get province name from first td. E.g. "Quebec"
+      let province = $(this).find('td').first().text()
+
+      // Remove extra spaces (if they exist) from the province name
+      // These extra spaces started appearing Mar 21. Doesn't seem to be in the page source, so I think it's a coming from Cheerio.
+      province = province.replace(/\s+/gm, ' ')
+      
+      // Get the confirmed cases figure from the second td
       const confirmed = parseInt($(this).find('td').eq(1).text())
 
+      // Assign the confirmed cases figure to the corresponding `latest` key
       switch (province) {
         case 'British Columbia':
           latest.bc = confirmed
@@ -114,11 +122,9 @@ axios(url)
 
     // Delete `latest` provinces that are zero
     // Object.keys(latest).forEach((item) => {
-
     //   let key = item
     //   let value = latest[item]
     //   if (value == 0) delete latest[key]
-
     // })
 
     // Add `latest` to the JS object
@@ -126,7 +132,7 @@ axios(url)
 
     let json = JSON.stringify(obj, null, 2);
 
-    fs.writeFile('src/js/coronavirus-canada-data.json', json, 'utf8', complete);
+    fs.writeFile('src/js/covid19-canada-data.json', json, 'utf8', complete);
 
   })
   .catch(console.error)

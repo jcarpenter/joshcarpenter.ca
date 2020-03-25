@@ -1,4 +1,36 @@
 /* ==========================================================================
+   TEMP: Testing breakpoints
+   ========================================================================== */
+
+// body {
+//     background: red !important;
+// }
+
+// @media (min-width: 480px) {
+//     body {
+//         background: yellow !important;
+//     }   
+// }
+
+// @media (min-width: 680px) {
+//     body {
+//         background: lightgreen !important;
+//     }   
+// }
+
+// @media (min-width: 680px) and (min-height: 280px) {
+//     body {
+//         background: darkcyan !important;
+//     }   
+// }
+
+// @media (min-width: 900px) {
+//     body {
+//         background: rgb(79, 177, 239) !important;
+//     }
+// }
+
+/* ==========================================================================
    Site layout
    ========================================================================== */
 
@@ -60,7 +92,7 @@ body {
     background: hsl(0, 0%, 99%);
 }
 
-@media(min-width: 480px) {
+@media (min-width: 480px) {
     body {
         background: hsl(0, 0%, 98%);
     }

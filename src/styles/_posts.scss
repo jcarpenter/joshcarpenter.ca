@@ -45,7 +45,7 @@ article h3 {
 /* -------------- Anchor links -------------- */
 
 /* On hover devices, show header anchor links */
-@media(hover) {
+@media (hover) {
 
     .header-anchor {
         left: 0.1em;
@@ -65,7 +65,7 @@ article h3 {
 }
 
 /* On devices without hover, hide anchor links */
-@media(hover:none) {
+@media (hover:none) {
     .header-anchor {
         display: none;
     }
@@ -645,5 +645,11 @@ sub {
     background-color: var(--clr-gray-lightestx3);
     margin-bottom: var(--grid);
     width: 100%;
-    height: var(--grid-14);
+    height: var(--grid-12);
+}
+
+@media(min-width: 680px) {
+    .chart {
+        height: var(--grid-14);
+    }
 }

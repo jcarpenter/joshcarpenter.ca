@@ -9,7 +9,7 @@
     },
     "scripts": {
         "fetch-climate-posts": "bash utils/fetch-climate-posts.sh",
-        "update-coronavirus-stats": "node utils/fetch-coronavirus-stats.js && bash utils/push-update.sh",
+        "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/push-update.sh",
         "dev": "gulp dev",
         "dev_without_images": "gulp dev_without_images",
         "build": "npm run fetch-climate-posts && gulp build"
