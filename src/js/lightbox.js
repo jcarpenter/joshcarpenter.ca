@@ -12,8 +12,7 @@ TODO:
 (function (window, document) {
   'use strict'
 
-  let lightbox
-  let itemHolder
+  let lightbox, image, caption
 
 
   // -------- Check viewport size -------- //
@@ -76,7 +75,7 @@ TODO:
     figures.forEach(figure => {
 
       const img = figure.querySelector('img')
-      
+
       // Set cursor to pointer
       img.setAttribute('style', 'cursor: pointer')
 
@@ -85,7 +84,7 @@ TODO:
 
       // Add pointer listeners
       if (window.PointerEvent) {
-        img.addEventListener('pointerup', e => showItem(figure))
+        img.addEventListener('pointerup', e => openInLightbox(figure))
       }
     })
 
@@ -112,8 +111,11 @@ TODO:
     lightbox = document.createElement('div')
     lightbox.id = 'lightbox'
 
-    itemHolder = document.createElement('div')
-    itemHolder.id = 'itemHolder'
+    image = document.createElement('div')
+    image.id = 'image'
+
+    caption = document.createElement('div')
+    caption.id = 'caption'
 
     let background = document.createElement('div')
     background.id = 'background'
@@ -124,52 +126,72 @@ TODO:
     close.id = "close"
 
     if (window.PointerEvent) {
-      close.addEventListener('pointerdown', hideLightbox)
+      close.addEventListener('pointerup', hideLightbox)
       background.addEventListener('pointerdown', hideLightbox)
     }
 
-    lightbox.appendChild(itemHolder)
+    lightbox.appendChild(image)
+    lightbox.appendChild(caption)
     lightbox.appendChild(close)
     lightbox.appendChild(background)
+
     document.body.appendChild(lightbox)
   }
-
 
   // -------- Open and closing functions -------- //
 
   function showLightbox() {
     lightbox.classList.add('show')
+
+    // Stop scrolling while lightbox is open
+    // Adapted from: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollY}px`;
   }
 
   function hideLightbox() {
+
     lightbox.classList.remove('show')
-    removePrevItem()
+
+    removeContents()
+
+    // Reactivate scrolling when the lightbox is reopened
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
   }
 
-  function removePrevItem() {
-    let child = itemHolder.lastElementChild
-    while (child) {
-      itemHolder.removeChild(child)
-      child = itemHolder.lastElementChild
-    }
+  function removeContents() {
+
+    image.removeChild(image.querySelector('img'))
+    caption.innerHTML = ""
   }
 
-  function showItem(item) {
+  function openInLightbox(el) {
 
-    removePrevItem()
     showLightbox()
 
-    let clone = item.cloneNode(true)
-    clone.classList.add('item')
+    let img = el.querySelector('img').cloneNode(true)
+    let cap = el.querySelector('figcaption').innerHTML
 
-    let img = clone.querySelector('img')
     if (img) {
       img.setAttribute('sizes', '100vw')
       img.removeAttribute('style')
     }
-    itemHolder.appendChild(clone)
-  }
 
+    image.appendChild(img)
+    caption.innerHTML = cap
+
+    let note = caption.querySelector('.note')
+    if (note) {
+      note.classList.remove('below')
+      note.classList.add('above')
+    }
+  }
 
   // -------- Setup once DOM is loaded -------- //
 

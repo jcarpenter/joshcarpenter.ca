@@ -86,35 +86,62 @@ figcaption .note {
 
 @media(hover), (hover:none) and (min-width: 600px) {
 
-    .note .popup {
-        position: absolute;
-        transform: translate(-50%, 100%);
-        bottom: -0.7em;
-        left: 50%;
-        z-index: 100;
-        width: 20em;
-        /* Transition settings when mouse exits */
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0.1s, bottom 0.1s, opacity 0.1s;
-        transition-delay: 0.1s;
-        transition-timing-function: ease-out;
+    .note {
+
+        --notch-size: 0.6em;
+
+        .popup {
+            position: absolute;
+            // bottom: -0.7em;
+            left: 50%;
+            z-index: 100;
+            width: 20em;
+            /* Transition settings when mouse exits */
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.1s, bottom 0.1s, opacity 0.1s;
+            transition-delay: 0.1s;
+            transition-timing-function: ease-out;
+        }
+
+        /* Popup notch */
+        .popup::before {
+            content: '';
+            width: var(--notch-size);
+            height: var(--notch-size);
+            position: absolute;
+            transform: rotate(45deg);
+            
+            /* transition: inherit; */
+            background-color: inherit;
+            opacity: inherit;
+        }
     }
 
-    /* Popup notch */
-    .note .popup::before {
-        content: '';
-        width: 0.6em;
-        height: 0.6em;
-        border-radius: 2px;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
-        
-        /* transition: inherit; */
-        background-color: inherit;
-        opacity: inherit;
+    .above {
+        .popup {
+            transform: translate(-50%, -100%);
+            top: -0.5em;
+        }
+
+        .popup::before {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%) rotate(45deg);
+        }
+    }
+    
+    .below {
+        .popup {
+            transform: translate(-50%, 100%);
+            bottom: -0.5em;
+        }
+
+        .popup::before {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
     }
 
     /* 
@@ -122,17 +149,19 @@ figcaption .note {
     1) Note is hovered.
     2) Note or child is focused. Button (.icon) will be focused.
     */
-    .note:hover .popup, .note:focus-within .popup {
+    .note:hover .popup, 
+    .note:focus-within .popup {
         visibility: visible;
         opacity: 1;
-        bottom: -0.4em;
+        // bottom: -0.4em;
         /* These settings apply when the mouse enters the icon*/
         transition: visibility 0s, bottom 0.05s, opacity 0.05s;
         transition-delay: 0.1s;
         transition-timing-function: ease-in;
     }
     
-    .note:hover .popup a, .note:focus-within .popup a {
+    .note:hover .popup a, 
+    .note:focus-within .popup a {
         text-decoration: underline;
         color: inherit;
     }

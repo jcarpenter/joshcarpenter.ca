@@ -26,7 +26,7 @@ Chart inspired by Maclean's excellent article, [Coronavirus in Canada](https://w
 
 Per [John Burn-Murdoch](https://twitter.com/jburnmurdoch/) of the Financial Times, [Mar 20](https://twitter.com/jburnmurdoch/status/1241091873621643266):
 
-![Cumulative COVID-10 deaths, by country](img/covid19-infection-rates.jpg "Chart showing cumulative COVID-10 deaths, by country")
+![Cumulative COVID-10 deaths, by country. ==Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. Retrieved 13 Mar 2020.==](img/covid19-infection-rates.jpg "Chart showing cumulative COVID-10 deaths, by country")
 
 ## 30-70% could become infected
 

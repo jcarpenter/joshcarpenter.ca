@@ -323,7 +323,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addTransform("mark-to-spans", function (content, outputPath) {
     if (outputPath.endsWith(".html")) {
-      content = content.replace(/<mark>/gm, '<span class="note"><button class="icon">fn</button><span class="popup">')
+      content = content.replace(/<mark>/gm, '<span class="note below"><button class="icon">fn</button><span class="popup">')
       content = content.replace(/<\/mark>/gm, '</span></span>')
     }
 
