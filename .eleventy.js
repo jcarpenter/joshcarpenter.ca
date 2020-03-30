@@ -47,6 +47,14 @@ module.exports = function (eleventyConfig) {
   const dateFilter = require("nunjucks-date-filter")
   eleventyConfig.addFilter("date", dateFilter)
 
+  // Add suffix to images. Important for responsive images.
+  // Per: https://jamesdoc.com/blog/2018/rwd-img-11ty/
+  eleventyConfig.addFilter("imgSuffix", (imgStr, suffix) => {
+    const i = imgStr.lastIndexOf('.');
+    const imgName = imgStr.substring(0, i);
+    const imgExt = imgStr.substring(i + 1);
+    return `${imgName}-${suffix}.${imgExt}`;
+  });
 
   // -------- Collections -------- //
   // Define custom collections
@@ -139,16 +147,9 @@ module.exports = function (eleventyConfig) {
         // Output directory
         output: "_site",
 
-
       }
     }
   }
-
-  /* ==========================================================================
-  1. CONFIGURE HOW ELEVENTY PROCESSES CONTENT AND TEMPLATES
-  ========================================================================== */
-
-  // Here, we define filters and 
 
 
   /* ==========================================================================
@@ -271,6 +272,9 @@ module.exports = function (eleventyConfig) {
       imgToken.attrSet('sizes', '(min-width: 600px) 572px, 90vw')
     }
 
+    // Update src to point to 600px version of image 
+    // (fallback for older browsers without `srcset` support)
+    newSrc = newSrc.substring(0, newSrc.lastIndexOf(".")) + '-600px.jpg'
     imgToken.attrSet('src', newSrc)
 
     return defaultImageRule(tokens, idx, options, env, self)
@@ -289,30 +293,30 @@ module.exports = function (eleventyConfig) {
   // -------------- Add id to figures -------------- //
 
   eleventyConfig.addTransform("add-id-to-figures", function (content, outputPath) {
-      if (outputPath.endsWith(".html")) {
+    if (outputPath.endsWith(".html")) {
 
-        const $ = cheerio.load(content)
-        const figures = $('article > figure')
-        
-        figures.each(function() {
-  
-          // Find the image
-          let img = $(this).find('img')
-          
-          // Get the image src
-          let src = img.attr('src')
+      const $ = cheerio.load(content)
+      const figures = $('article > figure')
 
-          // Extract the image filename from the path, without the extension.
-          let figId = src.substring(src.lastIndexOf("/") + 1, src.lastIndexOf("."))
-          
-          // Assign the figure's new id
-          $(this).attr('id', `${figId}-img`)
-        })
+      figures.each(function () {
 
-        content = $.html()
-      }
+        // Find the image
+        let img = $(this).find('img')
 
-      return content
+        // Get the image src
+        let src = img.attr('src')
+
+        // Extract the image filename from the path, without the `-600px` or file extension (so it reads cleaner), and add "-img" to help ensure no conflicts with existing header IDs.
+        let figId = src.substring(src.lastIndexOf("/") + 1, src.lastIndexOf("-")) + '-img'
+
+        // Assign the figure's new id
+        $(this).attr('id', figId)
+      })
+
+      content = $.html()
+    }
+
+    return content
   })
 
 

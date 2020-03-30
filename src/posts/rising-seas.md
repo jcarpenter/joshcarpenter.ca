@@ -1,6 +1,6 @@
 ---
 title: 'Rising seas'
-image: '../img/GMSL-1900-2010-900px.png'
+image: 'GMSL-1900-2010.png'
 created: '2020-02-27T18:45:37.536Z'
 modified: '2020-03-16T19:07:22.816Z'
 summary: 'How much will sea levels rise, and how fast? What are the drivers?'

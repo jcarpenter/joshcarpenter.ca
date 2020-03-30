@@ -1,5 +1,8 @@
 {
     "layout": "posts.njk",
+    "type": "article",
+    "titleSuffix": " | Josh Carpenter",
+    "imagesPath": "../img/",
     "js": [
         {"file": "fit-images.js", "type": "js"}, 
         {"file": "blur-notes.js", "type": "js"}, 

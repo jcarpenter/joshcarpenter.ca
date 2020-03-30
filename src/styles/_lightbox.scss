@@ -47,7 +47,7 @@
         flex-direction: column;
         padding: var(--grid-2) var(--grid-half) var(--grid);
         opacity: 0;
-        transition: opacity 0.07s;
+        transition: opacity 0.1s;
         transition-timing-function: ease-out;
     }
     .holder.show {

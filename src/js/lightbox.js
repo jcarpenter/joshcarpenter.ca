@@ -182,7 +182,7 @@ TODO:
     if (window.PointerEvent) {
       prev.addEventListener('pointerup', prevItem)
       next.addEventListener('pointerup', nextItem)
-    } 
+    }
 
     lightbox.appendChild(prev)
     lightbox.appendChild(next)
@@ -201,10 +201,10 @@ TODO:
 
     let url = new URL(window.location.href)
     let params = new URLSearchParams(url.search)
-    
+
     // Check for `view` param
     if (params.has('view')) {
-      
+
       // Check if `view` param is in `items` array
       let paramId = params.get('view')
 
@@ -244,7 +244,6 @@ TODO:
         lightbox.removeChild(holder)
       }
     }
-
     // If media is an image, remove responsive sizes and styles.
     // 1) We don't need these, and 2) they interfer with layout if left in.
     if (img) {
@@ -268,14 +267,18 @@ TODO:
     indexOfActiveItem = items.findIndex(item => item === id)
 
     // Update prev/next controls
-    // Disable prev or next if we're on first or last image    
-    if (items.length > 1 && indexOfActiveItem === 0) {
-      prev.classList.add('disabled')
-      next.classList.remove('disabled')
-
-    } else if (items.length > 1 && indexOfActiveItem === items.length - 1) {
-      prev.classList.remove('disabled')
-      next.classList.add('disabled')
+    // Disable prev or next if we're on first or last image
+    if (items.length > 1) {
+      if (indexOfActiveItem === 0) {
+        prev.classList.add('disabled')
+        next.classList.remove('disabled')
+      } else if (indexOfActiveItem === items.length - 1) {
+        prev.classList.remove('disabled')
+        next.classList.add('disabled')
+      } else {
+        prev.classList.remove('disabled')
+        next.classList.remove('disabled')
+      }
     }
 
     // If caption contains a note, update the note style to make the note popup render above, instead of below (the default). The default would make it render mostly offscreen, because lightbox captions are placed at the bottom of the viewport.
@@ -292,9 +295,9 @@ TODO:
 
     // Reveal new item by adding `show` class
     // We have to delay adding the class a few ms after appendChild(), or the initial values will not be set, and the element will appear in its final state. Per: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#JavaScript_examples
-    window.setTimeout(() =>{
+    window.setTimeout(() => {
       holder.classList.add('show')
-    }, 10)
+    }, 5)
   }
 
 
@@ -339,7 +342,7 @@ TODO:
     // After fade out is complete, remove any instances of holder class
     let holders = lightbox.querySelectorAll('.holder')
 
-    holders.forEach(holder => { 
+    holders.forEach(holder => {
       lightbox.removeChild(holder)
     })
   }
@@ -350,9 +353,12 @@ TODO:
   // Remove the `show` class from the outgoing holder
   // This will trigger the opacity transition. Once the transition is complete, the ontransitionend event listener for the element (which we setup in loadItem) will trigger, and remove the holder from the lightbox.
   function hideOutgoingItem() {
-    let topHolder = lightbox.querySelector('.holder')
-    if (topHolder && topHolder.classList.contains('show')) {
-      topHolder.classList.remove('show')
+
+    let holders = lightbox.querySelectorAll('.holder.show')
+    if (holders) {
+      holders.forEach(h => {
+        h.classList.remove('show')
+      })
     }
   }
 
@@ -366,7 +372,10 @@ TODO:
 
   function nextItem() {
 
-    if (indexOfActiveItem !== items.length) {
+    console.log(indexOfActiveItem)
+    console.log(items.length)
+
+    if (indexOfActiveItem !== items.length - 1) {
       hideOutgoingItem()
       loadItem(items[indexOfActiveItem + 1])
     }

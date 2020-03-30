@@ -1,28 +1,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ title }} | Josh Carpenter</title>
-<meta name="description" content="{{ summary }}">
+<title>{{ title }}{{ titleSuffix }}</title>
+{% if summary %}
+    <meta name="description" content="{{ summary }}">
+{% endif %}
 <meta name="dcterms.date" content="{{ modified }}"/>
 {# <meta name="robots" content="noindex"> #}
 {% if tags.includes("hide") %}
     <meta name="robots" content="noindex">
 {% endif %}
-{# <meta name="author" content="{{ josh.name }}"/> #}
-{# <meta name="copyright" content="Copyright © {{ date | date("YYYY") }}, {{ josh.name }}"/> #}
 
 <!-- Social -->
-<meta property="og:type" content="article">
-<meta property="og:title" content="{{ title }} | Josh Carpenter">
+<meta property="og:type" content="{{ type }}">
+<meta property="og:title" content="{{ title }}{{ titleSuffix }}">
 <meta property="og:url" content="https://joshcarpenter.ca{{ page.url}}">
-<meta property="og:description" content="{{ summary }}">
-{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+{% if summary %}
+    <meta property="og:description" content="{{ summary }}">
+{% endif %}
+{% if image %}
+    <meta property="og:image" content="../img/{{ image | imgSuffix('600px') }}">
+{% endif %}
 <meta property="og:updated_time" content="{{ modified }}">
 <meta property="article:modified_time" content="{{ modified }}">
-<meta property="og:site_name" content="Josh Carpenter">
+<meta property="og:site_name" content="{{ josh.name }}">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@joshcarpenter">
-<meta name="twitter:creator" content="@joshcarpenter">
+<meta name="twitter:site" content="@{{ josh.twitter }}">
+<meta name="twitter:creator" content="@{{ josh.twitter }}">
 
 {#
 <!-- Favicon -->

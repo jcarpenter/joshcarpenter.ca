@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+    </head>
+    <body>
+        <main>
+
+            <h1>{{ josh.name }}</h1>
+
+            {% if tags and tags.includes("climate") %}
+                {% include "preface-climate.njk" %}
+            {% endif %}
+
+            <h2>Canada</h2>
+            {%- for post in collections.climate -%}
+                {% if post.data.tags.includes("problem") %}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    {% if post.data.image %}
+                    <img src="{{post.data.image}}">
+                    {% endif %}
+                </li>
+                {% endif %}
+            {%- endfor -%}
+
+            <h2>All Posts</h2>
+            <h3>Impacts</h3>
+            <ul>
+                {%- for post in collections.climateImpacts -%}
+                    <li>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            <h3>Impacts (Canada)</h3>
+            <ul>
+                {%- for post in collections.climateImpactsCanada -%}
+                    <li>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            <h3>Solutions</h3>
+            <ul>
+                {%- for post in collections.climateSolutions -%}
+                    <li>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            <h3>Resiliency</h3>
+            <ul>
+                {%- for post in collections.climateResiliency -%}
+                    <li>
+                        <a href="{{ post.url }}">{{ post.data.title }}</a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+
+        </main>
+    </body>
+</html>
