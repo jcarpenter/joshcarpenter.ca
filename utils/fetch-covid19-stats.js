@@ -7,7 +7,7 @@
 const fs = require('fs');
 const axios = require('axios')
 const cheerio = require('cheerio')
-const { DateTime } = require("luxon");
+const { DateTime } = require("luxon")
 
 // Load the note, so we can work with it
 let file = fs.readFileSync('src/js/covid19-canada-data.json', 'utf8')

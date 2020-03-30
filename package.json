@@ -8,6 +8,7 @@
         "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
     },
     "scripts": {
+        "test": "gulp test",
         "fetch-climate-posts": "bash utils/fetch-climate-posts.sh",
         "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/push-update.sh",
         "dev": "gulp dev",
@@ -35,6 +36,7 @@
         "gulp": "^4.0.2",
         "gulp-eslint": "^6.0.0",
         "gulp-if": "^3.0.0",
+        "gulp-jsonlint": "^1.3.1",
         "gulp-modify-file": "^1.0.1",
         "gulp-responsive": "^3.0.1",
         "gulp-sass": "^4.0.2",

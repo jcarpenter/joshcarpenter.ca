@@ -31,6 +31,10 @@ figure img {
     transition-timing-function: ease-out;
 }
 
+figure img:focus {
+    border: 10px solid red;
+}
+
 @media (min-width: 900px) {
     figure img { 
         // width: auto;

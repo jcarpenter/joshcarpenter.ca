@@ -2,64 +2,81 @@
    Lightbox
    ========================================================================== */
 
-#lightbox {
-    /* display: none; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 2rem;
+/* -------------- Temp -------------- */
 
+// #lightbox * {
+//     border: 1px solid red;
+// }
+
+// @media (max-aspect-ratio: 7/8) {
+//     #lightbox * {
+//         border: 1px solid yellow;
+//     }
+// }
+
+/* -------------- Controls -------------- */
+
+#lightbox {
+    // Transition
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.15s, bottom 0.15s, opacity 0.15s;
-    transition-timing-function: ease-out;
+    // transition: visibility 1.15s, bottom 0.15s, opacity 1.15s;
+    // transition-timing-function: ease-out;
 }
 
 #lightbox.show {
-    /* display: initial; */
+    // Transition
     visibility: visible;
     opacity: 1;
-    /* These settings apply when the mouse enters the icon*/
-    transition: visibility 0s, opacity 0.1s;
-    transition-timing-function: ease-in;
+    // transition: visibility 0s, opacity 0.08s;
+    // transition-timing-function: ease-in;
 }
 
-/* -------------- image & captions -------------- */
+/* -------------- Media & Captions -------------- */
 
 #lightbox {
-
-    #image {
+    .holder {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: var(--grid-2) var(--grid-half) var(--grid);
+        opacity: 0;
+        transition: opacity 0.07s;
+        transition-timing-function: ease-out;
+    }
+    .holder.show {
+        opacity: 1;
+        transition-timing-function: ease-in;
+    }
+    .media {
+        position: relative;
         flex: 1 1 auto;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        
+
         img {
             z-index: 1;
         }
     }
 
-    #caption {
+    .caption {
         flex: 0 1 auto;
         margin-top: var(--grid-half);
         max-width: 64em;
         z-index: 1;
         color: var(--clr-gray-light);
     }
-}
 
-/* -------------- modified note styles -------------- */
-
-#lightbox {
-    
+    // Tweaked version of note styles
     .note .icon {
         background-color: var(--clr-gray-dark);
         color: var(--clr-gray-light);
@@ -70,34 +87,78 @@
     }
 }
 
-/* -------------- close & background -------------- */
+/* -------------- Prev & Next -------------- */
 
 #lightbox {
-
-    #close{
-        position: absolute;
-        top: var(--grid);
-        right: var(--grid);
+    #prev,
+    #next {
+        position: fixed;
+        top: var(--grid-half);
         height: var(--grid);
         width: var(--grid);
         margin: 0;
-        border-style: none;
-        cursor: pointer;
         z-index: 1;
-        text-align: center;
         opacity: 0.4;
-        
-        img { 
-            width: 100%;
-            height: 100%;
-        }
+        cursor: pointer;
+        pointer-events: initial;
     }
 
-    #close:hover{
+    #prev {
+        left: var(--grid-half);
+    }
+
+    #next {
+        left: var(--grid-1-and-half);
+        transform: rotateZ(180deg);
+    }
+
+    #prev:hover,
+    #next:hover {
         opacity: 1;
     }
 
-    #background{
+    // Disabled
+    #prev.disabled,
+    #next.disabled {
+        pointer-events: none;
+        opacity: 0.15;
+    }
+
+    // #leftSideOfImage {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 25%;
+    //     height: 100%;
+    //     background-color: rgba(255, 0, 0, 0.5);
+    //     z-index: 2;
+    // }
+}
+
+/* -------------- Close -------------- */
+
+#lightbox {
+    #close {
+        position: fixed;
+        top: var(--grid-half);
+        right: var(--grid-half);
+        height: var(--grid);
+        width: var(--grid);
+        margin: 0;
+        cursor: pointer;
+        z-index: 1;
+        opacity: 0.4;
+    }
+
+    #close:hover {
+        opacity: 1;
+    }
+}
+
+/* -------------- Background -------------- */
+
+#lightbox {
+    #background {
         background-color: rgba(20, 20, 20, 0.92);
         position: absolute;
         top: 0;
@@ -108,4 +169,3 @@
         cursor: default;
     }
 }
-

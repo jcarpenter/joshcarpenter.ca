@@ -1,4 +1,5 @@
 const gulp = require('gulp')
+const jsonlint = require("gulp-jsonlint");
 const modifyFile = require('gulp-modify-file')
 const responsive = require('gulp-responsive')
 const sass = require('gulp-sass')
@@ -44,17 +45,44 @@ function clean() {
   ])
 }
 
-// -------- PROCESS JS -------- //
+// -------- MISC ASSETS -------- //
 
-function js() {
+const misc_assets_to_copy = [
+  `${SRC}/styles/fonts/**/*`,
+  `${SRC}/styles/prism/**/*`
+]
+
+function copy_misc_assets() {
   return gulp
-    .src(`${SRC}/js/*.js`)
+    .src(misc_assets_to_copy, {base: `${SRC}`})
+    .pipe(gulp.dest(`${BUILD}`))
+}
+
+// -------- JS and JSON-------- //
+
+function copy_js() {
+  return gulp
+    .src(`${SRC}/js/*.js`, {base: `${SRC}`})
     // .pipe(eslint({
     //   fix: true
     // }))
     // .pipe(eslint.format())
     // .pipe(eslint.failAfterError())
-    .pipe(gulp.dest(`${BUILD}/js`))
+    .pipe(gulp.dest(`${BUILD}`))
+}
+
+function copy_third_party_js() {
+  return gulp
+    .src(`${SRC}/js/third-party/**/*.js`, {base: `${SRC}`})
+    .pipe(gulp.dest(`${BUILD}`))
+}
+
+function copy_json() {
+  return gulp
+    .src(`${SRC}/js/**/*.json`, {base: `${SRC}`})
+    .pipe(jsonlint())
+    .pipe(jsonlint.reporter())
+    .pipe(gulp.dest(`${BUILD}`))
 }
 
 
@@ -72,9 +100,9 @@ function js() {
 // }
 
 
-// -------- PREP MARKDOWN OF POSTS -------- //
+// -------- MARKDOWN -------- //
 
-function markdown() {
+function prep_markdown() {
   return gulp
     .src(`${SRC}/posts/*.md`)
     .pipe(modifyFile((content, path, file) => {
@@ -147,9 +175,9 @@ function markdown() {
 }
 
 
-// -------- PROCESS SASS -------- //
+// -------- CSS -------- //
 
-function css() {
+function generate_css() {
   return gulp
     .src(`${SRC}/styles/main.scss`)
     .pipe(sass({
@@ -159,7 +187,23 @@ function css() {
 }
 
 
-// -------- GENERATE IMAGES -------- //
+// -------- SVG and GIF -------- //
+
+// We simply copy these. 
+// We do not apply any processing or resizing (unlike JPEG and PNGs).
+// Find SVG and GIFs from multiple directories
+// For both file type, copy to same directory name, in destination
+
+function copy_svg_and_gif() {
+  return gulp
+    .src([
+      `${SRC}/portfolio/img/**/*.{svg,gif}`,
+      `${SRC}/posts/img/**/*.{svg,gif}`
+    ], {base: `${SRC}`})
+    .pipe(gulp.dest(`${BUILD}/`))
+}
+
+// -------- JPEG and PNG -------- //
 
 // Resize JPG and PNGs to multiple sizes for use in HTML responsive images. 
 // Do not enlarge the output if the input is less than the specified dimension(s).
@@ -192,24 +236,17 @@ const images_options = {
   // errorOnUnusedImage: false,
 }
 
-function post_images() {
+function resize_jpg_and_png () {
   return gulp
-    .src(`${SRC}/posts/img/**/*.{jpg,png}`)
+    .src([
+      `${SRC}/portfolio/img/**/*.{jpg,png}`,
+      `${SRC}/posts/img/**/*.{jpg,png}`
+    ], {base: `${SRC}`})
     .pipe(responsive(
       images_config,
       images_options
     ))
-    .pipe(gulp.dest(`${BUILD}/posts/img`))
-}
-
-function portfolio_images() {
-  return gulp
-    .src(`${SRC}/portfolio/img/**/*.{jpg,png}`)
-    .pipe(responsive(
-      images_config,
-      images_options
-    ))
-    .pipe(gulp.dest(`${BUILD}/portfolio/img`))
+    .pipe(gulp.dest(`${BUILD}/`))
 }
 
 
@@ -227,6 +264,11 @@ function eleventy() {
 
 const server = browserSync.create()
 
+function reload(cb) {
+  server.reload();
+  cb();
+}
+
 function serve(cb) {
   server.init({
     server: {
@@ -242,36 +284,37 @@ function serve(cb) {
 
 function watch() {
 
-  gulp.watch(`${SRC}/**/*.js`, js)
-
-  gulp.watch(`${SRC}/styles/*.scss`, css)
-
-  gulp.watch(`${SRC}/posts/img/**/*`, gulp.parallel(
-    post_images,
-    portfolio_images
-  ))
-
+  gulp.watch(`${SRC}/js/*.js`, gulp.series(copy_js, reload))
+  gulp.watch(`${SRC}/js/third-party/**/*.js`, gulp.series(copy_third_party_js, reload))
+  gulp.watch(`${SRC}/js/**/*.json`, gulp.series(copy_json, reload))
+  gulp.watch(`${SRC}/styles/*.scss`, gulp.series(generate_css, reload))
+  gulp.watch(`${SRC}/**/*.{svg,gif}`, gulp.series(copy_svg_and_gif, reload))
+  gulp.watch(`${SRC}/**/*.{jpg,png}`, gulp.series(resize_jpg_and_png, reload))
+  gulp.watch(`${SRC}/**/*.md`, gulp.series(prep_markdown, eleventy, reload))
   gulp.watch([
     `${SRC}/**/*.njk`,
-    `${SRC}/**/*.md`,
     `${SRC}/**/*.json`,
     `.eleventy.js`
-  ], eleventy)
-
+  ], gulp.series(eleventy, reload))
 }
 
 
 // -------- EXPORTS -------- //
 
+exports.test = gulp.series(setup, clean, prep_markdown, eleventy)
+
 exports.dev = gulp.series(
   setup,
   clean,
   gulp.parallel(
-    js,
-    css,
-    markdown,
-    post_images,
-    portfolio_images
+    copy_js,
+    copy_third_party_js,
+    copy_json,
+    copy_misc_assets,
+    generate_css,
+    prep_markdown,
+    copy_svg_and_gif,
+    resize_jpg_and_png
   ),
   eleventy,
   serve,
@@ -282,9 +325,12 @@ exports.dev_without_images = gulp.series(
   setup,
   clean,
   gulp.parallel(
-    js,
-    css,
-    markdown,
+    copy_js,
+    copy_third_party_js,
+    copy_json,
+    copy_misc_assets,
+    generate_css,
+    prep_markdown,
   ),
   eleventy,
   serve,
@@ -296,11 +342,14 @@ exports.build = gulp.series(
   setup,
   clean,
   gulp.parallel(
-    js,
-    css,
-    markdown,
-    post_images,
-    portfolio_images
+    copy_js,
+    copy_third_party_js,
+    copy_json,
+    copy_misc_assets,
+    generate_css,
+    prep_markdown,
+    copy_svg_and_gif,
+    resize_jpg_and_png
   ),
   eleventy
 )

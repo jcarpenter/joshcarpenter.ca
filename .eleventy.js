@@ -19,6 +19,8 @@ module.exports = function (eleventyConfig) {
   1. CONFIGURE ELEVENTY
   ========================================================================== */
 
+  const cheerio = require('cheerio')
+
   // -------- Enable Deep Data Merge -------- //
   // This feature allows additive tags (combine tags from multiple levels of the data cascade, instead of replacing them). It may have unintended side effects, however.
   // Per: https://www.11ty.dev/docs/data-deep-merge/
@@ -28,15 +30,7 @@ module.exports = function (eleventyConfig) {
 
   // -------- Passthrough file copy -------- //
   // Copy files and directories to output directories
-
-  eleventyConfig.addPassthroughCopy("src/js/third-party/")
-  eleventyConfig.addPassthroughCopy("src/js/*.json")
-  eleventyConfig.addPassthroughCopy("src/styles/fonts")
-  eleventyConfig.addPassthroughCopy("src/styles/prism")
-  eleventyConfig.addPassthroughCopy("src/posts/img/*.svg")
-  eleventyConfig.addPassthroughCopy("src/posts/img/*.gif")
-  eleventyConfig.addPassthroughCopy("src/portfolio/img/*.svg")
-  eleventyConfig.addPassthroughCopy("src/portfolio/img/*.gif")
+  // NOTE: I've switched to using gulp for this.
 
 
   // -------- Plugins -------- //
@@ -292,28 +286,34 @@ module.exports = function (eleventyConfig) {
   3. DEFINE TRANSFORMS TO APPLY TO GENERATED HTML
   ========================================================================== */
 
-  // -------------- Add lightbox class to figures -------------- //
+  // -------------- Add id to figures -------------- //
 
-  // eleventyConfig.addTransform("add-lightbox-class", function (content, outputPath) {
-  //     if (outputPath.endsWith(".html")) {
+  eleventyConfig.addTransform("add-id-to-figures", function (content, outputPath) {
+      if (outputPath.endsWith(".html")) {
 
-  //         var reg = new RegExp(/(<figure>)(.|\n)*?<\/figure>/, 'gm')
-  //         var figures = content.matchAll(reg)
+        const $ = cheerio.load(content)
+        const figures = $('article > figure')
+        
+        figures.each(function() {
+  
+          // Find the image
+          let img = $(this).find('img')
+          
+          // Get the image src
+          let src = img.attr('src')
 
-  //         // If none, return
-  //         if (!figures) return content
+          // Extract the image filename from the path, without the extension.
+          let figId = src.substring(src.lastIndexOf("/") + 1, src.lastIndexOf("."))
+          
+          // Assign the figure's new id
+          $(this).attr('id', `${figId}-img`)
+        })
 
-  //         // For each figure...
-  //         for (const fig of figures) {
+        content = $.html()
+      }
 
-  //             let figNew = fig[0]
-  //             figNew = figNew.replace('<figure>', '<figure class="lightbox">')
-  //             content = content.replace(fig[0], figNew)
-  //         }
-  //     }
-
-  //     return content
-  // })
+      return content
+  })
 
 
   // -------------- Convert marks to spans -------------- //
