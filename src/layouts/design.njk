@@ -1,0 +1,74 @@
+---json
+{
+    "layout": "base.njk",
+    "type": "article",
+    "titleSuffix": " | Josh Carpenter",
+    "js": [
+        {"file": "blur-notes.js", "type": "js"}, 
+        {"file": "lightbox.js", "type": "js"}
+    ],
+    "css": []
+}
+---
+
+<main>
+    <article>
+        <header>
+            <h1 class="title">{{ title }}</h1>
+            <aside id="metadata">
+
+                <ul id="tags">
+
+                    {% if tags.includes("vr") %}
+                        <li class="tag">
+                            <a href="">VR</a>
+                        </li>
+                    {% endif %}
+
+                    {% if tags.includes("ar") %}
+                        <li class="tag">
+                            <a href="">AR</a>
+                        </li>
+                    {% endif %}
+
+                    {% if tags.includes("web") %}
+                        <li class="tag">
+                            <a href="">Web</a>
+                        </li>
+                    {% endif %}
+
+                    {% if tags.includes("mobile") %}
+                        <li class="tag">
+                            <a href="">Mobile</a>
+                        </li>
+                    {% endif %}
+
+                    {% if tags.includes("google") %}
+                        <li class="tag">
+                            <a href="">Google</a>
+                        </li>
+                    {% endif %}
+
+                    {% if tags.includes("mozilla") %}
+                        <li class="tag">
+                            <a href="">Mozilla</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+                <address>
+                    <time datetime="{{ year }}">{{ year }}</time>
+                </address>
+
+            </aside>
+        </header>
+
+        {{ content | safe }}
+
+    </article>
+</main>
+
+{# {% include "related-content.njk" %} #}
+
+{# {% include "about-the-author.njk" %} #}

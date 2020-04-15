@@ -1,0 +1,30 @@
+---json
+{
+    "js": [
+        {"file": "menu.js", "type": "js"}, 
+        {"file": "fit-images.js", "type": "js"}
+    ],
+    "css": [
+        "main.css"
+    ]
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+    </head>
+    <body>
+
+        {% if type == "article" %}
+            <a href="#main-content-start" class="hidden">Skip to main content</a>
+        {% endif %}
+
+        {% include "header.njk" %}
+
+        {{ content | safe }}
+
+        {% include "footer.njk" %}
+        
+    </body>
+</html>

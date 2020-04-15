@@ -6,19 +6,19 @@
 {% endif %}
 <meta name="dcterms.date" content="{{ modified }}"/>
 {# <meta name="robots" content="noindex"> #}
-{% if tags.includes("hide") %}
+{% if tags and tags.includes("hide") %}
     <meta name="robots" content="noindex">
 {% endif %}
 
 <!-- Social -->
 <meta property="og:type" content="{{ type }}">
 <meta property="og:title" content="{{ title }}{{ titleSuffix }}">
-<meta property="og:url" content="https://joshcarpenter.ca{{ page.url}}">
+<meta property="og:url" content="https://joshcarpenter.ca{{ url}}">
 {% if summary %}
     <meta property="og:description" content="{{ summary }}">
 {% endif %}
 {% if image %}
-    <meta property="og:image" content="../img/{{ image | imgSuffix('600px') }}">
+    <meta property="og:image" content="/img/{{ image | addImgSuffix('-600px') }}">
 {% endif %}
 <meta property="og:updated_time" content="{{ modified }}">
 <meta property="article:modified_time" content="{{ modified }}">

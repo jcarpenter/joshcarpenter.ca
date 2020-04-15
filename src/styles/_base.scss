@@ -1,7 +1,4 @@
-/* ==========================================================================
-   TEMP: Testing breakpoints
-   ========================================================================== */
-
+// /* ------ TEMP: Testing breakpoints ------ */
 // body {
 //     background: red !important;
 // }
@@ -9,19 +6,19 @@
 // @media (min-width: 480px) {
 //     body {
 //         background: yellow !important;
-//     }   
+//     }
 // }
 
 // @media (min-width: 680px) {
 //     body {
 //         background: lightgreen !important;
-//     }   
+//     }
 // }
 
 // @media (min-width: 680px) and (min-height: 280px) {
 //     body {
 //         background: darkcyan !important;
-//     }   
+//     }
 // }
 
 // @media (min-width: 900px) {
@@ -31,7 +28,7 @@
 // }
 
 /* ==========================================================================
-   Site layout
+   Base: Layout
    ========================================================================== */
 
 body {
@@ -41,32 +38,34 @@ body {
     grid-template-columns: var(--layout-narrow);
     grid-auto-flow: row;
     grid-auto-rows: min-content;
+    padding: 0 0 var(--grid);
 }
 
+// On narrow (e.g. mobile) screens, everything lives in the same 'content' column.
+body > header,
+body > main,
+body > nav,
+body > aside,
+body > footer {
+    grid-column: content;
+}
+
+// On wider screens, header moves to the left side
 @media (min-width: 900px) {
-    body { 
-        grid-template-columns: var(--layout-wide); 
+    body {
+        grid-template-columns: var(--layout-wide);
+        /* Add padding-top for larger screens */
+        padding-top: var(--grid-2);
     }
-}
 
-body > header { 
-    display: none;
-}
-
-@media (min-width: 900px) {
-    body > header { 
+    body > header {
         display: initial;
         grid-column: nav;
     }
 }
 
-main {
-    grid-column: content;
-}
-
-
 /* ==========================================================================
-   Common elements
+   Base: Elements
    ========================================================================== */
 
 // Reset box-sizing to border-box for all elements (including pseudo elements)
@@ -76,10 +75,12 @@ main {
 html {
     font-size: var(--baseFontSize);
     line-height: var(--baseLineHeight);
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
-*, *:before, *:after { 
+*,
+*:before,
+*:after {
     box-sizing: inherit;
     word-break: normal;
     line-height: inherit;
@@ -87,19 +88,24 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Public Sans', sans-serif;
+    font-family: "Public Sans", sans-serif;
     color: var(--clr-gray-dark);
-    background: hsl(0, 0%, 99%);
+    background-color: var(--clr-background);
 }
 
-@media (min-width: 480px) {
-    body {
-        background: hsl(0, 0%, 98%);
-    }
-}
+// @media (min-width: 480px) {
+//     body {
+//         background: hsl(0, 0%, 98%);
+//     }
+// }
+
+/* -------------- Links -------------- */
 
 a {
     color: inherit;
+    // text-decoration: none;
+    // border-bottom-width: 0.1em;
+    // border-bottom-style: solid;
 }
 
 a:hover {
@@ -110,17 +116,31 @@ a:active {
     background-color: rgba(0, 0, 0, 0.15);
 }
 
+/* -------------- Images & Media -------------- */
+
+/* Use relative sizes to prevent overflowing containers.  */
+
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+/* -------------- Whitespace -------------- */
+
 /* Set whitespace for common block elements*/
-blockquote, 
-ol, 
-ul,  
+blockquote,
+ol,
+ul,
 p {
     margin-top: 0;
     margin-bottom: var(--block-margin-bottom);
 }
 
 /* Stop child lists from having full breaks */
-li > ol, li > ul {
+li > ol,
+li > ul {
     margin: 0;
 }
 
@@ -130,33 +150,361 @@ table {
     padding-bottom: var(--block-margin-bottom);
 }
 
-/* We have to add !important to pre styles to prevent Prism.js themes from overriding */
+/* Note: Add !important to `pre` styles to prevent Prism.js themes from overriding */
 pre {
     margin-top: 0 !important;
     margin-bottom: var(--block-margin-bottom) !important;
 }
 
+/* -------------- Pre & Code -------------- */
 
-/* ==========================================================================
-   Shared styles
-   ========================================================================== */
-
-.thick-border {
-    // border-top: var(--grid-quarter) solid var(--clr-gray-light);
-    // margin: var(--grid) 0 var(--grid);
-    // padding: var(--grid) 0;
+/* Note: Add !important to `pre` styles to prevent Prism.js themes from overriding */
+pre {
+    border: none !important;
+    border-radius: 0.2em;
+    border: 1px solid var(--clr-gray-lighter) !important;
+    background-color: var(--clr-gray-lightestx2) !important;
 }
 
+pre code {
+    white-space: pre-wrap !important;
+}
+
+code {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* -------------- Block quote -------------- */
+
+/* Shifted margin is to make room on side for ::before notch (see below). */
+
+// blockquote {
+//     margin-left: var(--grid-three-quarters);
+//     margin-right: 0;
+//     position: relative;
+// }
+
+// blockquote::before {
+//     content: ">";
+//     font-weight: normal;
+//     font-style: normal;
+//     position: absolute;
+//     left: calc(var(--grid-three-quarters) * -1);
+//     color: var(--clr-blue-lightest);
+// }
+
+// blockquote p {
+//     letter-spacing: 0.005em;
+//     font-style: italic;
+//     color: var(--clr-blue-dark);
+//     padding-top: 0;
+//     margin-top: 0;
+// }
+
+// @media (min-width: 480px) {
+//     blockquote {
+//         margin-left: calc(var(--grid) + var(--grid-quarter));
+//     }
+// }
+
+blockquote {
+    padding-left: var(--grid-three-quarters);
+    margin-left: 0;
+    margin-right: 0;
+    border-left: var(--grid-quarter) solid var(--clr-gray-lightest);
+}
+
+blockquote p {
+    letter-spacing: 0.005em;
+    font-style: italic;
+    color: var(--clr-gray);
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing. */
+blockquote p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* -------------- Strong, Emphasis, Small caps  -------------- */
+
+strong {
+    font-weight: 600;
+    /* background-color: var(--clr-highlight); */
+    /* border-color: var(--clr-highlight); */
+    /* border-style: solid; */
+    /* border-width: 0.1em; */
+    /* margin: -0.05em; */
+}
+
+.smallcaps {
+    font-variant: small-caps;
+}
+
+/* -------------- Hanging punctuation -------------- */
+
+/* This class gets applied manually in the build process if the first character is a quote. */
+.hanging-punctuation {
+    text-indent: -0.4em;
+}
+
+/* Prevent children indenting by reseting to zero */
+.hanging-punctuation * {
+    text-indent: 0;
+}
+
+/* -------------- Sub and Sup -------------- */
+/* 
+Prevent sup and sub elements from altering line height of parent text.
+Adapted from: https://gist.github.com/unruthless/413930
+*/
+
+sub,
+sup {
+    /* Specified in % so that the sup/sup is the
+       right size relative to the surrounding text */
+    font-size: 75%;
+    /* Zero out the line-height so that it doesn't
+       interfere with the positioning that follows */
+    line-height: 0;
+    /* Where the magic happens: makes all browsers position
+       the sup/sup properly, relative to the surrounding text */
+    position: relative;
+    /* Note that if you're using Eric Meyer's reset.css, this
+       is already set and you can remove this rule */
+    vertical-align: baseline;
+}
+
+sup {
+    /* Move the superscripted text up */
+    top: -0.5em;
+}
+
+sub {
+    /* Move the subscripted text down, but only
+       half as far down as the superscript moved up */
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Base: Headings
+   ========================================================================== */
+
+h1,
+h2,
+h3 {
+    font-kerning: normal;
+    position: relative;
+}
+
+/* -------------- h1 -------------- */
+
+h1 {
+    color: var(--clr-gray-darker);
+    font-size: var(--font-lg-8);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: var(--grid-2);
+    margin-bottom: var(--grid);
+    margin-top: 0;
+}
+
+/* -------------- h2 -------------- */
+
+h2 {
+    border-top: 2px solid var(--clr-gray-lightest);
+    color: var(--clr-gray-darker);
+    font-size: var(--font-lg-3);
+    font-weight: 700;
+    line-height: var(--grid-1-and-quarter);
+    margin-bottom: var(--grid);
+    margin-top: var(--grid-2);
+}
+
+h2:first-of-type {
+    border: none;
+    padding: 0;
+}
+
+@media (min-width: 480px) {
+    h2 {
+        border-top: none;
+        font-size: var(--font-lg-1);
+        padding: 0;
+    }
+
+    /* Reduce top-margin of h2 that follow blocks, to help ensure consistent vertical rhythm. */
+    header + h2,
+    blockquote + h2,
+    ol + h2,
+    p + h2,
+    pre + h2,
+    table + h2,
+    ul + h2 {
+        margin-top: calc(var(--grid-1-and-half) - var(--block-margin-bottom));
+    }
+}
+
+@media (min-width: 900px) {
+    h2 {
+        margin-top: var(--grid-1-and-half);
+    }
+}
+
+/* -------------- h3 -------------- */
+
+h3 {
+    color: var(--clr-gray-darker);
+    font-size: var(--font-base-size);
+    font-weight: 600;
+    margin-bottom: var(--grid);
+    margin-top: 0;
+}
+
+@media (min-width: 680px) {
+    /* On wider screens, lighten h3 slightly */
+    h3 {
+        color: var(--clr-gray-dark);
+    }
+}
+
+/* ==========================================================================
+   Base: Styles
+   ========================================================================== */
+
+/* -------------- Hidden -------------- */
+
+// Sometimes we want to hide content visually, but retain it for screen reader users. E.g. for "Skip to main content" links. This style achieves that by positioning the content offscreen, and clipping it.
+// Per: https://webaim.org/techniques/css/invisiblecontent/
+.hidden {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px !important;
+    width: 1px !important;
+    margin: -1px !important;
+    overflow: hidden;
+    padding: 0 !important;
+    position: absolute !important;
+}
+
+// .hidden {
+//     position:absolute;
+//     left:-10000px;
+//     top:auto;
+// }
+
+/* -------------- Thick border -------------- */
+
+// .thick-border {
+//     border-top: var(--grid-quarter) solid var(--clr-gray-light);
+//     margin: var(--grid) 0 var(--grid);
+//     padding: var(--grid) 0;
+// }
+
 .thick-border::before {
-    content: '';
+    content: "";
     background-color: var(--clr-gray-light);
     // border-top: var(--grid-quarter) solid var(--clr-gray-light);
     height: var(--grid-quarter);
     display: block;
-    margin: var(--grid) 0;
+    margin: var(--grid-1-and-half) 0 var(--grid);
     // padding: var(--grid) 0;
+}
+
+.thick-border {
+    margin: 0;
+}
+
+.thick-border > h2 {
+    margin: var(--grid) 0;
+}
+
+.thick-border > h2::before {
+    content: none;
 }
 
 // .thick-border + .thick-border {
 //     margin: 0;
 // }
+
+/* -------------- Two column list -------------- */
+
+ul.two-column-list {
+    line-height: var(--grid-three-quarters);
+    margin: 0;
+    padding: 0;
+    font-size: var(--font-sml-1);
+    /* Split contents into two equal columns */
+    column-count: 1;
+    column-gap: var(--grid);
+    list-style: none;
+
+    li::before {
+        content: none;
+    }
+    
+    li {
+        margin-bottom: var(--grid-three-quarters);
+        /*Do not let contents be broken across columns */
+        break-inside: avoid;
+        page-break-inside: avoid; /* Firefox */
+        color: var(--clr-gray);
+    }
+
+    li a {
+        font-weight: normal;
+        text-decoration: underline;
+        border: none;
+        color: inherit;
+    }
+
+    li a:hover {
+        border: none;
+        color: var(--clr-gray-darkest);
+    }
+
+    li:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 480px) {
+    ul.two-column-list {
+        column-count: 2;
+    }
+}
+
+/* -------------- Misc -------------- */
+
+.highlights {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    list-style: none;
+
+    li {
+        margin-right: var(--grid);
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        height: var(--grid-4);
+    }
+}
+
+#climate #all {
+    ul {
+        display: flex;
+        list-style: none;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    li {
+        border: 1px;
+        flex: 0 1 auto;
+        // margin-right: var(--grid-half);
+    }
+}

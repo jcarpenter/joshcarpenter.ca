@@ -9,11 +9,11 @@
     },
     "scripts": {
         "test": "gulp test",
-        "fetch-climate-posts": "bash utils/fetch-climate-posts.sh",
+        "fetch-climate-posts": "gulp fetch_climate_posts",
         "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/push-update.sh",
         "dev": "gulp dev",
         "dev_without_images": "gulp dev_without_images",
-        "build": "npm run fetch-climate-posts && gulp build"
+        "build": "gulp build"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
@@ -35,10 +35,12 @@
         "fs": "0.0.1-security",
         "gulp": "^4.0.2",
         "gulp-eslint": "^6.0.0",
+        "gulp-git": "^2.10.1",
         "gulp-if": "^3.0.0",
         "gulp-jsonlint": "^1.3.1",
         "gulp-modify-file": "^1.0.1",
         "gulp-responsive": "^3.0.1",
+        "gulp-restart": "^0.1.1",
         "gulp-sass": "^4.0.2",
         "html-minifier": "^4.0.0",
         "luxon": "^1.22.0",

@@ -1,16 +1,59 @@
-<header>
-    <a href="/">
-        <h1>{{ josh.name }}</h1>
-    </a>
-    {# <address>
-        Product Designer<br>
-        Vancouver, Canada<br>
-        <a href="mailto:{{ josh.email }}">{{ josh.email }}</a>
-    </address> #}
-    <nav>
-        {# {% if tags.includes("climate") %} #}
-            <h2 class="thick-border">Climate research</h2>
-            <h3>Impacts</h3>
+<header role="banner">
+
+    {# Logo #}
+    <h2>
+        <a href="/">{{ josh.name }}</a>
+    </h2>
+
+    {# Simple links #}
+
+    <button id="hamburger">
+        <img src="/img/menu-black.svg">
+    </button>
+
+    <nav id="top" role="navigation" aria-label="Top-level">
+        <ul>
+            <li class="hidden">
+                <a href="/climate" tabindex="0">Home</a>
+            </li>
+            <li>
+                <a href="/climate" tabindex="0">Climate</a>
+            </li>
+            <li>
+                <a href="/design" tabindex="0">Design</a>
+            </li>
+            <li>
+                <a href="/blog" tabindex="0">Blog</a>
+            </li>
+            <li>
+                <a href="/about" tabindex="0">About</a>
+            </li>
+        </ul>
+    </nav>
+
+    {# <nav id="side" role="navigation">
+        <ul>
+            <li>
+                <a href="/climate">Climate</a>
+            </li>
+            <li>
+                <a href="/design">Design</a>
+            </li>
+            <li>
+                <a href="/blog">Blog</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+        </ul>
+        {% if tags and tags.includes("climate") %}
+
+            <h2 role="none presentation" class="thick-border">
+                <a href="/climate">Climate</a>
+            </h2>
+
+            <h3 role="none presentation">Impacts</h3>
+
             <ul>
                 {%- for post in collections.climateImpacts -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
@@ -18,7 +61,8 @@
                     </li>
                 {%- endfor -%}
             </ul>
-            <h3>Impacts (Canada)</h3>
+
+            <h3 role="none presentation" class="">Canada</h3>
             <ul>
                 {%- for post in collections.climateImpactsCanada -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
@@ -26,7 +70,8 @@
                     </li>
                 {%- endfor -%}
             </ul>
-            <h3>Solutions</h3>
+
+            <h3 role="none presentation" class="">Solutions</h3>
             <ul>
                 {%- for post in collections.climateSolutions -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
@@ -34,7 +79,8 @@
                     </li>
                 {%- endfor -%}
             </ul>
-            <h3>Resiliency</h3>
+
+            <h3 role="none presentation" class="">Resiliency</h3>
             <ul>
                 {%- for post in collections.climateResiliency -%}
                     <li {% if page.url == post.url %} class="active" {% endif %}>
@@ -42,18 +88,17 @@
                     </li>
                 {%- endfor -%}
             </ul>
-            
+
             <h2 class="thick-border">Other posts</h3>
             <ul>
-                {%- for post in collections.other -%}
-                    <li {% if page.url == post.url %} class="active" {% endif %}>
-                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    </li>
-                {%- endfor -%}
-            </ul>
+            {%- for post in collections.other -%}
+                <li {% if page.url == post.url %} class="active" {% endif %}>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+            </ul> 
 
-        {# {% else %}
+        {% endif %}
+    </nav> #}
 
-        {% endif %} #}
-    </nav>
 </header>

@@ -6,6 +6,13 @@
 
     /* -------------- Colors -------------- */
 
+    --clr-mint-1:             #a1dca8;
+    --clr-mint-2:             #9DEBA9;
+    --clr-mint-3:             #BBF2C4;
+    --clr-mint-4:             #B9EDD7;
+    --clr-mint-5:             #93DBC3;
+    --clr-mint-6:             #85C7B0;
+
     --clr-gray-darkestx2:   hsl(0, 0%, 5%);
     --clr-gray-darkest:     hsl(0, 0%, 7.5%);
     --clr-gray-darker:      hsl(0, 0%, 15%);
@@ -30,6 +37,7 @@
 
     --clr-highlight:        rgb(247, 242, 197); 
     --clr-beige:            #F8F6E2;
+    --clr-background:       hsl(0, 0%, 98%);
 
     /* -------------- Type sizes -------------- */
 
@@ -78,6 +86,11 @@
     --grid-16: calc(var(--grid) * 16);
     --grid-24: calc(var(--grid) * 24);
     --grid-32: calc(var(--grid) * 32);
+
+    /* -------------- Easing -------------- */
+
+    --material-incoming-decelerated: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --material-outgoing-accelerated: cubic-bezier(0.4, 0.0, 1, 1);
 
     /* -------------- Layouts (CSS grid) -------------- */
 

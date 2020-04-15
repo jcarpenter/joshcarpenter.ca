@@ -18,16 +18,16 @@
 
 #lightbox {
     // Transition
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
     // transition: visibility 1.15s, bottom 0.15s, opacity 1.15s;
     // transition-timing-function: ease-out;
 }
 
-#lightbox.show {
+#lightbox.open {
     // Transition
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
     // transition: visibility 0s, opacity 0.08s;
     // transition-timing-function: ease-in;
 }
@@ -36,44 +36,50 @@
 
 #lightbox {
     .holder {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        align-items: center;
         bottom: 0;
         display: flex;
-        align-items: center;
-        justify-content: center;
         flex-direction: column;
-        padding: var(--grid-2) var(--grid-half) var(--grid);
+        justify-content: center;
+        left: 0;
         opacity: 0;
-        transition: opacity 0.1s;
+        padding: var(--grid-2) var(--grid-half) var(--grid);
+        pointer-events: none;
+        position: fixed;
+        right: 0;
+        top: 0;
         transition-timing-function: ease-out;
+        transition: opacity 0.1s;
+        z-index: 0;
     }
-    .holder.show {
+
+    .holder.open {
         opacity: 1;
         transition-timing-function: ease-in;
     }
-    .media {
-        position: relative;
-        flex: 1 1 auto;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
 
+    .media {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        
         img {
+            pointer-events: all;
             z-index: 1;
         }
     }
 
     .caption {
+        pointer-events: all;
+        color: var(--clr-gray-light);
         flex: 0 1 auto;
         margin-top: var(--grid-half);
         max-width: 64em;
         z-index: 1;
-        color: var(--clr-gray-light);
     }
 
     // Tweaked version of note styles
@@ -92,15 +98,15 @@
 #lightbox {
     #prev,
     #next {
+        cursor: pointer;
+        height: var(--grid);
+        margin: 0;
+        opacity: 0.4;
+        pointer-events: initial;
         position: fixed;
         top: var(--grid-half);
-        height: var(--grid);
         width: var(--grid);
-        margin: 0;
         z-index: 1;
-        opacity: 0.4;
-        cursor: pointer;
-        pointer-events: initial;
     }
 
     #prev {
@@ -120,8 +126,8 @@
     // Disabled
     #prev.disabled,
     #next.disabled {
-        pointer-events: none;
         opacity: 0.15;
+        pointer-events: none;
     }
 
     // #leftSideOfImage {
@@ -139,15 +145,15 @@
 
 #lightbox {
     #close {
-        position: fixed;
-        top: var(--grid-half);
-        right: var(--grid-half);
-        height: var(--grid);
-        width: var(--grid);
-        margin: 0;
         cursor: pointer;
-        z-index: 1;
+        height: var(--grid);
+        margin: 0;
         opacity: 0.4;
+        position: fixed;
+        right: var(--grid-half);
+        top: var(--grid-half);
+        width: var(--grid);
+        z-index: 1;
     }
 
     #close:hover {
@@ -160,12 +166,12 @@
 #lightbox {
     #background {
         background-color: rgba(20, 20, 20, 0.92);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
         bottom: 0;
-        z-index: 0;
         cursor: default;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 0;
     }
 }

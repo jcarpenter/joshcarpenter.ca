@@ -1,6 +1,6 @@
 ---
 title: 'Solar'
-image: '../img/solar-offgrid-with-generator-900px.png'
+image: 'solar-offgrid-with-generator.png'
 created: '2020-02-27T18:45:37.537Z'
 modified: '2020-03-20T23:00:20.827Z'
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ## Basic off-grid system
 
-![Off-grid solar installation](img/solar-offgrid-with-generator.png)
+![Off-grid solar installation](../img/posts/solar-offgrid-with-generator.png)
 
 -   **Solar panels** convert sunlight to electricity and output DC power.
 -   **Charge controller** takes DC power from panels, and regulates output.

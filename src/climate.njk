@@ -1,63 +1,83 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        {% include "head.njk" %}
-    </head>
-    <body>
-        <main>
+---json
+{
+    "layout": "base.njk",
+    "type": "website",
+    "title": "Climate Research Notes",
+    "titleSuffix": " | Josh Carpenter"
+}
+---
 
-            <h1>{{ josh.name }}</h1>
+<main id="climate">
 
-            {% if tags and tags.includes("climate") %}
-                {% include "preface-climate.njk" %}
-            {% endif %}
+    <h1>Climate research notes</h1>
 
-            <h2>Canada</h2>
+    <aside id="research-note-preface">
+        These are personal research notes on the drivers, impacts of, and potential solutions to climate change. In 2019, I decided to shift from virtual and augmented reality to climate change, hoping to find a place where I could make a positive contribution. These notes are written primarily for myself, so many will be brief, incomplete, etc. But hopefully they (and/or the references) are useful.
+    </aside>
+
+    <section id="highlights">
+        <h2>Highlights</h2>
+        <ul class="highlights">
             {%- for post in collections.climate -%}
-                {% if post.data.tags.includes("problem") %}
-                <li>
-                    <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    {% if post.data.image %}
-                    <img src="{{post.data.image}}">
-                    {% endif %}
-                </li>
+                {% if post.data.highlight %}
+                    <li>
+                        <a href="{{ post.url }}">
+                            {% if post.data.image %}
+                                <img src="/img/{{ post.data.image }}">
+                            {% endif %}
+                        </a>
+
+                        <h4>
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </h4>
+
+                        {% if post.data.summary %}
+                            <p>{{ post.data.summary }}</p>
+                        {% endif %}
+
+                        <time datetime="{{ post.modified }}">Last updated {{ post.modified | date("D MMM YYYY") }}</time>
+                    </li>
                 {% endif %}
             {%- endfor -%}
+        </ul>
+    </section>
 
-            <h2>All Posts</h2>
-            <h3>Impacts</h3>
-            <ul>
-                {%- for post in collections.climateImpacts -%}
-                    <li>
-                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    </li>
-                {%- endfor -%}
-            </ul>
-            <h3>Impacts (Canada)</h3>
-            <ul>
-                {%- for post in collections.climateImpactsCanada -%}
-                    <li>
-                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    </li>
-                {%- endfor -%}
-            </ul>
-            <h3>Solutions</h3>
-            <ul>
-                {%- for post in collections.climateSolutions -%}
-                    <li>
-                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    </li>
-                {%- endfor -%}
-            </ul>
-            <h3>Resiliency</h3>
-            <ul>
-                {%- for post in collections.climateResiliency -%}
-                    <li>
-                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                    </li>
-                {%- endfor -%}
-            </ul>
+    <section id="all">
+        <h2>All notes</h2>
+        <h3 id="impacts">Impacts</h3>
+        <ul>
+            {%- for post in collections.climateImpacts -%}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+        <h3 id="canada">Canada</h3>
+        <ul>
+            {%- for post in collections.climateImpactsCanada -%}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+        <h3 id="solutions">Solutions</h3>
+        <ul>
+            {%- for post in collections.climateSolutions -%}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+        <h3 id="resiliency">Resiliency</h3>
+        <ul>
+            {%- for post in collections.climateResiliency -%}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </section>
 
-        </main>
-    </body>
-</html>
+</main>
+
+{% include "about-the-author.njk" %}

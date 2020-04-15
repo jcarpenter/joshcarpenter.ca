@@ -20,7 +20,7 @@ Originally put forward by Jesse Ausubel in a 2015 Long Now talk, [Nature is Rebo
 
 ## Examples cited
 
--   "Among the more than 70 minerals, metals, and other resources long tracked by the US Geological Survey, only six haven't yet begun to decline in use. Consumption of steel, aluminum, and copper is down around 15%, 32%, and 40%, respectively, from peak levels." ==Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. Retrieved 15 Nov 2019.==
+-   "Among the more than 70 minerals, metals, and other resources long tracked by the US Geological Survey, only six haven't yet begun to decline in use. Consumption of steel, aluminum, and copper is down around 15%, 32%, and 40%, respectively, from peak levels." ==[Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 -   Timber in US: reducing both per capita, and in yearly total. 20-30% less than 1990. US peak paper was 1990 (2013 global), and we're down 40% from there. Cardboard use is the same as 1995.
 -   Aluminum cans: used to one 4-5x heavier.
 -   US energy use: in 2018 was only 0.25% more than 2007. Economy is bigger, but energy use has flatlined.
@@ -37,17 +37,17 @@ Originally put forward by Jesse Ausubel in a 2015 Long Now talk, [Nature is Rebo
 
 -   Trends don't matter; Thresholds do.
 
-    -   "When you're dealing with systems that have thresholds ... actually these systems don't care about trends; they care about aggregate impacts." - Victor Galaz. ==Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. Retrieved 15 Nov 2019.==
+    -   "When you're dealing with systems that have thresholds ... actually these systems don't care about trends; they care about aggregate impacts." - Victor Galaz. ==[Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 
 -   Decreases in consumption may just mask shifts. In a tightly linked global economy, it's difficult to untangle overall resource use.
 
     -   E.g. Less farm land in US, because it's moved overseas.
     -   E.g. Less metals use, because products are being made in China.
-    -   "Is it really all decoupling, or is some of it displacement into other parts of the word?" ==Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. Retrieved 15 Nov 2019.==
+    -   "Is it really all decoupling, or is some of it displacement into other parts of the word?" ==[Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 
--   Declining trends in resource usage could be hangover from the Great Recession. ==Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. Retrieved 15 Nov 2019.==
+-   Declining trends in resource usage could be hangover from the Great Recession. ==[Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 
--   Small gains in developing nations could be offset by growing appetites of emerging economies. ==Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. Retrieved 15 Nov 2019.==
+-   Small gains in developing nations could be offset by growing appetites of emerging economies. ==[Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 
 ## Appealing hypothesis to the tech industry!
 
@@ -59,9 +59,8 @@ And Reid Hoffman's:
 
 > I've always believed that technological progress and entrepreneurship make our lives better. Here, Andrew McAfee shows how these powerful forces are helping us make our planet better too, instead of degrading it. For anyone who wants to help create a future that is both sustainable and abundant, this book is essential reading
 
-::: #references .thick-border
+::: #references
 
 ## Referenced works
-
-* Temple, James. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/). MIT Technology Review. 20 Jun 2019. {.reference}
+* [Temple, James]{.ref-author title=Authors}. [The Planet Has a Fever, and the Cure Is More Capitalism, a Prominent Researcher Argues](https://www.technologyreview.com/s/613845/the-planet-has-a-fever-and-the-cure-is-more-capitalism-a-prominent-economist-argues/){.ref-title title=Title}. [MIT Technology Review]{.ref-container title=Website}. [20 Jun 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.
 :::

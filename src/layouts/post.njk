@@ -1,0 +1,101 @@
+---json
+{
+    "layout": "base.njk",
+    "type": "article",
+    "titleSuffix": " | Josh Carpenter",
+    "js": [
+        {"file": "blur-notes.js", "type": "js"}, 
+        {"file": "lightbox.js", "type": "js"}
+    ],
+    "css": [
+        "prism/prism-duotone-light.css"
+    ]
+}
+---
+<main role="main" aria-label="Post" id="post">
+    <article>
+        <header>
+
+            {% if tags.includes("climate") %}
+                <a href="/climate" id="category">Climate</a>
+            {% endif %}
+
+            <h1 class="title" id="main-content-start">{{ title }}</h1>
+            <section id="metadata" aria-label="Metadata">
+
+                <ul id="tags" aria-label="Tags">
+
+                    {% if tags.includes("wip") %}
+                        <li class="tag wip">WIP</li>
+                    {% endif %}
+
+                    {# {% if tags.includes("climate") %}
+                                <li class="tag">
+                                    <a href="">Climate</a>
+                                </li>
+                            {% endif %} #}
+
+                    {% if tags.includes("problem") %}
+                        <li class="tag">
+                            <a href="/climate/#impacts">Impacts</a>
+                        </li>
+                        {% if tags.includes("canada") %}
+                            <li class="tag">
+                                <a href="/climate/#canada">Canada</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if tags.includes("solution") %}
+                        <li class="tag">
+                            <a href="">Solution</a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+                {# <address>
+                    <span class="author">By <a href="https://twitter.com/{{ josh.twitter }}">{{ josh.name }}</a>, </span>
+                </address> #}
+
+                <time datetime="{{ modified }}">Last updated {{ modified | date("D MMM YYYY") }}</time>
+
+            </section>
+        </header>
+
+        {# ------ Preface ------ #}
+        {% if tags.includes("climate") %}
+            {% include "preface-climate.njk" %}
+        {% elif tags.includes("covid19") %}
+            {% include "preface-covid19.njk" %}
+        {% endif %}
+
+        {# ------ Post body ------ #}
+        <section aria-label="Post body" id="post-body">
+            {{ content | safe }}
+            {# {{ content | excerpt("#body") | safe }} #}
+        </section>
+
+        {# ------ Footnotes ------ #}
+        {# <section id="footnotes" aria-labelledby="footnotes-header" class=" thick-border">
+            <h2 id="footnotes-header">Footnotes</h2>
+            <ul class="two-column-list">
+                {{ content | excerpt("#footnotes") | safe}}
+            </ul>
+        </section> #}
+
+        {# ------ References ------ #}
+        {# <section id="references" aria-labelledby="referenced-works" class="thick-border">
+            <h2 id="footnotes-header">References</h2>
+            <ul class="two-column-list">
+                {{ content | excerpt("#references") | safe}}
+            </ul>
+        </section> #}
+
+    </article>
+
+    {% include "related-content.njk" %}
+
+    {% include "about-the-author.njk" %}
+
+</main> 

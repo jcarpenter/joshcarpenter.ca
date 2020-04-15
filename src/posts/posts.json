@@ -1,12 +1,3 @@
 {
-    "layout": "posts.njk",
-    "type": "article",
-    "titleSuffix": " | Josh Carpenter",
-    "imagesPath": "../img/",
-    "js": [
-        {"file": "fit-images.js", "type": "js"}, 
-        {"file": "blur-notes.js", "type": "js"}, 
-        {"file": "lightbox.js", "type": "js"}
-    ],
-    "css": ["main.css", "prism/prism-duotone-light.css"]
+    "layout": "post.njk"
 }

@@ -1,13 +1,14 @@
 ---
 title: 'Covid-19'
-image: '../img/covid19-infection-rates-900px.jpg'
+image: 'covid19-infection-rates.jpg'
 created: '2020-03-13T04:02:21.824Z'
 js:
 - file: 'covid19-chart.js'
   type: module
-modified: '2020-03-20T22:41:30.961Z'
+modified: '2020-04-01T22:49:42.096Z'
 summary: 'A collection of notes and statistics on COVID-19, compiled for my own clarity, and for friends and family.'
 tags:
+- hide
 - covid19
 - wip
 ---
@@ -26,27 +27,27 @@ Chart inspired by Maclean's excellent article, [Coronavirus in Canada](https://w
 
 Per [John Burn-Murdoch](https://twitter.com/jburnmurdoch/) of the Financial Times, [Mar 20](https://twitter.com/jburnmurdoch/status/1241091873621643266):
 
-![Cumulative COVID-10 deaths, by country. ==Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. Retrieved 13 Mar 2020.==](img/covid19-infection-rates.jpg "Chart showing cumulative COVID-10 deaths, by country")
+![Cumulative COVID-10 deaths, by country](../img/posts/covid19-infection-rates.jpg "Chart showing cumulative COVID-10 deaths, by country")
 
 ## 30-70% could become infected
 
--   2/3 Germans could be infected. ==Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. Retrieved 13 Mar 2020.==
--   30-70% of Canadians. ==Weeks, Carly. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/). The Globe and Mail. 11 Mar 2020. Retrieved 13 Mar 2020.==
--   40-70% of Americans. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   2/3 is probably worst case. 30-50% more likely. ==Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. Retrieved 13 Mar 2020.==
+-   2/3 Germans could be infected. ==[Bennhold, Katrin, & Eddy, Melissa]{.ref-author title=Authors}. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html){.ref-title title=Title}. [The New York Times]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   30-70% of Canadians. ==[Weeks, Carly]{.ref-author title=Authors}. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/){.ref-title title=Title}. [The Globe and Mail]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   40-70% of Americans. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   2/3 is probably worst case. 30-50% more likely. ==[Bennhold, Katrin, & Eddy, Melissa]{.ref-author title=Authors}. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html){.ref-title title=Title}. [The New York Times]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## In America, that could translate into 1.6 million dead
 
 -   360 million Americans, 50% infection, 1% mortality = 1.6 million.
 -   Note: Italy is seeing more like 6% mortality. But US (I've read) has more ICU beds. But the US is has weaker safety net (i.e. more poor people who can't afford to stay home from work), and does not have socialized health care (some more may avoid treatment).
--   1% fatality rate would be 10x the flu. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   1% fatality rate would be 10x the flu. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 -   (Assuming no drugs found effective and made available)
 
 ## Spread could take several years
 
--   1-2 years. Maybe longer. ==Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. Retrieved 13 Mar 2020. Per German virologist.==
--   12-18 months. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   "Our lives are going to look different for the next year". ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   1-2 years. Maybe longer. ==[Bennhold, Katrin, & Eddy, Melissa]{.ref-author title=Authors}. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html){.ref-title title=Title}. [The New York Times]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}. Per German virologist.==
+-   12-18 months. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   "Our lives are going to look different for the next year". ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 -   It could subside in the summer, but come back strong in the fall. If it's seasonal (we don't yet know). This is what happened with the 1918 Spanish Flu.
 
 ## Once enough people have been infected, we get herd immunity
@@ -59,7 +60,7 @@ Per [John Burn-Murdoch](https://twitter.com/jburnmurdoch/) of the Financial Time
 
 ## The immediate goal is to "flatten the curve"
 
-![Impact of protective measures](img/flatten-the-curve.png "Chart depicting two scenarios for infection numbers, with and without protective measures")
+![Impact of protective measures](../img/posts/flatten-the-curve.png "Chart depicting two scenarios for infection numbers, with and without protective measures")
 
 "Flattening the curve" means lowering the rate at which people are infected, to keep healthcare providers from being swamped (ala Italy), and to buy time until treatments can be developed. The broader goal being to lower mortality rates.
 
@@ -69,11 +70,11 @@ Countries that keep people apart are slowing COVID-19 spread. E.g. Signapore, Ho
 
 Per Globe & Mail:
 
-> Dr. Fisman said evidence shows countries that have adopted policies to keep people apart have been able to control the COVID-19 spread, while others, such as Iran, Italy and China, have faced massive outbreaks because of inaction. ==Weeks, Carly. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/). The Globe and Mail. 11 Mar 2020. Retrieved 13 Mar 2020.==
+> Dr. Fisman said evidence shows countries that have adopted policies to keep people apart have been able to control the COVID-19 spread, while others, such as Iran, Italy and China, have faced massive outbreaks because of inaction. ==[Weeks, Carly]{.ref-author title=Authors}. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/){.ref-title title=Title}. [The Globe and Mail]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ### Social distancing keeps people from getting infected
 
-> "Social distancing means remaining out of congregate settings, avoiding mass gatherings, and maintaining distance (approximately 6 feet or 2 meters) from others when possible." ==CDC. [Coronavirus Disease 2019 (COVID-19)](https://www.cdc.gov/coronavirus/2019-ncov/php/risk-assessment.html). Centers for Disease Control and Prevention. 9 Mar 2020. Retrieved 13 Mar 2020.==
+> "Social distancing means remaining out of congregate settings, avoiding mass gatherings, and maintaining distance (approximately 6 feet or 2 meters) from others when possible." ==[CDC]{.ref-author title=Authors}. [Coronavirus Disease 2019 (COVID-19)](https://www.cdc.gov/coronavirus/2019-ncov/php/risk-assessment.html){.ref-title title=Title}. [Centers for Disease Control and Prevention]{.ref-container title=Website}. [9 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ### Isolation and quarantine keep sick people from spreading the illness
 
@@ -86,33 +87,33 @@ Per [Vox](https://www.vox.com/2020/3/3/21161232/coronavirus-usa-quarantine-isola
 
 Per Dr. Anthony Fauci (Director of the National Institute of Allergy and Infectious Diseases and member of the White House task force), on Mar 20:
 
-> "If you look at the trajectory of the curves of outbreaks in other areas, it's at least going to be several weeks," Fauci told NBC "Today Show" host Savannah Guthrie. "I cannot see that all of a sudden, next week or two weeks from now, it's going to be over," he continued. "I don't think there's a chance of that. I think it's going to be several weeks." ==Cabrera, Cristina. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks). Talking Points Memo. 20 Mar 2020. Retrieved 20 Mar 2020.==
+> "If you look at the trajectory of the curves of outbreaks in other areas, it's at least going to be several weeks," Fauci told NBC "Today Show" host Savannah Guthrie. "I cannot see that all of a sudden, next week or two weeks from now, it's going to be over," he continued. "I don't think there's a chance of that. I think it's going to be several weeks." ==[Cabrera, Cristina]{.ref-author title=Authors}. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks){.ref-title title=Title}. [Talking Points Memo]{.ref-container title=Website}. [20 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## How is it transmitted?
 
 [TODO: Mar 20: Refresh with latest information]{.todo}.
 
-In terms of likelihood, per Michael Osterholm: ==[JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw). Recorded 10 Mar 2020. Retrieved 20 Mar 2020.==
+In terms of likelihood, per Michael Osterholm: ==[JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw){.ref-title title=Title}. [Recorded 10 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.==
 
 1.  Aerosol transmission
 2.  Hand to mouth / face
 3.  Fecal oral
 
-Virus lasts 4-20 hrs on surfaces (maybe few days), depending on type. No consensus yet, though. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+Virus lasts 4-20 hrs on surfaces (maybe few days), depending on type. No consensus yet, though. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## How long are we infectious?
 
 [TODO: Mar 20: Refresh with latest information]{.todo}.
 
 -   Can be infectious before symptoms appear.
--   "We currently think folks are infectious 2 days before, through 14 days after onset of symptoms (T-2 to T+14 onset)". ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   "We currently think folks are infectious 2 days before, through 14 days after onset of symptoms (T-2 to T+14 onset)". ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## What if we get sick?
 
 If you're under 70, and don't have lung or cardio-vascular problems:
 
 -   Stay at home, socially isolate, treat the symptoms.
--   *"There is very little you can do at a hospital that you couldn't do at home. Most cases are mild. But if they are old or have lung or cardio-vascular problems, read on."* ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   *"There is very little you can do at a hospital that you couldn't do at home. Most cases are mild. But if they are old or have lung or cardio-vascular problems, read on."* ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 If you're 70+, and/or have lung or cardio-vascular problems:
 
@@ -121,18 +122,18 @@ If you're 70+, and/or have lung or cardio-vascular problems:
 
 At the hospital:
 
--   COVID-19 causes primary pneumonia in a significant number of cases. Requires ICU to survive. Many patients need to stay on mechanical ventilators as long as 4 weeks. ==Gale, Jason. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals). Bloomberg.com. 23 Feb 2020. Retrieved 13 Mar 2020. "More than two-thirds of critically ill patients required invasive breathing support, doctors at the Jin Yintan hospital in the central Chinese city of Wuhan found in a study of 52 such cases at the outbreak's epicenter."==
+-   COVID-19 causes primary pneumonia in a significant number of cases. Requires ICU to survive. Many patients need to stay on mechanical ventilators as long as 4 weeks. ==[Gale, Jason]{.ref-author title=Authors}. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals){.ref-title title=Title}. [Bloomberg.com]{.ref-container title=Newspaper}. [23 Feb 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}. "More than two-thirds of critically ill patients required invasive breathing support, doctors at the Jin Yintan hospital in the central Chinese city of Wuhan found in a study of 52 such cases at the outbreak's epicenter."==
 -   There is no accepted treatment yet.
 -   Hospital will give supportive care (IV fluids, oxygen, etc) to help patient stay alive, while their body fights the disease.
--   If someone is high risk (both old, and has lung or cardio issues), they may be able to enroll for compassionate use of Remdesivir, a drug currently in clinical trials at UCSF and in China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   If someone is high risk (both old, and has lung or cardio issues), they may be able to enroll for compassionate use of Remdesivir, a drug currently in clinical trials at UCSF and in China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## How does testing work?
 
--   PCR (Polymerase Chain Reaction) test. The only test that can distinguish COVID-19 from other dozen respiratory bugs currently circulating. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   PCR test requires kits, and clinical labs to process those kits. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   Kits are becoming more available, but lab capacity is not growing. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   The leading firms---Quest and Labcore---have 1000 kit/day capacity. For the entire US. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
--   Universities like UCSF, UCBerkeley and UWashington have donated research labs to help process kits. But capacity is only 20-40 kits/day. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+-   PCR (Polymerase Chain Reaction) test. The only test that can distinguish COVID-19 from other dozen respiratory bugs currently circulating. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   PCR test requires kits, and clinical labs to process those kits. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   Kits are becoming more available, but lab capacity is not growing. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   The leading firms---Quest and Labcore---have 1000 kit/day capacity. For the entire US. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
+-   Universities like UCSF, UCBerkeley and UWashington have donated research labs to help process kits. But capacity is only 20-40 kits/day. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
 ## What should we do to prepare?
 
@@ -145,33 +146,25 @@ Buy the same medications and follow the same procedures that you would for a typ
 -   Thermometer
 -   Kleenex
 
-Stockpile critical prescription meds. Many supply chains run through China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.==
+Stockpile critical prescription meds. Many supply chains run through China. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.==
 
-Pneumonia shot may be helpful. Doesn't prevent COVID-19, but reduces chance of being weakened, which makes COVID-19 more dangerous. For same reason, get flu shot next fall. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. Retrieved 13 Mar 2020.== [TODO: Find another citation for this]{.todo}.
+Pneumonia shot may be helpful. Doesn't prevent COVID-19, but reduces chance of being weakened, which makes COVID-19 more dangerous. For same reason, get flu shot next fall. ==[UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.== [TODO: Find another citation for this]{.todo}.
 
 ## Is Ibuprofen safe?
 
-Expert consensus as of Mar 20 is that there is little hard evidence of ibuprofen worsening COVID-19. ==Szklarski, Cassandra. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/). The Globe and Mail. 19 Mar 2020. Retrieved 20 Mar 2020.== The WHO tweeted on Mar 18: "Based on currently available information, WHO does not recommend against the use of ibuprofen." And the FDA released a [statement](https://www.fda.gov/drugs/drug-safety-and-availability/fda-advises-patients-use-non-steroidal-anti-inflammatory-drugs-nsaids-covid-19) Mar 19 saying, "At this time, FDA is not aware of scientific evidence connecting the use of NSAIDs, like ibuprofen, with worsening COVID-19 symptoms."
+Expert consensus as of Mar 20 is that there is little hard evidence of ibuprofen worsening COVID-19. ==[Szklarski, Cassandra]{.ref-author title=Authors}. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/){.ref-title title=Title}. [The Globe and Mail]{.ref-container title=Newspaper}. [19 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.== The WHO tweeted on Mar 18: "Based on currently available information, WHO does not recommend against the use of ibuprofen." And the FDA released a [statement](https://www.fda.gov/drugs/drug-safety-and-availability/fda-advises-patients-use-non-steroidal-anti-inflammatory-drugs-nsaids-covid-19) Mar 19 saying, "At this time, FDA is not aware of scientific evidence connecting the use of NSAIDs, like ibuprofen, with worsening COVID-19 symptoms."
 
 Ibuprofen concerns arose when the French health minister [tweeted on Mar 14](https://twitter.com/olivierveran/status/1238776545398923264) that, "taking anti-inflammatory drugs (ibuprofen, cortisone . . .) could be an aggravating factor for the infection. If you have a fever, take paracetamol".
 
-::: #references .thick-border
+::: #references
 
 ## Referenced works
-
-* Bennhold, Katrin, & Eddy, Melissa. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html). The New York Times. 11 Mar 2020. {.reference}
-
-* Cabrera, Cristina. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks). Talking Points Memo. 20 Mar 2020. {.reference}
-
-* CDC. [Coronavirus Disease 2019 (COVID-19)](https://www.cdc.gov/coronavirus/2019-ncov/php/risk-assessment.html). Centers for Disease Control and Prevention. 9 Mar 2020. {.reference}
-
-* Gale, Jason. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals). Bloomberg.com. 23 Feb 2020. {.reference}
-
-* Szklarski, Cassandra. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/). The Globe and Mail. 19 Mar 2020. {.reference}
-
-* Weeks, Carly. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/). The Globe and Mail. 11 Mar 2020. {.reference}
-
-* [JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw). Recorded 10 Mar 2020. {.reference}
-
-* [UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook). Google Docs. 12 Mar 2020. {.reference}
+* [Bennhold, Katrin, & Eddy, Melissa]{.ref-author title=Authors}. [Merkel Gives Germans a Hard Truth About the Coronavirus](https://www.nytimes.com/2020/03/11/world/europe/coronavirus-merkel-germany.html){.ref-title title=Title}. [The New York Times]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.
+* [Cabrera, Cristina]{.ref-author title=Authors}. [Fauci Predicts Americans Will Need to Remain at Home for "at Least" Several Weeks](https://talkingpointsmemo.com/news/fauci-predict-americans-quarantines-several-weeks){.ref-title title=Title}. [Talking Points Memo]{.ref-container title=Website}. [20 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.
+* [CDC]{.ref-author title=Authors}. [Coronavirus Disease 2019 (COVID-19)](https://www.cdc.gov/coronavirus/2019-ncov/php/risk-assessment.html){.ref-title title=Title}. [Centers for Disease Control and Prevention]{.ref-container title=Website}. [9 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.
+* [Gale, Jason]{.ref-author title=Authors}. [Coronavirus Patients' Long Ventilator Stays Put Strain on Hospitals](https://www.bloomberg.com/news/articles/2020-02-23/coronavirus-patients-long-ventilator-stays-strain-hospitals){.ref-title title=Title}. [Bloomberg.com]{.ref-container title=Newspaper}. [23 Feb 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.
+* [Szklarski, Cassandra]{.ref-author title=Authors}. [No Concrete Evidence Ibuprofen Makes COVID-19 Worse: Canadian Health Experts](https://www.theglobeandmail.com/world/article-no-concrete-evidence-ibuprofen-makes-covid-19-worse-canadian-health/){.ref-title title=Title}. [The Globe and Mail]{.ref-container title=Newspaper}. [19 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.
+* [Weeks, Carly]{.ref-author title=Authors}. [Between 30 and 70 Per Cent of Canadians Could Become Infected with Coronavirus, Patty Hajdu Says](https://www.theglobeandmail.com/canada/article-between-30-and-70-per-cent-of-canadians-could-be-infected-with/){.ref-title title=Title}. [The Globe and Mail]{.ref-container title=Newspaper}. [11 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.
+* [JRE \#1439 - Michael Osterholm](https://www.youtube.com/watch?v=E3URhJx0NSw){.ref-title title=Title}. [Recorded 10 Mar 2020]{.ref-issued title=Issued}. [Retrieved 20 Mar 2020]{.ref-accessed title=Accessed}.
+* [UCSF COVID-19 Panel Notes](https://docs.google.com/document/d/1v74KlOuKNgeoKCrN4poZjvzcJq5Lp0HqdLolGoc2OIo/edit?usp=sharing&usp=embed_facebook){.ref-title title=Title}. [Google Docs]{.ref-container title=Website}. [12 Mar 2020]{.ref-issued title=Issued}. [Retrieved 13 Mar 2020]{.ref-accessed title=Accessed}.
 :::

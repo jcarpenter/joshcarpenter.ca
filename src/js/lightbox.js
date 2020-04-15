@@ -1,21 +1,10 @@
-/*
-TODO: 
-* Make only article images responsive
-* Process images
-* Arrows cycle through images
-* Remove cloned item after fade out
-* Test on mobile
-* Style layout of cloned items (eg centered, full width, captions, etc)
-* Consider switching to markdown-it-responsive
-*/
-
 (function (window, document) {
   'use strict'
 
   let article, lightbox, prev, next
-  // let media, caption
   let items = []
   let indexOfActiveItem = null
+  let isOpen = false
 
 
   // -------- Precondition: Is viewport large enough? -------- //
@@ -90,7 +79,7 @@ TODO:
     // caption.id = 'caption'
 
     let close = document.createElement('img')
-    close.setAttribute('src', '../img/close.svg')
+    close.setAttribute('src', '/img/close.svg')
     close.setAttribute('alt', 'Close')
     close.id = "close"
 
@@ -150,15 +139,15 @@ TODO:
       var key = e.key || e.keyCode
 
       if (key === 'Escape' || key === 'Esc' || key === 27) {
-        closeLightbox()
+        if (isOpen) closeLightbox()
       }
       else if (key === 'ArrowLeft' || key === 37) {
         if (items.length > 1)
-          prevItem()
+        if (isOpen) prevItem()
       }
       else if (key === 'ArrowRight' || key === 39) {
         if (items.length > 1)
-          nextItem()
+        if (isOpen) nextItem()
       }
     })
   }
@@ -170,12 +159,12 @@ TODO:
 
     // Make elements
     prev = document.createElement('img')
-    prev.setAttribute('src', '../img/arrow.svg')
+    prev.setAttribute('src', '/img/arrow.svg')
     prev.setAttribute('alt', 'Previous')
     prev.id = 'prev'
 
     next = document.createElement('img')
-    next.setAttribute('src', '../img/arrow.svg')
+    next.setAttribute('src', '/img/arrow.svg')
     next.setAttribute('alt', 'Next')
     next.id = 'next'
 
@@ -240,7 +229,7 @@ TODO:
 
     // Set up 
     holder.ontransitionend = () => {
-      if (!holder.classList.contains('show')) {
+      if (!holder.classList.contains('open')) {
         lightbox.removeChild(holder)
       }
     }
@@ -289,36 +278,37 @@ TODO:
     }
 
     // Show lightbox, if it's not already visible
-    if (!lightbox.classList.contains('show')) {
-      showLightbox()
+    if (!lightbox.classList.contains('open')) {
+      openLightbox()
     }
 
-    // Reveal new item by adding `show` class
+    // Reveal new item by adding `open` class
     // We have to delay adding the class a few ms after appendChild(), or the initial values will not be set, and the element will appear in its final state. Per: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#JavaScript_examples
     window.setTimeout(() => {
-      holder.classList.add('show')
+      holder.classList.add('open')
     }, 5)
   }
 
 
   // -------- Show / Close -------- //
 
-  function showLightbox() {
+  function openLightbox() {
 
-    lightbox.classList.add('show')
+    isOpen = true
+    lightbox.classList.add('open')
 
     // Stop scrolling while lightbox is open
     // Adapted from: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
     const scrollY = window.scrollY
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${scrollY}px`;
+    document.body.style.position = 'fixed'
+    document.body.style.width = '100%'
+    document.body.style.top = `-${scrollY}px`
   }
 
   function closeLightbox() {
 
     // Hide
-    lightbox.classList.remove('show')
+    lightbox.classList.remove('open')
 
     emptyLightbox()
 
@@ -331,10 +321,12 @@ TODO:
 
     // Reactivate scrolling
     const scrollY = document.body.style.top;
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
+    document.body.style.position = ''
+    document.body.style.width = ''
+    document.body.style.top = ''
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+    isOpen = false
   }
 
   function emptyLightbox() {
@@ -350,14 +342,14 @@ TODO:
 
   // -------- Prev & Next -------- //
 
-  // Remove the `show` class from the outgoing holder
+  // Remove the `open` class from the outgoing holder
   // This will trigger the opacity transition. Once the transition is complete, the ontransitionend event listener for the element (which we setup in loadItem) will trigger, and remove the holder from the lightbox.
   function hideOutgoingItem() {
 
-    let holders = lightbox.querySelectorAll('.holder.show')
+    let holders = lightbox.querySelectorAll('.holder.open')
     if (holders) {
       holders.forEach(h => {
-        h.classList.remove('show')
+        h.classList.remove('open')
       })
     }
   }
@@ -372,8 +364,8 @@ TODO:
 
   function nextItem() {
 
-    console.log(indexOfActiveItem)
-    console.log(items.length)
+    // console.log(indexOfActiveItem)
+    // console.log(items.length)
 
     if (indexOfActiveItem !== items.length - 1) {
       hideOutgoingItem()

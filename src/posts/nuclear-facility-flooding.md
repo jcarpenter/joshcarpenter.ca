@@ -1,17 +1,19 @@
 ---
 title: 'Nuclear facility flooding'
-image: ''
+image: 'fukushima-aerial-gettyimages.jpg'
 created: '2020-02-27T18:45:37.531Z'
-modified: '2020-03-16T19:07:38.554Z'
+highlight: True
+modified: '2020-04-09T21:37:49.747Z'
+summary: 'Nuclear power plants are commonly built near the sea. What is their risk exposure to sea level rise and increasing storm severity?'
 tags:
 - climate
 - problem
 ---
 
 
-## Nuclear facilities are commonly built near the sea
+## Nuclear power stations are commonly built near the sea
 
-> ...research by Ensia suggests that at least 100 US, European, and Asian nuclear power stations built just a few meters above sea level could be threatened by serious flooding caused by accelerating sea-level rise and more frequent storm surges. ==Vidal, John. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/). Hakai Magazine. 21 Aug 2018. Retrieved 5 Oct 2019.==
+> ...research by Ensia suggests that at least 100 U.S., European, and Asian nuclear power stations built just a few meters above sea level could be threatened by serious flooding caused by accelerating sea-level rise and more frequent storm surges. ==[Vidal, John]{.ref-author title=Authors}. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/){.ref-title title=Title}. [Hakai Magazine]{.ref-container title=Website}. [21 Aug 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.==
 
 ## Flooding can kill cooling systems, leading to overheating
 
@@ -27,19 +29,21 @@ The abstract for [Uncertain seas, uncertain future for nuclear power](https://ww
 
 ## That is what happened in Fukushima
 
-March 2011 tsunami broke through the Fukushima Daiichi plant's flood defenses. Cut off power to control room and coolant systems. Without cooling, fuel in three reactors melted down. Explosive hydrogen gas built up, blowing holes in the reactor containment building. Seawater was pumped into the reactors to avoid worse. It was a close call. Japan's prime minister later admitted that the country came within a "paper-thin margin" of meltdowns that would have required the evacuation of 50 million people from nearby areas (including Tokyo). As is, 400,000 were evacuated, and most have not been able to return home. ==Gilligan, Andrew. [Fukushima: Tokyo Was on the Brink of Nuclear Catastrophe, Admits Former Prime Minister](https://www.telegraph.co.uk/news/worldnews/asia/japan/12184114/Fukushima-Tokyo-was-on-the-brink-of-nuclear-catastrophe-admits-former-prime-minister.html). The Telegraph. 2 Mar 2016. Retrieved 5 Oct 2019.==
+![Aerial view of damage to the Fukushima nuclear power plant. Credit: Getty Images](../img/posts/fukushima-aerial-gettyimages.jpg "Photo")
+
+March 2011 tsunami broke through the Fukushima Daiichi plant's flood defenses. Cut off power to control room and coolant systems. Without cooling, fuel in three reactors melted down. Explosive hydrogen gas built up, blowing holes in the reactor containment building. Seawater was pumped into the reactors to avoid worse. It was a close call. Japan's prime minister later admitted that the country came within a "paper-thin margin" of meltdowns that would have required the evacuation of 50 million people from nearby areas (including Tokyo). As is, 400,000 were evacuated, and most have not been able to return home. ==[Gilligan, Andrew]{.ref-author title=Authors}. [Fukushima: Tokyo Was on the Brink of Nuclear Catastrophe, Admits Former Prime Minister](https://www.telegraph.co.uk/news/worldnews/asia/japan/12184114/Fukushima-Tokyo-was-on-the-brink-of-nuclear-catastrophe-admits-former-prime-minister.html){.ref-title title=Title}. [The Telegraph]{.ref-container title=Newspaper}. [2 Mar 2016]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.==
 
 ## 25% of working nuclear reactors are on coastlines
 
 Exposure is high:
 
--   The world has 460 working commercial nuclear reactors. ==Vidal, John. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/). Hakai Magazine. 21 Aug 2018. Retrieved 5 Oct 2019.==
+-   The world has 460 working commercial nuclear reactors. ==[Vidal, John]{.ref-author title=Authors}. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/){.ref-title title=Title}. [Hakai Magazine]{.ref-container title=Website}. [21 Aug 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.==
 -   50 are under construction. Another 150 are planned.
 -   25% are on coastlines. Many only 10-20 meters above sea level.
--   China: 45 operational. 15 under construction. ==[Nuclear Power in China](https://www.world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power.aspx). World Nuclear Association. Oct 2019. Retrieved 15 Nov 2019.== 15 (and many of the ones under construction) are on the coast.
--   US: 9 plants are within 3km of ocean. Already, 20 flooding incidents have been recorded since early 80's. ==Lochbaum, David. [Flooding at the Nuclear Plant](https://allthingsnuclear.org/dlochbaum/flooding-at-the-nuclear-plant). All Things Nuclear. 6 Oct 2015. Retrieved 15 Nov 2019.==
+-   China: 45 operational. 15 under construction. ==[Nuclear Power in China](https://www.world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power.aspx){.ref-title title=Title}. [World Nuclear Association]{.ref-container title=Website}. [Oct 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.== 15 (and many of the ones under construction) are on the coast.
+-   US: 9 plants are within 3km of ocean. Already, 20 flooding incidents have been recorded since early 80's. ==[Lochbaum, David]{.ref-author title=Authors}. [Flooding at the Nuclear Plant](https://allthingsnuclear.org/dlochbaum/flooding-at-the-nuclear-plant){.ref-title title=Title}. [All Things Nuclear]{.ref-container title=Website}. [6 Oct 2015]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 -   UK: 12 of 19 sites vulnerable
--   Spent nuclear fuel often stored on site. E.g. At 12 of 19 sites in the UK. ==[2012 UK Government Report on Risks of Erosion and Coastal Flooding at Nuclear Power Plants](https://www.scribd.com/document/84289220/Nuclear-sites). Scribd. Retrieved 15 Nov 2019.==
+-   Spent nuclear fuel often stored on site. E.g. At 12 of 19 sites in the UK. ==[2012 UK Government Report on Risks of Erosion and Coastal Flooding at Nuclear Power Plants](https://www.scribd.com/document/84289220/Nuclear-sites){.ref-title title=Title}. [Scribd]{.ref-container title=Website}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.==
 
 ## Designs and regulations are outdated
 
@@ -51,17 +55,12 @@ Older plants did not factor in sea level rise. And current IAEA regulations (201
 -   Concrete sea wall 12.5 meters, 900 meters long.
 -   +50 year operating life span. Approx 100 years until reactors are decommissioned.
 
-::: #references .thick-border
+::: #references
 
 ## Referenced works
-
-* Gilligan, Andrew. [Fukushima: Tokyo Was on the Brink of Nuclear Catastrophe, Admits Former Prime Minister](https://www.telegraph.co.uk/news/worldnews/asia/japan/12184114/Fukushima-Tokyo-was-on-the-brink-of-nuclear-catastrophe-admits-former-prime-minister.html). The Telegraph. 2 Mar 2016. {.reference}
-
-* Lochbaum, David. [Flooding at the Nuclear Plant](https://allthingsnuclear.org/dlochbaum/flooding-at-the-nuclear-plant). All Things Nuclear. 6 Oct 2015. {.reference}
-
-* Vidal, John. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/). Hakai Magazine. 21 Aug 2018. {.reference}
-
-* [Nuclear Power in China](https://www.world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power.aspx). World Nuclear Association. Oct 2019. {.reference}
-
-* [2012 UK Government Report on Risks of Erosion and Coastal Flooding at Nuclear Power Plants](https://www.scribd.com/document/84289220/Nuclear-sites). Scribd. {.reference}
+* [Gilligan, Andrew]{.ref-author title=Authors}. [Fukushima: Tokyo Was on the Brink of Nuclear Catastrophe, Admits Former Prime Minister](https://www.telegraph.co.uk/news/worldnews/asia/japan/12184114/Fukushima-Tokyo-was-on-the-brink-of-nuclear-catastrophe-admits-former-prime-minister.html){.ref-title title=Title}. [The Telegraph]{.ref-container title=Newspaper}. [2 Mar 2016]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.
+* [Lochbaum, David]{.ref-author title=Authors}. [Flooding at the Nuclear Plant](https://allthingsnuclear.org/dlochbaum/flooding-at-the-nuclear-plant){.ref-title title=Title}. [All Things Nuclear]{.ref-container title=Website}. [6 Oct 2015]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.
+* [Vidal, John]{.ref-author title=Authors}. [Are Coastal Nuclear Power Plants Ready for Sea-Level Rise?](https://www.hakaimagazine.com/features/are-coastal-nuclear-power-plants-ready-for-sea-level-rise/){.ref-title title=Title}. [Hakai Magazine]{.ref-container title=Website}. [21 Aug 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.
+* [Nuclear Power in China](https://www.world-nuclear.org/information-library/country-profiles/countries-a-f/china-nuclear-power.aspx){.ref-title title=Title}. [World Nuclear Association]{.ref-container title=Website}. [Oct 2019]{.ref-issued title=Issued}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.
+* [2012 UK Government Report on Risks of Erosion and Coastal Flooding at Nuclear Power Plants](https://www.scribd.com/document/84289220/Nuclear-sites){.ref-title title=Title}. [Scribd]{.ref-container title=Website}. [Retrieved 15 Nov 2019]{.ref-accessed title=Accessed}.
 :::
