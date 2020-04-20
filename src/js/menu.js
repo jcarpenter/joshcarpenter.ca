@@ -1,7 +1,10 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
-  let button, navTop, focusables, firstFocusable, lastFocusable
+  let button
+  let navTop
+  let focusables
+  let firstFocusable
   let isOpen = false
 
 
@@ -9,10 +12,8 @@
 
   // Add keyboard controls
   function addKeyboardControls() {
-
     // Add escape key listener (hides lightbox)
-    document.addEventListener('keyup', e => {
-
+    document.addEventListener('keyup', (e) => {
       if (e.defaultPrevented) return
 
       const key = e.key || e.keyCode
@@ -22,16 +23,15 @@
           toggle()
         }
       } else if (key === 'Tab' || key === 9) {
-
-        e.preventDefault();
+        e.preventDefault()
 
         // Is shift pressed? e.shiftKey is a boolean.
         // Per: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/shiftKey
 
         if (e.shiftKey) {
-          console.log("Shift Tab")
+          console.log('Shift Tab')
         } else {
-          console.log("Tab")
+          console.log('Tab')
         }
       }
     })
@@ -39,15 +39,14 @@
 
   // -------- Set focus -------- //
 
-  function setFocus() {
+  // function setFocus() {
 
-  }
+  // }
 
 
   // -------- Toggle open/close -------- //
 
   function toggle() {
-
     isOpen = !isOpen
 
     hamburger.classList.toggle('open')
@@ -64,29 +63,26 @@
   // "User navigating with a keyboard should not be able to TAB out of the dialog content". If users presses tab from the last focusable element, move them to the first focusable element. And the inverse, if they tab backware (Shift + Tab), from the first focusable element.
   // Per: https://bitsofco.de/accessible-modal-dialog/
 
-  function backwardTab() {
+  // function backwardTab() {
 
-  }
+  // }
 
-  function forwardTab() {
+  // function forwardTab() {
 
-  }
+  // }
 
   // -------- Setup -------- //
 
   function cloneFootnote() {
-
-    let testBtn = document.getElementById("testBtn")
-    let fn = document.getElementById("fn1").cloneNode(true)
+    const testBtn = document.getElementById('testBtn')
+    const fn = document.getElementById('fn1').cloneNode(true)
     testBtn.after(fn)
-
   }
 
   function setup() {
-
     // ------- TEST ------- //
 
-    let testBtn = document.getElementById("testBtn")
+    const testBtn = document.getElementById('testBtn')
 
     testBtn.onclick = () => {
       cloneFootnote()
@@ -103,8 +99,6 @@
     //     cloneFootnote()
     //   }
     // })
-
-
 
 
     // ------- TEST (END) ------- //
@@ -133,11 +127,9 @@
 
     // Add escape button listener
     addKeyboardControls()
-
   }
 
   // -------- Setup once DOM is loaded -------- //
 
   window.addEventListener('DOMContentLoaded', setup)
-
 }(window, document))

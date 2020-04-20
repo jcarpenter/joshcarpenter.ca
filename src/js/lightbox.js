@@ -1,28 +1,31 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
-  let article, lightbox, prev, next
-  let items = []
+  let article
+  let lightbox
+  let prev
+  let next
+  const items = []
   let indexOfActiveItem = null
   let isOpen = false
 
 
   // -------- Precondition: Is viewport large enough? -------- //
 
-  // We only want lightbox to work on tablet and desktop-sized devices.
-  // We check the viewport size using matchMedia API. 
-  // Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
-
+  /**
+   * We only want lightbox to work on tablet and desktop-sized devices.
+   * We check the viewport size using matchMedia API.
+   * Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
+   */
   function isViewportLargeEnough() {
-
     // Check for matchMedia API support. If it doesn't exist, return true.
     // Support for matchMedia is very good: https://caniuse.com/#feat=matchmedia
     if (!matchMedia) return false
 
-    // Check if the document matches min-width and height. 
+    // Check if the document matches min-width and height.
     // This returns a MediaQueryList object.
     // We only want lightbox for desktop and tablets (larger screens). We combine min-width and min-height to ensure that phones in landscape are also filtered out (and not just phones in portrait).
-    let mq = window.matchMedia("screen and (min-width: 680px) and (min-height: 480px)")
+    const mq = window.matchMedia('screen and (min-width: 680px) and (min-height: 480px)')
 
     // The `matches` property of the MediaQueryList tells us if the document meets the media query's requirements.
     // If it matches, set up the lightbox.
@@ -32,23 +35,23 @@
 
   // -------- Call setup functions if preconditions are true -------- //
 
-  // We only setup lightbox if:
-  // 1) viewport is large enough, and 2) there are figures
-
+  /**
+   * We only setup lightbox if:
+   * 1) viewport is large enough, and 2) there are figures
+   */
   function checkPreconditions() {
-
     article = document.querySelector('article')
 
     // Is viewport is large enough?
-    let islargeEnough = isViewportLargeEnough()
+    const islargeEnough = isViewportLargeEnough()
     if (!islargeEnough) return
 
     // Is there valid content?
-    let figures = article.querySelectorAll('figure')
+    const figures = article.querySelectorAll('figure')
     if (!figures) return
 
-    // Store content id's in `items` array    
-    figures.forEach(node => {
+    // Store content id's in `items` array
+    figures.forEach((node) => {
       items.push(node.id)
     })
 
@@ -68,7 +71,6 @@
   // -------- Make lightbox elements -------- //
 
   function makeLightbox() {
-
     lightbox = document.createElement('div')
     lightbox.id = 'lightbox'
 
@@ -78,12 +80,12 @@
     // caption = document.createElement('div')
     // caption.id = 'caption'
 
-    let close = document.createElement('img')
+    const close = document.createElement('img')
     close.setAttribute('src', '/img/close.svg')
     close.setAttribute('alt', 'Close')
-    close.id = "close"
+    close.id = 'close'
 
-    let background = document.createElement('div')
+    const background = document.createElement('div')
     background.id = 'background'
 
     if (window.PointerEvent) {
@@ -103,13 +105,11 @@
   // -------- Prep thumbnails -------- //
 
   function prepThumbs() {
+    const figures = document.querySelectorAll('article > figure')
 
-    let figures = document.querySelectorAll('article > figure')
-
-    figures.forEach(figure => {
-
-      let thumb = figure.querySelector('img')
-      let id = figure.id
+    figures.forEach((figure) => {
+      const thumb = figure.querySelector('img')
+      const id = figure.id
 
       // Set cursor to pointer
       thumb.setAttribute('style', 'cursor: pointer')
@@ -118,7 +118,7 @@
       thumb.setAttribute('tabindex', '0')
 
       if (window.PointerEvent) {
-        thumb.addEventListener('pointerup', e => {
+        thumb.addEventListener('pointerup', (e) => {
           loadItem(id)
         })
       }
@@ -128,35 +128,34 @@
 
   // -------- Add keyboard interactions -------- //
 
-  // Add keyboard controls
+  /**
+   * Add keyboard controls
+   */
   function addKeyboardControls() {
-
     // Add escape key listener (hides lightbox)
-    document.addEventListener('keyup', e => {
-
+    document.addEventListener('keyup', (e) => {
       if (e.defaultPrevented) return
 
-      var key = e.key || e.keyCode
+      const key = e.key || e.keyCode
 
       if (key === 'Escape' || key === 'Esc' || key === 27) {
         if (isOpen) closeLightbox()
-      }
-      else if (key === 'ArrowLeft' || key === 37) {
-        if (items.length > 1)
-        if (isOpen) prevItem()
-      }
-      else if (key === 'ArrowRight' || key === 39) {
-        if (items.length > 1)
-        if (isOpen) nextItem()
+      } else if (key === 'ArrowLeft' || key === 37) {
+        if (items.length > 1) {
+          if (isOpen) prevItem()
+        }
+      } else if (key === 'ArrowRight' || key === 39) {
+        if (items.length > 1) {
+          if (isOpen) nextItem()
+        }
       }
     })
   }
 
-
-  // -------- Add prev/next controls -------- //
-
+  /**
+   * Add prev/next controls
+   */
   function addPrevNextControls() {
-
     // Make elements
     prev = document.createElement('img')
     prev.setAttribute('src', '/img/arrow.svg')
@@ -179,26 +178,24 @@
     // let leftSideOfImage = document.createElement('div')
     // leftSideOfImage.id = 'leftSideOfImage'
     // media.appendChild(leftSideOfImage)
-
   }
 
 
   // -------- Check URL -------- //
 
-  // Check search params and open lightbox if 
+  /**
+   * Check search params and open lightbox if
+   */
   function checkUrlHash() {
-
-    let url = new URL(window.location.href)
-    let params = new URLSearchParams(url.search)
+    const url = new URL(window.location.href)
+    const params = new URLSearchParams(url.search)
 
     // Check for `view` param
     if (params.has('view')) {
-
       // Check if `view` param is in `items` array
-      let paramId = params.get('view')
+      const paramId = params.get('view')
 
       if (items.includes(paramId)) {
-
         // Load item specified in paramId
         loadItem(paramId)
       }
@@ -209,15 +206,14 @@
   // -------- Load -------- //
 
   function loadItem(id) {
-
     // Get element to clone
-    let element = article.querySelector(`#${id}`)
-    let img = element.querySelector('img').cloneNode(true)
-    let cap = element.querySelector('figcaption').innerHTML
+    const element = article.querySelector(`#${id}`)
+    const img = element.querySelector('img').cloneNode(true)
+    const cap = element.querySelector('figcaption').innerHTML
 
-    let holder = document.createElement('div')
-    let media = document.createElement('div')
-    let caption = document.createElement('div')
+    const holder = document.createElement('div')
+    const media = document.createElement('div')
+    const caption = document.createElement('div')
 
     holder.classList.add('holder')
     media.classList.add('media')
@@ -227,7 +223,7 @@
     holder.appendChild(caption)
     lightbox.appendChild(holder)
 
-    // Set up 
+    // Set up
     holder.ontransitionend = () => {
       if (!holder.classList.contains('open')) {
         lightbox.removeChild(holder)
@@ -245,15 +241,15 @@
     caption.innerHTML = cap
 
     // Update URL
-    let url = new URL(window.location.href)
-    let params = new URLSearchParams(url.search)
+    const url = new URL(window.location.href)
+    const params = new URLSearchParams(url.search)
     params.set('view', id)
     url.search = params.toString()
     window.history.pushState('', '', url.toString())
 
     // Update `indexOfActiveItem` with the index of the id in the `items` array
     // We use it in prev/next functions to determine if we're at start or finish.
-    indexOfActiveItem = items.findIndex(item => item === id)
+    indexOfActiveItem = items.findIndex((item) => item === id)
 
     // Update prev/next controls
     // Disable prev or next if we're on first or last image
@@ -271,7 +267,7 @@
     }
 
     // If caption contains a note, update the note style to make the note popup render above, instead of below (the default). The default would make it render mostly offscreen, because lightbox captions are placed at the bottom of the viewport.
-    let note = caption.querySelector('.note')
+    const note = caption.querySelector('.note')
     if (note) {
       note.classList.remove('below')
       note.classList.add('above')
@@ -293,7 +289,6 @@
   // -------- Show / Close -------- //
 
   function openLightbox() {
-
     isOpen = true
     lightbox.classList.add('open')
 
@@ -306,7 +301,6 @@
   }
 
   function closeLightbox() {
-
     // Hide
     lightbox.classList.remove('open')
 
@@ -320,21 +314,20 @@
     indexOfActiveItem = null
 
     // Reactivate scrolling
-    const scrollY = document.body.style.top;
+    const scrollY = document.body.style.top
     document.body.style.position = ''
     document.body.style.width = ''
     document.body.style.top = ''
-    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
 
     isOpen = false
   }
 
   function emptyLightbox() {
-
     // After fade out is complete, remove any instances of holder class
-    let holders = lightbox.querySelectorAll('.holder')
+    const holders = lightbox.querySelectorAll('.holder')
 
-    holders.forEach(holder => {
+    holders.forEach((holder) => {
       lightbox.removeChild(holder)
     })
   }
@@ -342,20 +335,21 @@
 
   // -------- Prev & Next -------- //
 
-  // Remove the `open` class from the outgoing holder
-  // This will trigger the opacity transition. Once the transition is complete, the ontransitionend event listener for the element (which we setup in loadItem) will trigger, and remove the holder from the lightbox.
+  /**
+   * Remove the `open` class from the outgoing holder
+   * This will trigger the opacity transition.
+   * On transition complete, the ontransitionend event listener for the element (which we setup in loadItem) will trigger, and remove the holder from the lightbox.
+  */
   function hideOutgoingItem() {
-
-    let holders = lightbox.querySelectorAll('.holder.open')
+    const holders = lightbox.querySelectorAll('.holder.open')
     if (holders) {
-      holders.forEach(h => {
+      holders.forEach((h) => {
         h.classList.remove('open')
       })
     }
   }
 
   function prevItem() {
-
     if (indexOfActiveItem !== 0) {
       hideOutgoingItem()
       loadItem(items[indexOfActiveItem - 1])
@@ -363,10 +357,6 @@
   }
 
   function nextItem() {
-
-    // console.log(indexOfActiveItem)
-    // console.log(items.length)
-
     if (indexOfActiveItem !== items.length - 1) {
       hideOutgoingItem()
       loadItem(items[indexOfActiveItem + 1])
@@ -376,5 +366,4 @@
   // -------- Setup once DOM is loaded -------- //
 
   window.addEventListener('DOMContentLoaded', checkPreconditions)
-
 }(window, document))

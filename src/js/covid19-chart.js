@@ -1,74 +1,72 @@
 import ApexCharts from './third-party/apexcharts.esm.js'
 
-function fetch_stats() {
-  fetch("../../js/covid19-canada-data.json")
-    .then(response => {
+function fetchStats() {
+  fetch('../../js/covid19-canada-data.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok. Failed to load data.')
+        }
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok. Failed to load data.');
-      }
-
-      return response.json()
-    })
-    .then(json => drawChart(json));
+        return response.json()
+      })
+      .then((json) => drawChart(json))
 }
 
 function drawChart(stats) {
-
-  let options = {
+  const options = {
 
     chart: {
       type: 'bar',
       height: 364, // 14 * 26px grid size
       stacked: true,
-      toolbar: { show: false },
-      zoom: { enabled: false },
-      animations: { enabled: false },
-      fontFamily: '"Public Sans", sans-serif'
+      toolbar: {show: false},
+      zoom: {enabled: false},
+      animations: {enabled: false},
+      fontFamily: '"Public Sans", sans-serif',
     },
 
     series: [{
       name: 'BC',
-      data: []
+      data: [],
     }, {
       name: 'AB',
-      data: []
+      data: [],
     }, {
       name: 'SK',
-      data: []
+      data: [],
     }, {
       name: 'MB',
-      data: []
+      data: [],
     }, {
       name: 'ON',
-      data: []
+      data: [],
     }, {
       name: 'QC',
-      data: []
+      data: [],
     }, {
       name: 'NL',
-      data: []
+      data: [],
     }, {
       name: 'NB',
-      data: []
+      data: [],
     }, {
       name: 'NS',
-      data: []
+      data: [],
     }, {
       name: 'PE',
-      data: []
+      data: [],
     }, {
       name: 'YT',
-      data: []
+      data: [],
     }, {
       name: 'NT',
-      data: []
+      data: [],
     }, {
       name: 'NU',
-      data: []
+      data: [],
     }, {
       name: 'RPT',
-      data: []
+      data: [],
     }],
 
     // colors:[
@@ -106,7 +104,7 @@ function drawChart(stats) {
     // Hide data labels
     // Docs: https://apexcharts.com/docs/datalabels/
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
 
     plotOptions: {
@@ -123,7 +121,7 @@ function drawChart(stats) {
       inverseOrder: true,
       itemMargin: {
         horizontal: 0,
-        vertical: 0
+        vertical: 0,
       },
       markers: {
         width: 10,
@@ -132,12 +130,12 @@ function drawChart(stats) {
         radius: 1,
       },
       onItemClick: {
-        toggleDataSeries: true
+        toggleDataSeries: true,
       },
     },
 
     fill: {
-      opacity: 1
+      opacity: 1,
     },
 
     responsive: [{
@@ -157,37 +155,32 @@ function drawChart(stats) {
           },
           itemMargin: {
             horizontal: 0,
-            vertical: -2
+            vertical: -2,
           },
-        }
-      }
-    }]
+        },
+      },
+    }],
 
   }
 
   Object.keys(stats).forEach((date) => {
-
-    let figures_for_date = stats[date]
+    const figuresForDate = stats[date]
 
     options.xaxis.categories.push(date)
 
     for (let i = 0; i < options.series.length; i++) {
+      const prov = options.series[i].name.toLowerCase()
+      const data = options.series[i].data
 
-      let prov = options.series[i].name.toLowerCase()
-      let data = options.series[i].data
-
-      data.push(figures_for_date[prov])
-
+      data.push(figuresForDate[prov])
     }
 
     // console.log(options.series)
-
   })
 
   const chart = new ApexCharts(document.getElementById('covid19-cases-canada'), options)
 
   chart.render()
-
 }
 
-window.addEventListener('load', fetch_stats)
+window.addEventListener('load', fetchStats)

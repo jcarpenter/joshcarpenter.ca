@@ -1,28 +1,26 @@
 // Adapted from https://github.com/matejlatin/Gutenberg/blob/master/src/js/main.js
 
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   let flip = 2
 
   function highlightBlocks(toggle) {
-
-    let blocks = document.body.querySelectorAll('h1, h2, h3, p blockquote, figure, figcaption, ol, p, pre, table, ul, address, address a, address time')
+    const blocks = document.body.querySelectorAll('h1, h2, h3, p blockquote, figure, figcaption, ol, p, pre, table, ul, address, address a, address time')
 
     if (toggle === true) {
-      blocks.forEach(function (b) {
+      blocks.forEach(function(b) {
         b.classList.add('blockHighlight')
       })
     } else if (toggle === false) {
-      blocks.forEach(function (b) {
+      blocks.forEach(function(b) {
         b.classList.remove('blockHighlight')
       })
     }
   }
 
   function toggleGrid() {
-
-    let button = document.getElementById('btnGrid')
+    const button = document.getElementById('btnGrid')
 
     if (flip === 0) {
       button.textContent = 'Grid'
@@ -42,14 +40,13 @@
   }
 
   function addBtn() {
-    let btnGrid = document.createElement('button')
+    const btnGrid = document.createElement('button')
     btnGrid.id = 'btnGrid'
-    btnGrid.textContent = "None"
+    btnGrid.textContent = 'None'
     btnGrid.onclick = toggleGrid
     document.body.appendChild(btnGrid)
     toggleGrid()
   }
 
   window.addEventListener('DOMContentLoaded', addBtn)
-
 }(window, document))

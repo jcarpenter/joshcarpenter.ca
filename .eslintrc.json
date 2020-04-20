@@ -1,0 +1,22 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "google",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "semi": ["error", "never"],
+        "require-jsdoc": "off",
+        "max-len": "off",
+        "valid-jsdoc": "off",
+        "no-invalid-this": "off"
+    }
+}

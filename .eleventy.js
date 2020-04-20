@@ -3,7 +3,7 @@ module.exports = function (eleventyConfig) {
   const cheerio = require('cheerio')
 
   /* 
-  
+
   Eleventy works by:
   
   1. Finds content files to process (convert to HTML). It calls these files "templates" (confusing name). We specify which file formats to treat as templates in `templateFormats`, in config options. I use .md (the format I write my posts in) and .njk (Nunjucks, the format I write my layouts (e.g. footer.njk) and stand-alone HTML files (e.g. index.njk) in.

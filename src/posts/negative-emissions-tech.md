@@ -9,11 +9,11 @@ tags:
 ---
 
 
-[TODO: Read Capital article on UVIC carbon capture tech]{.todo}.
+TODO: Read Capital article on UVIC carbon capture tech.
 
 Technologies that remove CO2 from the atmosphere. Appealing because they promise the ability to avert climate change without changing our behavior (transforming the global economy, phasing out fossil fuels, etc)
 
-> "Of 400 IPCC emissions models that land us below 2° Celsius, 344 feature negative emissions, most of them significantly" ==[Wallace-Wells, David]{.ref-author title=Authors}. [The Uninhabitable Earth](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)){.ref-title title=Title}. [New York: Tim Duggan Books]{.ref-publisher title=Publisher}. [2019]{.ref-issued title=Issued}. [169]{.ref-locator title=Locator}.==
+> "Of 400 IPCC emissions models that land us below 2° Celsius, 344 feature negative emissions, most of them significantly" ==<span class='citation' title='Citation'><span class='cite-author' title='Authors'>Wallace-Wells, David.</span> <span class='cite-title' title='Title'><a href='https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)'>The Uninhabitable Earth</a>.</span> <span class='cite-publisher' title='Publisher'>New York: Tim Duggan Books.</span> <span class='cite-issued' title='Issued'>2019.</span> <span class='cite-locator' title='Locator'>169.</span></span>==
 
 ## Natural
 
@@ -21,7 +21,7 @@ Revitalized forests. New agriculture practices.
 
 ## Technological
 
-Under one model, each capture machine would be complexity of a car and \$30,000. ==[Wallace-Wells, David]{.ref-author title=Authors}. [The Uninhabitable Earth](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)){.ref-title title=Title}. [New York: Tim Duggan Books]{.ref-publisher title=Publisher}. [2019]{.ref-issued title=Issued}. [170]{.ref-locator title=Locator}.==
+Under one model, each capture machine would be complexity of a car and \$30,000. ==<span class='citation' title='Citation'><span class='cite-author' title='Authors'>Wallace-Wells, David.</span> <span class='cite-title' title='Title'><a href='https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)'>The Uninhabitable Earth</a>.</span> <span class='cite-publisher' title='Publisher'>New York: Tim Duggan Books.</span> <span class='cite-issued' title='Issued'>2019.</span> <span class='cite-locator' title='Locator'>170.</span></span>==
 
 -   To match current carbon emitted and buy us some time: 100 million devices, \$30 trillion
 -   To reduce atmospheric carbon by a few PPM: 500 million, \$150 trillion.
@@ -37,7 +37,7 @@ Bioenergy and Carbon Capture and Storage.
 4.  We burn the pellets in power stations for energy.
 5.  We capture the emitted CO2 and store it underground.
 
-Critiques ==[Hickel, Jason]{.ref-author title=Authors}. [The Paris Agreement Is Deeply Flawed - It's Time for a New Deal](https://www.aljazeera.com/indepth/opinion/paris-agreement-deeply-flawed-time-deal-180316115219671.html){.ref-title title=Title}. [Al Jazeera]{.ref-container title=Newspaper}. [16 Mar 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.==
+Critiques ==<span class='citation' title='Citation'><span class='cite-author' title='Authors'>Hickel, Jason.</span> <span class='cite-title' title='Title'><a href='https://www.aljazeera.com/indepth/opinion/paris-agreement-deeply-flawed-time-deal-180316115219671.html'>The Paris Agreement Is Deeply Flawed - It's Time for a New Deal</a>.</span> <span class='cite-container' title='Newspaper'>Al Jazeera.</span> <span class='cite-issued' title='Issued'>16 Mar 2018.</span> <span class='cite-accessed' title='Accessed'>Retrieved 5 Oct 2019.</span></span>==
 
 -   It's never been proven at scale.
 -   It would require a third of the world's arable land (2-3x the size of India!). Making it impossible to feed the world.
@@ -50,13 +50,13 @@ See:
 
 -   Tollefson, Jeff. "Iron-dumping ocean experiment sparks controversy." Nature. 23 May 2017. <https://www.nature.com/news/iron-dumping-ocean-experiment-sparks-controversy-1.22031>
 
-The 2019 IPCC Oceans and Cryosphere's report casts doubt on the impact of these approaches. ==[The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/){.ref-title title=Title}. [Geneva, Switzerland: IPCC]{.ref-publisher title=Publisher}. [25 Sep 2019]{.ref-issued title=Issued}. [5--10]{.ref-locator title=Locator}.==
+The 2019 IPCC Oceans and Cryosphere's report casts doubt on the impact of these approaches. ==<span class='citation' title='Citation'><span class='cite-title' title='Title'><a href='https://www.ipcc.ch/srocc/home/'>The Ocean and Cryosphere in a Changing Climate</a>.</span> <span class='cite-publisher' title='Publisher'>Geneva, Switzerland: IPCC.</span> <span class='cite-issued' title='Issued'>25 Sep 2019.</span> <span class='cite-locator' title='Locator'>5--10.</span></span>==
 
 > The feasibility of climate mitigation by open ocean fertilization of productivity is limited to negligible, due to the likely decadal-scale return to the atmosphere of nearly all the extra carbon removed, associated difficulties in carbon accounting, risks of unintended side effects and low acceptability. Other human interventions to enhance marine carbon uptake, e.g., ocean alkalinisation (enhanced weathering), would also have governance challenges, with the increased risk of undesirable ecological consequences (high confidence).
 
 ## Criticism of NETs: they are risky and unproven, and being used by global leaders as an excuse to delay critical cuts to growth and consumerism
 
-The critique: We cannot avoid emissions reductions (10% reduction by rich nations per year). NET have a role to play, but a small one. Success will ultimately require slowing growth and consumerism. But leaders are desperate to avoid that, so they lean on technology solutions. ==[Hickel, Jason]{.ref-author title=Authors}. [The Paris Agreement Is Deeply Flawed - It's Time for a New Deal](https://www.aljazeera.com/indepth/opinion/paris-agreement-deeply-flawed-time-deal-180316115219671.html){.ref-title title=Title}. [Al Jazeera]{.ref-container title=Newspaper}. [16 Mar 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.==
+The critique: We cannot avoid emissions reductions (10% reduction by rich nations per year). NET have a role to play, but a small one. Success will ultimately require slowing growth and consumerism. But leaders are desperate to avoid that, so they lean on technology solutions. ==<span class='citation' title='Citation'><span class='cite-author' title='Authors'>Hickel, Jason.</span> <span class='cite-title' title='Title'><a href='https://www.aljazeera.com/indepth/opinion/paris-agreement-deeply-flawed-time-deal-180316115219671.html'>The Paris Agreement Is Deeply Flawed - It's Time for a New Deal</a>.</span> <span class='cite-container' title='Newspaper'>Al Jazeera.</span> <span class='cite-issued' title='Issued'>16 Mar 2018.</span> <span class='cite-accessed' title='Accessed'>Retrieved 5 Oct 2019.</span></span>==
 
 ### Paper by European Academies' Science Advisory Council summarizes the pushback:
 
@@ -75,11 +75,3 @@ From the [summary](https://easac.eu/news/details/climate-change-wont-be-solved-b
 NET *will* have a role, but at smaller scale:
 
 > Nevertheless, the report notes that NETs may still have a useful role to play in addressing climate change, albeit at a smaller scale. The feasibility of implementing these technologies is likely to be location-, technology-, and circumstance-specific.
-
-::: #references
-
-## Referenced works
-* [Hickel, Jason]{.ref-author title=Authors}. [The Paris Agreement Is Deeply Flawed - It's Time for a New Deal](https://www.aljazeera.com/indepth/opinion/paris-agreement-deeply-flawed-time-deal-180316115219671.html){.ref-title title=Title}. [Al Jazeera]{.ref-container title=Newspaper}. [16 Mar 2018]{.ref-issued title=Issued}. [Retrieved 5 Oct 2019]{.ref-accessed title=Accessed}.
-* [Wallace-Wells, David]{.ref-author title=Authors}. [The Uninhabitable Earth](https://en.wikipedia.org/wiki/The_Uninhabitable_Earth_(book)){.ref-title title=Title}. [New York: Tim Duggan Books]{.ref-publisher title=Publisher}. [2019]{.ref-issued title=Issued}.
-* [The Ocean and Cryosphere in a Changing Climate](https://www.ipcc.ch/srocc/home/){.ref-title title=Title}. [Geneva, Switzerland: IPCC]{.ref-publisher title=Publisher}. [25 Sep 2019]{.ref-issued title=Issued}.
-:::

@@ -1,4 +1,4 @@
-/* 
+/*
 Fix for Mobile Safari focus/blur behaviour
 -------------------------------------------
 
@@ -13,25 +13,22 @@ Our fix is simple:
 
 */
 
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   function setup() {
-
-    var main = document.querySelector('main > article')
-    var selected
+    const main = document.querySelector('main > article')
+    let selected
 
     if (window.PointerEvent) {
-
       main.addEventListener('pointerdown', (e) => {
         if (e.pointerType === 'touch') {
-
           if (selected) {
             selected.blur()
             selected = null
           }
 
-          if (e.target.tagName === "BUTTON") {
+          if (e.target.tagName === 'BUTTON') {
             selected = e.target
           }
         }
@@ -40,5 +37,4 @@ Our fix is simple:
   }
 
   window.addEventListener('DOMContentLoaded', setup)
-
 }(window, document))
