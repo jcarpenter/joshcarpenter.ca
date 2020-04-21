@@ -43,7 +43,7 @@
         "watch": "run-p watch:*",
         "serve": "npm run browsersync & npm run watch",
         "dev": "npm run clean && run-p copy sass:dev js html:eleventy img && run-s html:postprocess html:pretty serve",
-        "build": "npm run fetch-climate-posts && npm run clean && run-p copy sass:build js html:eleventy img && run-s html:postprocess html:pretty"
+        "build": "npm run clean && run-p copy sass:build js html:eleventy img && run-s html:postprocess html:pretty"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
