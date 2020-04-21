@@ -81,9 +81,12 @@ module.exports = (content, imgDirectoryContents) => {
     }
   }
 
+  // Append full url
+  // Before: /img/jc-lg.jpg
+  // After: https://joshcarpenter.ca/img/jc-lg.jpg
+  newSrc = config.meta.url + newSrc
+
   // Set new tag value
-  // console.log(src)
-  // console.log(newSrc)
   tag.attr('content', newSrc)
   content = $.html()
   return content
