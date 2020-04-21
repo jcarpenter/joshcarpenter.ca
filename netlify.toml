@@ -11,3 +11,8 @@
 
     # Default build command.
     command = "npm run build"
+
+    # Specify node version
+    # Per https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript
+    environment = { NODE_VERSION = "13" }
+

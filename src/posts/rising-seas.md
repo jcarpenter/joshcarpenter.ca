@@ -1,6 +1,6 @@
 ---
 title: 'Rising seas'
-image: 'Local-sea-level-variations-1992-2004.png'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.536Z'
 highlight: True
 modified: '2020-04-07T18:14:06.327Z'
