@@ -1,7 +1,6 @@
 const fse = require('fs-extra')
 const globby = require('globby')
 
-
 /**
  * Update image paths in post .md files.
  * Before: `img/ocean.png` (img directory is in same folder as .md files)

@@ -17,9 +17,11 @@
 {% if summary %}
     <meta property="og:description" content="{{ summary }}">
 {% endif %}
-{% if image %}
-    <meta property="og:image" content="/img/{{ image | addImgSuffix('-600px') }}">
-{% endif %}
+{# {% if image %}
+    <meta property="og:image" content="/img/{{ image }}">
+{% else %}
+    <meta property="og:image" content="/img/{{ image }}">
+{% endif %} #}
 <meta property="og:updated_time" content="{{ modified }}">
 <meta property="article:modified_time" content="{{ modified }}">
 <meta property="og:site_name" content="{{ josh.name }}">

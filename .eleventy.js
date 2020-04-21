@@ -101,15 +101,15 @@ module.exports = function (eleventyConfig) {
   const dateFilter = require("nunjucks-date-filter")
   eleventyConfig.addFilter("date", dateFilter)
 
-  // Add suffix to images. Important for responsive images.
-  // Per: https://jamesdoc.com/blog/2018/rwd-img-11ty/
-  eleventyConfig.addFilter("addImgSuffix", (imgStr, suffix) => {
-    const i = imgStr.lastIndexOf('.')
-    const name = imgStr.substring(0, i)
-    let ext = imgStr.substring(i + 1)
-    ext = "jpg" // Force to jpg
-    return `${name}${suffix}.${ext}`
-  });
+  // // Add suffix to images. Important for responsive images.
+  // // Per: https://jamesdoc.com/blog/2018/rwd-img-11ty/
+  // eleventyConfig.addFilter("addImgSuffix", (imgStr, suffix) => {
+  //   const i = imgStr.lastIndexOf('.')
+  //   const name = imgStr.substring(0, i)
+  //   let ext = imgStr.substring(i + 1)
+  //   ext = "jpg" // Force to jpg
+  //   return `${name}${suffix}.${ext}`
+  // });
 
 
   // -------- Collections -------- //
@@ -197,7 +197,7 @@ module.exports = function (eleventyConfig) {
   // Repo: https://github.com/markdown-it/markdown-it-footnote
   // Original render functions: https://github.com/markdown-it/markdown-it-footnote/blob/master/index.js
   // Docs: https://github.com/markdown-it/markdown-it-footnote#customize
-  const markdownItFootnote = require("markdown-it-footnote")
+  // const markdownItFootnote = require("markdown-it-footnote")
 
   // Add sub and sup tag support
   // https://github.com/markdown-it/markdown-it-sup
@@ -253,7 +253,6 @@ module.exports = function (eleventyConfig) {
     .use(markdownItMarks)
     .use(markdownItBracketedSpans)
     .use(markdownItAttrs)
-    // .use(markdownItFootnote)
     .use(markdownItImplicitFigures, {
       figcaption: true
     })
@@ -277,53 +276,6 @@ module.exports = function (eleventyConfig) {
   //   return `<a href="#fn${id}" id="fnref${refid}" aria-label="Footnote">${caption}</a>`;
   // }
 
-  // markdownLib.renderer.rules.footnote_block_open = function(tokens, idx, options) {
-  //   return `<section id="footnotes" aria-labelledby="footnotes-header" class=" thick-border">\n<h2 id="footnotes-header">Footnotes</h2>\n<ul class="two-column-list">\n`;
-  // }
-
-  // markdownLib.renderer.rules.footnote_block_close = function() {
-  //   return '\n</ul>\n</section>\n';
-  // }
-
-  // markdownLib.renderer.rules.footnote_open = function(tokens, idx, options, env, slf) {
-  //   const id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-
-  //   if (tokens[idx].meta.subId > 0) {
-  //     id += ':' + tokens[idx].meta.subId;
-  //   }
-
-  //   return `<li id="fn${id}" class="footnote-item" aria-label="Footnote ${id}">`;
-  // }
-
-  // markdownLib.renderer.rules.footnote_close = function() {
-  //   return '</li>\n';
-  // }
-
-  // markdownLib.renderer.rules.footnote_anchor = function (tokens, idx, options, env, slf) {
-
-  //   const id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-
-  //   if (tokens[idx].meta.subId > 0) {
-  //     id += ':' + tokens[idx].meta.subId;
-  //   }
-
-  //   /* ↩ with escape code to prevent display as Apple Emoji on iOS */
-  //   return ` <a href="#fnref${id}" class="footnote-backref" aria-label="Back to content">\u21a9\uFE0E</a>`;
-  // }
-
-  // markdownLib.renderer.rules.footnote_ref = function (tokens, idx, options, env, slf) {
-
-  //   const id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-  //   const caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
-  //   const refid = id;
-
-  //   if (tokens[idx].meta.subId > 0) {
-  //     refid += ':' + tokens[idx].meta.subId;
-  //   }
-
-  //   return `<a href="#fn${id}" id="fnref${refid}" aria-label="Footnote ${id}">${caption}</a>`;
-  // }
-
   // -------------- Register markdown-it as library with 11ty -------------- //
 
   // This has to go after other Markdown-It configurations (IIUC)
@@ -337,15 +289,15 @@ module.exports = function (eleventyConfig) {
   // -------------- Beautify HTML -------------- //
 
   // Uses https://www.npmjs.com/package/pretty
-  const pretty = require("pretty")
-  eleventyConfig.addTransform("pretty", function (content, outputPath) {
-    if (outputPath.endsWith(".html")) {
-      let prettyHTML = pretty(content, { ocd: true })
-      return prettyHTML
-    }
+  // const pretty = require("pretty")
+  // eleventyConfig.addTransform("pretty", function (content, outputPath) {
+  //   if (outputPath.endsWith(".html")) {
+  //     let prettyHTML = pretty(content, { ocd: true })
+  //     return prettyHTML
+  //   }
 
-    return content
-  })
+  //   return content
+  // })
 
 
   /* ==========================================================================
