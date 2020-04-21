@@ -1,6 +1,6 @@
 ---
 title: 'Nuclear facility flooding'
-image: 'fukushima-aerial-gettyimages.jpg'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.531Z'
 highlight: True
 modified: '2020-04-09T21:37:49.747Z'

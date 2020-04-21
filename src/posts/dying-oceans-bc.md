@@ -1,6 +1,6 @@
 ---
 title: 'Dying oceans: BC'
-image: 'marine-heatwave-2019-blobs.jpg'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.517Z'
 modified: '2020-04-02T22:03:18.679Z'
 tags:

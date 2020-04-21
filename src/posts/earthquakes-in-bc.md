@@ -1,6 +1,6 @@
 ---
 title: 'Earthquakes in BC'
-image: 'vic-earthquake-map-1.png'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.503Z'
 modified: '2020-04-09T00:50:40.935Z'
 tags:

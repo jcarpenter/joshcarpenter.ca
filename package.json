@@ -39,7 +39,7 @@
         "watch:css": "onchange 'src/styles/*.scss' -- npm run sass:dev",
         "watch:js": "onchange 'src/js/*.js' -d 500 -- npm run js",
         "watch:json": "onchange 'js/**/*.json' -d 500 -- npm run copy:json",
-        "watch:eleventy": "onchange 'src/**/*.{md,njk}' '.eleventy.js' 'utils/*.js' -d 500 -- npm run html",
+        "watch:eleventy": "onchange 'config.js' 'src/**/*.{md,njk}' '.eleventy.js' 'utils/*.js' -d 500 -- npm run html",
         "watch": "run-p watch:*",
         "serve": "npm run browsersync & npm run watch",
         "dev": "npm run clean && run-p copy sass:dev js html:eleventy img && run-s html:postprocess html:pretty serve",

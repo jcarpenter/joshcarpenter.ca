@@ -1,6 +1,6 @@
 ---
 title: 'Dying oceans'
-image: 'Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere.jpg'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.520Z'
 highlight: True
 modified: '2020-04-08T17:21:04.943Z'

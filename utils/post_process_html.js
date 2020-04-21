@@ -1,11 +1,12 @@
 const cheerio = require('cheerio')
 const config = require('../config')
-const updateImages = require('./update_images.js')
-const prepFiguresForLightbox = require('./prep_figures_for_lightbox.js')
-const prepFiguresForA11y = require('./prep_figures_for_a11y.js')
 const createFootnotesAndReferencedWorks = require('./create_foonotes_and_referenced_works.js')
 const fse = require('fs-extra')
 const globby = require('globby')
+const prepFiguresForA11y = require('./prep_figures_for_a11y.js')
+const prepFiguresForLightbox = require('./prep_figures_for_lightbox.js')
+const updateImages = require('./update_images.js')
+const updateMetaTags = require('./update_meta_tags.js')
 
 
 /**
@@ -20,7 +21,6 @@ function addHangingPunctuation(content) {
 async function postProcess() {
 
   const allHtmlFiles = globby.sync('_site/**/*.html')
-  const allImageFiles = globby.sync('_site/img/*.{jpg,png}')
 
   allHtmlFiles.map(async (path) => {
     let file = await fse.readFile(path, 'utf8')
@@ -29,7 +29,8 @@ async function postProcess() {
     file = addHangingPunctuation(file)
     file = prepFiguresForLightbox(file)
     file = prepFiguresForA11y(file)
-    file = updateImages(file, allImageFiles)
+    file = updateImages(file)
+    file = updateMetaTags(file)
     file = createFootnotesAndReferencedWorks(file)
 
     // Write

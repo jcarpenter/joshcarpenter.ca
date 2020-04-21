@@ -34,7 +34,7 @@ function setImageFrontMatterField(file) {
   }
 
   // If image field is present but empty, and there's an image(s) in the doc,
-  // get the first image, and populate the field with it.
+  // set value to 'first-image'. 
   if (imagePath == null || imagePath == '') {
     // Find first image in doc
     // Demo: https://regex101.com/r/goasLm/1/
@@ -43,7 +43,7 @@ function setImageFrontMatterField(file) {
     if (img) {
       // Construct new image field.
       const imageField = file.match(/^image.*/m)
-      const newImageField = `image: '${img[2]}'`
+      const newImageField = `image: 'getFirstImage'`
 
       file = file.replace(imageField, newImageField)
     }

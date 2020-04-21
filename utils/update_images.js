@@ -1,14 +1,16 @@
 const cheerio = require('cheerio')
 const config = require('../config')
+const globby = require('globby')
 
 /**
 * Add responsive attributes to jpg and pngs (only), and set `src` to largest available size.
 * Update all `src` paths to be absolute, and point to flat img/ structure.
 */
-module.exports = (content, imgDirectoryContents) => {
+module.exports = (content) => {
 
   const $ = cheerio.load(content)
   const images = $('img')
+  const imgDirectoryContents = globby.sync('_site/img/*.{jpg,png}')
 
   images.each(function () {
 

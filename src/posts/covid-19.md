@@ -1,6 +1,6 @@
 ---
 title: 'Covid-19'
-image: 'covid19-infection-rates.jpg'
+image: 'getFirstImage'
 created: '2020-03-13T04:02:21.824Z'
 js:
 - file: 'covid19-chart.js'

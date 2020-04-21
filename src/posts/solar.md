@@ -1,6 +1,6 @@
 ---
 title: 'Solar'
-image: 'solar-offgrid-with-generator.png'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.537Z'
 modified: '2020-03-20T23:00:20.827Z'
 tags:

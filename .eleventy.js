@@ -1,6 +1,6 @@
-module.exports = function (eleventyConfig) {
+const cheerio = require('cheerio')
 
-  const cheerio = require('cheerio')
+module.exports = function (eleventyConfig) {
 
   /* 
 
@@ -46,7 +46,7 @@ module.exports = function (eleventyConfig) {
         // Layouts directory. Relative to input directory.
         layouts: "layouts",
 
-        // Global data files directory (data available to all templates). Relative to input directory.
+        // Global data files directory (data available to all templates). Relative to input directory. "All *.json and module.exports values from *.js files in this directory will be added into a global data object available to all templates." Per: https://www.11ty.dev/docs/data-global/
         data: "data",
 
         // Top-level directory for output.

@@ -1,6 +1,6 @@
 ---
 title: 'Storms'
-image: 'hurricane-irma-satellite.jpg'
+image: 'getFirstImage'
 created: '2020-02-27T18:45:37.538Z'
 highlight: True
 modified: '2020-04-15T16:20:50.994Z'
