@@ -30,7 +30,7 @@ async function postProcess() {
     file = prepFiguresForLightbox(file)
     file = prepFiguresForA11y(file)
     file = updateImages(file)
-    file = updateMetaTags(file)
+    file = await updateMetaTags(file)
     file = createFootnotesAndReferencedWorks(file)
 
     // Write

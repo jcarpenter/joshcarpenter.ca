@@ -11,8 +11,9 @@ module.exports = (content) => {
   const marks = $('#post-body mark')
   const citations = $('#post-body mark .citation')
 
-  const footnotes_open = `<section id="footnotes" aria-labelledby="footnotes-header" class="thick-border hidden"><h2 id="footnotes-header">Footnotes</h2><ul class="two-column-list">`
-  const footnotes_close = `</ul></section>`
+  const footnotes_open = `<section id="footnotes" aria-labelledby="footnotes-header" class="thick-border hidden"><h2 id="footnotes-header">Footnotes</h2><ol class="two-column-list">`
+  const footnotes_close = `</ol></section>`
+
   const references_open = `<section id="references" aria-labelledby="references-header" class="thick-border"><h2 id="references-header">Referenced works</h2><ul class="two-column-list">`
   const references_close = `</ul></section>`
 
@@ -28,7 +29,7 @@ module.exports = (content) => {
     const mark_contents = mark.html()
     const link_to_fn = `<a href="#fn${index}" id="fn-ref${index}" class="fn-link" aria-label="Footnote ${index}">${index}</a>`
     const link_back = `<a href="#fn-ref${index}" class="fn-back-link" aria-label="Back to content">\u21a9\uFE0E</a>`
-    const list_item = `<li id="fn${index}" class="fn-item" aria-label="Footnote ${index}">${mark_contents} ${link_back}</li>`
+    const list_item = `<li id="fn${index}" class="fn-item" aria-label="Footnote">${mark_contents} ${link_back}</li>`
 
     // Add <li> with mark contents
     footnotes_list += `${list_item}`

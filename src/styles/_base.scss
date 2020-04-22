@@ -430,7 +430,7 @@ h3 {
 
 /* -------------- Two column list -------------- */
 
-ul.two-column-list {
+.two-column-list {
     line-height: var(--grid-three-quarters);
     margin: 0;
     padding: 0;
@@ -470,7 +470,7 @@ ul.two-column-list {
 }
 
 @media (min-width: 480px) {
-    ul.two-column-list {
+    .two-column-list {
         column-count: 2;
     }
 }
