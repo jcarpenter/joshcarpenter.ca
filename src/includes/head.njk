@@ -1,13 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{# Get title suffix from (optional) `titleSuffix` front matter field. 
-If it does not exist, use default from config  #}
-{% if titleSuffix %}
-    <title>{{ title }}{{ titleSuffix }}</title>
-{% else %}
-    <title>{{ title }}{{ config.meta.title_suffix }}</title>
-{% endif %}
+{# Append title suffix if template or layout has opted-in, in front matter. #}
+<title>{{ title }}{% if addTitleSuffix %}{{ config.meta.title_suffix }}{% endif %}</title>
 
 {# Get summary from (optional) `summary` front matter field. 
 If it does not exist, use default from config  #}
@@ -27,13 +22,8 @@ If it does not exist, use default from config  #}
 <!-- Social -->
 <meta property="og:type" content="{{ type }}">
 
-{# Get title suffix from (optional) `titleSuffix` front matter field. 
-If it does not exist, use default from config  #}
-{% if titleSuffix %}
-    <meta property="og:title" content="{{ title }}{{ titleSuffix }}">
-{% else %}
-    <meta property="og:title" content="{{ title }}{{ config.meta.title_suffix }}">
-{% endif %}
+{# Append title suffix if template or layout has opted-in, in front matter. #}
+<meta property="og:title" content="{{ title }}{% if addTitleSuffix %}{{ config.meta.title_suffix }}{% endif %}">
 
 <meta property="og:url" content="{{ config.meta.url }}{{ page.url }}">
 

@@ -39,6 +39,7 @@ async function postProcess() {
     file = createFootnotesAndReferencedWorks(file)
 
     // Write
+    console.log(`Post processed ${path}`.green)
     await fse.writeFile(path, file)
   })
 }

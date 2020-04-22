@@ -1,7 +1,7 @@
 const meta = {
   title_suffix: " | Josh Carpenter",
   url: "https://joshcarpenter.ca",
-  summary: "TODO",
+  summary: "Personal website of Josh Carpenter, UX designer. Currently exploring climate change and living in Vancouver, Canada. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of A-Frame, and interaction design lead for Firefox OS.",
   default_image: {
     url: "jc.png",
     width: 1200,
