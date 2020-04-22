@@ -36,7 +36,8 @@ const responsive_images = {
 const bio = {
   name: "Josh Carpenter",
   twitter: "joshcarpenter",
-  email: "josh@joshcarpenter.ca"
+  email: "josh@joshcarpenter.ca",
+  linkedin: "https://www.linkedin.com/in/josh-carpenter-3575133"
 }
 
 module.exports.meta = meta

@@ -1,5 +1,4 @@
-const cheerio = require('cheerio')
-const config = require('../config')
+const colors = require('colors')
 const createFootnotesAndReferencedWorks = require('./create_foonotes_and_referenced_works.js')
 const fse = require('fs-extra')
 const globby = require('globby')
@@ -18,11 +17,17 @@ function addHangingPunctuation(content) {
   return content.replace(/(<p>“)/gm, '<p class="hanging-punctuation">“')
 }
 
+/**
+ * Apply various transforms to the HTML files output from elevent.
+ * E.g. Adding accessibility attributes, and updating image paths.
+ */
 async function postProcess() {
 
   const allHtmlFiles = globby.sync('_site/**/*.html')
 
   allHtmlFiles.map(async (path) => {
+
+    // console.log(path.black.bgGreen)
     let file = await fse.readFile(path, 'utf8')
 
     // Update

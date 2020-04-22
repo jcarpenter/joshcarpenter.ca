@@ -1,7 +1,6 @@
 const cheerio = require('cheerio')
 const colors = require('colors')
 const config = require('../config')
-const fse = require('fs-extra')
 const globby = require('globby')
 const sharp = require('sharp')
 
