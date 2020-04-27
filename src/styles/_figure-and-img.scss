@@ -2,20 +2,18 @@
    Figure & Img
    ========================================================================== */
 
-article > figure {
-    /* grid-column: right; */
-    /* align-self: end; */
-    /* justify-self: end; */
-    /* overflow: visible; */
-    /* height: 0em; */
-
-    margin-top: 0;
-    margin-bottom: var(--block-margin-bottom);
-}
+// article figure {
+//     /* grid-column: right; */
+//     /* align-self: end; */
+//     /* justify-self: end; */
+//     /* overflow: visible; */
+//     /* height: 0em; */
+//     margin-top: 0;
+//     margin-bottom: var(--block-margin-bottom);
+// }
 
 figure {
-    margin: 0;
-    position: relative;
+    margin: 0 0 var(--block-margin-bottom);
 }
 
 figure img {

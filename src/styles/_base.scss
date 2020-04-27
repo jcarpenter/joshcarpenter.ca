@@ -99,6 +99,16 @@ body {
 //     }
 // }
 
+/* -------------- Main -------------- */
+
+// We hide the outline on main, or else it appears when main is clicked.
+// This happens because we set tabindex="-1" on main. We do that because
+// it's recommended for the targets of "Skip to content" links.
+// Per: https://webdesign.tutsplus.com/articles/keyboard-accessibility-tips-using-html-and-css--cms-31966
+main:focus {
+    outline: none;
+}
+
 /* -------------- Links -------------- */
 
 a {

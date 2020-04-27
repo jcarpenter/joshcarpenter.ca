@@ -27,8 +27,8 @@ module.exports = (content) => {
 
     const mark = $(this)
     const mark_contents = mark.html()
-    const link_to_fn = `<a href="#fn${index}" id="fn-ref${index}" class="fn-link" aria-label="Footnote ${index}">${index}</a>`
-    const link_back = `<a href="#fn-ref${index}" class="fn-back-link" aria-label="Back to content">\u21a9\uFE0E</a>`
+    const link_to_fn = `<a href="#fn${index}" id="fn-link-${index}" class="fn-link" aria-label="Footnote">${index}</a>`
+    const link_back = `<a href="#fn-link-${index}" class="fn-back" aria-label="Back to content">\u21a9\uFE0E</a>`
     const list_item = `<li id="fn${index}" class="fn-item" aria-label="Footnote">${mark_contents} ${link_back}</li>`
 
     // Add <li> with mark contents

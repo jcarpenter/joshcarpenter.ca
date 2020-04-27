@@ -82,11 +82,11 @@
   function setup() {
     // ------- TEST ------- //
 
-    const testBtn = document.getElementById('testBtn')
+    // const testBtn = document.getElementById('testBtn')
 
-    testBtn.onclick = () => {
-      cloneFootnote()
-    }
+    // testBtn.onclick = () => {
+    //   cloneFootnote()
+    // }
 
     // testBtn.addEventListener('pointerup', cloneFootnote)
 
