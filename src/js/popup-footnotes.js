@@ -1,8 +1,7 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   function setup() {
-
     // Setup postBody
     const article = document.querySelector('main article')
 
@@ -10,7 +9,6 @@
     const footnoteLinks = document.querySelectorAll('.fn-link')
 
     for (const link of footnoteLinks) {
-
       // Create `.fn` wrapper span
       const span = document.createElement('span')
       span.classList.add('fn')
@@ -37,7 +35,7 @@
       // Get id from link href. E.g. `fn1` after we trim the #.
       const id = link.getAttribute('href').substring(1)
       const contents = article.querySelector(`#${id} *`)
-      let backlink = contents.querySelector('.fn-back')
+      const backlink = contents.querySelector('.fn-back')
       if (backlink) contents.remove(backlink)
       popup.appendChild(contents)
       span.appendChild(popup)
@@ -51,7 +49,7 @@
       link.onclick = (e) => {
         e.preventDefault()
         span.classList.toggle('show')
-        let isExpanded = (link.getAttribute('aria-expanded') == 'true')
+        const isExpanded = (link.getAttribute('aria-expanded') == 'true')
         link.setAttribute('aria-expanded', !isExpanded)
       }
 
