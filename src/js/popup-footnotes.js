@@ -1,13 +1,14 @@
-(function(window, document) {
+(function (window, document) {
   'use strict'
 
   function setup() {
-    // Setup postBody
+    // Get article
     const article = document.querySelector('main article')
 
-    // Setup footnotes
+    // Get footnotes
     const footnoteLinks = document.querySelectorAll('.fn-link')
 
+    // Setup popups, link attributes, and event listeners
     for (const link of footnoteLinks) {
       // Create `.fn` wrapper span
       const span = document.createElement('span')
@@ -63,7 +64,62 @@
       })
     }
 
+    // Remove footnotes <section>
     document.querySelector('#footnotes').remove()
+
+
+    /* 
+    Ensure selected footnotes blur() on Mobile Safari:
+    
+    Mobile Safari makes it difficult to deselect focused elements. Unlike other browsers, it does not deselect (blur) a focused element when the user clicks an empty area of the page. The element is only deselected when the user selects another focusable element, (or) taps the close button on the iOS keyboard. Apple probably does this to help users avoid closing the keyboard accidentally while entering forms.
+
+    The fix here is simple:
+
+    - If device has touchscreen, listen for `touchdown` pointer event on <main>
+    - If the document.activeElement is a footnote link, blur it.
+    */
+
+    /**
+     * Detect if device has touchscreen.
+     * We only want to add our "blur on touch" event listeners when Mobile Safari is being used. The best we can do is check for touchscreen. The following is taken from MDN: https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+     */
+    function hasTouchScreen() {
+      
+      let hasTouch = false;
+      if ("maxTouchPoints" in navigator) {
+        hasTouch = navigator.maxTouchPoints > 0;
+      } else if ("msMaxTouchPoints" in navigator) {
+        hasTouch = navigator.msMaxTouchPoints > 0;
+      } else {
+        const mQ = window.matchMedia && matchMedia("(pointer:coarse)");
+        if (mQ && mQ.media === "(pointer:coarse)") {
+          hasTouch = !!mQ.matches;
+        } else if ('orientation' in window) {
+          hasTouch = true; // deprecated, but good fallback
+        } else {
+          // Only as a last resort, fall back to user agent sniffing
+          const UA = navigator.userAgent;
+          hasTouch = (
+            /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+            /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
+          );
+        }
+      }
+
+      return hasTouch
+    }
+
+    if (hasTouchScreen()) {
+      
+      const main = document.querySelector('main')
+      main.addEventListener('pointerdown', (e) => {
+        let activeEl = document.activeElement
+        if (document.activeElement.classList.contains('fn-link')) {
+          activeEl.blur()
+          console.log("blur")
+        }
+      })
+    }
 
     return
   }
