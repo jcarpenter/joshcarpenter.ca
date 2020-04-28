@@ -34,7 +34,7 @@ async function postProcess() {
     file = addHangingPunctuation(file)
     file = prepFiguresForLightbox(file)
     file = prepFiguresForA11y(file)
-    file = updateImages(file)
+    file = await updateImages(file, path)
     file = await updateMetaTags(file)
     file = createFootnotesAndReferencedWorks(file)
 

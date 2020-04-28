@@ -323,25 +323,41 @@ h1 {
 /* -------------- h2 -------------- */
 
 h2 {
-    border-top: 2px solid var(--clr-gray-lightest);
     color: var(--clr-gray-darker);
     font-size: var(--font-lg-3);
     font-weight: 700;
     line-height: var(--grid-1-and-quarter);
-    margin-bottom: var(--grid);
-    margin-top: var(--grid-2);
+    margin-top: var(--grid-1) 0 0;
+
+    &::before {
+        content: "";
+        background-color: var(--clr-gray-light);
+        height: calc(var(--grid-quarter) / 2);
+        display: block;
+        margin: var(--grid-1-and-half) 0 var(--grid);
+    }
 }
 
 h2:first-of-type {
     border: none;
     padding: 0;
+
+    &::before {
+        height: 0;
+        margin: 0;
+    }
 }
 
 @media (min-width: 480px) {
+    
     h2 {
-        border-top: none;
         font-size: var(--font-lg-1);
         padding: 0;
+
+        &::before {
+            height: 0;
+            margin: 0;
+        }
     }
 
     /* Reduce top-margin of h2 that follow blocks, to help ensure consistent vertical rhythm. */

@@ -19,14 +19,16 @@ figure {
 figure img {
     // box-shadow: 0px 1px 26px -14px rgba(0, 0, 0, 0.175);
 //     border: 21px solid rgba(0, 0, 0, 0.06);
-    object-fit: cover;
-    width: 100%;
+    // object-fit: contain;
+    max-width: 100%;
+    height: auto;
     box-sizing: border-box;
     margin: 0;
     // border-radius: 0.25em;
     transform: scale(1, 1);
     transition: box-shadow 0.08s, transform 0.08s;
     transition-timing-function: ease-out;
+    background-color: var(--clr-gray-lightest);
 }
 
 figure img:focus {

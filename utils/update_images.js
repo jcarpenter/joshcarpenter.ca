@@ -1,32 +1,36 @@
 const cheerio = require('cheerio')
 const config = require('../config')
 const globby = require('globby')
+const sharp = require('sharp')
 
 /**
-* Add responsive attributes to jpg and pngs (only), and set `src` to largest available size.
-* Update all `src` paths to be absolute, and point to flat img/ structure.
+* - Set responsive attributes, and set `src` to largest available size (jpg & png only)
+* - Set `loading` attribute (jpg & png only)
+* - Update paths to absolute and flat images directory `/img/`
+*   - Before: `../img/post/hello.jpg`
+*   - After: `/img/hello.jpg`
+* - Set image width/height attributes.
 */
-module.exports = (content) => {
+
+module.exports = async (content, path) => {
 
   const $ = cheerio.load(content)
   const images = $('img')
   const imgDirectoryContents = globby.sync('_site/img/*.{jpg,png}')
+  const isTypeArticle = path.includes('post') || path.includes('design')
 
-  images.each(function () {
-
-    // Before: `../img/post/hello.jpg`
-    // After: `/img/hello.jpg`
+  images.each(function (index, element) {
     let img = $(this)
     let src = img.attr('src')
     let ext = src.slice(src.length - 3)
     let name = src.substring(src.lastIndexOf("/") + 1).slice(0, -4)
+    let newSrc
 
     // Add responsive attributes to jpg and pngs only
     if (ext == 'jpg' || ext == 'png') {
 
       let srcset = ''
       let matches = 0
-      let newSrc
 
       // For the current image, find paths in img/ directory with matching names
       // Push each match into srcset
@@ -55,13 +59,56 @@ module.exports = (content) => {
         img.attr('sizes', config.sizes_attribute)
       }
 
+      // Set update src
       img.attr('src', newSrc)
 
+      // Makes images in post or design articles load `lazy`.
+      // Except first image. It should load `eager`.
+      // Docs: https://web.dev/native-lazy-loading/
+      if (isTypeArticle) {
+        const loadingVal = index > 1 ? 'lazy' : 'eager'
+        img.attr('loading', loadingVal)
+      }
     } else {
-      const newSrc = '/img/' + src.substring(src.lastIndexOf("/") + 1)
+
+      // For other file types (svg, gif), simply update path.
+      // Before: `../img/post/hello.jpg`
+      // After: `/img/hello.jpg`
+      newSrc = '/img/' + src.substring(src.lastIndexOf("/") + 1)
       img.attr('src', newSrc)
     }
   })
+
+  /*
+  Set image width/height attributes
+  First we have to create an array we can iterata over.
+  Each array item is an object with 1) Cheerio image object, and 2) image path.
+  We get the image's width/height using sharp, then assign width/height attributes.
+  We use Promise.all() to wait for all to complete before `return content`.
+  */
+
+  let imagesArray = []
+
+  images.each(function (i, el) {
+    const img = $(this)
+    const src = img.attr('src')
+    imagesArray.push({
+      cheerioObj: img,
+      src: src
+    })
+  })
+
+  await Promise.all(
+    imagesArray.map(async image => {
+      try {
+        let metadata = await sharp(`_site${image.src}`).metadata()
+        image.cheerioObj.attr('width', metadata.width)
+        image.cheerioObj.attr('height', metadata.height)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+  )
 
   content = $.html()
   return content

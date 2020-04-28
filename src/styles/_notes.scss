@@ -37,6 +37,7 @@
     line-height: 1em;
     margin-left: 0em; // Was 0.2em, but gap was too large.
     text-decoration: none;
+    padding: 0.15em 0.25em 0.2em;
 }
 
 .fn-link:hover,
@@ -46,18 +47,18 @@
 }
 
 /* Larger icon for touch devices */
-@media (hover: none) {
-    .fn-link {
-        padding: 0.2em 0.45em;
-    }
-}
+// @media (hover: none) {
+//     .fn-link {
+//         padding: 0.2em 0.45em;
+//     }
+// }
 
-/* Smaller icon for desktop devices */
-@media (hover) {
-    .fn-link {
-        padding: 0.15em 0.25em 0.2em;
-    }
-}
+// /* Smaller icon for desktop devices */
+// @media (hover) {
+//     .fn-link {
+//         padding: 0.15em 0.25em 0.2em;
+//     }
+// }
 
 // /* -------------- Blockquote and Figure variations -------------- */
 
@@ -102,7 +103,6 @@ figcaption .fn-link {
 
 /* Popup: Desktop and larger touch-based devices */
 @media (hover), (hover: none) and (min-width: 600px) {
-    
     .fn {
         --notch-size: 0.6em;
         --popup-distance: -0.5em;
@@ -157,10 +157,7 @@ figcaption .fn-link {
         }
     }
 
-    /*
-                                                                                  This is not currently working.
-    */
-    .fn:focus-within .fn-link[aria-expanded=true] + .fn-popup,
+    .fn:focus-within .fn-link[aria-expanded="true"] + .fn-popup,
     .fn:hover .fn-popup {
         // display: block;
         opacity: 1;
@@ -175,8 +172,7 @@ figcaption .fn-link {
 /* The popup appears along the bottom of the screen, and a dark overlay covers the rest of the content.*/
 /* TODO: What about Windows devices with both tap and touch? They won't be able to tap. May want to use `@media (pointer:fine)` and `@media (pointer:coarse)` instead? */
 
-@media(hover:none) and (max-width: 599px) {
-
+@media (hover: none) and (max-width: 599px) {
     .fn-popup {
         position: fixed;
         left: 0;
@@ -201,6 +197,8 @@ figcaption .fn-link {
     }
 
     /* Activated */
+    .fn:focus-within .fn-link[aria-expanded="true"] + .fn-popup,
+    // .fn:focus-within .fn-link[aria-expanded="true"] + .fn-popup,
     .fn:hover .fn-popup {
         /* Transition settings to visible state.*/
         /* Set visibility immediately (0s).*/

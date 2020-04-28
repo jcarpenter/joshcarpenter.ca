@@ -2,7 +2,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {# Append title suffix if template or layout has opted-in, in front matter. #}
-<title>{{ title }}{% if addTitleSuffix %}{{ config.meta.title_suffix }}{% endif %}</title>
+<title>{{ title }}
+    {% if addTitleSuffix %}{{ config.meta.title_suffix }}
+    {% endif %}
+</title>
 
 {# Get summary from (optional) `summary` front matter field. 
 If it does not exist, use default from config  #}
@@ -63,6 +66,10 @@ If it does not exist, use default from config  #}
 <!-- Basic favicon -->
 <link rel="shortcut icon" href="/img/TODO.png">
 #}
+
+<!-- Preload -->
+<link rel="preload" href="/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/PublicSans-Bold.woff2" as="font" type="font/woff2">
 
 <!-- Styles -->
 {% for file in css %}
