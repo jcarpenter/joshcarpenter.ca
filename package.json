@@ -23,7 +23,7 @@
         "copy:prism": "cpy 'src/styles/prism/**' '_site/styles/prism'",
         "copy:fonts": "cpy 'src/fonts/**' '_site/fonts'",
         "copy:json": "cpy 'js/**/*.json'  '../_site/' --cwd=src --parents",
-        "copy:gif": "cpy 'img/**/*.gif' '../_site' --cwd=src --parents",
+        "copy:gif": "cpy 'img/**/*.gif' '../_site/img' --cwd=src",
         "copy:js:third-party": "cpy 'js/third-party/**/*' '../_site/' --cwd=src --parents",
         "copy": "run-p copy:*",
         "js:dev": "cpy 'js/*.js'  '../_site/' --cwd=src --parents",
