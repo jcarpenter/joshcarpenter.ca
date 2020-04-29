@@ -25,9 +25,9 @@ const responsive_images = {
       descriptor: "900w"
     },
     {
-      width: 1440,
+      width: 1200,
       suffix: "-lg",
-      descriptor: "1440w"
+      descriptor: "1200w"
     },
   ],
   sizes_attribute: "(min-width: 600px) 572px, 90vw"
