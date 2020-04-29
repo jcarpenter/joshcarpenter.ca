@@ -8,12 +8,12 @@
         "url": "https://github.com/jcarpenter/joshcarpenter-2019-site"
     },
     "scripts": {
-        "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/push-update.sh",
+        "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/old/push-update.sh",
         "fetch-climate-posts:prep": "rm -rf src/posts/tmp",
         "fetch-climate-posts:clone": "git clone -b exported-posts https://github.com/jcarpenter/climate-research.git src/posts/tmp",
         "fetch-climate-posts:update-posts": "node ./utils/update_climate_posts.js",
         "fetch-climate-posts:move-posts": "cpy 'src/posts/tmp/*' 'src/posts'",
-        "fetch-climate-posts:move-images": "cpy 'src/posts/tmp/img/*' 'src/img/posts'",
+        "fetch-climate-posts:move-images": "node utils/move_fetched_images.js",
         "fetch-climate-posts:cleanup": "rm -rf src/posts/tmp",
         "fetch-climate-posts": "run-s fetch-climate-posts:*",
         "clean": "rm -rf _site",
