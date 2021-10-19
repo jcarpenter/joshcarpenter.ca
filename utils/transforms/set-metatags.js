@@ -53,7 +53,7 @@ module.exports = async function (content, outputPath) {
     $(meta).attr('content', `https://joshcarpenter/img/${filename}`)
 
     // Set width and height meta tags
-    const { width, height, type } = imageSize(`_site/img/${filename}`)
+    const { width, height, type } = imageSize(path.resolve("_site/img/", filename))
     meta.after(`<meta property="og:image:height" content="${height}">`)
     meta.after(`<meta property="og:image:width" content="${width}">`)
 
@@ -94,7 +94,6 @@ module.exports = async function (content, outputPath) {
         await sharp(sourcePath).resize(1200).jpeg({ quality: 85 }).toFile(destinationPath)
       }
     } else if (sourceMetadata.type !== 'jpg') {
-      console.log('Not a jpeg')
       if (!fs.existsSync(destinationPath)) {
         await sharp(sourcePath).jpeg({ quality: 85 }).toFile(destinationPath)
       }

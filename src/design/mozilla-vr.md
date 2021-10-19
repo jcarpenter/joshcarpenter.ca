@@ -2,7 +2,7 @@
 title: "Mozilla VR"
 tags: [ux]
 publish: true
-image: "mozvr-hiro-interface-collage.png"
+image: "img/mozvr-hiro-interface-collage.png"
 summary: "TODO"
 ---
 

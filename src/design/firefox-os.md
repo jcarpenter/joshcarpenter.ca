@@ -2,7 +2,7 @@
 title: "Firefox OS"
 tags: [ux]
 publish: true
-image: "ffos-billboard.jpg"
+image: "img/ffos-billboard.jpg"
 summary: "Interaction design for Mozilla's web based mobile operating system. Designed 2012-2013 while I was an Interaction Design lead."
 ---
 

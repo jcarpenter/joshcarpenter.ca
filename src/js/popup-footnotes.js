@@ -1,7 +1,7 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
-  /** 
+  /**
    * Create popups for footnotes.
    * - Copy contents of footnote into them.
    * - Add event listeners to link
@@ -9,10 +9,9 @@
    * - 2) the button is focused and aria-expanded="true"
    */
   function setup() {
-
     // Pointer/touch events are unreliable on Mobile Safari,
     // so we instead must use matchMedia to differentiate touch
-    // versus non-touch devices. 
+    // versus non-touch devices.
     const isTouch = window.matchMedia('(hover: none)').matches
 
     // Get footnotes
@@ -20,7 +19,6 @@
 
     // For each...
     footnoteLinks.forEach((link) => {
-
       const sup = link.parentNode
       const index = sup.id.match(/\d+/)[0]
 
@@ -77,7 +75,6 @@
           link.setAttribute('aria-expanded', 'false')
         }
       })
-
     })
 
     // Hide popup when user presses escape
@@ -110,7 +107,6 @@
         }
       })
     }
-
   }
 
   window.addEventListener('DOMContentLoaded', setup)
