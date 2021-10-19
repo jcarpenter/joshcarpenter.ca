@@ -53,10 +53,15 @@ module.exports = async function (content, outputPath) {
     $(meta).attr('content', `https://joshcarpenter/img/${filename}`)
 
     // Set width and height meta tags
-    const { width, height, type } = imageSize(path.resolve("_site/img/", filename))
-    meta.after(`<meta property="og:image:height" content="${height}">`)
-    meta.after(`<meta property="og:image:width" content="${width}">`)
+    // const metadata = imageSize(path.resolve("_site/img/", filename))
+    const metadata = imageSize(path.resolve("_site/img/", filename), function (err, dimensions) {
+    })
 
+    if (metadata) {
+      meta.after(`<meta property="og:image:height" content="${metadata.height}">`)
+      meta.after(`<meta property="og:image:width" content="${metadata.width}">`)
+    }
+    
   } else {
 
     // Generate optimized image, 1200px wide...
@@ -115,9 +120,15 @@ module.exports = async function (content, outputPath) {
     $(meta).attr('content', `https://joshcarpenter/img/${filename}`)
 
     // Set width and height meta tags
-    const { width, height, type } = imageSize(destinationPath)
-    meta.after(`<meta property="og:image:height" content="${height}">`)
-    meta.after(`<meta property="og:image:width" content="${width}">`)
+    const metadata = imageSize(destinationPath, function (err, dimensions) {
+    })
+    
+    if (metadata) {
+      meta.after(`<meta property="og:image:height" content="${metadata.height}">`)
+      meta.after(`<meta property="og:image:width" content="${metadata.width}">`)
+    }
+    // meta.after(`<meta property="og:image:height" content="${height}">`)
+    // meta.after(`<meta property="og:image:width" content="${width}">`)
 
   }
 

@@ -314,7 +314,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("removeTodos", removeTodos)
   eleventyConfig.addTransform("renderFootnotes", renderFootnotes)
   eleventyConfig.addTransform("renderCitations", renderCitations)
-  eleventyConfig.addTransform("prettierHtml", prettierHtml)
+  // eleventyConfig.addTransform("prettierHtml", prettierHtml)
   eleventyConfig.addTransform("modifyIframes", modifyIframes)
   eleventyConfig.addTransform("makeVideos", makeVideos)
   eleventyConfig.addTransform("modifyFigures", modifyFigures)

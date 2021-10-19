@@ -96,7 +96,6 @@ module.exports = async function (content, outputPath) {
   // Wait for all image variations to be created
   // and HTML to be updated...
   await Promise.all(promises)
-  console.log('PROMISES FINSIHED')
 
   // Then return the updated html
   return $.html()
