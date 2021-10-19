@@ -1,4 +1,4 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   // Elements
@@ -8,7 +8,7 @@
   let next
   let background
   let end
-  let items = []
+  const items = []
   let firstFocusableEl
   let lastFocusableEl
 
@@ -17,17 +17,15 @@
   let lastItemFocused
 
 
-
   // -------- Load -------- //
 
   /**
    * Clone element. Into a holder div.
    * Holder is removed when transition on it ends and it doesn't have `open` class.
-   * Holder > Media is populated with `src` version of image. 
+   * Holder > Media is populated with `src` version of image.
    * We clone the original img element, then remove responsive attributes.
    */
   function loadItemByIndex(index) {
-
     // Create elements
     const item = document.createElement('div')
     const mediaWrapper = document.createElement('div')
@@ -117,7 +115,7 @@
   function openLightbox() {
     lightbox.setAttribute('aria-hidden', 'false')
 
-    // Store currently focused element, so we can restore focus when we close lightbox 
+    // Store currently focused element, so we can restore focus when we close lightbox
     lastItemFocused = document.activeElement
 
     // Stop scrolling while lightbox is open
@@ -132,7 +130,6 @@
   }
 
   function closeLightbox() {
-
     // Hide and empty
     lightbox.setAttribute('aria-hidden', 'true')
     emptyLightbox()
@@ -144,7 +141,7 @@
     // Null active item
     indexOfActiveItem = null
 
-    // Restore focus() to the item last focused before lightbox opened (probably button) 
+    // Restore focus() to the item last focused before lightbox opened (probably button)
     lastItemFocused.focus()
 
     // Reactivate scrolling
@@ -241,11 +238,8 @@
    * Add keyboard controls
    */
   function addKeyboardControls() {
-
     lightbox.addEventListener('keydown', (e) => {
-
       if (isOpen()) {
-        
         if (e.defaultPrevented) return
         const key = e.key || e.keyCode
 
@@ -295,7 +289,6 @@
    * - There are figures with data-lightbox=true
    */
   function setup() {
-
     // Check precondition: Is viewport is large enough?
     const islargeEnough = isViewportLargeEnough()
     if (!islargeEnough) return
@@ -335,13 +328,12 @@
 
     // For each `data-lightbox` figure...
     lightboxFigures.forEach((figure, index) => {
-
       // Store relevant information in a new object in the `items` array
       const newItem = {
         id: figure.id,
         media: figure.querySelector('.thumb'),
         type: figure.getAttribute('data-lightbox'),
-        caption: figure.querySelector('figcaption')
+        caption: figure.querySelector('figcaption'),
       }
       items.push(newItem)
 

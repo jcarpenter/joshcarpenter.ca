@@ -2,27 +2,25 @@
 
 /*
 Some elements do not fit to the grid. If we do not adjust their
-heights to fit the grid, every subsequent element will be 
+heights to fit the grid, every subsequent element will be
 "knocked off" the grid. We find elements we know are problematic,
 and increase their heights to the next grid line.
 */
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   // Once DOM has loaded, find lazy-loading images, and setup listeners
   // on them, so we can call resize when the user scrolls and they load.
   // window.addEventListener('load', cropImage)
 
-  // Once whole page has loaded, including assets, 
+  // Once whole page has loaded, including assets,
   // crop loaded images.
   window.addEventListener('load', () => {
-
     // Get croppable elements on the page
     const croppables = getCroppableElements()
 
     croppables.forEach((el) => {
       if (el.localName == 'img') {
-
         // Crop images
         if (el.complete) {
           cropElementToGrid(el)
@@ -31,13 +29,10 @@ and increase their heights to the next grid line.
             cropElementToGrid(el)
           })
         }
-
       } else {
-
         // Crop other (non-image) croppable elements...
         // E.g. figcaption
         cropElementToGrid(el)
-
       }
     })
   })
@@ -46,14 +41,13 @@ and increase their heights to the next grid line.
   // Debounce to reduce churn.
   // Don't run if page is still loading.
   window.addEventListener('resize', debounce(() => {
-
     if (document.readyState !== 'complete') return
 
     // Get croppable elements on the page
     const croppables = getCroppableElements()
 
     croppables.forEach((el) => {
-      // On resize, we don't crop unloaded images. 
+      // On resize, we don't crop unloaded images.
       // They'll get cropped when they load (via load listeners we set on them).
       if (el.localName == 'img' && el.complete) {
         cropElementToGrid(el)
@@ -62,7 +56,6 @@ and increase their heights to the next grid line.
       }
     })
   }, 200), true)
-
 }(window, document))
 
 
@@ -86,13 +79,12 @@ function getCroppableElements() {
 }
 
 /**
- * For the specified element... 
+ * For the specified element...
  * 1) get original height
  * 2) round height to nearest multiple of the grid
  * 3) set `height` property to new value
  */
 function cropElementToGrid(element) {
-
   // Get grid unit height
   // We use a baseline grid, where line-height = 2 grid units.
   const gridUnitHeight = parseInt(window.getComputedStyle(document.body).getPropertyValue('line-height')) / 2
@@ -103,7 +95,7 @@ function cropElementToGrid(element) {
 
   // Calculate new height
   // If element is image, we want to crop it to fit the grid. Because we can't add vvvv
-  // const newHeightInGridUnits = element.localName == 'img' ? 
+  // const newHeightInGridUnits = element.localName == 'img' ?
   //   Math.floor(originalHeight / gridUnitHeight) :
   //   Math.ceil(originalHeight / gridUnitHeight)
 
@@ -128,9 +120,9 @@ function cropElementToGrid(element) {
  */
 function debounce(func, wait, immediate) {
   let timeout
-  return function () {
+  return function() {
     const context = this
-    const later = function () {
+    const later = function() {
       timeout = null
       if (!immediate) func.apply(context)
     }
