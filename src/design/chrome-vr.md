@@ -3,7 +3,6 @@ title: "Chrome VR"
 tags: [ux]
 publish: true
 image: "img/chromevr/chromevr-2d-screenshot.png"
-summary: "TODO"
 ---
 
 _2016/17_{.timeframe} – Chrome VR was a virtual reality version of Chrome for Android, designed for Google's [Daydream](https://en.wikipedia.org/wiki/Google_Daydream) VR platform. I joined Google in 2016 as UX Lead for the project. Before Google, I'd spent a two years at Mozilla prototyping VR browsers, and so I was extremely excited to apply those learnings to a real product. As the solo designer, I was responsible for interaction/visual design, and prototyping. In late 2017 [Gordon Brander](https://gordonbrander.com/) took over design responsibilities and finished the project.

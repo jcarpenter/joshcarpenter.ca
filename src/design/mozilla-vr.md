@@ -3,7 +3,6 @@ title: "Mozilla VR"
 tags: [ux]
 publish: true
 image: "img/mozvr-hiro-interface-collage.png"
-summary: "TODO"
 ---
 
 _2014/15_{.timeframe} – The Mozilla VR team was created in 2014 to help bring virtual reality to the open web. I was Product and UX Lead, working with an amazing team of platform engineers^[[Vlad Vukecevic](https://twitter.com/vvuk), creator of WebGL, and [Kip Gilbert](https://twitter.com/kearwoodgilbert)] and front end developers^[[Casey Yee](https://twitter.com/whoyee), [Chris Van Wiemeersch](https://twitter.com/cvanw), [Diego Marcos](https://twitter.com/dmarcos), [Kevin Ngo](https://twitter.com/kevopuff) and [Kevin Grandon](https://twitter.com/Kevining)]. Our job was to help shape future VR WebAPIs by exploring how browsing and web content might work in VR, and to get developers excited about the possibilities. That work eventually led to led the creation of [A-Frame VR](/aframe/).
