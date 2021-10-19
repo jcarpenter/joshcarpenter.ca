@@ -1,0 +1,116 @@
+// -------------- Colors  -------------- //
+// Short-hand concise functions for colors.
+// Use like: `color: primary(0.2);`
+
+@function foreground($alpha: 1) {
+  @return rgba(var(--foreground), $alpha);
+}
+
+@function primary($alpha: 1) {
+  @return rgba(var(--primary), $alpha);
+}
+
+// @function secondary($alpha: 1) {
+//   @return rgba(var(--secondary), $alpha);
+// }
+
+@function background($alpha: 1) {
+  @return rgba(var(--background), $alpha);
+}
+
+@function onBackground($alpha: 1) {
+  @return rgba(var(--on-background), $alpha);
+}
+
+@function popup($alpha: 1) {
+  @return rgba(var(--popup), $alpha);
+}
+
+@function onPopup($alpha: 1) {
+  @return rgba(var(--on-popup), $alpha);
+}
+
+// -------------- Typography -------------- //
+
+@mixin mono-font {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-size: 0.9em;
+}
+
+@mixin miniTypography($paddingTop: 0, $paddingBottom: 0) {
+  font-size: 1.166rem; // 14px
+  line-height: 1.6rem; // 20px
+  padding-top: $paddingTop + 0.4rem; // 4.8px
+  padding-bottom: $paddingBottom + 0.475rem;
+}
+
+@mixin miniBackgroundGrid {
+  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1));
+  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1)), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1));
+}
+
+// -------------- Layout  -------------- //
+
+
+@mixin standardWidth() {
+  min-width: 24rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
+// Convenience functions, to make grid unit syntax cleaner in our sass.
+// E.g. `grid(2)` compiles to `calc(var(--grid) * 2)`
+
+@function grid($num: 1) {
+  @if $num == 1 {
+      @return var(--grid);
+  } @else {
+      @return calc(var(--grid) * $num);
+  }
+}
+
+@function miniGrid($num: 1) {
+  @if $num == 1 {
+    @return var(--mini-grid);
+  } @else {
+      @return calc(var(--mini-grid) * $num);
+  }
+}
+
+// -------------- Media queries  -------------- //
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+      @content;
+  }
+}
+
+@mixin light {
+  @media (prefers-color-scheme: light) {
+      @content;
+  }
+}
+
+// -------------- Misc -------------- //
+
+@mixin outline-thin {
+  outline-width: grid(0.125);
+  outline-style: solid;
+  outline-color: foreground(0.95);
+  outline-offset: 0;
+}
+
+@mixin dotBackground($dotOpacity: 0.25, $bgOpacity: 0.05) {
+  background-image: 
+      linear-gradient(primary($bgOpacity), primary($bgOpacity)),
+      radial-gradient(primary($dotOpacity) 0.05em, transparent 0);
+  background-size: 
+      cover,
+      0.15em 0.15em;
+  background-position: 
+      top left,
+      top left;
+  background-repeat:
+      no-repeat,
+      repeat; 
+}

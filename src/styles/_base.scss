@@ -1,81 +1,282 @@
-// /* ------ TEMP: Testing breakpoints ------ */
-// body {
-//     background: red !important;
-// }
+@use "sass:math";
+@use "plumber" as *;
+@use "mixins_and_functions" as *;
 
-// @media (min-width: 480px) {
-//     body {
-//         background: yellow !important;
-//     }
-// }
 
-// @media (min-width: 680px) {
-//     body {
-//         background: lightgreen !important;
-//     }
-// }
+/*
+========================================================
+Variables
+========================================================
+*/
 
-// @media (min-width: 680px) and (min-height: 280px) {
-//     body {
-//         background: darkcyan !important;
-//     }
-// }
+:root {
 
-// @media (min-width: 900px) {
-//     body {
-//         background: rgb(79, 177, 239) !important;
-//     }
-// }
+    /* -------------- Animations -------------- */
 
-/* ==========================================================================
-   Base: Layout
-   ========================================================================== */
+    --material-incoming-decelerated: cubic-bezier(0, 0, 0.2, 1);
+    --material-outgoing-accelerated: cubic-bezier(0.4, 0, 1, 1);
+
+    /* -------------- Typography -------------- */
+   
+    // We're using a strange system.
+    // Start by determining desired line height (in px). 
+    // Then set `html` element font-size to _half_ that value.
+    // E.g. Want 24px line height? Set html font-size: 12px.
+    
+    // Line height      = 2 rem
+    // Grid units       = 1 rem
+    // html font-size   = Half the desired line height px value. E.g. `12px`
+
+    // Set element font-sizes in rems, by doing math.
+    // E.g. Want 15px font size? 15/12px (html font-size) = 1.25rem 
+
+    // Smaller font and tigher line height for smaller displays
+    // --baseFontSize: 15px;
+    // --baseLineHeight: 1.5rem;
+
+    // @media (min-width: 480px) {
+    //         --baseFontSize: 17px;
+    //         --baseLineHeight: 1.65rem;        
+    // }
+    
+    // Smaller font and tigher line height for smaller displays
+    // @media (max-width: 480px) {
+        --baseFontPx: 11px;
+        --baseFontSize: 1.363rem; // 15px
+        --baseLineHeight: 2rem; // 22px
+    // }
+
+    // @media (min-width: 481px) {
+    //     --baseFontPx: 12px;
+    //     --baseFontSize: 1.333rem; // 16px
+    //     --baseLineHeight: 2rem; // 24px
+
+    //     // --baseFontPx: 14px; // 14px
+    //     // --baseFontSize: 1.214rem; // 17px
+    //     // --baseLineHeight: 2rem; // 28px
+    // }
+
+    
+    // base font size 1.333rem (16px)
+    // smaller: 1.166rem (14px)
+    // monotype
+
+
+    --grid: 2rem;
+    --mini-grid: 0.8rem;
+
+    --baseFontScale: 1.125;
+    
+    --font-lg-8: calc(var(--font-lg-7) * var(--baseFontScale)); /* 41.052 */
+    --font-lg-7: calc(var(--font-lg-6) * var(--baseFontScale)); /* 36.491 */
+    --font-lg-6: calc(var(--font-lg-5) * var(--baseFontScale)); /* 32.436 */
+    --font-lg-5: calc(var(--font-lg-4) * var(--baseFontScale)); /* 28.832 */
+    --font-lg-4: calc(var(--font-lg-3) * var(--baseFontScale)); /* 25.628 */
+    --font-lg-3: calc(var(--font-lg-2) * var(--baseFontScale)); /* 22.781 */
+    --font-lg-2: calc(var(--font-lg-1) * var(--baseFontScale)); /* 20.250 */
+    --font-lg-1: calc(var(--baseFontSize) * var(--baseFontScale)); /* 18.000 */
+    --font-sml-1: calc(var(--baseFontSize) / var(--baseFontScale)); /* 14.222 */
+    --font-sml-2: calc(var(--font-sml-1) / var(--baseFontScale)); /* 12.641 */
+    --font-sml-3: calc(var(--font-sml-2) / var(--baseFontScale)); /* 11.237 */
+    --font-sml-4: calc(var(--font-sml-3) / var(--baseFontScale));
+
+    /* -------------- CSS Grid -------------- */
+
+    // Grid template
+    // - Columns 1 and 5 are padding
+    // - Columns 2 and 4 are for <figure> to expand into on larger
+    //   screens (so figures are slightly wider than column 3).
+    // - Column 3 is main content column (body text, etc)
+
+    @media (max-width: 480px) {
+        --grid-layout: #{grid(1)} 0 1fr 0 #{grid(1)};
+    }
+
+    @media (min-width: 481px) {
+        
+        --grid-layout: minmax(#{grid(1)}, 1fr) minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)}) minmax(#{grid(1)}, 1fr);
+        
+        --grid-layout-figcaption: minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)});
+    }
+    
+    // --grid-layout: minmax(#{grid(1)}, 1fr) minmax(0, #{grid(5)}) minmax(#{grid(14)}, #{grid(22)}) minmax(0, #{grid(5)}) minmax(#{grid(1)}, 1fr);
+    // --grid-layout-figcaption: minmax(0, #{grid(5)}) minmax(#{grid(14)}, #{grid(22)}) minmax(0, #{grid(5)});
+}
+
+
+/* 
+========================================================
+Layout
+========================================================
+*/
 
 body {
+    margin: 0;
+    padding: grid(1) grid(1) grid(1);
     overflow-x: hidden;
-    display: grid;
     position: relative;
-    grid-template-columns: var(--layout-narrow);
-    grid-auto-flow: row;
-    grid-auto-rows: min-content;
-    padding: 0 0 var(--grid);
 }
 
-// On narrow (e.g. mobile) screens, everything lives in the same 'content' column.
-body > header,
-body > main,
-body > nav,
-body > aside,
-body > footer {
-    grid-column: content;
+main, 
+main article#post, 
+main article#post section#content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-// On wider screens, header moves to the left side
-@media (min-width: 900px) {
-    body {
-        grid-template-columns: var(--layout-wide);
-        /* Add padding-top for larger screens */
-        padding-top: var(--grid-2);
+main article#post header, 
+main article#post section#content > *:not(figure),
+main article#post section#notes
+{
+    @include standardWidth;
+}
+
+// Figures: Normal
+main article#post:not(.wide-images) section#content > figure {
+    @include standardWidth;
+    // @media (max-width: 480px) {
+    //     width: 100%;
+    //     padding-left: grid(0.5);
+    //     padding-right: grid(0.5);
+    // }
+
+    // @media (min-width: 481px) {
+    //     min-width: 24rem;
+    //     max-width: 40rem;
+    //     width: 100%;
+    // }
+}
+
+// Figures: Wide images
+main article#post.wide-images section#content > figure {
+    min-width: 24rem;
+    max-width: 60rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    figcaption {
+        min-width: 24rem;
+        max-width: 40rem;
+        width: 100%
     }
+}
 
-    body > header {
-        display: initial;
-        grid-column: nav;
+
+
+
+// // Top-level body
+// body {
+//     display: grid;
+//     grid-template-columns: var(--grid-layout);
+
+//     & > header,
+//     & > nav,
+//     & > aside,
+//     & > footer {
+//         grid-column: 3;
+//     }
+    
+//     & > main {
+//         grid-column: 1/6;
+//     }
+// }
+
+// // Main grid
+// main {
+//     display: grid;
+//     grid-template-columns: var(--grid-layout);
+
+//     & > nav,
+//     & > section {
+//         grid-column: 3;
+//     }
+
+//     & > article {
+//         grid-column: 1/6;
+//     }
+// }
+
+// // Posts
+// #post {
+//     display: grid;
+//     grid-template-columns: var(--grid-layout);
+
+//     & > header {
+//         grid-column: 3;
+//     }
+
+//     #content {
+//         grid-column: 1/6;
+//         grid-template-columns: var(--grid-layout);
+//         display: grid;
+
+//         // NOTE: Figure behaviour is defined in figure scss file.
+//         & > :not(figure) {
+//             grid-column: 3;
+//         }
+
+//         // & > figure {
+//         //     grid-column: 3;
+//         // }
+//     }
+
+//     #notes {
+//         grid-column: 3;
+//     }
+// }
+
+
+
+
+
+
+// TODO: RESTORE THESE VALUES. 10/8
+// @media (min-width: 900px) {
+//     body {
+//         // grid-template-columns: var(--layout-wide);
+//         /* Add padding-top for larger screens */
+//         padding-top: grid(2);
+//     }
+
+//     body > header {
+//         display: initial;
+//         grid-column: 1;
+//     }
+// }
+
+
+// Set whitespace between metadata/preface, and
+// first block element of the post
+#post #content > *:first-child {
+    // margin-top: grid(1);
+
+    @media (min-width: 480px) {
+        // margin-top: grid(2);
     }
 }
 
-/* ==========================================================================
-   Base: Elements
-   ========================================================================== */
+
+/* 
+========================================================
+Elements
+========================================================
+*/
 
 // Reset box-sizing to border-box for all elements (including pseudo elements)
 // Set on html, and then tell all elements to inherit. This allows elements to override.
 // Per: https://css-tricks.com/box-sizing/ ("Universal Box Sizing with Inheritance")
 
 html {
+    font-size: var(--baseFontPx);
+    box-sizing: border-box;
+}
+
+body {
     font-size: var(--baseFontSize);
     line-height: var(--baseLineHeight);
-    box-sizing: border-box;
 }
 
 *,
@@ -83,21 +284,386 @@ html {
 *:after {
     box-sizing: inherit;
     word-break: normal;
-    line-height: inherit;
+    // line-height: inherit;
 }
 
-body {
-    margin: 0;
-    font-family: "Public Sans", sans-serif;
-    color: var(--clr-gray-dark);
-    background-color: var(--clr-background);
+
+/* -------------- Abbr -------------- */
+
+abbr {
+    // color: blue;
+    font-variant-caps: all-small-caps;
+    font-variant-numeric: oldstyle-nums;
+    
+    // font-weight: 500;
+    // font-size: 1.2em;
+    // line-height: 0;
+
 }
 
-// @media (min-width: 480px) {
-//     body {
-//         background: hsl(0, 0%, 98%);
+
+/* -------------- Address -------------- */
+
+address {
+    font-style: normal;
+}
+
+
+/* -------------- Block quote -------------- */
+
+/* Shifted margin is to make room on side for ::before notch (see below). */
+
+blockquote {
+    // margin-left: 0;
+    // margin-right: 0;
+    position: relative;
+    margin: 0 0 grid(1) 0;
+}
+
+// Border on left side. The ::before element gives us more control.
+blockquote::before {
+    content: '';
+    // margin: 0.4em 0 0;
+    width: 0.15em;
+    position: absolute;
+    height: 100%;
+    border-radius: 2px;
+    box-sizing: content-box;
+    // Reduce height so this visible box only extends as
+    // far as the baseline of the last line. If we don't
+    // do this, it extends to descender and bottom padding.
+    height: calc(100% - 0.6em);
+}
+
+blockquote p {
+    padding-left: grid(1);
+    letter-spacing: 0.005em;
+    // padding-top: 0;
+    // margin-top: 0;
+    // font-style: italic;
+    // @media (min-width: 480px) {
+    //     font-style: normal;
+    // }
+}
+
+/* Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing. */
+blockquote p:last-of-type {
+    margin-bottom: 0 !important;
+}
+
+
+/* -------------- Buttons -------------- */
+
+button {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+
+/* -------------- Code -------------- */
+
+// Code element inside paragraph (as opposed to inside `pre` block)
+p code {
+    font-size: 1.166rem;
+    padding: 0.1em 0.25em;
+    border-radius: 0.1em;
+    // Push vertical alignment up a few px.
+    // Code text is bit smaller than surrounding,
+    // So we need to vertically center it.
+    line-height: 0;
+    vertical-align: 0.05em;
+}
+
+
+/* -------------- Hanging punctuation -------------- */
+
+/* This class gets applied manually in the build process if the first character is a quote. */
+.hanging-punctuation {
+    text-indent: -0.3em;
+}
+
+/* Prevent children indenting by reseting to zero */
+.hanging-punctuation * {
+    text-indent: 0;
+}
+
+
+/* -------------- Headings -------------- */
+
+h1,
+h2,
+h3 {
+    font-kerning: normal;
+    position: relative;
+}
+
+h1 {
+    vertical-align: baseline;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    @include plumber(
+        $font-size: 1.92,
+        $line-height: 3,
+        $leading-top: 3,
+        $leading-bottom: 2,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    );
+}
+
+
+h2 {
+    font-weight: 600;
+    
+    // TODO: Larger margin-top on mobile
+    // E.g. grid-2 vs grid 1.5 on desktop
+    
+    @include plumber(
+        $font-size: 1.6,
+        $line-height: 2,
+        $leading-top: 2,
+        $leading-bottom: 3,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    )
+}
+
+// Mobile: Dotted dividers above #content h2,
+// to help create visual separation.
+@media (max-width: 480px) {
+    #post #content:not(.short-post) {
+        
+        // First h2 is plain, and has no top margin
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        // Subsequent h2 get the dotted dividers
+        // and large top margins.
+        h2:not(:first-of-type)::before {
+            content: '';
+            @include dotBackground(0.25, 0);
+            display: block;
+            height: grid(0.5);
+            margin-bottom: grid(1);
+        }
+    }
+}
+
+
+// TODO: Revisit whether this is still necessary
+// Reduce top-margin on h2 if it's first element
+// in the post (on larger devices only). This helps
+// reduce unnecessarily large gap.
+// #post-body h2:first-child {
+//     @media (min-width: 480px) {
+//         margin-top: grid(1);
 //     }
 // }
+
+h3,
+#post #content.short-post h2 {
+    font-weight: 600;
+    @include plumber(
+        $font-size: 1.333,
+        $line-height: 2,
+        $leading-top: 0,
+        $leading-bottom: 2,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    );
+}
+
+
+/* -------------- Horizontal rule  -------------- */
+
+hr {
+    width: 100%;
+    height: grid(0.25);
+}
+
+
+/* -------------- Images & Media -------------- */
+
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+
+/* -------------- Links -------------- */
+
+a {
+    text-decoration: underline;
+    text-underline-offset: 0.05em;
+    
+    // Soften the appearance of the focus outline by 
+    // animating the outline opacity.
+    outline-color: transparent;
+    transition: outline-color 300ms;
+    
+    // Round border so outline :focus is less harsh
+    // NOTE: Only noticeable on browsers where outline follows 
+    // border-radius. Safari does not, unfortunately.
+    border-radius: 0.1em;
+
+    // TODO: Add link hover styles. Is tricky because 
+    // we want the hover style to be darker than whatever
+    // was inherited, but CSS doesn't have mix tools yet.
+    // &:hover {
+    // }
+
+    &:focus-visible {
+        @include outline-thin;
+    }
+
+    &:active {
+        outline: none;
+    }
+}
+
+@media (max-width: 480px) {
+    a {
+        font-weight: 500;
+    }
+}
+
+
+/* -------------- Lists  -------------- */
+/* TODO: Am currently aligning list markers flush with left side using magic numbers.  */
+/* Alternatively I could properly style my one, per: https://css-tricks.com/style-list-markers-css/  */
+
+ol, ul { 
+    padding-left: grid(0.5); 
+}
+
+// Top-level lists
+section > ol,
+section > ul {
+    @include plumber(
+        $font-size: 1.333,
+        $line-height: 2,
+        $leading-top: 0,
+        $leading-bottom: 2,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    );
+}
+
+// Marker indent from left:
+// Mobile: Markers flush left
+// Desktop: Markers indented slightly.
+@media (max-width: 480px) {
+    section > ol,
+    section > ul { 
+        margin-left: 0; 
+    }
+}
+
+@media (min-width: 481px) {
+    section > ol,
+    section > ul { 
+        margin-left: grid(0.5);
+    }
+}
+
+// Nested lists
+section > * ul,
+section > * ol {
+    // padding: 0;
+    // Reduce vertical margin (to keep consistent)
+    margin-top: grid(0.5);
+}
+
+li {
+    margin-bottom: grid(0.5);
+}
+
+// Add bit more vertical spacing between list items, if they
+// contain paraagraphs. Do so by adding setting margin-botton
+// on the paragraph. Remove all other padding and that would
+// otherwise be applied to <p> elements.
+li p {
+    padding: 0;
+    margin: 0 0 grid(1);
+}
+
+// Remove margin-bottom from paragrapah inside last list item 
+// of top-level list, or else the top-level list
+section * > li:last-of-type p {
+    margin-bottom: 0;
+}
+
+// li p:first-of-type {
+//     padding-top: 0;
+//     margin-top: 0;
+// }
+
+// li p:last-of-type {
+//     padding-bottom: 0;
+//     margin-bottom: 0;
+// }
+
+// Numbers and bullets:
+// We use ::before inside of ::marker, because we're extremely
+// limited in how we can style the later. 
+li {
+    list-style: none;
+    position: relative;
+    margin-left: grid(0.5);
+    // margin-left: 0;
+    &::before {
+        position: absolute;
+    }
+}
+
+li:last-of-type {
+    margin-bottom: 0;
+}
+
+ol {
+    counter-reset: custom-counter;
+    li {
+        counter-increment: custom-counter;
+    }
+}
+
+// <ol> numbers
+ol li::before {
+    content: counter(custom-counter) '.';
+    font-weight: 500;
+    font-size: 0.9em;
+    left: grid(-0.35);
+    transform: translateX(-100%);
+    // Push vertical alignment up a few px.
+    // Code text is bit smaller than surrounding,
+    // So we need to vertically center it.
+    // line-height: 0;
+    // vertical-align: 0.05em;
+}
+
+// <ul> bullets
+ul li::before {
+    content: '•';
+    left: grid(-0.7);
+    font-weight: 600;
+    // Increase size slightly
+    font-size: 1.2em;
+    // Nudge upwards by half the value of the size increase
+    // to vertically center the bullet (or else it's too low).
+    margin-top: -0.06em;
+}
+
+
+
 
 /* -------------- Main -------------- */
 
@@ -109,160 +675,66 @@ main:focus {
     outline: none;
 }
 
-/* -------------- Links -------------- */
 
-a {
-    color: inherit;
-    // text-decoration: none;
-    // border-bottom-width: 0.1em;
-    // border-bottom-style: solid;
-}
+/* -------------- Paragraph -------------- */
 
-a:hover {
-    color: var(--clr-gray-darkestx2);
-}
-
-a:active {
-    background-color: rgba(0, 0, 0, 0.15);
-}
-
-/* -------------- Images & Media -------------- */
-
-/* Use relative sizes to prevent overflowing containers.  */
-
-img,
-embed,
-object,
-video {
-    max-width: 100%;
-}
-
-/* -------------- Whitespace -------------- */
-
-/* Set whitespace for common block elements*/
-blockquote,
-ol,
-ul,
 p {
-    margin-top: 0;
-    margin-bottom: var(--block-margin-bottom);
+    font-variant-numeric: oldstyle-nums;
+    @include plumber(
+        $font-size: 1.333,
+        $line-height: 2,
+        $leading-top: 0,
+        $leading-bottom: 2,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    );
 }
 
-/* Stop child lists from having full breaks */
-li > ol,
-li > ul {
-    margin: 0;
-}
 
-/* Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself. */
-table {
-    margin: 0;
-    padding-bottom: var(--block-margin-bottom);
-}
+/* -------------- Pre -------------- */
 
-/* Note: Add !important to `pre` styles to prevent Prism.js themes from overriding */
 pre {
-    margin-top: 0 !important;
-    margin-bottom: var(--block-margin-bottom) !important;
-}
-
-/* -------------- Pre & Code -------------- */
-
-/* Note: Add !important to `pre` styles to prevent Prism.js themes from overriding */
-pre {
+    @include mono-font;
+    @include plumber(
+        $font-size: 1.166,
+        $line-height: 2,
+        $leading-top: 1,
+        $leading-bottom: 3,
+        $grid-height: 1rem,
+        $baseline: 0.16,
+        $use-baseline-origin: false
+    );
+    padding-left: grid(0.5);
+    padding-right: grid(0.5);
+    background-color: primary(0.1);
+    // Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
+    // margin-top: 0 !important;
+    // margin-bottom: var(--block-margin-bottom) !important;
     border: none !important;
     border-radius: 0.2em;
-    border: 1px solid var(--clr-gray-lighter) !important;
-    background-color: var(--clr-gray-lightestx2) !important;
+
+    code {
+        white-space: pre-wrap !important;
+    }
 }
 
-pre code {
-    white-space: pre-wrap !important;
+
+/* -------------- Small  -------------- */
+
+small {
+    font-size: var(--font-sml-2);
 }
 
-code {
-    background-color: rgba(0, 0, 0, 0) !important;
-}
 
-/* -------------- Block quote -------------- */
-
-/* Shifted margin is to make room on side for ::before notch (see below). */
-
-// blockquote {
-//     margin-left: var(--grid-three-quarters);
-//     margin-right: 0;
-//     position: relative;
-// }
-
-// blockquote::before {
-//     content: ">";
-//     font-weight: normal;
-//     font-style: normal;
-//     position: absolute;
-//     left: calc(var(--grid-three-quarters) * -1);
-//     color: var(--clr-blue-lightest);
-// }
-
-// blockquote p {
-//     letter-spacing: 0.005em;
-//     font-style: italic;
-//     color: var(--clr-blue-dark);
-//     padding-top: 0;
-//     margin-top: 0;
-// }
-
-// @media (min-width: 480px) {
-//     blockquote {
-//         margin-left: calc(var(--grid) + var(--grid-quarter));
-//     }
-// }
-
-blockquote {
-    padding-left: var(--grid-three-quarters);
-    margin-left: 0;
-    margin-right: 0;
-    border-left: var(--grid-quarter) solid var(--clr-gray-lightest);
-}
-
-blockquote p {
-    letter-spacing: 0.005em;
-    font-style: italic;
-    color: var(--clr-gray);
-    padding-top: 0;
-    margin-top: 0;
-}
-
-/* Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing. */
-blockquote p:last-of-type {
-    margin-bottom: 0;
-}
-
-/* -------------- Strong, Emphasis, Small caps  -------------- */
+/* -------------- Strong  -------------- */
 
 strong {
-    font-weight: 600;
-    /* background-color: var(--clr-highlight); */
-    /* border-color: var(--clr-highlight); */
-    /* border-style: solid; */
-    /* border-width: 0.1em; */
-    /* margin: -0.05em; */
+    font-weight: 500;
+    padding: 0 0.2rem;
+    border-radius: 0.2rem;
 }
 
-.smallcaps {
-    font-variant: small-caps;
-}
-
-/* -------------- Hanging punctuation -------------- */
-
-/* This class gets applied manually in the build process if the first character is a quote. */
-.hanging-punctuation {
-    text-indent: -0.4em;
-}
-
-/* Prevent children indenting by reseting to zero */
-.hanging-punctuation * {
-    text-indent: 0;
-}
 
 /* -------------- Sub and Sup -------------- */
 /* 
@@ -297,113 +769,19 @@ sub {
     bottom: -0.25em;
 }
 
-/* ==========================================================================
-   Base: Headings
-   ========================================================================== */
 
-h1,
-h2,
-h3 {
-    font-kerning: normal;
-    position: relative;
-}
 
-/* -------------- h1 -------------- */
-
-h1 {
-    color: var(--clr-gray-darker);
-    font-size: var(--font-lg-8);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: var(--grid-2);
-    margin-bottom: var(--grid);
-    margin-top: 0;
-}
-
-/* -------------- h2 -------------- */
-
-h2 {
-    color: var(--clr-gray-darker);
-    font-size: var(--font-lg-3);
-    font-weight: 700;
-    line-height: var(--grid-1-and-quarter);
-    margin-top: var(--grid-1) 0 0;
-
-    &::before {
-        content: "";
-        background-color: var(--clr-gray-light);
-        height: calc(var(--grid-quarter) / 2);
-        display: block;
-        margin: var(--grid-1-and-half) 0 var(--grid);
-    }
-}
-
-h2:first-of-type {
-    border: none;
-    padding: 0;
-
-    &::before {
-        height: 0;
-        margin: 0;
-    }
-}
-
-@media (min-width: 480px) {
-    
-    h2 {
-        font-size: var(--font-lg-1);
-        padding: 0;
-
-        &::before {
-            height: 0;
-            margin: 0;
-        }
-    }
-
-    /* Reduce top-margin of h2 that follow blocks, to help ensure consistent vertical rhythm. */
-    header + h2,
-    blockquote + h2,
-    ol + h2,
-    p + h2,
-    pre + h2,
-    table + h2,
-    ul + h2 {
-        margin-top: calc(var(--grid-1-and-half) - var(--block-margin-bottom));
-    }
-}
-
-@media (min-width: 900px) {
-    h2 {
-        margin-top: var(--grid-1-and-half);
-    }
-}
-
-/* -------------- h3 -------------- */
-
-h3 {
-    color: var(--clr-gray-darker);
-    font-size: var(--font-base-size);
-    font-weight: 600;
-    margin-bottom: var(--grid);
-    margin-top: 0;
-}
-
-@media (min-width: 680px) {
-    /* On wider screens, lighten h3 slightly */
-    h3 {
-        color: var(--clr-gray-dark);
-    }
-}
-
-/* ==========================================================================
-   Base: Styles
-   ========================================================================== */
+/* 
+========================================================
+Re-usable classes
+========================================================
+*/
 
 /* -------------- Hidden -------------- */
 
-// Sometimes we want to hide content visually, but retain it for screen reader users. E.g. for "Skip to main content" links. This style achieves that by positioning the content offscreen, and clipping it.
+// Hide visibly only; content is still available to screen readers. Example use case: "Skip to content" at the top of a page, enabling screen readers to skip navigation (etc) to content.
 // Per: https://webaim.org/techniques/css/invisiblecontent/
-.hidden {
+.visibility-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
     height: 1px !important;
@@ -414,98 +792,73 @@ h3 {
     position: absolute !important;
 }
 
-// .hidden {
-//     position:absolute;
-//     left:-10000px;
-//     top:auto;
+// Hide both visibly, and from screen readers
+[aria-hidden='true'] {
+    // display: none;
+    visibility: hidden;
+}
+
+// [aria-hidden=false] {
+//     // display: none;
+//     visibility: visible;
 // }
 
 /* -------------- Thick border -------------- */
 
-// .thick-border {
-//     border-top: var(--grid-quarter) solid var(--clr-gray-light);
-//     margin: var(--grid) 0 var(--grid);
-//     padding: var(--grid) 0;
+.pattern-top-edge {
+    &::before {
+        content: '';
+        height: grid(0.5);
+        display: block;
+        background-image: 
+            linear-gradient(primary(0.05), primary(0.05)),
+            radial-gradient(primary(0.25) 0.05em, transparent 0);
+        background-size: 
+            cover,
+            0.2em 0.2em;
+        background-position: 
+            top left,
+            top left;
+        background-repeat:
+            no-repeat,
+            repeat; 
+    }
+}
+
+
+/* -------------- Heading anchor link -------------- */
+
+// h2 .anchor {
+//     // display: none;
 // }
 
-.thick-border::before {
-    content: "";
-    background-color: var(--clr-gray-light);
-    // border-top: var(--grid-quarter) solid var(--clr-gray-light);
-    height: var(--grid-quarter);
-    display: block;
-    margin: var(--grid-1-and-half) 0 var(--grid);
-    // padding: var(--grid) 0;
-}
+// @media (min-width: 680px) {
+//     h2 .anchor {
+//         display: inline;
+//         font-style: normal;
+//         left: calc(grid(0.25) * -1);
+//         transform: translate(-100%, 0);
+//         top: 0;
+//         position: absolute;
+//         text-decoration: none;
+//         text-align: right;
+//         opacity: 0.3;
+//     }
 
-.thick-border {
-    margin: 0;
-}
-
-.thick-border > h2 {
-    margin: var(--grid) 0;
-}
-
-.thick-border > h2::before {
-    content: none;
-}
-
-// .thick-border + .thick-border {
-//     margin: 0;
+//     h2 .anchor:hover {
+//         opacity: 0.8;
+//     }
 // }
 
-/* -------------- Two column list -------------- */
+// // Hide on touch devices
+// @media (hover: none) {
+//     .anchor {
+//         display: none;
+//     }
+// }
 
-.two-column-list {
-    line-height: var(--grid-three-quarters);
-    margin: 0;
-    padding: 0;
-    font-size: var(--font-sml-1);
-    /* Split contents into two equal columns */
-    column-count: 1;
-    column-gap: var(--grid);
-    list-style: none;
 
-    li::before {
-        content: none;
-    }
-    
-    li {
-        margin-bottom: var(--grid-three-quarters);
-        /*Do not let contents be broken across columns */
-        break-inside: avoid;
-        page-break-inside: avoid; /* Firefox */
-        color: var(--clr-gray);
-    }
-
-    li a {
-        font-weight: normal;
-        text-decoration: underline;
-        border: none;
-        color: inherit;
-    }
-
-    li a:hover {
-        border: none;
-        color: var(--clr-gray-darkest);
-    }
-
-    li:last-of-type {
-        margin-bottom: 0;
-    }
-}
-
-@media (min-width: 480px) {
-    .two-column-list {
-        column-count: 2;
-    }
-}
-
-/* -------------- Misc -------------- */
-
-address {
-    font-style: normal;
-}
+/* -------------- Highlights -------------- */
 
 .highlights {
     margin: 0;
@@ -514,13 +867,13 @@ address {
     list-style: none;
 
     li {
-        margin-right: var(--grid);
+        margin-right: grid(1);
     }
 
     img {
         width: 100%;
         object-fit: cover;
-        height: var(--grid-4);
+        height: grid(4);
     }
 }
 
@@ -535,6 +888,14 @@ address {
     li {
         border: 1px;
         flex: 0 1 auto;
-        // margin-right: var(--grid-half);
+        // margin-right: grid(0.5);
     }
+}
+
+.org {
+    opacity: 0.7;
+}
+
+.smallcaps {
+    font-variant: small-caps;
 }

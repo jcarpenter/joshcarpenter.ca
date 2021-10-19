@@ -1,63 +1,94 @@
-(function(window, document) {
+(function (window, document) {
   'use strict'
 
+  /** 
+   * Create popups for footnotes.
+   * - Copy contents of footnote into them.
+   * - Add event listeners to link
+   * - Show popup when 1) parent <sup> is hovered, or
+   * - 2) the button is focused and aria-expanded="true"
+   */
   function setup() {
-    // Get article
-    const article = document.querySelector('main article')
+
+    // Pointer/touch events are unreliable on Mobile Safari,
+    // so we instead must use matchMedia to differentiate touch
+    // versus non-touch devices. 
+    const isTouch = window.matchMedia('(hover: none)').matches
 
     // Get footnotes
     const footnoteLinks = document.querySelectorAll('.fn-link')
 
-    // Setup popups, link attributes, and event listeners
-    for (const link of footnoteLinks) {
-      // Create `.fn` wrapper span
-      const span = document.createElement('span')
-      span.classList.add('fn')
-      link.parentNode.insertBefore(span, link)
-      span.appendChild(link)
+    // For each...
+    footnoteLinks.forEach((link) => {
 
-      // Setup popup
+      const sup = link.parentNode
+      const index = sup.id.match(/\d+/)[0]
+
+      link.setAttribute('aria-expanded', 'false')
+      link.setAttribute('aria-controls', `fn${index}-popup`)
+      link.setAttribute('aria-label', `Footnote ${index}`)
+
+      // Create popup
       const popup = document.createElement('span')
+      popup.id = `fn${index}-popup`
       popup.classList.add('fn-popup', 'above')
+      // Populate popup with contents of associated footnote <li>.
+      const contents = document.querySelector(`#fn${index}`).cloneNode(true).childNodes
+      const frag = document.createDocumentFragment()
+      frag.append(...contents)
+      popup.append(frag)
+      // Remove backlink, if it exists.
+      popup.querySelector('a.fn-back')?.remove()
       // Add aria-live, so popup contents are read (for screen reader users) on change.
       popup.setAttribute('aria-live', 'polite')
-      // Clone contents of the selected footnote.
-      // Set cloneNode `deep` argument true, so we get children.
-      // E.g. <li id="fn1">[this content]</li>
-      // Get id from link href. E.g. `fn1` after we trim the #.
-      const id = link.getAttribute('href').substring(1)
-      const contents = article.querySelector(`#${id} *`)
-      const backlink = contents.querySelector('.fn-back')
-      if (backlink) contents.remove(backlink)
-      popup.appendChild(contents)
-      span.appendChild(popup)
 
-      // Add role="button" and preventDefault to `click` event.
-      /* Together, these prevent screen readers from triggering link navigation on `click`. Screen readers seem to ignore preventDefault() for links, but accept it for buttons. Per this thread: https://twitter.com/joshcarpenter/status/1253764021037064192?s=20 */
-      link.setAttribute('role', 'button')
-      link.setAttribute('aria-expanded', 'false')
+      // Append popup
+      sup.appendChild(popup)
 
-      // `click` event is trigger by both mouse clicks, and screen reader "clicks".
-      link.onclick = (e) => {
-        e.preventDefault()
-        link.focus()
-        const isExpanded = (link.getAttribute('aria-expanded') == 'true')
-        link.setAttribute('aria-expanded', !isExpanded)
-      }
+      // Add link event listeners
+      link.addEventListener('click', (e) => {
+        console.log(isTouch)
+        if (isTouch) {
+          e.preventDefault()
+          link.focus()
+          const isExpanded = link.getAttribute('aria-expanded') == 'true'
+          link.setAttribute('aria-expanded', !isExpanded)
+        } else {
+          // Do nothing. Link clicks normally.
+          // window.location.hash = `#fn${index}`;
+        }
+      })
 
-      span.addEventListener('focusout', (e) => {
-        // If span does not contain the new focus target, it has lost focus.
-        // `e.relatedTarget` of focusout returns "The EventTarget receiving focus (if any)".
-        // Per https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
-        if (!span.contains(e.relatedTarget)) {
+      // Toggle popup on 'enter' or 'space' key
+      link.addEventListener('keydown', (e) => {
+        console.log('keydown', e.key)
+        if (e.key == ' ' || e.key == 'Enter') {
+          e.preventDefault()
+          const isExpanded = link.getAttribute('aria-expanded') == 'true'
+          link.setAttribute('aria-expanded', !isExpanded)
+        }
+      })
+
+      // Hide popup when <sup> no longer contains focused element.
+      // `e.relatedTarget` gives us EventTarget receiving focus (if any).
+      // Per https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
+      sup.addEventListener('focusout', (e) => {
+        if (!sup.contains(e.relatedTarget)) {
           link.setAttribute('aria-expanded', 'false')
         }
       })
-    }
 
-    // Remove footnotes <section>
-    document.querySelector('#footnotes').remove()
+    })
 
+    // Hide popup when user presses escape
+    document.addEventListener('keyup', (e) => {
+      if (e.key == 'Escape' || e.key == 'Esc') {
+        const activeEl = document.activeElement
+        if (activeEl.parentElement.classList.contains('fn')) {
+          activeEl.blur()
+        }
+      }
+    })
 
     /*
     Ensure selected footnotes blur() on Mobile Safari:
@@ -70,47 +101,16 @@
     - If the document.activeElement is a footnote link, blur it.
     */
 
-    /**
-     * Detect if device has touchscreen.
-     * We only want to add our "blur on touch" event listeners when Mobile Safari is being used. The best we can do is check for touchscreen. The following is taken from MDN: https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
-     */
-    function hasTouchScreen() {
-      let hasTouch = false
-      if ('maxTouchPoints' in navigator) {
-        hasTouch = navigator.maxTouchPoints > 0
-      } else if ('msMaxTouchPoints' in navigator) {
-        hasTouch = navigator.msMaxTouchPoints > 0
-      } else {
-        const mQ = window.matchMedia && matchMedia('(pointer:coarse)')
-        if (mQ && mQ.media === '(pointer:coarse)') {
-          hasTouch = !!mQ.matches
-        } else if ('orientation' in window) {
-          hasTouch = true // deprecated, but good fallback
-        } else {
-          // Only as a last resort, fall back to user agent sniffing
-          const UA = navigator.userAgent
-          hasTouch = (
-            /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-            /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
-          )
-        }
-      }
-
-      return hasTouch
-    }
-
-    if (hasTouchScreen()) {
+    if (isTouch) {
       const main = document.querySelector('main')
       main.addEventListener('pointerdown', (e) => {
         const activeEl = document.activeElement
-        if (document.activeElement.classList.contains('fn-link')) {
+        if (activeEl.parentElement.classList.contains('fn')) {
           activeEl.blur()
-          console.log('blur')
         }
       })
     }
 
-    return
   }
 
   window.addEventListener('DOMContentLoaded', setup)

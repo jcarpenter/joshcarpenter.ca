@@ -1,0 +1,79 @@
+/* 
+========================================================
+Fonts
+========================================================
+*/
+
+// Note: 5/4. These are the Public Sans rules I was using before switching to system fonts.
+
+// :root {
+//     --font-family: "Public Sans", sans-serif;
+// }
+
+// /* High priority */
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;
+//     font-weight: normal;
+//     src: url("/fonts/PublicSans-Regular.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;
+//     font-weight: 700;
+//     src: url("/fonts/PublicSans-Bold.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// /* Normal priority */
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: italic;
+//     font-weight: normal;
+//     src: url("/fonts/PublicSans-Italic.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;
+//     font-weight: 600;
+//     src: url("/fonts/PublicSans-SemiBold.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// ---- Old and unused. Can probably delete. ---- //
+
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: italic;
+//     font-weight: 600;
+//     src: url('/fonts/PublicSans-SemiBoldItalic.woff2') format('woff2');
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: italic;
+//     font-weight: 700;
+//     src: url('/fonts/PublicSans-BoldItalic.woff2') format('woff2');
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: normal;
+//     font-weight: 500;
+//     src: url('/fonts/PublicSans-Medium.woff2') format('woff2');
+// }
+
+// @font-face {
+//     font-family: 'Public Sans';
+//     font-style: italic;
+//     font-weight: 500;
+//     src: url('/fonts/PublicSans-MediumItalic.woff2') format('woff2');
+// }

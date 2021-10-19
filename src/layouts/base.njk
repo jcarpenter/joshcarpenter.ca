@@ -1,27 +1,14 @@
----json
-{
-    "js": [],
-    "css": [
-        "main.css"
-    ]
-}
----
 <!doctype html>
 <html lang="en">
     <head>
         {% include "head.njk" %}
     </head>
     <body>
-
-        {% if type == "article" %}
-            <a href="#main-content-start" class="hidden">Skip to main content</a>
-        {% endif %}
-
+        <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "header.njk" %}
-
-        {{ content | safe }}
-
+        <main role="main" aria-labelledby="title">
+            {{ content | safe }}
+        </main>
         {% include "footer.njk" %}
-        
     </body>
 </html>

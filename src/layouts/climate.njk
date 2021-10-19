@@ -1,0 +1,68 @@
+---js
+{
+    social: {
+        addTags: true,
+        type: "article",
+    },
+    eleventyComputed: {
+        metaTitle: "{{ title }} | Josh Carpenter - Portfolio and Notes",
+    },
+    colors: {
+        primary: {
+            //light: "120, 120, 120",
+            dark: "124, 160, 204"
+        }
+    }
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+    </head>
+    <body>
+        <a href="#title" class="visibility-hidden">Skip to content</a>
+        {% include "header.njk" %}
+        <main role="main" aria-labelledby="title">
+            <article id="post">
+
+                {# ------------ Header ------------ #}
+                <header>
+
+                    {# Title #}
+                    {# <a href="/index.html#climate" id="category">Climate change</a> #}
+                    <h1 id="title">{{ title }}</h1>
+
+                    {# Metadata #}
+                    <section id="metadata" aria-label="Metadata">
+                        <div id="details">
+                            {# <address class="author"><a href="https://twitter.com/{{ config.bio.twitter }}">{{ config.bio.name }}</a>.</address> #}
+                            <a class="type" href="/index.html#climate">Climate</a>
+                            <time datetime="{{ page.date }}" class="updated">{{ page.date | date("DD/MM/YYYY") }}</time>
+                        </div>
+                        <aside id="intro">
+                            This is a <a href="/index.html#climate">climate change explainer</a>. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
+                            {# <span class="author-sig">-JC</span> #}
+                        </aside>
+                    </section>
+
+                    {# Preface #}
+                    {# <section aria-labelledby="preface-heading" id="preface">
+                        This is a <a href="/index.html#climate">climate change explainer</a>. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
+                    </section> #}
+
+                </header>
+
+                {# ------------ Post body ------------ #}
+                <section aria-label="Main content body" id="content">
+                    {{ content | safe }}
+                </section>
+
+            </article>
+
+            {# {% include "related-content.njk" %} #}
+            {% include "about-the-author.njk" %}
+        </main>
+        {% include "footer.njk" %}
+    </body>
+</html>

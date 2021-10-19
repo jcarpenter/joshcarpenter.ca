@@ -1,0 +1,392 @@
+@use "mixins_and_functions" as *;
+
+/* 
+========================================================
+Variables
+========================================================
+*/
+
+:root {
+
+  --bodyTextAlpha: 0.7;
+  --foreground: 0, 0, 0;
+  // --primary: 0, 148, 153; // Sea green
+  // --primary: 120, 120, 120; // Grey
+  --primary: 199, 18, 64; // A-Frame red
+  // --secondary: 50, 50, 50;
+  --background: 247, 247, 247;
+  --on-background: 10, 10, 10;
+  --popup: 65, 65, 65;
+  --on-popup: 250, 250, 250;
+
+  // Color of overlay grid
+  --overlayGrid: 0, 119, 179;
+
+  @include dark {    
+    --bodyTextAlpha: 0.7;
+    --foreground: 255, 255, 255;
+      // --primary: 166, 172, 205; // Purple
+      // --primary: 128, 203, 196; // Green
+      --primary: 166, 158, 143; // Sand
+      // --primary: 124, 160, 204; // Electric blue
+      // --secondary: 50, 50, 50;
+      --background: 30, 37, 45;
+      --on-background: 180, 192, 207;
+      --popup: 45, 58, 73;
+      --on-popup: 173, 191, 212;
+      }
+}
+  
+
+/* 
+========================================================
+Elements
+========================================================
+*/
+
+
+/* -------------- Body -------------- */
+
+body {
+  color: onBackground(var(--bodyTextAlpha));
+  background-color: background(1);  
+}
+
+
+/* -------------- Blockquote -------------- */
+
+// Left border
+blockquote::before {
+  background-color: primary(0.25);
+}
+
+blockquote p {
+  
+  // Text
+  color: primary();
+  
+  // Normal links inside blockquote
+  & > a { 
+    color: primary();
+    &:hover {
+      color: primary();
+      filter: brightness(0.8); // Darken on hover
+    }
+  }
+  
+  // Footnote links inside blockquote
+  .fn > a {
+    color: primary(0.8);
+    background-color: primary(0.075);
+    &:focus, &:hover {
+      color: primary(0.9);
+      background-color: primary(0.2);
+    }
+  }
+}
+
+// blockquote .fn > a {
+//   // Counteract any blockquote italics styling
+//   color: primary(0.8);
+//   background-color: primary(0.1);
+// }
+
+// @include dark {
+//   blockquote p {
+//     a:hover { filter: brightness(1.2); }
+//   }
+// }
+
+
+/* -------------- Code -------------- */
+
+p code {    
+  // color: primary(1) !important;
+  // background-color: primary(0.1) !important;
+  color: onBackground(1) !important;
+  filter: brightness(0.8); // Darken slightly, so it reads better.
+  background-color: onBackground(0.1) !important;
+}
+
+@include dark {
+  p code {
+    color: primary(1) !important;
+    background-color: primary(0.2) !important;
+    // filter: brightness(1.2);
+  }  
+}
+
+
+/* -------------- Figures -------------- */
+
+figcaption {
+  color: onBackground(calc(var(--bodyTextAlpha) - 0.25)); 
+  // Footnote links inside figcaption
+  .fn > a { 
+    color: onBackground(calc(var(--bodyTextAlpha) - 0.25)); 
+  }
+}
+
+
+/* -------------- Footnotes -------------- */
+
+.fn-popup {
+  color: onPopup(0.8);
+  // background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent miniGrid(1));
+  background-color: popup();
+  a { color: onPopup(0.9); }
+  a:hover { color: onPopup();}
+}
+
+
+/* -------------- Footnote links -------------- */
+
+.fn > a {
+  color: onBackground(calc(var(--bodyTextAlpha) - 0.1));
+  background-color: onBackground(0.075);
+  &:focus,
+  &:hover {
+    color: onBackground(calc(var(--bodyTextAlpha) + 0.2));
+    background-color: onBackground(0.2);
+  }
+}
+
+@include dark {
+  .fn > a {
+    // color: onBackground(1.2);
+    background-color: onBackground(0.125);
+  }
+}
+
+/* -------------- Headers -------------- */
+
+h1 { color: onBackground(1); }
+h2 { color: onBackground(1); }
+h3, .short-post h2 { color: onBackground(0.8); }
+
+@include dark {
+  h1 { color: foreground(1); }
+  h2 { color: onBackground(1); filter: brightness(1.2); }
+  h3, .short-post h2 { color: onBackground(1); }
+}
+
+
+/* -------------- Links -------------- */
+
+a {
+  color: onBackground(var(--bodyTextAlpha));
+  &:hover { 
+    color: onBackground(calc(var(--bodyTextAlpha) + 0.25)); 
+  }
+  &:active { 
+    color: onBackground(1);
+    background-color: onBackground(0.1); 
+  }
+}
+
+
+/* -------------- Lists -------------- */
+
+// Top-level
+section > ol li::before {
+  // color: onBackground(0.8);
+  color: primary(1);
+}
+
+section > ul li::before {
+  color: primary(1);
+  // color: onBackground(0.7);
+}
+
+// Nested lists
+section > ol * li::before,
+section > ul * li::before {
+  color: primary(0.5);
+}
+
+
+/* -------------- Strong -------------- */
+
+// strong { color: inherit; }
+
+// @include dark {
+//   strong { filter: brightness(1.2); }
+// }
+
+strong {
+  color: primary(1);
+  background-color: primary(0.05);
+}
+
+
+/* -------------- Tables -------------- */
+
+/* Header */
+table {
+  --tableBorderColor: #{primary(0.25)};
+  th { 
+    @include dotBackground(0.25, 0.05);
+    // // background: foreground(0.05); 
+    // background-image: 
+    //     linear-gradient(primary(0.05), primary(0.05)),
+    //     radial-gradient(primary(0.25) 0.05em, transparent 0);
+    // background-size: 
+    //     cover,
+    //     0.2em 0.2em;
+    // background-position: 
+    //     top left,
+    //     top left;
+    // background-repeat:
+    //     no-repeat,
+    //     repeat; 
+  }
+}
+
+/* Alternating row colors */
+/* table tr:nth-child(2n) td {
+    background: var(--tableBackgroundColor);
+} */
+
+
+/* 
+========================================================
+Sections
+========================================================
+*/
+
+/* -------------- About the Author -------------- */
+
+#about-the-author {
+  // background-color: foreground(0.075);
+  color: onBackground();
+  text-shadow: 1px 1px 5px rgba(var(--background), 0.5);
+  @include dotBackground(0.1, 0.03);
+  // background-color: primary(0.05);
+}
+
+/* -------------- Footnotes -------------- */
+
+#notes h2 {
+  color: onBackground(1);
+  // color: primary(1);
+}
+
+#notes .two-column-list {
+   
+
+  // Numeric marker
+  li::before {
+    // color: onBackground(0.8);
+    color: primary(1);
+  }
+
+  li {
+    color: onBackground(0.65);
+    // color: primary(0.75);
+    // filter: brightness(0.8);
+    a { 
+      // color: inherit; 
+      color: onBackground(0.85);
+      // color: primary(0.85);
+    }
+    a:hover  { 
+      color: onBackground(0.95); 
+      // color: primary(1);
+    }
+  }
+
+  .fn-back {
+    color: onBackground(0.5);
+  }
+}
+
+/* -------------- Metadata -------------- */
+
+#metadata {
+  color: onBackground(0.5);
+  // background-color: primary(0.025);
+  a { color: onBackground(0.5); }
+}
+
+@include dark {
+  #metadata {
+    color: primary(0.7);
+    a { color: primary(0.7) }
+  }
+}
+
+/* -------------- Preface -------------- */
+
+#preface::before {
+  background-image: 
+    linear-gradient(background(), background()),
+    radial-gradient(primary(0.5) 0.05em, transparent 0);
+  background-size: 
+    calc(100% - 1.1em) calc(100% - 1.1em),
+    0.2em 0.2em;
+  background-position: 
+    0.6em 0.6em,
+    top left;
+  background-repeat:
+    no-repeat,
+    repeat; 
+}
+
+@include dark {
+  #preface {
+
+  }
+}
+
+// Preface section
+// #preface {
+//   background: foreground(0.05);
+// }
+
+// @include dark {
+//   #preface {
+//     background: foreground(0.2);
+//   }
+// }
+
+#preface {
+  color: primary(0.8);
+  background: transparent;
+  // background-image: 
+  //   linear-gradient(background(), background()),
+  //   radial-gradient(primary(0.5) 0.05em, transparent 0);
+  // background-size: 
+  //   calc(100% - 1.1em) calc(100% - 1.1em),
+  //   0.2em 0.2em;
+  // background-position: 
+  //   0.6em 0.6em,
+  //   top left;
+  // background-repeat:
+  //   no-repeat,
+  //   repeat; 
+
+  a {
+    color: inherit;
+  }
+}
+
+/* -------------- Related Content -------------- */
+
+#related-content .tag a {
+  color: foreground(0.5);
+}
+
+
+/* 
+========================================================
+Header (Navigation)
+========================================================
+*/
+
+body > header h1 { 
+  color: primary(1); 
+  a,
+  a:visited { 
+    color: inherit; 
+  }
+}

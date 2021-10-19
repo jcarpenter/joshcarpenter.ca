@@ -1,0 +1,226 @@
+@use "mixins_and_functions" as *;
+
+
+/* 
+========================================================
+FOOTNOTES: LINKS
+========================================================
+*/
+
+/* -------------- Wrapping <sup> -------------- */
+
+sup.fn {
+    position: relative;
+    vertical-align: baseline;
+    font-size: 1em;
+    top: initial;
+    bottom: 0.1em;
+}
+
+
+/* -------------- Link -------------- */
+
+.fn > a {
+    // border-radius: 0.2em;
+    // bottom: 0.1em;
+    cursor: pointer;
+    font-size: 0.8em;
+    line-height: 1em;
+    text-decoration: none;
+    padding: 0.3em 0.25em 0.2em;
+    border: none;    
+}
+
+// Touch: Make target slightly larger
+@media (hover: none) {
+    .fn > a {
+        padding: 0.3em 0.35em 0.2em;
+    }
+}
+
+// Desktop: Make target slightly smaller
+@media (hover) {
+    .fn > a {
+        padding: 0.3em 0.25em 0.2em;
+    }
+}
+
+
+.fn > a:focus {
+    @include outline-thin;
+    // color: onBackground(0.95);
+    // @media screen and (prefers-color-scheme: dark) {
+    //     color: foreground(0.5);
+    //     background-color: foreground(0.1);
+    // }
+}
+
+
+
+/* -------------- Inside blockquotes -------------- */
+
+// Counteract any blockquote italics styling
+blockquote .fn > a {
+    font-style: normal;
+}
+
+blockquote .fn-popup {
+    font-style: normal;
+}
+
+
+/* -------------- Inside figures -------------- */
+
+// Figcaption text is smaller, so we need to adjust footnote link
+// styling to match
+figcaption .fn > a {
+    background: none;
+    text-decoration: underline;
+    text-decoration-color: inherit;
+    padding: 0;
+
+    // Push vertical alignment up a few px.
+    // Code text is bit smaller than surrounding,
+    // So we need to vertically center it.
+    line-height: 0;
+    vertical-align: 0.1em;
+
+    &:hover {
+        background: none;
+    }
+}
+
+
+/* 
+========================================================
+FOOTNOTES: POPUP
+========================================================
+*/
+
+.fn-popup {
+    white-space: normal;
+    @include miniTypography;
+    padding: miniGrid(1);
+}
+
+// Popup: Desktop and larger touch-based devices
+// Appears as a hovering box 
+@media (hover), (hover: none) and (min-width: 600px) {
+    .fn {
+        --notch-size: 0.6em;
+        --popup-distance: -0.5em;
+        --show: 0.05s;
+        --hide: 0.05s;
+        --delay: 0.1s;
+    }
+
+    .fn-popup {
+        position: absolute;
+        left: 50%;
+        z-index: 100;
+        width: 24rem;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility var(--hide), opacity var(--hide);
+        transition-delay: var(--delay);
+        transition-timing-function: ease-out;
+        /* Notch */
+        &::before {
+            content: "";
+            width: var(--notch-size);
+            height: var(--notch-size);
+            position: absolute;
+            transform: rotate(45deg);
+            z-index: -1;
+            background-color: inherit;
+        }
+    }
+
+    .fn-popup.above {
+        transform: translate(-50%, -100%);
+        // Offset by size of notch, then adjust distance with final value
+        top: var(--popup-distance);
+        /* Notch */
+        &::before {
+            bottom: 0.05em;
+            left: 50%;
+            transform: translate(-50%, 50%) rotate(45deg);
+        }
+    }
+
+    .fn-popup.below {
+        transform: translate(-50%, 100%);
+        bottom: -0.5em;
+        /* Notch */
+        &::before {
+            top: 0.05em;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
+
+    .fn:focus-within a[aria-expanded="true"] + .fn-popup,
+    .fn:hover .fn-popup {
+        // display: block;
+        opacity: 1;
+        visibility: visible;
+        transition: visible 0s, opacity var(--show);
+        // transition-delay: 0.1s;
+        transition-timing-function: ease-in;
+    }
+}
+
+/* Popup — For smaller touch-based devices */
+/* The popup appears along the bottom of the screen, and a dark overlay covers the rest of the content.*/
+/* TODO: What about Windows devices with both tap and touch? They won'  be able to tap. May want to use `@media (pointer:fine)` and `@media (pointer:coarse)` instead? */
+
+@media (hover: none) and (max-width: 599px) {
+    .fn-popup {
+        position: fixed;
+        // Make popup width of screen
+        left: 0;
+        right: 0;
+        z-index: 100;
+        // border-radius: grid(0.25) grid(0.5) 0 0;
+        padding: grid(0.75);
+        padding-bottom: calc(grid(1) + grid(0.25));
+        font-size: var(--font-base-size);
+        margin-left: grid(0.25);
+        margin-right: grid(0.25);
+        /* line-height: grid(0.75); */
+        line-height: grid(1);
+        box-shadow: 0px 1px 40px 14px rgba(0, 0, 0, 0.2);
+
+        /* Transition settings to hidden state */
+        /* Don't set visibility until opacity tween is complete.*/
+        bottom: -10em;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.15s, opacity 0.15s, bottom 0.25s;
+        transition-timing-function: ease-in;
+    }
+
+    /* Activated */
+    // .fn:hover .fn-popup,
+    .fn:focus-within a[aria-expanded="true"] + .fn-popup {
+        /* Transition settings to visible state.*/
+        /* Set visibility immediately (0s).*/
+        bottom: -0.5em;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s, opacity 0.25s, bottom 0.25s;
+        transition-timing-function: ease-out;
+    }
+
+    /* Overlay */
+    /* .note .popup::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    } */
+}

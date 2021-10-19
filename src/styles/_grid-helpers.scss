@@ -1,9 +1,12 @@
+@use "mixins_and_functions" as *;
+
+
 #btnGrid {
     position: fixed;
-    top: var(--grid);
-    right: var(--grid);
-    width: var(--grid-4);
-    height: var(--grid);
+    top: grid(1);
+    right: grid(1);
+    width: grid(4);
+    height: grid(1);
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-radius: 2em;
     background-color: rgb(239, 239, 239);
@@ -24,15 +27,31 @@
     outline: 0px solid #fff;
 }
 
+@include light {
+    .backgroundGrid { --opacity: 0.15; }
+}
+
+@include dark {
+    .backgroundGrid { --opacity: 0.3; }
+}
+
 .backgroundGrid {
     background: 
-        repeating-linear-gradient(to bottom, rgba(0, 119, 179, 0.05) 0, rgba(0, 119, 179, 0.05) 1px, transparent 1px, transparent var(--grid-quarter)),
-        repeating-linear-gradient(to bottom, rgba(0, 119, 179, 0.1) 0, rgba(0, 119, 179, 0.1) 1px, transparent 1px, transparent var(--grid-half)),
-        repeating-linear-gradient(to bottom, rgba(0, 119, 179, 0.3) 0, rgba(0, 119, 179, 0.3) 1px, transparent 1px, transparent var(--grid));
-    background-color: rgb(243, 249, 255);
+        // repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.05) 0, rgba(var(--overlayGrid), 0.05) 1px, transparent 1px, transparent grid(0.25)),
+        repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), var(--opacity)) 0, rgba(var(--overlayGrid), var(--opacity)) 1px, transparent 1px, transparent grid(0.5)),
+        // repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.3) 0, rgba(var(--overlayGrid), 0.3) 1px, transparent 1px, transparent grid(1));
+        repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.3) 0, rgba(var(--overlayGrid), 0.3) 1px, transparent 1px, transparent grid(0.5));
+    background-color: transparent;
 }
 
 .blockHighlight {
     // background-color: rgba(0, 119, 179, 0.2);
     background-color: rgba(179, 0, 0, 0.2);
+}
+
+@include dark {
+    .blockHighlight {
+        // background-color: rgba(0, 119, 179, 0.2);
+        background-color: rgba(var(--overlayGrid), 0.3);
+    }    
 }

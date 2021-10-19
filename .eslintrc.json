@@ -18,6 +18,7 @@
         "max-len": "off",
         "valid-jsdoc": "off",
         "no-invalid-this": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "object-curly-newline": "off"
     }
 }

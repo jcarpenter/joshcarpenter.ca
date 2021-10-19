@@ -1,47 +1,138 @@
-/* ==========================================================================
-   Figure & Img
-   ========================================================================== */
+@use "mixins_and_functions" as *;
+@use "plumber" as *;
 
-// article figure {
-//     /* grid-column: right; */
-//     /* align-self: end; */
-//     /* justify-self: end; */
-//     /* overflow: visible; */
-//     /* height: 0em; */
-//     margin-top: 0;
-//     margin-bottom: var(--block-margin-bottom);
-// }
+/* 
+========================================================
+Figure & Img
+========================================================
+*/
 
 figure {
-    margin: 0 0 var(--block-margin-bottom);
+    margin: 0 0 grid(1.5);
+    // Use center column of main grid (same as content
+    // text). Make full width of that column.
+    // grid-column: 3;
+    display: block;
+    // Figpcaption is full width of parent figure.
+    figcaption { width: 100%; }
 }
 
+// @media screen and (min-width: 481px) {
+//     figure {
+//         display: grid;
+//         grid-template-columns: var(--grid-layout-figcaption);
+
+//         & > :not(figcaption) {
+//             grid-column: 1/4;
+//         }
+    
+//         & > figcaption {
+//             grid-column: 2;
+//         }
+//     }
+
+//     .portfolio figure > figcaption {
+        
+//     }
+// }
+
+/* 
+On "note" posts, copy is more important than media,
+so we make media same width as text.
+
+On "portfolio" posts, media is more important than copy,
+so we make media wider.
+
+On narrow (mobile) screens, media is always full width,
+so there is no distinctin between notes and portfolio.
+
+*/
+
+/* 
+Mobile: Simple layout. Figure is full width,
+and so is figcaption.
+*/
+// @media (max-width: 480px) {
+//     #post.note figure,
+//     #post.portfolio figure {
+//         // Use center column of main grid (same as content
+//         // text). Make full width of that column.
+//         grid-column: 3;
+//         display: block;
+//         // Figpcaption is full width of parent figure.
+//         figcaption { width: 100%; }
+//     }
+// }
+
+/* 
+Larger-than-mobile: Portfolio images are wide.
+*/
+@media (min-width: 480px) {
+    // #post.portfolio #content figure {
+    //     // Use columns 3-5. So media is wider than text.
+    //     grid-column: 2/5;
+    //     // For figcaption, use column 2 of parent figure grid.
+    //     // So figcaption aligns with content text.
+    //     display: grid;
+    //     grid-template-columns: var(--grid-layout-figcaption);
+    //     & > :not(figcaption) { grid-column: 1/5; }
+    //     figcaption { grid-column: 2 }
+    // }
+}
+
+
+
+
+
 figure img {
-    // box-shadow: 0px 1px 26px -14px rgba(0, 0, 0, 0.175);
-//     border: 21px solid rgba(0, 0, 0, 0.06);
+    // Display block, to remove perceived padding below 
+    // img when it's left as inline element (the default)
+    display: block;
+
+    // box-shadow: 0px 1px 26px -14px rgba(0, 0, 0, 0.175); // Drop shadow
+    // box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.175); // 1px outline
+    box-shadow: 
+        0px 0px 2em rgba(0, 0, 0, 0.05),
+        inset 0px 0px 2px 1px rgba(0, 0, 0, 0.04); // 1px outline
+    // border: 21px solid rgba(0, 0, 0, 0.06);
     // object-fit: contain;
+    width: 100%;
     max-width: 100%;
     height: auto;
     box-sizing: border-box;
     margin: 0;
-    // border-radius: 0.25em;
     transform: scale(1, 1);
-    transition: box-shadow 0.08s, transform 0.08s;
-    transition-timing-function: ease-out;
-    background-color: var(--clr-gray-lightest);
+    // transition: box-shadow 0.08s, transform 0.08s;
+    // transition-timing-function: ease-out;
+    background-color: transparent;
+    // Add a light outline to media in posts
+    // outline: 1px solid rgba(0, 0, 0, 0.15);
+    // outline-offset: -1px;
+}
+
+
+figure img,
+figure iframe, 
+figure video {
+    border-radius: 0.2em;
+    // For assets that are small and wouldn't fill the space otherwise.
+    width: 100%;
+    // Make images expand to fill the available space without scaling
+    // Important because we crop image height to fit grid, using JS.    
+    object-fit: cover;
 }
 
 figure img:focus {
     // border: 10px solid yellow;
 }
 
-@media (min-width: 900px) {
-    figure img { 
-        // width: auto;
-        // max-width: 100%;
-        // max-height: var(--grid-8);
-    }
-}
+// @media (min-width: 90    0px) {
+//     figure img { 
+//         width: auto;
+//         max-width: 100%;
+//         max-height: grid(8);
+//     }
+// }
 
 // Add hover states to thumbnails
 // article figure img:hover,
@@ -54,12 +145,36 @@ figure img:focus {
 // }
 
 figcaption {
-    /* padding: var(--grid-half); */
-    /* background: rgba(0, 0, 0, 0.05); */
-    /* font-style: italic; */
-    /* margin-top: var(--grid-quarter); */
-    color: gray;
-    font-size: var(--font-sml-1);
-    line-height: var(--grid-three-quarters);
-    letter-spacing: 0.02em;
+    font-weight: 500;
+    
+    // Add hyphenation
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  
+    @include miniTypography;
+    // @include miniBackgroundGrid;
+    // background-color: rgba(212, 186, 72, 0.4);
+    
+    // We override miniTypography's usual padding-bottom,
+    // because we don't need it. It's only useful when we
+    // have a series of miniTypography items in a row.
+    // In which case it ensures all items sit on the 
+    // baseline grid.
+    padding-bottom: 0;
+}
+
+/* 
+========================================================
+iFrame
+========================================================
+*/
+
+// We need to set the aspect-ratio property on the iframe.
+// E.g. <iframe style="aspect-ratio: 4/3" ...>
+figure iframe {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    background-color: black;
 }

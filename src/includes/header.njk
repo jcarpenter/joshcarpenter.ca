@@ -1,20 +1,21 @@
 <header role="banner">
 
     {# Logo #}
-    <h2>
-        <a href="/">{{ josh.name }}</a>
-    </h2>
+    <h1>
+        <a href="/">{{ config.bio.name }}</a><br/>
+        {# <span class="topics">UX Designer</span> #}
+    </h1>
 
     {# Simple links #}
 
-    <button id="hamburger">
-        <img src="/img/menu-black.svg">
-    </button>
+    {# <button id="hamburger">
+        <img src="/img/menu-black.svg" alt="Close"" />
+    </button> #}
 
-    <nav id="top" role="navigation" aria-label="Top-level">
+    <nav role="navigation" aria-label="Top-level">
         <ul>
             <li class="hidden">
-                <a href="/climate" tabindex="0">Home</a>
+                <a href="/" tabindex="0">Home</a>
             </li>
             <li>
                 <a href="/climate" tabindex="0">Climate</a>

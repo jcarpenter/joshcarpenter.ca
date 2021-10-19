@@ -1,0 +1,50 @@
+@use "plumber" as *;
+@use "mixins_and_functions" as *;
+
+#home section {
+  @include standardWidth;
+  margin: auto;
+}
+
+#home #intro address {
+  @include plumber(
+      $font-size: 1.333,
+      $line-height: 2,
+      $leading-top: 0,
+      $leading-bottom: 2,
+      $grid-height: 1rem,
+      $baseline: 0.18,
+      $use-baseline-origin: false
+  );  
+}
+
+#home #intro h1 {
+
+}
+
+#home ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  
+  li {
+    margin: 0;  
+  }
+
+  li::before {
+    content: none;  
+  }
+}
+
+#home h2 {
+  font-weight: 600;
+  @include plumber(
+      $font-size: 1.333,
+      $line-height: 2,
+      $leading-top: 0,
+      $leading-bottom: 1,
+      $grid-height: 1rem,
+      $baseline: 0.18,
+      $use-baseline-origin: false
+  );
+}

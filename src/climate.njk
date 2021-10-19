@@ -1,9 +1,13 @@
----json
+---js
 {
-    "layout": "base.njk",
-    "type": "website",
-    "title": "Climate Research Notes",
-    "addTitleSuffix": true
+    layout: "base.njk",
+    social: {
+        addTags: true,
+        type: "website",
+    },
+    title: "Climate Research Notes",
+    permalink: "/climate/",
+    publish: false
 }
 ---
 
@@ -15,7 +19,17 @@
         These are personal research notes on the drivers, impacts of, and potential solutions to climate change. In 2019, I decided to shift from virtual and augmented reality to climate change, hoping to find a place where I could make a positive contribution. These notes are written primarily for myself, so many will be brief, incomplete, etc. But hopefully they (and/or the references) are useful.
     </aside>
 
-    <section id="highlights">
+    <section>
+        <ul>
+            {%- for post in collections.climate -%}
+                <li>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </section>
+
+    {# <section id="highlights">
         <h2>Highlights</h2>
         <ul class="highlights">
             {%- for post in collections.climate -%}
@@ -76,7 +90,7 @@
                 </li>
             {%- endfor -%}
         </ul>
-    </section>
+    </section> #}
 
 </main>
 

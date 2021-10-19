@@ -1,41 +1,46 @@
-/* ==========================================================================
-   Lightbox
-   ========================================================================== */
+@use "mixins_and_functions" as *;
 
-/* -------------- Temp -------------- */
 
-// #lightbox * {
-//     border: 1px solid red;
-// }
+/* 
+========================================================
+Lightbox
+========================================================
+*/
 
-// @media (max-aspect-ratio: 7/8) {
-//     #lightbox * {
-//         border: 1px solid yellow;
-//     }
-// }
+/* -------------- Thumbnail -------------- */
 
-/* -------------- Controls -------------- */
+[data-lightbox] > button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0;
+    aspect-ratio: auto;
+    display: inline-grid; // Putting this on button and on parent figure eliminates pesky extra margin below child image.
 
-#lightbox {
-    // Transition
-    opacity: 0;
-    visibility: hidden;
-    // transition: visibility 1.15s, bottom 0.15s, opacity 1.15s;
-    // transition-timing-function: ease-out;
+    &:focus {
+        @include outline-thin
+    }
 }
 
-#lightbox.open {
-    // Transition
-    opacity: 1;
-    visibility: visible;
-    // transition: visibility 0s, opacity 0.08s;
-    // transition-timing-function: ease-in;
+/* -------------- Transition -------------- */
+
+/* 
+We're just defining visibility transition delays here. `visibility:hidden` is set by a top-level `[aria-hidden="true"]` selector. When aria-hidden=true, we delay visibility long enough for opacity tweens to finish.
+*/
+#lightbox[aria-hidden="true"] {
+    transition: visibility 0.5s;
+}
+
+/* When aria-hidden != true, we flip visibility immediately, so opacity tweens can start. */
+#lightbox {
+    transition: visibility 0s;
 }
 
 /* -------------- Media & Captions -------------- */
 
 #lightbox {
-    .holder {
+    .item {
         align-items: center;
         bottom: 0;
         display: flex;
@@ -43,17 +48,17 @@
         justify-content: center;
         left: 0;
         opacity: 0;
-        padding: var(--grid-2) var(--grid-half) var(--grid);
+        padding: grid(2) grid(0.5) grid(1);
         pointer-events: none;
         position: fixed;
         right: 0;
         top: 0;
         transition-timing-function: ease-out;
         transition: opacity 0.1s;
-        z-index: 0;
+        z-index: 1;
     }
 
-    .holder.open {
+    .item.open {
         opacity: 1;
         transition-timing-function: ease-in;
     }
@@ -66,68 +71,79 @@
         justify-content: center;
         overflow: hidden;
         position: relative;
-        
+
         img {
             pointer-events: all;
             z-index: 1;
+            max-width: 100%;
+            height: auto;
         }
     }
 
     .caption {
         pointer-events: all;
-        color: var(--clr-gray-light);
+        color: foreground(0.3);
         flex: 0 1 auto;
-        margin-top: var(--grid-half);
+        margin-top: grid(1);
         max-width: 64em;
         z-index: 1;
     }
 
     // Tweaked version of note styles
-    .note .icon {
-        background-color: var(--clr-gray-dark);
-        color: var(--clr-gray-light);
+    .fn button {
+        background-color: foreground(0.7);
+        color: foreground(0.3);
     }
 
-    .note:hover .icon {
-        background-color: var(--clr-gray);
+    .fn:hover button {
+        background-color: foreground(0.5);
     }
 }
 
-/* -------------- Prev & Next -------------- */
+/* -------------- Controls -------------- */
 
-#lightbox {
-    #prev,
-    #next {
-        cursor: pointer;
-        height: var(--grid);
-        margin: 0;
-        opacity: 0.4;
-        pointer-events: initial;
-        position: fixed;
-        top: var(--grid-half);
-        width: var(--grid);
-        z-index: 1;
-    }
+#lightbox > button {
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    opacity: 0.4;
+    pointer-events: initial;
+    position: fixed;
+    z-index: 1;
 
-    #prev {
-        left: var(--grid-half);
-    }
-
-    #next {
-        left: var(--grid-1-and-half);
-        transform: rotateZ(180deg);
-    }
-
-    #prev:hover,
-    #next:hover {
+    &:hover {
         opacity: 1;
     }
 
-    // Disabled
-    #prev.disabled,
-    #next.disabled {
+    &[aria-disabled="true"] {
         opacity: 0.15;
         pointer-events: none;
+    }
+
+    img {
+        width: grid(1);
+        height: auto;
+    }
+}
+
+#lightbox {
+    #prev,
+    #next,
+    #close {
+        top: grid(0.5);
+    }
+
+    #close {
+        left: grid(0.5);
+    }
+
+    #prev {
+        right: grid(1.5);
+    }
+
+    #next {
+        right: grid(0.5);
+        transform: rotateZ(180deg);
     }
 
     // #leftSideOfImage {
@@ -141,37 +157,22 @@
     // }
 }
 
-/* -------------- Close -------------- */
-
-#lightbox {
-    #close {
-        cursor: pointer;
-        height: var(--grid);
-        margin: 0;
-        opacity: 0.4;
-        position: fixed;
-        right: var(--grid-half);
-        top: var(--grid-half);
-        width: var(--grid);
-        z-index: 1;
-    }
-
-    #close:hover {
-        opacity: 1;
-    }
-}
-
 /* -------------- Background -------------- */
 
-#lightbox {
-    #background {
-        background-color: rgba(20, 20, 20, 0.92);
-        bottom: 0;
-        cursor: default;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 0;
-    }
+#lightbox[aria-hidden="true"] #background {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+#lightbox #background {
+    background-color: rgba(20, 20, 20, 0.92);
+    bottom: 0;
+    cursor: default;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
 }

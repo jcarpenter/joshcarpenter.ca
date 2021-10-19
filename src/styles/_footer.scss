@@ -1,0 +1,17 @@
+@use "colors" as *;
+@use "mixins_and_functions.scss" as *;
+
+/* 
+========================================================
+FOOTER
+========================================================
+*/
+
+/* Footer contains copyright info */
+
+body > footer {
+    color: foreground(0.5);
+    @include miniTypography;
+    @include standardWidth;
+    margin: grid(1) auto 0;
+}

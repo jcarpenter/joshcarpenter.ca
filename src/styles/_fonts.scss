@@ -1,42 +1,108 @@
-/* ==========================================================================
-   Fonts
-   ========================================================================== */
+/* 
+========================================================
+Fonts
+========================================================
+*/
 
-/* High priority */
+/* Roboto Mono */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-@font-face {
-    font-family: "Public Sans";
-    font-style: normal;
-    font-weight: normal;
-    src: url("/fonts/PublicSans-Regular.woff2") format("woff2");
-    font-display: fallback;
+body {
+    font-family: "Inter", sans-serif;
+    
+    // --- If I want to use SF... --- //
+    // Temporary solution (5/6): Recent changes in SF Display have introduced a bug in Chrome wherein heavier weights do not work at sizes >= 20px. Instead the user sees Regular. So am removing `BlinkMacSystemFont` until the bug is fixed (estimated Chrome 83). See: https://bugs.chromium.org/p/chromium/issues/detail?id=1057654&q=component%3ABlink%3EFonts%20system-ui%20macos&can=2
+    // font-family: -apple-system, "Inter", sans-serif;
+
+    // Once Chrome 83 ships w/ fix for SF font weight bug (1057654&):
+    // font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
 }
 
 @font-face {
-    font-family: 'Public Sans';
+    font-family: "Inter";
     font-style: normal;
-    font-weight: 700;
-    src: url('/fonts/PublicSans-Bold.woff2') format('woff2');
-    font-display: fallback;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Inter-Regular.woff2") format("woff2");
 }
 
-/* Normal priority */
-
 @font-face {
-    font-family: 'Public Sans';
+    font-family: "Inter";
     font-style: italic;
-    font-weight: normal;
-    src: url('/fonts/PublicSans-Italic.woff2') format('woff2');
-    font-display: fallback;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Inter-Italic.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: 'Public Sans';
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/Inter-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
     font-style: normal;
     font-weight: 600;
-    src: url('/fonts/PublicSans-SemiBold.woff2') format('woff2');
-    font-display: fallback;
+    font-display: swap;
+    src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
 }
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/Inter-Bold.woff2") format("woff2");
+}
+
+
+
+// NOTE: These are the Public Sans rules I was using before switching to system fonts.
+
+// :root {
+//     --font-family: "Public Sans", sans-serif;
+// }
+
+// /* High priority */
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;1
+//     font-weight: normal;
+//     src: url("/fonts/PublicSans-Regular.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;
+//     font-weight: 700;
+//     src: url("/fonts/PublicSans-Bold.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// /* Normal priority */
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: italic;
+//     font-weight: normal;
+//     src: url("/fonts/PublicSans-Italic.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// @font-face {
+//     font-family: "Public Sans";
+//     font-style: normal;
+//     font-weight: 600;
+//     src: url("/fonts/PublicSans-SemiBold.woff2") format("woff2");
+//     font-display: fallback;
+// }
+
+// ---- Old and unused. Can probably delete. ---- //
 
 // @font-face {
 //     font-family: 'Public Sans';

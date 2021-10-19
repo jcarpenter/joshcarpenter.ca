@@ -1,160 +1,160 @@
-/* ==========================================================================
-   Post: Headings
-   ========================================================================== */
+@use "mixins_and_functions" as *;
+@use "plumber" as *;
 
-/* -------------- Heading anchor link -------------- */
+/* 
+========================================================
+Metadata
+========================================================
+*/
 
-h2 .anchor {
-    display: none;
-}
 
-@media (min-width: 680px) {
-    h2 .anchor {
-        display: inline;
-        font-style: normal;
-        left: calc(var(--grid-quarter) * -1);
-        transform: translate(-100%, 0);
-        top: 0;
-        position: absolute;
-        text-decoration: none;
-        text-align: right;
-        opacity: 0.3;
-    }
+// #metadata {
+    
+//     font-size: var(--font-sml-1);
+//     font-weight: 400;
+//     font-style: normal;
+//     margin-bottom: grid(1);
+//     line-height: grid(0.5);
 
-    h2 .anchor:hover {
-        opacity: 0.8;
-    }
-}
+//     // Lines above and below
+//     &::before,
+//     &:after {
+//         content: '';
+//         display: block;
+//         border-style: solid;
+//     }
 
-// // Hide on touch devices
-// @media (hover: none) {
-//     .anchor {
-//         display: none;
+//     &:before {
+//         border-width: 1px 0 0 0;
+//         margin-top: -1px;
+//         padding-bottom: grid(0.5);
+//     }
+
+//     &:after {
+//         border-width: 0 0 1px 0;
+//         margin-bottom: -1px;
+//         padding-top: grid(0.5);
 //     }
 // }
 
-/* ==========================================================================
-   Post: Metadata
-   ========================================================================== */
+// // Author name
+// #metadata address {
+//     font-style: normal;
+//     display: inline;
 
-article a#category {
-    text-decoration: none;
-    font-size: var(--font-sml-1);
-}
+//     a {
+//         text-decoration: none;
+//     }
 
-article a#category:hover {
-    text-decoration: underline;
-}
-
-#metadata::before,
-#metadata::after {
-    content: "";
-    display: block;
-}
-
-#metadata::before {
-    border-top: 1px solid var(--clr-gray-lighter);
-    margin-top: -1px;
-    padding-bottom: var(--grid-half);
-}
-
-#metadata::after {
-    border-bottom: 1px solid var(--clr-gray-lighter);
-    margin-bottom: -1px;
-    padding-top: var(--grid-half);
-}
+//     a:hover {
+//         text-decoration: underline;
+//     }
+// }
 
 #metadata {
-    color: var(--clr-gray);
-    font-size: var(--font-sml-1);
-    font-weight: 400;
-    font-style: normal;
-    margin-bottom: var(--grid);
-    line-height: var(--grid-half);
+    border-top: 1px solid onBackground(0.2);
+    // border-left: 1px solid onBackground(0.1);
+    // border-right: 1px solid onBackground(0.1);
+    border-bottom: 1px solid onBackground(0.2);
+    
+    @include miniTypography(1rem, 0);
+    // padding-left: miniGrid(1);
+    // padding-right: miniGrid(1);
+    margin-bottom: grid(1);
+    
+    // @include miniBackgroundGrid;
+    // background-color: white;
 
-    #tags {
-        display: inline-flex;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    // Grid
+    display: grid;
+    grid-template-columns: grid(5) 1fr;
+    gap: grid(1);
+    #details { grid-column: 1/2; }
+    #intro { grid-column: 2/3; }
+    
+    #details {
+        @include mono-font;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
-    .tag {
-        // background-color: var(--clr-mint-3);
-        background-color: var(--clr-gray-lightest);
-        color: var(--clr-gray-dark);
-        border-radius: 3px;
-        // border: 1px solid var(--clr-gray-lighter);
-        display: inline-flex;
-        list-style: none;
-        padding: var(--grid-quarter);
-        margin: 0 var(--grid-quarter) 0 0;
-        height: var(--grid);
-
-        a {
-            text-decoration: none;
-        }
+    #details > * {
+        display: block;
     }
 
-    .tag:hover {
-        background-color: var(--clr-gray-lighter);
-    }
-
-    .tag.wip {
-        background-color: var(--clr-beige);
-        border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .tag.wip:hover {
-    }
-
-    // #tags {
-    //     color: var(--clr-gray-dark);
-    //     display: inline-flex;
-    //     list-style: none;
-    //     padding: 0;
-    //     margin: 0;
-    //     padding: 0 var(--grid-quarter) 0 0;
-    //     border-right: 1px solid var(--clr-gray-light);
-    //     margin: 0 var(--grid-quarter) 0 0;
-
-    //     a {
-    //         text-decoration: none;
-    //     }
-
-    //     a:hover {
-    //         text-decoration: underline;
+    // #intro {
+    //     .author-sig {
+    //         @include mono-font;
+    //         font-size: var(--font-sml-3);
+    //         font-size: inherit;
+    //         opacity: 0.8;
     //     }
     // }
-
-    // #tags > li:not(:last-child):after {
-    //     content: ',';
-    //     margin-right: 0.25em;
-    // }
-
-    address {
-        font-style: normal;
-        display: inline;
-    }
-
-    address a {
+    
+    a {
         text-decoration: none;
-    }
-
-    address a:hover {
-        text-decoration: underline;
-    }
-
-    address .author {
-        display: none;
-    }
-
-    @media (min-width: 680px) {
-        address .author {
-            display: inherit;
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
+
+
+// @media (min-width: 900px) {
+
+//     #metadata {
+//         margin-bottom: grid(2);
+//     }
+
+//     #metadata #details { 
+//         font-size: var(--font-sml-2);
+//         line-height: grid(0.75);
+//     }
+
+//     #metadata #intro {
+//         font-size: var(--font-sml-1);
+//         line-height: calc(grid(1) * 0.8);
+//     }
+// }
+
+// Tags
+// #metadata #tags {
+//     display: inline-flex;
+//     list-style: none;
+//     padding: 0;
+//     margin: 0;
+
+//     a,
+//     span.tag {
+//         // background-color: var(--clr-mint-3);
+//         background-color: foreground(0.075);
+//         color: foreground(0.7);
+//         border-radius: 3px;
+//         // border: 1px solid fore(0.15);
+//         display: inline-flex;
+//         list-style: none;
+//         padding: grid(0.25);
+//         margin: 0 grid(0.25) 0 0;
+//         height: grid(1);
+//         text-decoration: none;
+//     }
+
+//     a:hover,
+//     span.tag:hover {
+//         background-color: foreground(0.15);
+//     }
+
+//     a.wip,
+//     span.tag.wip {
+//         background-color: var(--clr-beige);
+//         border: 1px solid rgba(0, 0, 0, 0.04);
+//     }
+
+//     a.wip:hover,
+//     span.tag.wip:hover {
+//     }
+// }
 
 /* -------------- TODOs -------------- */
 
@@ -165,123 +165,143 @@ span.todo {
     border-radius: 2px;
 }
 
-/* -------------- Research note preface -------------- */
 
-#preface {
-    background: var(--clr-gray-lightest);
-    font-size: var(--font-sml-1);
-    padding: var(--grid-three-quarters);
-    margin-bottom: var(--grid);
 
-    // .wip {
-    //     font-weight: 600;
-    // }
+/* 
+========================================================
+Content
+========================================================
+*/
+
+// Set margin-top on first element
+#post #content > *:first-child {
+    margin-top: grid(0.5) !important;
+    // border: 1px solid red;
 }
 
-@media (min-width: 680px) {
-    #preface {
-        padding: var(--grid);
-    }
+// Add padding at end.
+#post #content {
+    padding-bottom: grid(1);
 }
 
-/* ==========================================================================
-   Post: Copy
-   ========================================================================== */
-
-/* -------------- Horizontal rule  -------------- */
-
-article > hr {
-    width: 100%;
-    height: var(--grid-quarter);
+.timeframe {
+    opacity: 0.5;
+    font-size: 0.95em;
+    // Push vertical alignment up a few px.
+    // Code text is bit smaller than surrounding,
+    // So we need to vertically center it.
+    line-height: 0;
+    vertical-align: 0.05em;
 }
 
-/* -------------- Lists  -------------- */
-/* TODO: Am currently aligning list markers flush with left side using magic numbers.  */
-/* Alternatively I could properly style my one, per: https://css-tricks.com/style-list-markers-css/  */
 
-/* Make list markers flush with body text, by default */
-/* ul {
-    padding-left: 1em;
-}
+/* 
+========================================================
+Footnotes
+========================================================
+*/
 
-ol {
-    padding-left: var(--grid-three-quarters);
-} */
+// We use the "mini" typography style for Notes.
 
-// Set list-style and padding for all top-level lists, and nested child lists
-article > ol,
-article > ol ul,
-article > ol ol,
-article > ul,
-article > ul ul,
-article > ul ol {
+#notes ol {
+    
     list-style: none;
-    padding-left: var(--grid-three-quarters);
-}
 
-article > ol {
-    counter-reset: custom-counter;
+    column-gap: miniGrid(4);
+    padding-top: 0;
+    padding-left: miniGrid(2);
+    padding-bottom: 0;
+    margin: 0;
+
+    // @include miniBackgroundGrid;
+    // background-color: white;
+
+    // Small devices: 1 column
+    // Wider devices: 2 columns
+    column-count: 1;
+    @media (min-width: 480px) {
+        column-count: 2;
+    }
 
     li {
-        counter-increment: custom-counter;
+        @include miniTypography;
+        margin-left: miniGrid(1);
+        margin-bottom: miniGrid(1);
+        /*Do not let contents be broken across columns */
+        break-inside: avoid;
+        page-break-inside: avoid; /* Firefox */
+    }
+
+    li a {
+        font-weight: normal;
+        text-decoration: underline;
+        border: none;
+
+        &:hover {
+            border: none;
+        }
+    }
+
+    li:last-of-type {
+        margin-bottom: 0;
+    }
+
+    // Highlight targeted note with a brief flash of
+    // background color.
+    li:target {
+        animation: fadeIn ease-in 2s;
+        border-radius: 0.1em;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            color: foreground(0.95);
+            background-color: foreground(0.1);
+            box-shadow: -0.1em 0 0 0.4em fore(0.1);
+        }
+        100% {
+            color: foreground(0.6);
+            background-color: transparent;
+            box-shadow: -0.1em 0 0 0em transparent;
+        }
+    }
+
+    // Reveal back button when user hovers the list item.
+    .fn-back {
+        text-decoration: none;
+        font-size: 0.9em;
+        line-height: 1em;
+        margin-left: 0.2em;
+        opacity: 0;
+        transition: opacity 200ms;
+
+    }
+    
+    li:hover .fn-back {
+        opacity: 1;
     }
 }
 
-//  Style <ol> numbers
-article > ol li::before {
-    content: counter(custom-counter) ".";
-    font-size: 0.9em;
-    color: var(--clr-gray);
-}
-
-// Style <ul> bullets
-article > ul li::before {
-    content: "•";
-    font-size: 1.8em;
-    color: var(--clr-gray-dark);
-}
-
-// Position numbers and bullets
-article > ol li,
-article > ul li {
-    position: relative;
-}
-
-article > ol li::before,
-article > ul li::before {
-    position: absolute;
-    left: calc(var(--grid-three-quarters) * -1);
-}
-
-/* Add more indentation on larger screens */
-@media (min-width: 480px) {
-    article ul,
-    article ol {
-        padding-left: calc(var(--grid) + var(--grid-quarter));
-    }
-
-    /* article ol li::before, article ul li::before {
-        left: calc(var(--grid) * -1);
-    } */
-}
 
 
-/* ==========================================================================
-   Posts: Related content
-   ========================================================================== */
+/* 
+========================================================
+Related content
+========================================================
+*/
 
 #related-content {
     font-size: var(--font-sml-1);
-    line-height: var(--grid-three-quarters);
-    // background: var(--clr-gray-lightest);
-    // padding: var(--grid);
-    // margin: var(--grid-2) 0 var(--grid);
+    line-height: grid(0.75);
+    // background: foreground(0.075);
+    // padding: grid(1);
+    // margin: grid(2) 0 grid(1);
 
     h2 {
         // font-size: var(--font-base-size);
         // font-weight: 700;
-        // margin: 0 0 var(--grid-half) 0;
-        // margin: var(--grid) 0;
+        // margin: 0 0 grid(0.5) 0;
+        // margin: grid(1) 0;
     }
 
     a.title {
@@ -293,7 +313,6 @@ article > ul li::before {
 
     .tag a {
         font-weight: normal;
-        color: var(--clr-gray);
         display: inline-block;
         text-decoration: none;
     }
@@ -316,35 +335,39 @@ article > ul li::before {
     }
 
     #tags > li:not(:last-child):after {
-        content: ",";
+        content: ',';
         margin-right: 0.25em;
     }
 }
 
-/* ==========================================================================
-   Posts: About the Author
-   ========================================================================== */
+/* 
+========================================================
+About the Author
+========================================================
+*/
 
-#about-the-author p {
-    background: var(--clr-gray-lightest);
-    padding: var(--grid-three-quarters);
-    margin-bottom: 0;
-}
+#about-the-author {
+    @include standardWidth;
+    @include plumber(
+        $font-size: 1.333,
+        $line-height: 2,
+        $leading-top: 5,
+        $leading-bottom: 0,
+        $grid-height: 1rem,
+        $baseline: 0.18,
+        $use-baseline-origin: false
+    );
+    @include dotBackground(0.25, 0.05);
+    // font-size: var(--font-sml-1);
+    padding: grid(1);
+    // margin-bottom: 0;
+    // margin-top: grid(2);
+    p { margin: 0; }
 
-/* ==========================================================================
-   Posts: Charts
-   ========================================================================== */
-
-.chart {
-    border: 1px solid var(--clr-gray-lightest);
-    background-color: var(--clr-gray-lightestx3);
-    margin-bottom: var(--grid);
-    width: 100%;
-    height: var(--grid-12);
-}
-
-@media (min-width: 680px) {
-    .chart {
-        height: var(--grid-14);
-    }
+    // &::before {
+    //     content: '';
+    //     @include dotBackground(0.25, 0);
+    //     height: grid(0.5);
+    //     margin-bottom: grid(0.5);
+    // }
 }

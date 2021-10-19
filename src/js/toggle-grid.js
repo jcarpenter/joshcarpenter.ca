@@ -20,19 +20,19 @@
   }
 
   function toggleGrid() {
-    const button = document.getElementById('btnGrid')
+    // const button = document.getElementById('btnGrid')
 
     if (flip === 0) {
-      button.textContent = 'Grid'
+      // button.textContent = 'Grid'
       document.body.classList.add('backgroundGrid')
       flip = 1
     } else if (flip === 1) {
-      button.textContent = 'All'
+      // button.textContent = 'All'
       document.body.classList.add('backgroundGrid')
       highlightBlocks(true)
       flip = 2
     } else if (flip === 2) {
-      button.textContent = 'None'
+      // button.textContent = 'None'
       document.body.classList.remove('backgroundGrid')
       highlightBlocks(false)
       flip = 0
@@ -40,12 +40,19 @@
   }
 
   function addBtn() {
-    const btnGrid = document.createElement('button')
-    btnGrid.id = 'btnGrid'
-    btnGrid.textContent = 'None'
-    btnGrid.onclick = toggleGrid
-    document.body.appendChild(btnGrid)
-    toggleGrid()
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key == 'g') {
+        toggleGrid()
+      }
+    })
+
+    // const btnGrid = document.createElement('button')
+    // btnGrid.id = 'btnGrid'
+    // btnGrid.textContent = 'None'
+    // btnGrid.onclick = toggleGrid
+    // document.body.appendChild(btnGrid)
+    // toggleGrid()
   }
 
   window.addEventListener('DOMContentLoaded', addBtn)

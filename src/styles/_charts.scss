@@ -1,0 +1,21 @@
+@use "base" as *;
+
+/* 
+========================================================
+Charts
+========================================================
+*/
+
+.chart {
+    border: 1px solid fore(0.075);
+    background-color: foreground(0.03);
+    margin-bottom: grid(1);
+    width: 100%;
+    height: grid(12);
+}
+
+@media (min-width: 680px) {
+    .chart {
+        height: grid(14);
+    }
+}

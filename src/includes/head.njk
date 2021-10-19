@@ -1,11 +1,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{# Do NOT interpret number sequences as phone numbers, on mobile devices. #}
+<meta name="format-detection" content="telephone=no">
 
-{# Append title suffix if template or layout has opted-in, in front matter. #}
-<title>{{ title }}
-    {% if addTitleSuffix %}{{ config.meta.title_suffix }}
-    {% endif %}
-</title>
+{% if title %}
+    <title>{{ title }} | Josh Carpenter - Portfolio and Notes</title>
+{% else %}
+    <title>{{ config.site_name }}</title>
+{% endif %}
+
 
 {# Get summary from (optional) `summary` front matter field. 
 If it does not exist, use default from config  #}
@@ -15,44 +18,44 @@ If it does not exist, use default from config  #}
     <meta name="description" content="{{ config.meta.summary }}">
 {% endif %}
 
-{# Hide post from SEO if frongt matter `tags` includes 'hide' #}
+{# Tell browser which color themese are supported on the page #}
+<meta name="color-scheme" content="dark light">
+
+{# Hide post from SEO if front matter `tags` includes 'hide' #}
 {% if tags and tags.includes("hide") %}
     <meta name="robots" content="noindex">
 {% endif %}
 
-<meta name="dcterms.date" content="{{ modified }}"/>
+<meta name="dcterms.date" content="{{ page.date | date("YYYY-MM-DD") }}"/>
 
-<!-- Social -->
-<meta property="og:type" content="{{ type }}">
+{% if social.addTags %}
+    <!-- Social -->
+    <meta property="og:type" content="{{ social.type }}">
 
-{# Append title suffix if template or layout has opted-in, in front matter. #}
-<meta property="og:title" content="{{ title }}{% if addTitleSuffix %}{{ config.meta.title_suffix }}{% endif %}">
+    <meta property="og:title" content="{{ title }}">
 
-<meta property="og:url" content="{{ config.meta.url }}{{ page.url }}">
+    <meta property="og:url" content="{{ config.meta.url }}{{ page.url }}">
 
-{# Get summary from (optional) `summary` front matter field. 
-If it does not exist, use default from config  #}
-{% if summary %}
-    <meta property="og:description" content="{{ summary }}">
-{% else %}
-    <meta property="og:description" content="{{ config.meta.summary }}">
+    {# Get summary from (optional) `summary` front matter field. If it does not exist, use default from config  #}
+    {% if summary %}
+        <meta property="og:description" content="{{ summary }}">
+    {% else %}
+        <meta property="og:description" content="{{ config.meta.summary }}">
+    {% endif %}
+
+    {# In front matter `image` field, we can specify an image that should appear when the URL is shared on social media (Twitter, Facebook, etc). We use a filter to get the full hosted URL from the file name. E.g. "ffos.jpg" --> "https://joshcarpenter.ca/img/ffos.jpg" #}
+    {% if image %}
+        <meta property="og:image" content="{{ image }}">
+    {% endif %}
+
+    <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+    <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+    <meta property="og:site_name" content="{{ config.meta.site_name }}">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{ config.bio.twitter }}">
+    <meta name="twitter:creator" content="@{{ config.bio.twitter }}">
 {% endif %}
-
-{# In front matter `image` field, we can specify: 1) image asset (jpg or png), 2) 'getFirstImage' or 3) 'getDefaultImage'. Post processing steps then populate the content attribute with a working url to the appropriate image asset. If we've manually defined an image asset, it links to a corresponding responsively-resized asset. If front matter image field is missing or empty, we fall automatically set it to 'getDefaultImage'. #}
-{% if image %}
-    <meta property="og:image" content="{{ image }}">
-{% else %}
-    <meta property="og:image" content="getDefaultImage">
-{% endif %}
-
-<meta property="og:updated_time" content="{{ modified }}">
-<meta property="article:modified_time" content="{{ modified }}">
-<meta property="og:site_name" content="{{ config.bio.name }}">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@{{ config.bio.twitter }}">
-<meta name="twitter:creator" content="@{{ config.bio.twitter }}">
-
 {#
 <!-- Favicon -->
 <!-- 3rd-gen iPad w/ Retina display: -->
@@ -67,16 +70,51 @@ If it does not exist, use default from config  #}
 <link rel="shortcut icon" href="/img/TODO.png">
 #}
 
-<!-- Preload -->
-<link rel="preload" href="/fonts/PublicSans-Regular.woff2" as="font" type="font/woff2">
-<link rel="preload" href="/fonts/PublicSans-Bold.woff2" as="font" type="font/woff2">
+<!-- Fonts preload -->
+{% for font in config.preload_fonts%}
+    <link rel="preload" href="{{font}}" as="font" type="font/woff2">
+{% endfor %}
 
 <!-- Styles -->
+<link rel="stylesheet" href="/styles/main.css">
+{# <link rel="stylesheet" href="/styles/prism/prism-material-oceanic.css"> #}
+
+{# 
+Include files specified in front matter 'css' array of strings.
+This lets us include CSS on per-post basis, if desired.
+E.g. Styling for a visualization that only appears in a Covid post.
+#}
 {% for file in css %}
     <link rel="stylesheet" href="/styles/{{ file }}">
 {% endfor %}
+
+{# 
+Set color variables based on front matter values,
+if any have been specified. Enables us to set accent
+colors on a per-template basis.
+E.g. Use red color for the A-Frame portfolio post.
+#}
+{% if colors %}
+    <style type="text/css">
+        :root {
+            {% if colors.primary.light %}
+                --primary: {{ colors.primary.light }};
+            {% endif %}
+        }
+
+        @media screen and (prefers-color-scheme: dark) {
+            :root {
+                {% if colors.primary.dark %}
+                    --primary: {{ colors.primary.dark }};
+                {% endif %}
+            }
+        }
+    </style>
+{% endif %}
 
 <!-- Scripts -->
 {% for script in js %}
     <script {% if script.type == 'module'%}type="module" {% endif %}src="/js/{{ script.file }}"></script>
 {% endfor %}
+<script src="/js/toggle-grid.js"></script>
+<script src="/js/crop-to-grid.js"></script>
