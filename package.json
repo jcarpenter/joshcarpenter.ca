@@ -24,7 +24,7 @@
         "copy:js:third-party": "cpy 'js/third-party/**/*' '../_site/' --cwd=src --parents",
         "copy": "run-p copy:*",
         "js:dev": "cpy 'js/*.js'  '../_site/' --cwd=src --parents",
-        "js:build": "npx babel 'src/js/*.js' --presets minify --out-dir _site/js",
+        "js:build": "npx eslint --fix 'src/js/*.js' && npx babel 'src/js/*.js' --presets minify --out-dir _site/js",
         "eleventy": "npx @11ty/eleventy --quiet",
         "img:svg": "svgo --folder src/img/ --output _site/img/ --quiet",
         "img:bitmaps": "cpy 'src/img/**' '!src/img/*.svg' _site/img/",
