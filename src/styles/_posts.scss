@@ -357,7 +357,7 @@ About the Author
         $baseline: 0.18,
         $use-baseline-origin: false
     );
-    @include dotBackground(0.25, 0.05);
+    @include dotBackground(0.25, 0);
     // font-size: var(--font-sml-1);
     padding: grid(1);
     // margin-bottom: 0;

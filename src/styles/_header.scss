@@ -17,10 +17,10 @@ body > header {
     align-items: center;
     // border: 1px solid red;
     @include standardWidth;
+    margin: 0 auto;
 
-    @media (max-width: 1024px) {
-        margin: 0 auto;
-    }
+    // @media (max-width: 1024px) {
+    // }
 }
 
 body > header h1 {

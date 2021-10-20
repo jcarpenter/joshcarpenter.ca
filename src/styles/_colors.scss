@@ -384,7 +384,7 @@ Header (Navigation)
 */
 
 body > header h1 { 
-  color: primary(1); 
+  color: onBackground(1); 
   a,
   a:visited { 
     color: inherit; 
