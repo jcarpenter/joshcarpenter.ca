@@ -43,10 +43,7 @@ If it does not exist, use default from config  #}
         <meta property="og:description" content="{{ config.meta.summary }}">
     {% endif %}
 
-    {# In front matter `image` field, we can specify an image that should appear when the URL is shared on social media (Twitter, Facebook, etc). We use a filter to get the full hosted URL from the file name. E.g. "ffos.jpg" --> "https://joshcarpenter.ca/img/ffos.jpg" #}
-    {% if image %}
-        <meta property="og:image" content="{{ image }}">
-    {% endif %}
+    {# NOTE: og:image will be set of transform #}
 
     <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
     <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">

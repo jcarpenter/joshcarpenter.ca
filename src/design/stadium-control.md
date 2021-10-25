@@ -2,8 +2,8 @@
 title: "Stadium Control Center"
 tags: [ux]
 publish: true
-image: "img/bcp-pa.png"
 summary: "Touch-based control room interface for monitoring, scheduling and controling large equipment in Vancouver's largest stadium, BC Place. Designed in 2011, while Creative Director of New Space Technologies."
+image: "img/bcp-pa.png"
 ---
 
 _2011_{.timeframe} – While working at New Space I designed this touch-based control room solution for the monitoring, scheduling and control of Vancouver's largest stadium, BC Place. I was responsible for the end-to-end design process: from project definition with engineering peers and client stakeholders, to prototyping, to visual design, to final interface implementation in a proprietary front end development application from Crestron. Applications used were predominantly Keynote for wireframes and interactive prototypes, Photoshop for visual design and asset production, and InDesign for documentation.

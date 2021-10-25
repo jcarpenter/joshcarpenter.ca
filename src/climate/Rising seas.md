@@ -3,7 +3,6 @@ title: "Rising seas"
 tags: [climate, problem]
 publish: true
 summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place?"
-accent: "0, 0, 255"
 ---
 
 ## How do we define “sea level rise”? 

@@ -2,7 +2,7 @@
 title: "Dying oceans"
 tags: [climate, problem]
 publish: true
-summary: 'What damages are we seeing in marine ecosystems? What are the causes, and future projections?'
+summary: "What damages are we seeing in marine ecosystems? What are the causes, and future projections?"
 ---
 
 ## Preface: The ocean and cryosphere system
