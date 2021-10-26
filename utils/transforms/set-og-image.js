@@ -1,10 +1,9 @@
 const cheerio = require('cheerio')
 const fs = require("fs")
 const path = require("path")
-const imageSize = require('image-size')
 const sharp = require('sharp')
 const { colors } = require('colors')
-
+sharp.cache(false)
 /**
  * Create `og:image` meta tag, with working URL,
  * and matching `og:image:width` and `og:image:height` tags.

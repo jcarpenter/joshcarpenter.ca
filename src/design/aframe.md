@@ -2,7 +2,7 @@
 title: "A-Frame VR"
 permalink: "/aframe/"
 tags: [ux]
-image: "aframe-shopping.jpg"
+image: "img/aframe-shopping.jpg"
 publish: true
 ---
 

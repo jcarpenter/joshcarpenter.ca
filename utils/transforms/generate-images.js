@@ -5,7 +5,7 @@ const imageSize = require('image-size')
 const sharp = require('sharp')
 const { optimize: svgo } = require('svgo')
 const { colors } = require('colors')
-
+sharp.cache(false)
 // Make images in posts responsive
 // For each image inside main > article
 // 1) Add responsive attributes
