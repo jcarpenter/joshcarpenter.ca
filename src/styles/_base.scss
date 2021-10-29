@@ -11,74 +11,47 @@ Variables
 
 :root {
 
-    /* -------------- Animations -------------- */
-
-    --material-incoming-decelerated: cubic-bezier(0, 0, 0.2, 1);
-    --material-outgoing-accelerated: cubic-bezier(0.4, 0, 1, 1);
-
     /* -------------- Typography -------------- */
    
-    // We're using a strange system.
-    // Start by determining desired line height (in px). 
-    // Then set `html` element font-size to _half_ that value.
-    // E.g. Want 24px line height? Set html font-size: 12px.
+    /* 
+    We're using a strange system.
+    Start by determining desired line height (in px). 
+    Then set `html` element font-size to _half_ that value.
+    E.g. Want 24px line height? Set html font-size: 12px.
     
-    // Line height      = 2 rem
-    // Grid units       = 1 rem
-    // html font-size   = Half the desired line height px value. E.g. `12px`
+    Line height      = 2 rem
+    Grid units       = 1 rem
+    html font-size   = Half the desired line height px value. E.g. `12px`
 
-    // Set element font-sizes in rems, by doing math.
-    // E.g. Want 15px font size? 15/12px (html font-size) = 1.25rem 
+    Set element font-sizes in rems, by doing math.
+    E.g. Want 15px font size? 15/12px (html font-size) = 1.25rem 
+    */
 
-    // Smaller font and tigher line height for smaller displays
-    // --baseFontSize: 15px;
-    // --baseLineHeight: 1.5rem;
-
-    // @media (min-width: 480px) {
-    //         --baseFontSize: 17px;
-    //         --baseLineHeight: 1.65rem;        
-    // }
-    
-    // Smaller font and tigher line height for smaller displays
-    // @media (max-width: 480px) {
+    /* Smaller font and tigher line height for smaller displays */
+    @media (max-width: 480px) {
         --baseFontPx: 11px;
         --baseFontSize: 1.363rem; // 15px
         --baseLineHeight: 2rem; // 22px
-    // }
+    }
 
-    // @media (min-width: 481px) {
-    //     --baseFontPx: 12px;
-    //     --baseFontSize: 1.333rem; // 16px
-    //     --baseLineHeight: 2rem; // 24px
+    @media (min-width: 481px) {
+        --baseFontPx: 12px;
+        --baseFontSize: 1.363rem; // 16px
+        --baseLineHeight: 2rem; // 24px
 
-    //     // --baseFontPx: 14px; // 14px
-    //     // --baseFontSize: 1.214rem; // 17px
-    //     // --baseLineHeight: 2rem; // 28px
-    // }
-
-    
-    // base font size 1.333rem (16px)
-    // smaller: 1.166rem (14px)
-    // monotype
-
+        // --baseFontPx: 14px; // 14px
+        // --baseFontSize: 1.214rem; // 17px
+        // --baseLineHeight: 2rem; // 28px
+    }
 
     --grid: 2rem;
     --mini-grid: 0.8rem;
 
-    --baseFontScale: 1.125;
+    /* -------------- Animations -------------- */
+
+    --material-incoming-decelerated: cubic-bezier(0, 0, 0.2, 1);
+    --material-outgoing-accelerated: cubic-bezier(0.4, 0, 1, 1);
     
-    --font-lg-8: calc(var(--font-lg-7) * var(--baseFontScale)); /* 41.052 */
-    --font-lg-7: calc(var(--font-lg-6) * var(--baseFontScale)); /* 36.491 */
-    --font-lg-6: calc(var(--font-lg-5) * var(--baseFontScale)); /* 32.436 */
-    --font-lg-5: calc(var(--font-lg-4) * var(--baseFontScale)); /* 28.832 */
-    --font-lg-4: calc(var(--font-lg-3) * var(--baseFontScale)); /* 25.628 */
-    --font-lg-3: calc(var(--font-lg-2) * var(--baseFontScale)); /* 22.781 */
-    --font-lg-2: calc(var(--font-lg-1) * var(--baseFontScale)); /* 20.250 */
-    --font-lg-1: calc(var(--baseFontSize) * var(--baseFontScale)); /* 18.000 */
-    --font-sml-1: calc(var(--baseFontSize) / var(--baseFontScale)); /* 14.222 */
-    --font-sml-2: calc(var(--font-sml-1) / var(--baseFontScale)); /* 12.641 */
-    --font-sml-3: calc(var(--font-sml-2) / var(--baseFontScale)); /* 11.237 */
-    --font-sml-4: calc(var(--font-sml-3) / var(--baseFontScale));
 
     /* -------------- CSS Grid -------------- */
 
@@ -88,19 +61,21 @@ Variables
     //   screens (so figures are slightly wider than column 3).
     // - Column 3 is main content column (body text, etc)
 
-    @media (max-width: 480px) {
-        --grid-layout: #{grid(1)} 0 1fr 0 #{grid(1)};
-    }
+    // @media (max-width: 480px) {
+    //     --grid-layout: #{grid(1)} 0 1fr 0 #{grid(1)};
+    // }
 
-    @media (min-width: 481px) {
+    // @media (min-width: 481px) {
         
-        --grid-layout: minmax(#{grid(1)}, 1fr) minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)}) minmax(#{grid(1)}, 1fr);
+    //     --grid-layout: minmax(#{grid(1)}, 1fr) minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)}) minmax(#{grid(1)}, 1fr);
         
-        --grid-layout-figcaption: minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)});
-    }
+    //     --grid-layout-figcaption: minmax(0, #{grid(6)}) minmax(#{grid(14)}, #{grid(20)}) minmax(0, #{grid(6)});
+    // }
     
     // --grid-layout: minmax(#{grid(1)}, 1fr) minmax(0, #{grid(5)}) minmax(#{grid(14)}, #{grid(22)}) minmax(0, #{grid(5)}) minmax(#{grid(1)}, 1fr);
     // --grid-layout-figcaption: minmax(0, #{grid(5)}) minmax(#{grid(14)}, #{grid(22)}) minmax(0, #{grid(5)});
+
+    
 }
 
 
@@ -136,6 +111,7 @@ main article#post section#notes
 // Figures: Normal
 main article#post:not(.wide-images) section#content > figure {
     @include standardWidth;
+    height: auto;
     // @media (max-width: 480px) {
     //     width: 100%;
     //     padding-left: grid(0.5);
@@ -154,6 +130,7 @@ main article#post.wide-images section#content > figure {
     min-width: 24rem;
     max-width: 60rem;
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -311,11 +288,9 @@ address {
 
 /* -------------- Block quote -------------- */
 
-/* Shifted margin is to make room on side for ::before notch (see below). */
+// Shifted margin is to make room on side for ::before notch (see below).
 
 blockquote {
-    // margin-left: 0;
-    // margin-right: 0;
     position: relative;
     margin: 0 0 grid(1) 0;
 }
@@ -338,15 +313,9 @@ blockquote::before {
 blockquote p {
     padding-left: grid(1);
     letter-spacing: 0.005em;
-    // padding-top: 0;
-    // margin-top: 0;
-    // font-style: italic;
-    // @media (min-width: 480px) {
-    //     font-style: normal;
-    // }
 }
 
-/* Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing. */
+// Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing.
 blockquote p:last-of-type {
     margin-bottom: 0 !important;
 }
@@ -373,19 +342,6 @@ p code {
     // So we need to vertically center it.
     line-height: 0;
     vertical-align: 0.05em;
-}
-
-
-/* -------------- Hanging punctuation -------------- */
-
-/* This class gets applied manually in the build process if the first character is a quote. */
-.hanging-punctuation {
-    text-indent: -0.3em;
-}
-
-/* Prevent children indenting by reseting to zero */
-.hanging-punctuation * {
-    text-indent: 0;
 }
 
 
@@ -537,8 +493,6 @@ a {
 
 
 /* -------------- Lists  -------------- */
-/* TODO: Am currently aligning list markers flush with left side using magic numbers.  */
-/* Alternatively I could properly style my one, per: https://css-tricks.com/style-list-markers-css/  */
 
 ol, ul { 
     padding-left: grid(0.5); 
@@ -720,13 +674,6 @@ pre {
 }
 
 
-/* -------------- Small  -------------- */
-
-small {
-    font-size: var(--font-sml-2);
-}
-
-
 /* -------------- Strong  -------------- */
 
 strong {
@@ -737,35 +684,34 @@ strong {
 
 
 /* -------------- Sub and Sup -------------- */
-/* 
-Prevent sup and sub elements from altering line height of parent text.
-Adapted from: https://gist.github.com/unruthless/413930
-*/
+
+// Prevent sup and sub elements from altering line height of parent text.
+// Adapted from: https://gist.github.com/unruthless/413930
 
 sub,
 sup {
-    /* Specified in % so that the sup/sup is the
-       right size relative to the surrounding text */
+    // Specified in % so that the sup/sup is the right 
+    // size relative to the surrounding text.
     font-size: 75%;
-    /* Zero out the line-height so that it doesn't
-       interfere with the positioning that follows */
+    // Zero out the line-height so that it doesn't interfere 
+    // with the positioning that follows.
     line-height: 0;
-    /* Where the magic happens: makes all browsers position
-       the sup/sup properly, relative to the surrounding text */
+    // Where the magic happens: makes all browsers position
+    // the sup/sup properly, relative to the surrounding text.
     position: relative;
-    /* Note that if you're using Eric Meyer's reset.css, this
-       is already set and you can remove this rule */
+    // Note that if you're using Eric Meyer's reset.css, this
+    // is already set and you can remove this rule.
     vertical-align: baseline;
 }
 
 sup {
-    /* Move the superscripted text up */
+    // Move the superscripted text up.
     top: -0.5em;
 }
 
 sub {
-    /* Move the subscripted text down, but only
-       half as far down as the superscript moved up */
+    // Move the subscripted text down, but only half as far 
+    // down as the superscript moved up.
     bottom: -0.25em;
 }
 
@@ -776,6 +722,24 @@ sub {
 Re-usable classes
 ========================================================
 */
+
+/* -------------- Misc -------------- */
+
+.smallcaps {
+    font-variant: small-caps;
+}
+
+/* -------------- Hanging punctuation -------------- */
+
+// Applied manually in the build process if the first character is a quote.
+.hanging-punctuation {
+    text-indent: -0.3em;
+}
+
+// Prevent children indenting by reseting to zero.
+.hanging-punctuation * {
+    text-indent: 0;
+}
 
 /* -------------- Hidden -------------- */
 
@@ -797,11 +761,6 @@ Re-usable classes
     // display: none;
     visibility: hidden;
 }
-
-// [aria-hidden=false] {
-//     // display: none;
-//     visibility: visible;
-// }
 
 /* -------------- Thick border -------------- */
 
@@ -826,7 +785,7 @@ Re-usable classes
 }
 
 
-/* -------------- Heading anchor link -------------- */
+// /* -------------- Heading anchor link -------------- */
 
 // h2 .anchor {
 //     // display: none;
@@ -858,44 +817,36 @@ Re-usable classes
 // }
 
 
-/* -------------- Highlights -------------- */
+// /* -------------- Highlights -------------- */
 
-.highlights {
-    margin: 0;
-    padding: 0;
-    display: inline-flex;
-    list-style: none;
+// .highlights {
+//     margin: 0;
+//     padding: 0;
+//     display: inline-flex;
+//     list-style: none;
 
-    li {
-        margin-right: grid(1);
-    }
+//     li {
+//         margin-right: grid(1);
+//     }
 
-    img {
-        width: 100%;
-        object-fit: cover;
-        height: grid(4);
-    }
-}
+//     img {
+//         width: 100%;
+//         object-fit: cover;
+//         height: grid(4);
+//     }
+// }
 
-#climate #all {
-    ul {
-        display: flex;
-        list-style: none;
-        flex-wrap: wrap;
-        padding: 0;
-    }
+// #climate #all {
+//     ul {
+//         display: flex;
+//         list-style: none;
+//         flex-wrap: wrap;
+//         padding: 0;
+//     }
 
-    li {
-        border: 1px;
-        flex: 0 1 auto;
-        // margin-right: grid(0.5);
-    }
-}
-
-.org {
-    opacity: 0.7;
-}
-
-.smallcaps {
-    font-variant: small-caps;
-}
+//     li {
+//         border: 1px;
+//         flex: 0 1 auto;
+//         // margin-right: grid(0.5);
+//     }
+// }

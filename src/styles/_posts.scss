@@ -291,7 +291,8 @@ Related content
 */
 
 #related-content {
-    font-size: var(--font-sml-1);
+    // font-size: var(--font-sml-1);
+    // TOD: Replace with plumber
     line-height: grid(0.75);
     // background: foreground(0.075);
     // padding: grid(1);
@@ -357,7 +358,6 @@ About the Author
         $baseline: 0.18,
         $use-baseline-origin: false
     );
-    @include dotBackground(0.25, 0);
     // font-size: var(--font-sml-1);
     padding: grid(1);
     // margin-bottom: 0;

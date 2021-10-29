@@ -1,8 +1,9 @@
 ---
-title: "Nuclear facility flooding"
+title: "Nuclear Facility Flooding"
 tags: [climate, problem]
 publish: true
 summary: "Nuclear power plants are commonly built near the sea. What is their risk exposure to sea level rise and increasing storm severity?"
+image: "img/fukushima-aerial-gettyimages.jpg"
 ---
 
 ![Many nuclear power plants were situated next to the ocean to have ready access to huge volumes of water, and sometimes they were built on land that was not very high above mean sea level. These characteristics may cause problems if ocean levels rise the one or two meters that most climatologists project as a result of climate change. — Aerial view of damage to the Fukushima nuclear power plant. Credit: Getty Images](img/fukushima-aerial-gettyimages.jpg "Photo")

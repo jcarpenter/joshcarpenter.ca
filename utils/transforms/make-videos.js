@@ -7,11 +7,11 @@ const { off } = require('process')
  * Wrap <video> elements and in figures, if they're not already.
  * Copy source files to destination and update src paths.
  */
-module.exports = function (content, outputPath) {
+module.exports = function (content) {
 
   // Exit early if output path is false, because we aren't 
   // going to write this doc to disk. Perf savings.
-  if (!outputPath) return content
+  if (!this.outputPath) return content
 
   // Get input paths
   const inputPath = this.inputPath
@@ -76,11 +76,11 @@ module.exports = function (content, outputPath) {
  * Find and use mp4 fallback also, if it exists.
  * Copy source files to _site/media/.
  */
-// module.exports = function (content, outputPath) {
+// module.exports = function (content) {
 
 //   // Exit early if output path is false, because we aren't 
 //   // going to write this doc to disk. Perf savings.
-//   if (!outputPath) return content
+//   if (!this.outputPath) return content
 
 //   // Get input paths
 //   const inputPath = this.inputPath

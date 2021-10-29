@@ -13,7 +13,7 @@ figure {
     // text). Make full width of that column.
     // grid-column: 3;
     display: block;
-    // Figpcaption is full width of parent figure.
+    // Figcaption is full width of parent figure.
     figcaption { width: 100%; }
 }
 
@@ -36,17 +36,17 @@ figure {
 //     }
 // }
 
-/* 
-On "note" posts, copy is more important than media,
-so we make media same width as text.
 
-On "portfolio" posts, media is more important than copy,
-so we make media wider.
+// On "note" posts, copy is more important than media,
+// so we make media same width as text.
 
-On narrow (mobile) screens, media is always full width,
-so there is no distinctin between notes and portfolio.
+// On "portfolio" posts, media is more important than copy,
+// so we make media wider.
 
-*/
+// On narrow (mobile) screens, media is always full width,
+// so there is no distinctin between notes and portfolio.
+
+
 
 /* 
 Mobile: Simple layout. Figure is full width,

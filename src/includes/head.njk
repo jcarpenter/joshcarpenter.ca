@@ -1,22 +1,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 {# Do NOT interpret number sequences as phone numbers, on mobile devices. #}
 <meta name="format-detection" content="telephone=no">
 
-{% if title %}
-    <title>{{ title }} | Josh Carpenter - Portfolio and Notes</title>
-{% else %}
-    <title>{{ config.site_name }}</title>
-{% endif %}
+{# 
+By default, meta.page_title default is same as meta.site_title.
+It is (optionally) over-ridden by templates or data files.
+#}
+<title>{{ meta.page_title }}</title>
 
-
-{# Get summary from (optional) `summary` front matter field. 
-If it does not exist, use default from config  #}
-{% if summary %}
-    <meta name="description" content="{{ summary }}">
-{% else %}
-    <meta name="description" content="{{ config.meta.summary }}">
-{% endif %}
+{# Meta.summary works same as meta.page_title (see notes above). #}
+<meta name="description" content="{{ meta.summary }}">
 
 {# Tell browser which color themese are supported on the page #}
 <meta name="color-scheme" content="dark light">
@@ -28,31 +23,23 @@ If it does not exist, use default from config  #}
 
 <meta name="dcterms.date" content="{{ page.date | date("YYYY-MM-DD") }}"/>
 
-{% if social.addTags %}
+{% if meta.add_social_tags %}
     <!-- Social -->
-    <meta property="og:type" content="{{ social.type }}">
-
-    <meta property="og:title" content="{{ title }}">
-
-    <meta property="og:url" content="{{ config.meta.url }}{{ page.url }}">
-
-    {# Get summary from (optional) `summary` front matter field. If it does not exist, use default from config  #}
-    {% if summary %}
-        <meta property="og:description" content="{{ summary }}">
-    {% else %}
-        <meta property="og:description" content="{{ config.meta.summary }}">
-    {% endif %}
-
-    {# NOTE: og:image will be set of transform #}
-
+    <meta property="og:type" content="{{ meta.type }}">
+    <meta property="og:title" content="{{ meta.page_title }}">
+    <meta property="og:url" content="{{ meta.url }}{{ page.url }}">
+    <meta property="og:description" content="{{ meta.summary }}">
+    {# Meta.image works same as meta.page_title (see notes above). #}
+    <meta property="og:image" content="{{ meta.image }}">
     <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
     <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">
-    <meta property="og:site_name" content="{{ config.meta.site_name }}">
+    <meta property="og:site_name" content="{{ meta.site_title }}">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ config.bio.twitter }}">
-    <meta name="twitter:creator" content="@{{ config.bio.twitter }}">
+    <meta name="twitter:site" content="@{{ bio.twitter }}">
+    <meta name="twitter:creator" content="@{{ bio.twitter }}">
 {% endif %}
+
 {#
 <!-- Favicon -->
 <!-- 3rd-gen iPad w/ Retina display: -->
@@ -68,9 +55,10 @@ If it does not exist, use default from config  #}
 #}
 
 <!-- Fonts preload -->
-{% for font in config.preload_fonts%}
-    <link rel="preload" href="{{font}}" as="font" type="font/woff2">
-{% endfor %}
+<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Italic.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2">
 
 <!-- Styles -->
 <link rel="stylesheet" href="/styles/main.css">

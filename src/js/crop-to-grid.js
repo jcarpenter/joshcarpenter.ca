@@ -72,6 +72,7 @@ and increase their heights to the next grid line.
 function getCroppableElements() {
   return document.querySelectorAll(`
     #post #metadata,
+    #post #content figure video, 
     #post #content figure img, 
     #post #content figcaption, 
     #post #notes ol

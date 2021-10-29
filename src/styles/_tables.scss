@@ -7,7 +7,7 @@ TABLES
 ========================================================
 */
 
-/* Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself. */
+// Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself.
 
 /* -------------- Layout -------------- */
 
@@ -43,9 +43,9 @@ table {
 // does not effect table cel height; borders do. Even if 
 // we use box-sizing: border-box. It is ignored for tables.
 
-// Add border to top top of first row
-table thead:first-child th,
-table tbody:first-child td {
+/* Add border to top top of first row */
+table thead th,
+table tbody tr:first-child td {
     box-shadow: 0 1px 0 0 var(--tableBorderColor),
     0 -1px 0 0 var(--tableBorderColor);
 }

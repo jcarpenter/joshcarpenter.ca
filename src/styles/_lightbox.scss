@@ -25,14 +25,13 @@ Lightbox
 
 /* -------------- Transition -------------- */
 
-/* 
-We're just defining visibility transition delays here. `visibility:hidden` is set by a top-level `[aria-hidden="true"]` selector. When aria-hidden=true, we delay visibility long enough for opacity tweens to finish.
-*/
+// We're just defining visibility transition delays here. `visibility:hidden` is set by a top-level `[aria-hidden="true"]` selector. When aria-hidden=true, we delay visibility long enough for opacity tweens to finish.
+
 #lightbox[aria-hidden="true"] {
     transition: visibility 0.5s;
 }
 
-/* When aria-hidden != true, we flip visibility immediately, so opacity tweens can start. */
+// When aria-hidden != true, we flip visibility immediately, so opacity tweens can start.
 #lightbox {
     transition: visibility 0s;
 }

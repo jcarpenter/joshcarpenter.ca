@@ -1,8 +1,9 @@
 ---
 title: "Storms"
-tags: [wip, climate, problem]
+tags: [climate, problem]
 publish: true
 summary: "To what degree are storms increasing in severity and frequency? What are the causes and potential impacts?"
+image: "img/hurricane-irma-satellite.jpg"
 ---
 
 ## Storms are increasing in frequency and severity

@@ -21,11 +21,11 @@ const citekeyComponentsRE = /(?<prefix>[^\n\[\]\(\)]*?)?@(?<id>[a-zA-Z0-9_][^\s,
 // Demo: https://regex101.com/r/33mvVe/1
 const footnotesRE = /\s?\^\[.*?\](?!.?\])/gm
 
-module.exports = function renderFootnotes(content, outputPath) {
+module.exports = function (content) {
 
   // Exit early if output path is false, because we aren't 
   // going to write this doc to disk. Perf savings.
-  if (!outputPath) return content
+  if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
   const paragraphs = $('#post #content p, #post #content li, #post #content figcaption')

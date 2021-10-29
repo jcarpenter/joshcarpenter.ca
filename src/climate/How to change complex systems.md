@@ -1,5 +1,5 @@
 ---
-title: "Complex systems"
+title: "Complex Systems"
 tags: [climate, hearts and minds]
 publish: false
 ---

@@ -1,18 +1,21 @@
 ---js
 {
-    social: {
-        addTags: true,
-        type: "article",
-    },
-    eleventyComputed: {
-        metaTitle: "{{ title }} | Josh Carpenter - Portfolio and Notes",
-    },
+    bibliography: "./climate-references.json",
+    date: "Last Modified",
     colors: {
         primary: {
             //light: "120, 120, 120",
             dark: "124, 160, 204"
         }
-    }
+    },
+    eleventyComputed: {
+        meta: {
+            page_title: "{{ title }} | Josh Carpenter - Climate Notes",
+            summary: "{{ summary or meta.summary }}",
+            image: "{{ image or meta.image }}",
+            type: "article"
+        }
+    },
 }
 ---
 <!doctype html>
@@ -24,7 +27,7 @@
         <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "header.njk" %}
         <main role="main" aria-labelledby="title">
-            <article id="post">
+            <article id="post" {% if bibliography %}data-bibliography="{{ bibliography }}" {% endif %}>
 
                 {# ------------ Header ------------ #}
                 <header>

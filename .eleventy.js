@@ -1,6 +1,4 @@
 const cheerio = require('cheerio')
-const path = require('path')
-const fs = require("fs")
 
 // Markdown-it
 const MarkdownIt = require("markdown-it")
@@ -14,19 +12,18 @@ const markdownItSub = require("markdown-it-sub")
 const markdownItSup = require("markdown-it-sup")
 
 // Plugins
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+// const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 
 // Filters
 const dateFilter = require("nunjucks-date-filter")
 const slugify = require("slugify")
 
 // Transforms
-const generateImages = require('./utils/transforms/generate-images')
 const hangingPunctuation = require('./utils/transforms/hanging-punctuation')
 const modifyIframes = require('./utils/transforms/modify-iframes')
+const makeImagesResponsive = require('./utils/transforms/make-images-responsive')
 const makeVideos = require('./utils/transforms/make-videos')
 const modifyFigures = require('./utils/transforms/modify-figures')
-// const prettierHtml = require('./utils/transforms/prettier-html')
 const removeTodos = require('./utils/transforms/remove-todos')
 const renderCitations = require('./utils/transforms/render-citations')
 const renderFootnotes = require('./utils/transforms/render-footnotes')
@@ -34,10 +31,8 @@ const setOgImage = require('./utils/transforms/set-og-image')
 const flagShortPosts = require('./utils/transforms/flag-short-posts')
 // const tagAbbreviations = require('./utils/transforms/tag-abbreviations')
 
-
-
 module.exports = function (eleventyConfig) {
-
+  
   /* 
 
   Eleventy works by:
@@ -58,10 +53,7 @@ module.exports = function (eleventyConfig) {
   // BEFORE BUILD
   // ========================================================
 
-  // let citeproc
-
   // eleventyConfig.on('beforeBuild', async () => {
-  //   citeproc = makeCiteprocEngine()
   // })
 
 
@@ -123,7 +115,7 @@ module.exports = function (eleventyConfig) {
   // -------- Plugins -------- //
   // Custom code that Eleventy imports from an external repository
 
-  eleventyConfig.addPlugin(syntaxHighlight)
+  // eleventyConfig.addPlugin(syntaxHighlight)
 
 
   // -------- Filters -------- //
@@ -158,18 +150,6 @@ module.exports = function (eleventyConfig) {
   // Format dates.
   // Uses https://www.npmjs.com/package/nunjucks-date-filter
   eleventyConfig.addFilter("date", dateFilter)
-
-  // Get hosted image URL
-  // For a image filename, return the hosted url path.
-  // ffos.jpg --> https://joshcarpenter.ca/img/ffos.jpg
-  // We use this for our social media posts.
-  // eleventyConfig.addFilter("getHostedImagePath", (filename) => {
-  //   const ext = path.extname(filename)
-  //   const base = path.basename(filename, ext)
-  //   const imgExists = fs.existsSync(`_site/img/${}`)
-  //   console.log(base, ext)
-  //   return `https://joshcarpenter.ca/img/${filename}`
-  // })
 
 
   // -------- Collections -------- //
@@ -310,7 +290,7 @@ module.exports = function (eleventyConfig) {
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
   eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
-  eleventyConfig.addTransform("generateImages", generateImages)
+  eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   eleventyConfig.addTransform("removeTodos", removeTodos)
   eleventyConfig.addTransform("renderFootnotes", renderFootnotes)
   eleventyConfig.addTransform("renderCitations", renderCitations)
@@ -318,7 +298,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("modifyIframes", modifyIframes)
   eleventyConfig.addTransform("makeVideos", makeVideos)
   eleventyConfig.addTransform("modifyFigures", modifyFigures)
-  eleventyConfig.addTransform("flagShortPosts",flagShortPosts)
+  eleventyConfig.addTransform("flagShortPosts", flagShortPosts)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
   eleventyConfig.addTransform("setMetaTags", setOgImage)
 
@@ -326,7 +306,7 @@ module.exports = function (eleventyConfig) {
 
   // Uses https://www.npmjs.com/package/pretty
   // const pretty = require("pretty")
-  // eleventyConfig.addTransform("pretty", function (content, outputPath) {
+  // eleventyConfig.addTransform("pretty", function (content) {
   //   if (outputPath.endsWith(".html")) {
   //     let prettyHTML = pretty(content, { ocd: true })
   //     return prettyHTML

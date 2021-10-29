@@ -1,5 +1,5 @@
 ---
-title: "Dying oceans: BC"
+title: "Dying Oceans: British Columbia"
 tags: [wip, climate, problem, bc, canada]
 publish: false
 ---

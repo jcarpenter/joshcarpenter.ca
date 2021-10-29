@@ -1,8 +1,8 @@
-module.exports = function (content, outputPath) {
+module.exports = function (content) {
 
-    // Exit early if output path is false, because we aren't 
+  // Exit early if output path is false, because we aren't 
   // going to write this doc to disk. Perf savings.
-  if (!outputPath) return content
+  if (!this.outputPath) return content
 
   content = content.replaceAll(/<p>[“"]/gm, '<p class="hanging-punctuation">“')
 

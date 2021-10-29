@@ -1,10 +1,7 @@
 ---js
 {
-    permalink: "./index.html",
-    social: {
-        addTags: true,
-        type: "website",
-    }
+    date: "Last Modified",
+    permalink: "./index.html"
 }
 ---
 <!doctype html>
@@ -16,18 +13,21 @@
         <main>
             <section id="intro">
                 <header>
-                    <h1 class="title">{{ config.bio.name }}</h1>
-                    <p><strong>Hello!</strong> I'm a user experience designer, based in Vancouver, Canada. Currently I am focused on learning more about climate change, and building a Markdown editor. Most recently I led design teams at <a href="https://www.google.com/" target="_blank">Google</a> and <a href="https://www.mozilla.org/" target="_blank">Mozilla</a>, working to bring virtual and augmented reality to the open web.</p>
+                    <h1 class="title">{{ bio.name }}</h1>
+                    <p><strong class="hello">Hello!</strong> I'm a user experience designer, based in Vancouver, Canada. Currently I am focused on learning more about climate change, and building a Markdown editor. Most recently I led design teams at Google and Mozilla, working to bring virtual and augmented reality to the open web.</p>
                     {# <p>UX designer, currently exploring climate in Vancouver, Canada. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of A-Frame, and interaction design lead for Firefox OS.</p> #}
                     <address>
-                        <a href="https://twitter.com/{{ config.bio.twitter }}">Twitter</a><br>
-                        <a href="{{ config.bio.linkedin }}">LinkedIn</a>
+                        <a href="https://twitter.com/{{ bio.twitter }}">Twitter</a>
+                        <span class="divider">|</span>
+                        <a href="{{ bio.github }}">GitHub</a>
+                        <span class="divider">|</span>
+                        <a href="{{ bio.linkedin }}">LinkedIn</a>
                     </address>
                 </header>
             </section>
 
             <section id="ux">
-                <h2>Design</h2>
+                <h2>Portfolio</h2>
                 <ul>
                     {# <li>
                         <a href="">Composable 3D</a>
@@ -54,7 +54,7 @@
             </section>
 
             <section id="climate">
-                <h2>Climate</h2>
+                <h2>Climate Notes</h2>
                 <ul>
                     {%- for post in collections.climate -%}
                         <li>
@@ -78,14 +78,46 @@
 
             <section id="work-history">
                 <h2>Work History</h2>
-                <ul>
+                <table>
+                    <tr>
+                        <td class="org">Google</td>
+                        <td class="role">Staff UX Designer <span class="project">- Daydream</span></td>
+                        <td class="year"><time>16-19</time></td>
+                    </tr>
+                    <tr>
+                        <td class="org">Mozilla</td>
+                        <td class="role">UX Lead <span class="project">- Mozilla VR</span></td>
+                        <td class="year"><time>14-16</time></td>
+                    </tr>
+                    <tr>
+                        <td class="org">Mozilla</td>
+                        <td class="role">Interaction Design Lead <span class="project">- Firefox OS</span></td>
+                        <td class="year"><time>12-14</time></td>
+                    </tr>
+                    <tr>
+                        <td class="org">New Space</td>
+                        <td class="role">Creative Director</td>
+                        <td class="year"><time>10-11</time></td>
+                    </tr>
+                    <tr>
+                        <td class="org">VFS</td>
+                        <td class="role">Instructor <span class="project">- 3D & Motion</span></td>
+                        <td class="year"><time>08-11</time></td>
+                    </tr>
+                    <tr>
+                        <td class="org">Big Green</td>
+                        <td class="role">Senior Designer</td>
+                        <td class="year"><time>06-08</time></td>
+                    </tr>
+                </table>
+                {# <ul>
                     <li>Google <span class="org">- Staff UX Designer (Daydream)</span></li>
                     <li>Mozilla <span class="org">- UX Lead (VR)</span></li>
                     <li>Mozilla <span class="org">- Interaction Design Lead (Firefox OS)</span></li>
-                    <li>New Space Technologies<span class="org">- Creative Director</span></li>
+                    <li>New Space<span class="org">- Creative Director</span></li>
                     <li>Vancouver Film School <span class="org">- Instructor</span></li>
                     <li>Big Green <span class="org">- Senior Designer</span></li>
-                </ul>
+                </ul> #}
             </section>
 
         </main>

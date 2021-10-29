@@ -1,5 +1,5 @@
 ---
-title: "Negative emissions tech"
+title: "Negative Emissions Technologies"
 tags: [climate, solution]
 publish: false
 ---

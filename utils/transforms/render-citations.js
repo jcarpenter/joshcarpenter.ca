@@ -54,25 +54,31 @@ function makeCiteprocEngine() {
 
 let citeproc
 
-module.exports = function (content, outputPath) {
+module.exports = function (content) {
 
   // Exit early if output path is false, because we aren't 
   // going to write this doc to disk. Perf savings.
-  if (!outputPath) return content
+  if (!this.outputPath) return content
+
+  const $ = cheerio.load(content)
+  
+  // Get bibliography path. Exit if none is defined.
+  // It's set as data-attribute on article#post.
+  // NOTE: We'd prefer to get it from elevent data, but transforms
+  // do not have access to data :p
+  let bibliography = $('#post').attr('data-bibliography')
+  if (!bibliography) return content
+  // Bibliography paths specified in data files are relative
+  // If we specify `bibliography: "./climate.json"` in a directory data file at /src/notes/notes.json, we expect to find climate.json in that same /src/notes folder.
+  bibliography = path.resolve(path.dirname(this.inputPath), bibliography)
+  // Cleanup: Remove the attribute. We don't want it in shipped HTML.
+  $('#post').removeAttr('data-bibliography')
+  
+  // Exit if bibliography is missing
+  if (!fs.existsSync(bibliography)) return content
 
   // Setup citeproc engine the first time through
   if (!citeproc) citeproc = makeCiteprocEngine()
-
-  // Get full bibliography path
-  // Exit if no bibliography is specified
-  // Bibliography paths specified in data files are relative
-  // If we specify `bibliography: "./climate.json"` in a directory data file at /src/notes/notes.json, we expect to find climate.json in that same /src/notes folder.
-  let bibliography = this.dataCache.bibliography
-  if (!bibliography) return content
-  bibliography = path.resolve(path.dirname(this.inputPath), bibliography)
-
-  // Exit if bibliography is missing
-  if (!fs.existsSync(bibliography)) return content
 
   // Load bibliography (list of CSL "items")
   // Per https://citeproc-js.readthedocs.io/en/latest/csl-json/markup.html
@@ -82,7 +88,6 @@ module.exports = function (content, outputPath) {
 
   // Look inside each footnote <li>
 
-  const $ = cheerio.load(content)
   const footnotes = $('article #notes li')
 
   footnotes.each((index, p) => {

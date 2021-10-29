@@ -1,6 +1,5 @@
 module.exports = {
     layout: "climate.njk",
-    bibliography: "./climate-references.json",
 }
 
 // module.exports = function() {

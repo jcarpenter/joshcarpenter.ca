@@ -25,7 +25,14 @@ Our initial focus was prototyping web browsing in virtual reality. We used modif
         <figcaption>Concept: a loading indicator appears as the user enters a new site.</figcaption>
 </figure>
 
-![Prototype: loading a new world (site) from a menu.](img/mozvr/mozvr-hiro-prototype-3.gif)
+<figure>
+        <video playsinline autoplay loop muted>
+                <source src="img/mozvr/mozvr-hiro-prototype-3.webm" type="video/webm; codecs=vp9,opus"></source>
+                <source src="img/mozvr/mozvr-hiro-prototype-3.mp4" type="video/mp4"></source>
+        </video>
+        <figcaption>Prototype: loading a new world (site) from a menu.</figcaption>
+</figure>
+
 
 ![Explorations of classic browsers interactions in a floating VR menu interface.](img/mozvr/mozvr-hiro-interface-collage.png)
 

@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Convert input videos to compressed WebM and MP4.
+# Convert input videos (or gifs) to compressed WebM and MP4.
 # Optionally crop width and/or height, 
 # and proportionally scale width.
 # Framerate is preserved.
 # Output files are saved to same name and path as input.
+# Use like: `./compressVideos.sh path/to/myvideo.gif 800`
 
 # [Required]: Input file path
 inputPath=$1

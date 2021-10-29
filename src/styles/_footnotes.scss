@@ -170,9 +170,13 @@ FOOTNOTES: POPUP
     }
 }
 
-/* Popup — For smaller touch-based devices */
-/* The popup appears along the bottom of the screen, and a dark overlay covers the rest of the content.*/
-/* TODO: What about Windows devices with both tap and touch? They won'  be able to tap. May want to use `@media (pointer:fine)` and `@media (pointer:coarse)` instead? */
+// Popup — For smaller touch-based devices.
+// The popup appears along the bottom of the screen, and a 
+// dark overlay covers the rest of the content.
+
+// TODO: What about Windows devices with both tap and touch? 
+// They won'  be able to tap. May want to instead use 
+// `@media (pointer:fine)` and `@media (pointer:coarse)`?
 
 @media (hover: none) and (max-width: 599px) {
     .fn-popup {
@@ -187,12 +191,12 @@ FOOTNOTES: POPUP
         font-size: var(--font-base-size);
         margin-left: grid(0.25);
         margin-right: grid(0.25);
-        /* line-height: grid(0.75); */
+        // line-height: grid(0.75);
         line-height: grid(1);
         box-shadow: 0px 1px 40px 14px rgba(0, 0, 0, 0.2);
 
-        /* Transition settings to hidden state */
-        /* Don't set visibility until opacity tween is complete.*/
+        // Transition settings to hidden state.
+        // Don't set visibility until opacity tween is complete.
         bottom: -10em;
         visibility: hidden;
         opacity: 0;
@@ -200,11 +204,11 @@ FOOTNOTES: POPUP
         transition-timing-function: ease-in;
     }
 
-    /* Activated */
+    // Activated
     // .fn:hover .fn-popup,
     .fn:focus-within a[aria-expanded="true"] + .fn-popup {
-        /* Transition settings to visible state.*/
-        /* Set visibility immediately (0s).*/
+        // Transition settings to visible state.
+        // Set visibility immediately (0s).
         bottom: -0.5em;
         visibility: visible;
         opacity: 1;
@@ -212,15 +216,15 @@ FOOTNOTES: POPUP
         transition-timing-function: ease-out;
     }
 
-    /* Overlay */
-    /* .note .popup::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: -1;
-    } */
+    // Overlay 
+    // .note .popup::after {
+    //     content: '';
+    //     position: fixed;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     background-color: rgba(0, 0, 0, 0.5);
+    //     z-index: -1;
+    // }
 }

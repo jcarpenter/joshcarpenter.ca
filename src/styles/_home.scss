@@ -6,6 +6,10 @@
   margin: auto;
 }
 
+#home h1 {
+  margin-top: 3rem;
+}
+
 #home #intro address {
   @include plumber(
       $font-size: 1.333,
@@ -18,8 +22,15 @@
   );  
 }
 
-#home #intro h1 {
+#home .hello {
+  margin-left: -0.2rem;
+}
 
+#home .divider {
+  @include miniTypography;
+  font-size: 1.083rem;
+  color: onBackground(0.3);
+  margin: 0 grid(0.05);
 }
 
 #home ul {
@@ -34,6 +45,14 @@
   li::before {
     content: none;  
   }
+
+  a {
+    text-decoration-color: onBackground(0.4);
+  }
+  
+  a:hover {
+    text-decoration-color: onBackground(1);
+  }
 }
 
 #home h2 {
@@ -47,4 +66,46 @@
       $baseline: 0.18,
       $use-baseline-origin: false
   );
+}
+
+#home {
+  table {
+    --tableBorderColor: #{onBackground(0.2)};
+    white-space: nowrap;
+    
+    td:first-of-type {
+      padding-left: 0;
+      border-left: none;
+    }
+  
+    td:last-of-type {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+  
+  .org {
+    color: onBackground(1);
+    font-weight: 500; 
+    padding-right: grid(1);
+  }
+  
+  .role {
+    width: 100%;
+    color: onBackground(0.7);
+    
+    .project {
+      color: onBackground(0.4);
+    }
+  }
+  
+  .year time {
+    @include mono-font;
+    @include miniTypography;
+    font-size: 1.083rem;
+    color: onBackground(0.3);
+    // background-color: onBackground(0.05);
+    // padding: 0 0.25rem;
+    border-radius: 0.2rem;
+  }
 }

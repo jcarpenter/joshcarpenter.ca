@@ -2,7 +2,7 @@
 title: "Home Automation"
 tags: [ux]
 publish: true
-image: "ns-iphone-lights.jpg"
+image: "img/ns-iphone-lights.jpg"
 summary: "Touch interface for controling home security, lighting, media, heating, and more. Designed 2010-2011 while I was Creative Director for Vancouver-based New Space Technologies."
 ---
 

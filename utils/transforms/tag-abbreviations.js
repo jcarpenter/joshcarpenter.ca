@@ -6,14 +6,14 @@ const cheerio = require('cheerio')
  */
 const abbreviationsRE = [/IPCC/, /RCP/, /AR5/, /RCP2.6/, /RCP4.5/, /RCP6.0/, /RCP8.5/, /GMSL/, /IAEA/, /NASA/, /NOAA/, /CAD/, /USD/]
 
-module.exports = function (content, outputPath) {
+module.exports = function (content) {
   // Exit early if output path is false, because we aren't 
   // going to write this doc to disk. Perf savings.
-  if (!outputPath) return content
+  if (!this.outputPath) return content
   
   // Exit early for non-climate posts
   const isClimatePost = this.dataCache.tags?.includes('climate')
-  if (!isClimatePost || !outputPath.includes('nuclear')) return content
+  if (!isClimatePost || !this.outputPath.includes('nuclear')) return content
   
   const $ = cheerio.load(content)
 

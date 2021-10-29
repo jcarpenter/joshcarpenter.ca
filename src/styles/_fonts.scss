@@ -4,20 +4,10 @@ Fonts
 ========================================================
 */
 
-/* Roboto Mono */
+// Roboto Mono
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
-body {
-    font-family: "Inter", sans-serif;
-    
-    // --- If I want to use SF... --- //
-    // Temporary solution (5/6): Recent changes in SF Display have introduced a bug in Chrome wherein heavier weights do not work at sizes >= 20px. Instead the user sees Regular. So am removing `BlinkMacSystemFont` until the bug is fixed (estimated Chrome 83). See: https://bugs.chromium.org/p/chromium/issues/detail?id=1057654&q=component%3ABlink%3EFonts%20system-ui%20macos&can=2
-    // font-family: -apple-system, "Inter", sans-serif;
-
-    // Once Chrome 83 ships w/ fix for SF font weight bug (1057654&):
-    // font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-}
-
+// Inter
 @font-face {
     font-family: "Inter";
     font-style: normal;
@@ -57,6 +47,18 @@ body {
     font-display: swap;
     src: url("/fonts/Inter-Bold.woff2") format("woff2");
 }
+
+body {
+    font-family: "Inter", sans-serif;
+    
+    // --- If I want to use SF... --- //
+    // Temporary solution (5/6): Recent changes in SF Display have introduced a bug in Chrome wherein heavier weights do not work at sizes >= 20px. Instead the user sees Regular. So am removing `BlinkMacSystemFont` until the bug is fixed (estimated Chrome 83). See: https://bugs.chromium.org/p/chromium/issues/detail?id=1057654&q=component%3ABlink%3EFonts%20system-ui%20macos&can=2
+    // font-family: -apple-system, "Inter", sans-serif;
+
+    // Once Chrome 83 ships w/ fix for SF font weight bug (1057654&):
+    // font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
 
 
 

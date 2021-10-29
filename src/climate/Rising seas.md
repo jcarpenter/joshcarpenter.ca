@@ -1,8 +1,9 @@
 ---
-title: "Rising seas"
+title: "Rising Seas"
 tags: [climate, problem]
 publish: true
 summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place?"
+image: "img/GMSL-1900-2010.png"
 ---
 
 ## How do we define “sea level rise”? 

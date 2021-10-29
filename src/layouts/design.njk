@@ -1,18 +1,20 @@
 ---js
 {
-    social: {
-        addTags: true,
-        type: "article",
-    },
-    eleventyComputed: {
-        metaTitle: "{{ title }} | Josh Carpenter - Portfolio and Notes",
-    },
+    date: "Last Modified",
     colors: {
         primary: {
             light: "120, 120, 120", // Plain grey highlight for climate posts
             // dark: "0, 255, 0"
         }
-    }
+    },
+    eleventyComputed: {
+        meta: {
+            page_title: "{{ title }} | Josh Carpenter - UX Portfolio",
+            summary: "{{ summary or meta.summary }}",
+            image: "{{ image or meta.image }}",
+            type: "article"
+        }
+    },
 }
 ---
 <!doctype html>
@@ -24,7 +26,7 @@
         <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "header.njk" %}
         <main role="main" aria-labelledby="title">
-            <article id="post" class="wide-images">
+            <article id="post" class="wide-images" {% if bibliography %}data-bibliography="{{ bibliography }}" {% endif %}>
                
                 {# ------------ Header ------------ #}
                 <header>
@@ -36,7 +38,7 @@
                     {# Metadata #}
                     {# <section id="metadata" aria-label="Metadata">
                         <address>
-                            <span class="author">By <a href="https://twitter.com/{{ config.bio.twitter }}">{{ config.bio.name }}</a>. </span>
+                            <span class="author">By <a href="https://twitter.com/{{ bio.twitter }}">{{ bio.name }}</a>. </span>
                         </address>
                         <time datetime="{{ page.date }}">Updated {{ page.date | date("D MMM YYYY") }}</time>
                     </section> #}
