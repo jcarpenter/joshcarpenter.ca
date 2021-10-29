@@ -28,7 +28,7 @@
         "js:dev": "cpy 'js/*.js' '../_site/' --cwd=src --parents",
         "js:build": "npx eslint --fix 'src/js/*.js' && npx babel 'src/js/*.js' --presets minify --out-dir _site/js",
         "eleventy": "npx @11ty/eleventy --quiet",
-        "format-html": "prettier '_site/**/*.{html}' --write --no-config",
+        "format-html": "prettier '_site/**/*.html' --write --no-config --loglevel warn",
         "browsersync": "browser-sync start --server '_site' --watch --reload-delay 200 --reload-debounce 2000 --no-open --no-notify --no-ghost-mode",
         "watch:css": "onchange 'src/styles/*.scss' -d 250 -- npm run sass:dev",
         "watch:js": "onchange 'src/js/*.js' -d 250 -- npm run js:dev",
@@ -37,7 +37,7 @@
         "watch": "run-p watch:*",
         "serve": "npm run browsersync & npm run watch",
         "dev": "npm run clean && run-p copy optimize-images sass:dev js:dev && run-s eleventy serve",
-        "build": "npm run clean && run-p copy optimize-images sass:build js:build && eleventy && format-html"
+        "build": "npm run clean && run-p copy optimize-images sass:build js:build && run-s eleventy format-html"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",
