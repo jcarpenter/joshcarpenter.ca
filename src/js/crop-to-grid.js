@@ -51,7 +51,7 @@ and increase their heights to the next grid line.
       // They'll get cropped when they load (via load listeners we set on them).
       if (el.localName == 'img' && el.complete) {
         cropElementToGrid(el)
-      } else {
+      } else if (el.localName !== 'img') {
         cropElementToGrid(el)
       }
     })
@@ -72,46 +72,43 @@ and increase their heights to the next grid line.
 function getCroppableElements() {
   return document.querySelectorAll(`
     #post #metadata,
+    #post #content figure iframe, 
     #post #content figure video, 
     #post #content figure img, 
     #post #content figcaption, 
-    #post #notes ol
+    #post #footnotes ol
   `)
 }
 
 /**
  * For the specified element...
  * 1) get original height
- * 2) round height to nearest multiple of the grid
+ * 2) round height to nearest multiple of the grid (1rem = 1 grid)
  * 3) set `height` property to new value
  */
 function cropElementToGrid(element) {
-  // Get grid unit height
-  // We use a baseline grid, where line-height = 2 grid units.
-  const gridUnitHeight = parseInt(window.getComputedStyle(document.body).getPropertyValue('line-height')) / 2
+   
+  element.style.height = null
 
-  // Get original (as currently rendered) height
+  // Get grid unit height.
+  // 1 rem = 1 grid unit
+  const gridUnitHeightInPx = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'))
+
+  // Get original image height (as currently rendered):
   // offsetHeight "...returns the height of an element, including vertical padding and borders, as an integer. Typically, offsetHeight is a measurement in pixels of the element's CSS height, including any borders, padding, and horizontal scrollbars (if rendered)." —https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight
   const originalHeight = element.offsetHeight
 
-  // Calculate new height
-  // If element is image, we want to crop it to fit the grid. Because we can't add vvvv
-  // const newHeightInGridUnits = element.localName == 'img' ?
-  //   Math.floor(originalHeight / gridUnitHeight) :
-  //   Math.ceil(originalHeight / gridUnitHeight)
-
   // Calculate new height. Round UP to the next grid line.
   // This will make the new height LARGER than the previous.
-  const newHeightInGridUnits = Math.ceil(originalHeight / gridUnitHeight)
+  // The sides may get cropped a bit, thanks to 
+  // object-fit: cover
+  const newHeightInRem = Math.ceil(originalHeight / gridUnitHeightInPx) + 'rem'
 
-  // const newHeightInPx = gridUnitHeight * newHeightInGridUnits
-
-  console.log(element.localName, originalHeight, gridUnitHeight, originalHeight / gridUnitHeight, newHeightInGridUnits)
-
+  console.log(element.localName, originalHeight, gridUnitHeightInPx, newHeightInRem)
 
   // Set new height
   // element.style.height = newHeightInPx + 'px'
-  element.style.height = newHeightInGridUnits + 'rem'
+  element.style.height = newHeightInRem
 }
 
 

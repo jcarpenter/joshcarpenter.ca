@@ -1,138 +1,131 @@
 @use "mixins_and_functions" as *;
-@use "plumber" as *;
 
 /* 
 ========================================================
-Figure & Img
+Figure: Layout
+========================================================
+*/
+
+// Default figures:
+// Under 500px:
+// - Figure is 100% full width of screen.
+// - Captions align with standard-width content.
+// - Media is not rounded (we want it flush with edges).
+// Over 500px:
+// - Figure and caption align with standard-width
+//   content.
+// - Media is rounded
+figure {
+
+    // display: flex;
+    // height: auto;
+    // flex-direction: column;
+    // align-items: center;
+
+    --borderRounding: 0.3rem;
+
+    // display: block;
+    // height: auto;
+    padding-top: 1rem;
+    margin: 0 0 2rem;
+
+    height: auto;
+    width: 100%;
+
+    // Under 500px: Add margin to figcaption
+    // to align it with standard-width content.
+    figcaption { 
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    
+    // No rounding
+    img, video, iframe, picture { border-radius: 0; }
+    
+    // Over 500px: 
+    @media (min-width: 500px) {
+
+        // Round media elements
+        img, video, iframe { border-radius: var(--borderRounding); }
+
+        min-width: 20rem;
+        max-width: 42rem;
+        
+      figcaption {
+          margin-left: 0;
+          margin-right: 0;
+      }
+    }
+}
+
+// Wide figures:
+// Under 500px: 
+// - Same behaviour as default figures (see above).
+// Over 500px: 
+// - Figure can expand wider than
+// - Caption remains aligned.
+// Over 750px:
+// - Media is rounded
+.wide-images figure {
+
+    @media (min-width: 500px) {
+
+        // Still no rounding
+        // We need to declare this to override default
+        img, video, iframe { border-radius: 0; }
+        
+        min-width: 20rem;
+        max-width: 66rem;
+
+        figcaption {
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 20rem;
+            max-width: 42rem;
+        }
+    }
+    
+    @media (min-width: 750px) {
+        img, video, iframe { border-radius: var(--borderRounding); }
+    }
+}
+
+/* 
+========================================================
+Figure: Media
 ========================================================
 */
 
 figure {
-    margin: 0 0 grid(1.5);
-    // Use center column of main grid (same as content
-    // text). Make full width of that column.
-    // grid-column: 3;
-    display: block;
-    // Figcaption is full width of parent figure.
-    figcaption { width: 100%; }
-}
-
-// @media screen and (min-width: 481px) {
-//     figure {
-//         display: grid;
-//         grid-template-columns: var(--grid-layout-figcaption);
-
-//         & > :not(figcaption) {
-//             grid-column: 1/4;
-//         }
+    img, video, iframe {
     
-//         & > figcaption {
-//             grid-column: 2;
-//         }
-//     }
+        // Ensure media container expands to fit parent container.
+        width: 100%;
+        max-width: 100%;
+        height: auto;
 
-//     .portfolio figure > figcaption {
+        // Remove gap below media elements by changing them 
+        // from display inline to block.
+        display: block;
         
-//     }
-// }
+        // Add box-shadow
+        box-shadow: 0px 0px 2em rgba(0, 0, 0, 0.05);
 
+        // Ensure media container contents expand to fill the 
+        // container. Need to set this because we container will
+        // not fit content exactly, because we crop container
+        // to fit the grid.
+        object-fit: cover;
+    }
 
-// On "note" posts, copy is more important than media,
-// so we make media same width as text.
-
-// On "portfolio" posts, media is more important than copy,
-// so we make media wider.
-
-// On narrow (mobile) screens, media is always full width,
-// so there is no distinctin between notes and portfolio.
-
-
-
-/* 
-Mobile: Simple layout. Figure is full width,
-and so is figcaption.
-*/
-// @media (max-width: 480px) {
-//     #post.note figure,
-//     #post.portfolio figure {
-//         // Use center column of main grid (same as content
-//         // text). Make full width of that column.
-//         grid-column: 3;
-//         display: block;
-//         // Figpcaption is full width of parent figure.
-//         figcaption { width: 100%; }
-//     }
-// }
-
-/* 
-Larger-than-mobile: Portfolio images are wide.
-*/
-@media (min-width: 480px) {
-    // #post.portfolio #content figure {
-    //     // Use columns 3-5. So media is wider than text.
-    //     grid-column: 2/5;
-    //     // For figcaption, use column 2 of parent figure grid.
-    //     // So figcaption aligns with content text.
-    //     display: grid;
-    //     grid-template-columns: var(--grid-layout-figcaption);
-    //     & > :not(figcaption) { grid-column: 1/5; }
-    //     figcaption { grid-column: 2 }
-    // }
+    // We need to set the aspect-ratio property on the iframe.
+    // E.g. <iframe style="aspect-ratio: 4/3" ...>
+    iframe {
+        margin: 0;
+        background-color: black;
+    }
 }
 
-
-
-
-
-figure img {
-    // Display block, to remove perceived padding below 
-    // img when it's left as inline element (the default)
-    display: block;
-
-    // box-shadow: 0px 1px 26px -14px rgba(0, 0, 0, 0.175); // Drop shadow
-    // box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.175); // 1px outline
-    box-shadow: 
-        0px 0px 2em rgba(0, 0, 0, 0.05),
-        inset 0px 0px 2px 1px rgba(0, 0, 0, 0.04); // 1px outline
-    // border: 21px solid rgba(0, 0, 0, 0.06);
-    // object-fit: contain;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    box-sizing: border-box;
-    margin: 0;
-    transform: scale(1, 1);
-    // transition: box-shadow 0.08s, transform 0.08s;
-    // transition-timing-function: ease-out;
-    background-color: transparent;
-    // Add a light outline to media in posts
-    // outline: 1px solid rgba(0, 0, 0, 0.15);
-    // outline-offset: -1px;
-}
-
-
-figure img,
-figure iframe, 
-figure video {
-    border-radius: 0.2em;
-    // For assets that are small and wouldn't fill the space otherwise.
-    width: 100%;
-    // Make images expand to fill the available space without scaling
-    // Important because we crop image height to fit grid, using JS.    
-    object-fit: cover;
-}
-
-figure img:focus {
-    // border: 10px solid yellow;
-}
-
-// @media (min-width: 90    0px) {
-//     figure img { 
-//         width: auto;
-//         max-width: 100%;
-//         max-height: grid(8);
-//     }
-// }
 
 // Add hover states to thumbnails
 // article figure img:hover,
@@ -144,6 +137,12 @@ figure img:focus {
 //     transition-timing-function: ease-in;
 // }
 
+/* 
+========================================================
+Figure: Caption
+========================================================
+*/
+
 figcaption {
     font-weight: 500;
     
@@ -152,29 +151,16 @@ figcaption {
     overflow-wrap: break-word;
     hyphens: auto;
   
-    @include miniTypography;
-    // @include miniBackgroundGrid;
-    // background-color: rgba(212, 186, 72, 0.4);
-    
-    // We override miniTypography's usual padding-bottom,
-    // because we don't need it. It's only useful when we
-    // have a series of miniTypography items in a row.
-    // In which case it ensures all items sit on the 
-    // baseline grid.
-    padding-bottom: 0;
-}
+    @include baselineShiftTypography(
+        $fontSize: fontSize(0.9),
+        $lineHeight: 1.8rem,
+        $marginBottom: 0rem
+    );
 
-/* 
-========================================================
-iFrame
-========================================================
-*/
+    // Figcaption adds a bit of visual padding to the bottom
+    // of the figure. Too much. So we pull up subsequent
+    // content to close the gap, for consistency.
+    margin-bottom: -1rem;
 
-// We need to set the aspect-ratio property on the iframe.
-// E.g. <iframe style="aspect-ratio: 4/3" ...>
-figure iframe {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    background-color: black;
+    color: onBackground(calc(var(--bodyTextAlpha) - 0.25)); 
 }

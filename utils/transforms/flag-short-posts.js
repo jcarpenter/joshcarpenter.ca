@@ -15,7 +15,7 @@ module.exports = function (content) {
 
   const h3 = $('#post #content h3')
   if (h3.length == 0) {
-    $('#post #content').addClass('short-post') 
+    $('#post').addClass('short-post') 
   }
 
   content = $.html()

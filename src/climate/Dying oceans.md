@@ -1,12 +1,10 @@
 ---
 title: "Dying Oceans"
-tags: [climate, problem]
+tags: [climate, explainer, problem]
 publish: true
 summary: "What damages are we seeing in marine ecosystems? What are the causes, and future projections?"
 image: "img/Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere.jpg"
 ---
-
-## Preface: The ocean and cryosphere system
 
 ![Schematic illustration of key components and changes of the ocean and cryosphere, and their linkages in the Earth system through the movement of heat, water, and carbon.[@rep-OceanCryosphere-IPCC-19, p.SPM-13]](img/Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere.jpg)
 

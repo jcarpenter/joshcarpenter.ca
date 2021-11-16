@@ -28,7 +28,7 @@ module.exports = function (content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
-  const paragraphs = $('#post #content p, #post #content li, #post #content figcaption')
+  const paragraphs = $('#post #content p, #post #content li, #post #content figcaption, #post #content td')
 
 
   // Wrap citations in inline footnote markdown chararacters ^[...]
@@ -53,8 +53,8 @@ module.exports = function (content) {
   if (containsFootnotes) {
 
     // Append new "Notes" section at end of the document
-    $('#post').append(`<section id="notes" aria-labelledby="notes-header" class="pattern-top-edge">
-      <h2 id="notes-header">Notes</h2>
+    $('#post').append(`<section id="footnotes" aria-labelledby="footnotes-header" class="pattern-top-edge">
+      <h2 id="footnotes-header">Notes</h2>
       <ol class="two-column-list"></ol>
     </section>`)
     // <ul class="two-column-list"></ul>
@@ -69,7 +69,7 @@ module.exports = function (content) {
   // Copy each footnote to an <li> in Notes section...
   // And replace with a link to that <li>...
 
-  const notesUl = $('article #notes > ol')
+  const footnotesUl = $('article #footnotes > ol')
   let counter = 1
 
   // We keep a record of citation footnotes as we go,
@@ -89,8 +89,8 @@ module.exports = function (content) {
 
       let content = footnote.replace(/\s?\^\[/, '').slice(0, -1)
 
-      // Move content into an <li> in the Notes section
-      notesUl.append(`<li id="fn${counter}" class="fn-item" aria-label="Footnote">
+      // Move content into an <li> in the Footnotes section
+      footnotesUl.append(`<li id="fn${counter}" class="fn-item" aria-label="Footnote">
       ${content}<a href="#fn-link-${counter}" class="fn-back" aria-label="Back to content">\u21a9\uFE0E</a>
       </li>\n`)
 

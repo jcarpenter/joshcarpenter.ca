@@ -1,170 +1,74 @@
 @use "mixins_and_functions" as *;
-@use "plumber" as *;
+
 
 /* 
 ========================================================
-Metadata
+EXPLAINER FORWARD
 ========================================================
 */
 
+#explainer-forward {
+    @include standardWidth;
+    position: relative;
 
-// #metadata {
-    
-//     font-size: var(--font-sml-1);
-//     font-weight: 400;
-//     font-style: normal;
-//     margin-bottom: grid(1);
-//     line-height: grid(0.5);
-
-//     // Lines above and below
-//     &::before,
-//     &:after {
-//         content: '';
-//         display: block;
-//         border-style: solid;
-//     }
-
-//     &:before {
-//         border-width: 1px 0 0 0;
-//         margin-top: -1px;
-//         padding-bottom: grid(0.5);
-//     }
-
-//     &:after {
-//         border-width: 0 0 1px 0;
-//         margin-bottom: -1px;
-//         padding-top: grid(0.5);
-//     }
-// }
-
-// // Author name
-// #metadata address {
-//     font-style: normal;
-//     display: inline;
-
-//     a {
-//         text-decoration: none;
-//     }
-
-//     a:hover {
-//         text-decoration: underline;
-//     }
-// }
-
-#metadata {
-    border-top: 1px solid onBackground(0.2);
-    // border-left: 1px solid onBackground(0.1);
-    // border-right: 1px solid onBackground(0.1);
-    border-bottom: 1px solid onBackground(0.2);
-    
-    @include miniTypography(1rem, 0);
-    // padding-left: miniGrid(1);
-    // padding-right: miniGrid(1);
-    margin-bottom: grid(1);
-    
-    // @include miniBackgroundGrid;
-    // background-color: white;
-
-    // Grid
-    display: grid;
-    grid-template-columns: grid(5) 1fr;
-    gap: grid(1);
-    #details { grid-column: 1/2; }
-    #intro { grid-column: 2/3; }
-    
-    #details {
-        @include mono-font;
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+    p {
+        @include baselineShiftTypography(
+            $fontSize: fontSize(1.2),
+            $lineHeight: 2rem,
+            $paddingTop: 2rem,
+            $marginBottom: 2rem
+        );
+        // --font-size: #{fontSize(1.2)};
+        // --line-height: 2rem;
+        // --margin-bottom: 3rem;
+        font-weight: 600;
+        color: onBackground(1);
     }
 
-    #details > * {
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.2rem;
+        background-color: onBackground(1);
+    }
+}
+
+
+/* 
+========================================================
+HEADER
+========================================================
+*/
+
+// Climate posts get some extra styling
+.climate #post header {
+
+    position: relative;
+    padding-top: 5rem;
+    margin-bottom: 1rem;
+
+    time {
+        @include baselineShiftTypography(
+            $fontSize: fontSize(0.9),
+            $lineHeight: 1rem,
+            $paddingTop: 0rem,
+            $marginBottom: 0rem
+        );
         display: block;
-    }
-
-    // #intro {
-    //     .author-sig {
-    //         @include mono-font;
-    //         font-size: var(--font-sml-3);
-    //         font-size: inherit;
-    //         opacity: 0.8;
-    //     }
-    // }
-    
-    a {
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
+        color: onBackground(0.4);
+        font-weight: 500;
+        // @include monoFont;
     }
 }
 
-
-// @media (min-width: 900px) {
-
-//     #metadata {
-//         margin-bottom: grid(2);
-//     }
-
-//     #metadata #details { 
-//         font-size: var(--font-sml-2);
-//         line-height: grid(0.75);
-//     }
-
-//     #metadata #intro {
-//         font-size: var(--font-sml-1);
-//         line-height: calc(grid(1) * 0.8);
-//     }
-// }
-
-// Tags
-// #metadata #tags {
-//     display: inline-flex;
-//     list-style: none;
-//     padding: 0;
-//     margin: 0;
-
-//     a,
-//     span.tag {
-//         // background-color: var(--clr-mint-3);
-//         background-color: foreground(0.075);
-//         color: foreground(0.7);
-//         border-radius: 3px;
-//         // border: 1px solid fore(0.15);
-//         display: inline-flex;
-//         list-style: none;
-//         padding: grid(0.25);
-//         margin: 0 grid(0.25) 0 0;
-//         height: grid(1);
-//         text-decoration: none;
-//     }
-
-//     a:hover,
-//     span.tag:hover {
-//         background-color: foreground(0.15);
-//     }
-
-//     a.wip,
-//     span.tag.wip {
-//         background-color: var(--clr-beige);
-//         border: 1px solid rgba(0, 0, 0, 0.04);
-//     }
-
-//     a.wip:hover,
-//     span.tag.wip:hover {
-//     }
-// }
-
-/* -------------- TODOs -------------- */
-
-span.todo {
-    background-color: var(--clr-beige);
-    border: 1px solid rgba(0, 0, 0, 0.02);
-    padding: 1px 1px 1px 2px;
-    border-radius: 2px;
+.ux #post header h1 {
+    @include baselineShiftTypography(
+        $fontSize: fontSize(1.2),
+    );
 }
-
 
 
 /* 
@@ -173,25 +77,51 @@ Content
 ========================================================
 */
 
-// Set margin-top on first element
-#post #content > *:first-child {
-    margin-top: grid(0.5) !important;
-    // border: 1px solid red;
-}
-
 // Add padding at end.
 #post #content {
-    padding-bottom: grid(1);
+    padding-bottom: 2rem;
+
+    // Timeframe span is used at beginning on some posts.
+    // E.g. <span class="timeframe">2016</span>
+    .timeframe {
+        opacity: 0.5;
+        // font-size: 0.95em;
+        // Push vertical alignment up a few px.
+        // Code text is bit smaller than surrounding,
+        // So we need to vertically center it.
+        line-height: 0;
+        vertical-align: 0.05em;
+        font-style: normal;
+    }
+
+    @media (max-width: 480px) {
+        h2, h2 a {
+            // --font-size: #{fontSize(1.4)};
+            font-weight: 600;
+        }
+    }   
 }
 
-.timeframe {
-    opacity: 0.5;
-    font-size: 0.95em;
-    // Push vertical alignment up a few px.
-    // Code text is bit smaller than surrounding,
-    // So we need to vertically center it.
-    line-height: 0;
-    vertical-align: 0.05em;
+
+// Add ## before h2:
+// - Larger screens only (no room on smaller displays)
+// - Normal posts only (NOT short-posts)
+@media (min-width: 481px) {
+
+    #post:not(.short-post) h2 {
+
+        position: relative;
+    
+        &::before {
+            content: '##';
+            font-weight: 500;
+            font-size: fontSize(1);
+            color: onBackground(0.5);
+            left: -0.5rem;
+            transform: translateX(-100%);
+            position: absolute;
+        }
+    }
 }
 
 
@@ -201,20 +131,24 @@ Footnotes
 ========================================================
 */
 
-// We use the "mini" typography style for Notes.
 
-#notes ol {
+#footnotes h2 {
+    color: onBackground(1);
+}
+  
+
+#footnotes ol {
+
+    @include baselineShiftTypography(
+        $fontSize: fontSize(0.9),
+        $lineHeight: 1.8rem,
+        $marginBottom: 0rem
+    );
     
     list-style: none;
-
-    column-gap: miniGrid(4);
-    padding-top: 0;
-    padding-left: miniGrid(2);
-    padding-bottom: 0;
+    column-gap: 2rem;
+    padding-left: 0;
     margin: 0;
-
-    // @include miniBackgroundGrid;
-    // background-color: white;
 
     // Small devices: 1 column
     // Wider devices: 2 columns
@@ -224,21 +158,29 @@ Footnotes
     }
 
     li {
-        @include miniTypography;
-        margin-left: miniGrid(1);
-        margin-bottom: miniGrid(1);
+        margin-left: 2rem;
+        margin-bottom: 1.8rem;
         /*Do not let contents be broken across columns */
         break-inside: avoid;
         page-break-inside: avoid; /* Firefox */
+        color: onBackground(0.65);
+
+        // Numeric marker
+        &::before {
+            font-size: 0.9em;
+            color: primary(1);
+        }
     }
 
     li a {
         font-weight: normal;
         text-decoration: underline;
         border: none;
+        color: onBackground(0.85);
 
         &:hover {
             border: none;
+            color: onBackground(0.95); 
         }
     }
 
@@ -274,7 +216,7 @@ Footnotes
         margin-left: 0.2em;
         opacity: 0;
         transition: opacity 200ms;
-
+        color: onBackground(0.5);
     }
     
     li:hover .fn-back {
@@ -290,56 +232,60 @@ Related content
 ========================================================
 */
 
-#related-content {
-    // font-size: var(--font-sml-1);
-    // TOD: Replace with plumber
-    line-height: grid(0.75);
-    // background: foreground(0.075);
-    // padding: grid(1);
-    // margin: grid(2) 0 grid(1);
+// TODO: Update for baseline grid system
+// #related-content {
+//     // font-size: var(--font-sml-1);
+//     // line-height: grid(0.75);
+//     // background: foreground(0.075);
+//     // padding: 2rem;
+//     // margin: grid(2) 0 2rem;
 
-    h2 {
-        // font-size: var(--font-base-size);
-        // font-weight: 700;
-        // margin: 0 0 grid(0.5) 0;
-        // margin: grid(1) 0;
-    }
+//     h2 {
+//         // font-size: var(--font-base-size);
+//         // font-weight: 700;
+//         // margin: 0 0 grid(0.5) 0;
+//         // margin: 2rem 0;
+//     }
 
-    a.title {
-        // font-size: var(--font-base-size);
-        font-weight: 700;
-        text-decoration: none;
-        display: inline-block;
-    }
+//     a.title {
+//         // font-size: var(--font-base-size);
+//         font-weight: 700;
+//         text-decoration: none;
+//         display: inline-block;
+//     }
 
-    .tag a {
-        font-weight: normal;
-        display: inline-block;
-        text-decoration: none;
-    }
+//     .tag a {
+//         font-weight: normal;
+//         display: inline-block;
+//         text-decoration: none;
+//     }
 
-    ul {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+//     ul {
+//         display: flex;
+//         flex-flow: row wrap;
+//         justify-content: space-between;
+//         list-style: none;
+//         padding: 0;
+//         margin: 0;
+//     }
 
-    li {
-        width: 32%;
-    }
+//     li {
+//         width: 32%;
+//     }
 
-    #tags {
-        display: flex;
-    }
+//     #tags {
+//         display: flex;
+//     }
 
-    #tags > li:not(:last-child):after {
-        content: ',';
-        margin-right: 0.25em;
-    }
-}
+//     #tags > li:not(:last-child):after {
+//         content: ',';
+//         margin-right: 0.25em;
+//     }
+// }
+
+// #related-content .tag a {
+//   color: foreground(0.5);
+// }
 
 /* 
 ========================================================
@@ -349,25 +295,16 @@ About the Author
 
 #about-the-author {
     @include standardWidth;
-    @include plumber(
-        $font-size: 1.333,
-        $line-height: 2,
-        $leading-top: 5,
-        $leading-bottom: 0,
-        $grid-height: 1rem,
-        $baseline: 0.18,
-        $use-baseline-origin: false
-    );
-    // font-size: var(--font-sml-1);
-    padding: grid(1);
-    // margin-bottom: 0;
-    // margin-top: grid(2);
-    p { margin: 0; }
-
-    // &::before {
-    //     content: '';
-    //     @include dotBackground(0.25, 0);
-    //     height: grid(0.5);
-    //     margin-bottom: grid(0.5);
-    // }
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: 2rem 0;
+    color: onBackground();
+    text-shadow: 1px 1px 5px background(0.5);
+    @include dotBackground(0.1, 0.03);
+    
+    p { 
+        @include baselineShiftTypography(
+            $paddingTop: 1rem,
+        );
+    }
 }

@@ -1,14 +1,14 @@
 ---
 title: "Storms"
-tags: [climate, problem]
+tags: [climate, explainer, problem]
 publish: true
 summary: "To what degree are storms increasing in severity and frequency? What are the causes and potential impacts?"
 image: "img/hurricane-irma-satellite.jpg"
 ---
 
-## Storms are increasing in frequency and severity
+![Hurricane Irma just before landfall in Florida. Credit: NASA.](img/hurricane-irma-satellite.jpg "Satellite photo of Hurricane Irma making landfall in Florida")
 
-![Hurricane Irma just before landfall in Florida. Credit: NASA](img/hurricane-irma-satellite.jpg "Satellite photo of Hurricane Irma making landfall in Florida")
+## Storms are increasing in frequency and severity
 
 Outlier events are becoming more common, maximum storm strengths are increasing, and storms are occuring over wider and/or shifting areas and times of year. 
 

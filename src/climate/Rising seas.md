@@ -1,14 +1,14 @@
 ---
 title: "Rising Seas"
-tags: [climate, problem]
+tags: [climate, explainer, problem]
 publish: true
 summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place?"
 image: "img/GMSL-1900-2010.png"
 ---
 
-## How do we define “sea level rise”? 
-
 ![Global mean sea level relative to 1986–2005. [@rep-AR5Synth-IPCC-14, p.41] ](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
+
+## How do we define “sea level rise”? 
 
 “Sea level rise” most commonly refers to changes in the **global mean sea level** (GMSL), which is the mean height of the ocean surface as measured from the center of the earth.
 
@@ -38,14 +38,16 @@ The IPCC AR5 report said:
 
 GMSL rise average in mm/year:
 
-* 1901-2010 - 1.7 mm [@rep-AR5Synth-IPCC-14, p.42]
-* 1997-2006 - 3.04 mm [@rep-GlobalClimate-WMO-19, p.6]
-* 2007-2016 - 4.36 mm [@rep-GlobalClimate-WMO-19, p.6]
-* 2014-2019 - 5 mm [@rep-GlobalClimate-WMO-19, p.6]
+|  |  |
+| ---- | ---- |
+| 1901-2010 | 1.70 mm  [@rep-AR5Synth-IPCC-14, p.42] |
+| 1997-2006 | 3.04 mm [@rep-GlobalClimate-WMO-19, p.6] |
+| 2007-2016 | 4.36 mm [@rep-GlobalClimate-WMO-19, p.6] |
+| 2014-2019 | 5.00 mm [@rep-GlobalClimate-WMO-19, p.6] |
 
 ## Greenland and Antarctica ice sheets will be the largest contributors, going forward
 
-![Sources of sea-level rise in 1997–2006 versus 2007–2016. [@rep-GlobalClimate-WMO-19]](img/GMSL-rise-contributors.png)
+![Sources of sea-level rise in 1997–2006 versus 2007–2016. [@rep-GlobalClimate-WMO-19].](img/GMSL-rise-contributors.png)
 
 Per a September 2019 report from the World Meteorological Organization: 
 
@@ -133,11 +135,15 @@ Per the 2019 IPCC [Oceans and Cryosphere report](https://www.ipcc.ch/srocc/):
 
 ![A decade of increasing high-end scenarios. [@vid-JeffGoodell-SALT-19, t.30:13]](img/sea-level-rise-scenarios.png)
 
-* **2014**: IPCC: 0.52 – 0.98 m (by 2100, under RCP8.5). [@rep-AR5PhySci-IPCC-13, p.1140]
-* **2019**: IPCC: 0.61 – 1.10 m  (by 2100, under RCP8.5). [@rep-OceanCryosphere-IPCC-19, p.SPM-23]
-* **2015**: NASA: Minimum 1 m by 2100.
-* **2017**: National Oceanic and Atmospheric Administration (NOAA): 2.5 meters possible by 2100.
-* **2018**: Richard Alley: 4.5 to 6.0 m possible by 2100, “if the worst happened”. [@vid-RichardAlley-18, t.40:00]
+Projections from various sources for sea level rise by 2100:
+
+| Estimate |  | Source | Year  |
+| ---- | ---- | ---- | ---- |
+| 0.52 – 0.98 m | RCP8.5 [@rep-AR5PhySci-IPCC-13, p.1140] | IPCC | 2014 |
+| 0.61 – 1.10 m | RCP8.5 [@rep-OceanCryosphere-IPCC-19, p.SPM-23]| IPCC | 2019 |
+| 1 m |  Minimum | NASA | 2015 |
+| 2.5 m | Possible | NOAA | 2017 |
+| 4.5 – 6.0 m | Worst case [@vid-RichardAlley-18, t.40:00] | R. Alley | 2018 |
 
 Jeff Goodell says “The uncertainty is moving towards higher scenarios, rather than low.” [@vid-JeffGoodell-SALT-19, t.21:14] Richard Alley uses the graph below to plot the probability of various scenarios, and says everything we’re learning is only fattening the right side of the curve. [@vid-RichardAlley-18, t.40:00]
 
@@ -166,7 +172,7 @@ Melt rates seem to be accelerating. World Meteorological Society figures from Se
 
 That seems reasonable to me. It is greater than the (outdated and conservative) IPCC AR5 worst-case figures, but also below Richard Alley’s worst case 4.5-6.0 estimate. On his scenario probability graph, my estimate sits about 75% along the x-axis.
 
-## No matter what we do, some sea level rise is “baked in”
+## No matter what we do, some sea level rise is baked in
 
 The heat already in the ocean will continue to drive sea level rise, even if we could magically stop all emissions today. But we still need to rapidly reduce emissions, because the hotter the world is, the more sea level rise we will see, and the faster it will happen.
 

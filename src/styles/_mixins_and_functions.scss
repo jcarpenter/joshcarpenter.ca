@@ -30,52 +30,20 @@
   @return rgba(var(--on-popup), $alpha);
 }
 
-// -------------- Typography -------------- //
-
-@mixin mono-font {
-  font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
-  font-size: 0.9em;
-}
-
-@mixin miniTypography($paddingTop: 0, $paddingBottom: 0) {
-  font-size: 1.166rem; // 14px
-  line-height: 1.6rem; // 20px
-  padding-top: $paddingTop + 0.4rem; // 4.8px
-  padding-bottom: $paddingBottom + 0.475rem;
-}
-
-@mixin miniBackgroundGrid {
-  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1));
-  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1)), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent miniGrid(1));
-}
 
 // -------------- Layout  -------------- //
 
-
 @mixin standardWidth() {
-  min-width: 24rem;
-  max-width: 40rem;
-  width: 100%;
-}
 
-// Convenience functions, to make grid unit syntax cleaner in our sass.
-// E.g. `grid(2)` compiles to `calc(var(--grid) * 2)`
+  width: calc(100vw - 4rem);
 
-@function grid($num: 1) {
-  @if $num == 1 {
-      @return var(--grid);
-  } @else {
-      @return calc(var(--grid) * $num);
+  @media (min-width: 500px) {
+    min-width: 20rem;
+    max-width: 42rem;
+    width: 100%;
   }
 }
 
-@function miniGrid($num: 1) {
-  @if $num == 1 {
-    @return var(--mini-grid);
-  } @else {
-      @return calc(var(--mini-grid) * $num);
-  }
-}
 
 // -------------- Media queries  -------------- //
 
@@ -91,10 +59,110 @@
   }
 }
 
+
+// -------------- Typography -------------- //
+
+@mixin baselineShiftTypography(
+  $fontSize: fontSize(1),
+  $lineHeight: 2rem,
+  $paddingTop: 0rem,
+  $marginBottom: 1rem, 
+) {
+
+  /* Height of descender, as ratio */
+  
+  // Derived from: https://jamonserrano.github.io/plumber-sass/measure/
+  // Actually the site says 1.36. But I find I need to set it 
+  // higher or I get gradual drift upwards off the grid.
+  
+  $descenderRatio: 0.18;
+
+  /* Baseline shift formula */
+  
+  // We push the text downwards until the baseline sits at the 
+  // bottom of the specified line-height. As is standard in
+  // typography outside the web.
+  
+  // We do this by adding 1) the excess space at the bottom of
+  // the line-height, between the bottom of the font-size and
+  // the bottom of the line-height, and 2) the height of the
+  // descender. By applying these to the padding-top, we move
+  // the font down so the baseline sits on the bottom of the
+  // line-height.
+
+  // Then we also want this block to fit the grid, above and
+  // below. At the top, we achieve this simply by all previous
+  // blocks also fitting to the grid. At the bottom, we achieve
+  // this by subtract the --baseline-offset amount from a 
+  // default padding-bottom (1rem). This ensures that the height 
+  // of the rendered block will fit to the next grid line.
+
+  --excess-line-height-at-bottom: calc(calc(#{$lineHeight} - #{$fontSize}) / 2);
+  --descender-height: calc(#{$fontSize} * #{$descenderRatio});
+   
+  @if -is-integer($lineHeight) {
+
+    // If line-height is integer (e.g. 2rem), baseline-offset
+    // is just the excess line height at bottom of the line,
+    // plus the descender height.
+    --baseline-offset: calc(var(--excess-line-height-at-bottom) + var(--descender-height));
+    
+    // If line-height is integer (e.g. 2), we make eleemnt fit to
+    // grid, by adding padding-bottom equal to gap between the
+    // baseline and the next grid line.
+    padding-bottom: calc(1rem - var(--baseline-offset));
+
+  } @else {
+
+    // If line height is NOT an integer (e.g. 1.5rem), 
+    // baseline-offset is same as above, PLUS the gap between 
+    // the bottom of the line and the start of the next grid line.
+    $gap-at-bottom: ceil($lineHeight) - $lineHeight;
+
+    --baseline-offset: calc(var(--excess-line-height-at-bottom) + var(--descender-height) + #{$gap-at-bottom});
+
+    // If line-height is NOT an integer, we accept that the
+    // element height will not snap to grid, and we fix with
+    // JS after the fact. 
+    padding-bottom: 0;
+  }
+  
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  padding-top: calc($paddingTop + var(--baseline-offset));
+  margin-top: 0;
+  margin-bottom: $marginBottom;
+}
+
+
+// Utility function: makes setting font-size cleaner.
+// E.g. `font-size: fontSize(1.4);`
+@function fontSize($multiplier: 1) {
+  @if $multiplier == 1 {
+    @return var(--bodyFontSize);
+  } @else {
+    @return calc(var(--bodyFontSize) * $multiplier);
+  }
+}
+
+// Utility mixin: Reusable declaration for mono fonts.
+@mixin monoFont {
+  font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+}
+
+
+// -------------- Mini  -------------- //
+
+@mixin miniBackgroundGrid {
+  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+}
+
+
 // -------------- Misc -------------- //
 
 @mixin outline-thin {
-  outline-width: grid(0.125);
+  outline-width: 0.25rem;
   outline-style: solid;
   outline-color: foreground(0.95);
   outline-offset: 0;
@@ -113,4 +181,11 @@
   background-repeat:
       no-repeat,
       repeat; 
+}
+
+// -------------- Misc -------------- //
+
+// Check if a value is a non-negative integer
+@function -is-integer($value) {
+	@return $value == round($value);
 }

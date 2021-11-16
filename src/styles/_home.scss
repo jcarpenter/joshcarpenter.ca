@@ -1,51 +1,41 @@
-@use "plumber" as *;
 @use "mixins_and_functions" as *;
 
 #home section {
   @include standardWidth;
-  margin: auto;
+  margin: 0 auto 1rem;
 }
 
-#home h1 {
-  margin-top: 3rem;
-}
-
-#home #intro address {
-  @include plumber(
-      $font-size: 1.333,
-      $line-height: 2,
-      $leading-top: 0,
-      $leading-bottom: 2,
-      $grid-height: 1rem,
-      $baseline: 0.18,
-      $use-baseline-origin: false
-  );  
-}
-
-#home .hello {
-  margin-left: -0.2rem;
-}
-
-#home .divider {
-  @include miniTypography;
-  font-size: 1.083rem;
-  color: onBackground(0.3);
-  margin: 0 grid(0.05);
-}
-
-#home ul {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-  
-  li {
-    margin: 0;  
+#home #intro {
+  h1 {
+    @include baselineShiftTypography(
+        $fontSize: fontSize(1.6),
+        $paddingTop: 6rem,
+        $marginBottom: 1rem
+    );
   }
 
-  li::before {
-    content: none;  
+  .hello {
+    margin-left: -0.2rem;
+  }  
+
+  address {
+    @include baselineShiftTypography(
+        $paddingTop: 0rem,
+        $marginBottom: 0rem,
+    );
   }
 
+  .divider {
+    font-size: fontSize(0.8);
+    color: onBackground(0.3);
+    margin: 0 0.1rem;
+  }
+}
+
+
+// -------- Links -------- //
+
+#home {
   a {
     text-decoration-color: onBackground(0.4);
   }
@@ -55,24 +45,53 @@
   }
 }
 
+
+// -------- Lists -------- //
+
 #home h2 {
-  font-weight: 600;
-  @include plumber(
-      $font-size: 1.333,
-      $line-height: 2,
-      $leading-top: 0,
-      $leading-bottom: 1,
-      $grid-height: 1rem,
-      $baseline: 0.18,
-      $use-baseline-origin: false
+  @include baselineShiftTypography(
+      $fontSize: fontSize(1),
+      $paddingTop: 0rem,
+      $marginBottom: 0rem
   );
+  // --font-size: #{fontSize(1)};
+  // --padding-top: 0rem;
+  // --margin-bottom: 0;
+  font-weight: 600;
 }
+
+#home ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  
+  li {
+    margin: 0;  
+  }
+
+  li::before {
+    content: none;  
+  }
+}
+
+
+// -------- Work History -------- //
+
+// We modify the default table styles slightly
 
 #home {
   table {
-    --tableBorderColor: #{onBackground(0.2)};
+    --tableOuterBorderColor: #{onBackground(0.2)};
+    --tableInnerBorderColor: #{onBackground(0.2)};
     white-space: nowrap;
+
+    td {
+      // Disable rounded corners
+      border-radius: 0;
+    }
     
+    // Remove border from sides
     td:first-of-type {
       padding-left: 0;
       border-left: none;
@@ -87,7 +106,7 @@
   .org {
     color: onBackground(1);
     font-weight: 500; 
-    padding-right: grid(1);
+    padding-right: 1rem;
   }
   
   .role {
@@ -101,12 +120,15 @@
   }
   
   .year time {
-    @include mono-font;
-    @include miniTypography;
-    font-size: 1.083rem;
+    @include monoFont;
+    // font-size: fontSize(0.8);
+    // @include baselineShiftTypography(
+    //     $fontSize: fontSize(0.8),
+    //     // $lineHeight: 1.8rem,
+    //     // $marginBottom: 0rem
+    // );
+    // font-size: fontSize(0.8);
     color: onBackground(0.3);
-    // background-color: onBackground(0.05);
-    // padding: 0 0.25rem;
     border-radius: 0.2rem;
 
     @media (max-width: 481px) {

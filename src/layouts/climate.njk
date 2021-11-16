@@ -23,40 +23,28 @@
     <head>
         {% include "head.njk" %}
     </head>
-    <body>
+    <body class="climate" >
         <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "header.njk" %}
         <main role="main" aria-labelledby="title">
+            
+            {% if tags and tags.includes("explainer") %}
+                <section id="explainer-forward">
+                    <p>
+                        This is a climate change explainer. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
+                    </p>
+                </section>
+            {% endif %}
+
             <article id="post" {% if bibliography %}data-bibliography="{{ bibliography }}" {% endif %}>
 
                 {# ------------ Header ------------ #}
                 <header>
-
-                    {# Title #}
-                    {# <a href="/index.html#climate" id="category">Climate change</a> #}
                     <h1 id="title">{{ title }}</h1>
-
-                    {# Metadata #}
-                    <section id="metadata" aria-label="Metadata">
-                        <div id="details">
-                            {# <address class="author"><a href="https://twitter.com/{{ config.bio.twitter }}">{{ config.bio.name }}</a>.</address> #}
-                            <a class="type" href="/index.html#climate">Climate</a>
-                            <time datetime="{{ page.date }}" class="updated">{{ page.date | date("DD/MM/YYYY") }}</time>
-                        </div>
-                        <aside id="intro">
-                            This is a <a href="/index.html#climate">climate change explainer</a>. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
-                            {# <span class="author-sig">-JC</span> #}
-                        </aside>
-                    </section>
-
-                    {# Preface #}
-                    {# <section aria-labelledby="preface-heading" id="preface">
-                        This is a <a href="/index.html#climate">climate change explainer</a>. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
-                    </section> #}
-
+                    <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
                 </header>
 
-                {# ------------ Post body ------------ #}
+                {# ------------ Content ------------ #}
                 <section aria-label="Main content body" id="content">
                     {{ content | safe }}
                 </section>

@@ -88,7 +88,7 @@ module.exports = function (content) {
 
   // Look inside each footnote <li>
 
-  const footnotes = $('article #notes li')
+  const footnotes = $('article #footnotes li')
 
   footnotes.each((index, p) => {
 

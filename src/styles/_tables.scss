@@ -1,5 +1,4 @@
 @use "mixins_and_functions" as *;
-@use "plumber" as *;
 
 /* 
 ========================================================
@@ -9,32 +8,54 @@ TABLES
 
 // Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself.
 
-/* -------------- Layout -------------- */
-
 table {
-    --tableBorderRadius: 0.2rem;
+    --tableBorderRadius: 0.3rem;
+    --tableOuterBorderThickness: 1px;
+    --tableOuterBorderColor: #{onBackground(0.4)};
+    --tableInnerBorderColor: #{onBackground(0.15)};
+    
+    @include dark {
+        --tableOuterBorderColor: #{primary(0.4)};
+        --tableInnerBorderColor: #{primary(0.2)};
+    }
+
+    th { 
+        @include dotBackground(0.25, 0.05);
+    }
+
     width: 100%;
     border-spacing: 0;
     text-align: left;
-    padding-bottom: grid(1.5);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 
     th, td {
-        @include plumber(
-            $font-size: 1.166,
-            $line-height: 2,
-            $leading-top: 1,
-            $leading-bottom: 3,
-            $grid-height: 1rem,
-            $baseline: 0.16,
-            $use-baseline-origin: false
+        @include baselineShiftTypography(
+            $fontSize: fontSize(0.9),
+            $lineHeight: 2rem
         );
-    
-        padding-left: grid(0.25);
-        padding-right: grid(0.25);
-        margin: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    th:first-child, td:first-child {
+        // Bit more padding for far-left column
+        padding-left: 0.75rem;
     }
 }
 
+/* -------------- Head -------------- */
+
+th { 
+    @include dotBackground(0.25, 0.05);
+}
+
+  
+// Alternating row colors
+// table tr:nth-child(2n) td {
+//     background: var(--tableBackgroundColor);
+// }
+  
 
 /* -------------- Borders -------------- */
 
@@ -43,28 +64,32 @@ table {
 // does not effect table cel height; borders do. Even if 
 // we use box-sizing: border-box. It is ignored for tables.
 
-/* Add border to top top of first row */
-table thead th,
-table tbody tr:first-child td {
-    box-shadow: 0 1px 0 0 var(--tableBorderColor),
-    0 -1px 0 0 var(--tableBorderColor);
+/* Each row */
+table td {
+    box-shadow: 0 1px 0 0 var(--tableInnerBorderColor);
 }
 
-/* Border: bottom of each row */
-table td {   
-    box-shadow: 0 1px 0 0 var(--tableBorderColor);
+/* First row: Add a second box-shadow for top border */
+table *:first-child tr:first-child > * {
+    box-shadow: 0 calc(var(--tableOuterBorderThickness) * -1) 0 0 var(--tableOuterBorderColor), 
+        0 1px 0 0 var(--tableInnerBorderColor);
 }
 
-/* Border: left side */
+/* Last row: Make the box-shadow use the outer color */
+table *:last-child tr:last-child td {
+    box-shadow: 0 var(--tableOuterBorderThickness) 0 0 var(--tableOuterBorderColor);
+}
+
+/* Left side */
 table th:first-of-type, 
 table td:first-of-type {
-    border-left: 1px solid var(--tableBorderColor);
+    border-left: var(--tableOuterBorderThickness) solid var(--tableOuterBorderColor);
 }
 
-/* Border: right side */
+/* Right side */
 table th:last-of-type, 
 table td:last-of-type {
-    border-right: 1px solid var(--tableBorderColor);
+    border-right: var(--tableOuterBorderThickness) solid var(--tableOuterBorderColor);
 }
 
 
@@ -72,23 +97,21 @@ table td:last-of-type {
 /* Note: Normally would apply to table element, but can't, because that won't work with padding. */
 
 /* Top left */
-table thead:first-child th:first-of-type,
-table tbody:first-child td:first-of-type {    
+table *:first-child tr:first-child > *:first-child {    
     border-top-left-radius: var(--tableBorderRadius);
 }
 
 /* Top right */
-table thead:first-child th:last-of-type,
-table tbody:first-child td:last-of-type {
+table *:first-child tr:first-child > *:last-child {
     border-top-right-radius: var(--tableBorderRadius);
 }
 
 /* Bottom left */
-table tr:last-of-type td:first-of-type {
+table *:last-child tr:last-child > *:first-child {
     border-bottom-left-radius: var(--tableBorderRadius);
 }
 
 /* Bottom right */
-table tr:last-of-type td:last-of-type {
+table *:last-child tr:last-child > *:last-child {
     border-bottom-right-radius: var(--tableBorderRadius);
 }

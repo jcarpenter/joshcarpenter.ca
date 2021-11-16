@@ -19,16 +19,19 @@ const dateFilter = require("nunjucks-date-filter")
 const slugify = require("slugify")
 
 // Transforms
+const addLightbox = require('./utils/transforms/add-lightbox')
+const flagShortPosts = require('./utils/transforms/flag-short-posts')
 const hangingPunctuation = require('./utils/transforms/hanging-punctuation')
-const modifyIframes = require('./utils/transforms/modify-iframes')
 const makeImagesResponsive = require('./utils/transforms/make-images-responsive')
 const makeVideos = require('./utils/transforms/make-videos')
 const modifyFigures = require('./utils/transforms/modify-figures')
+const modifyIframes = require('./utils/transforms/modify-iframes')
 const removeTodos = require('./utils/transforms/remove-todos')
+const removeEmptyTableHeads = require('./utils/transforms/remove-empty-table-heads')
 const renderCitations = require('./utils/transforms/render-citations')
 const renderFootnotes = require('./utils/transforms/render-footnotes')
+const stopMeasurementsWrapping = require('./utils/transforms/stop-measurements-wrapping')
 const setOgImage = require('./utils/transforms/set-og-image')
-const flagShortPosts = require('./utils/transforms/flag-short-posts')
 // const tagAbbreviations = require('./utils/transforms/tag-abbreviations')
 
 module.exports = function (eleventyConfig) {
@@ -252,12 +255,12 @@ module.exports = function (eleventyConfig) {
 
   // Add anchors to headers
   md.use(markdownItAnchor, {
-    level: [2, 3],
+    level: [2],
     slugify: (s) => slugify(s, {
       lower: true,
       remove: /[*+~.()'"!:@]/g
     }),
-    permalink: false,
+    permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
     // permalinkSymbol: svgAnchorIcon,
   })
 
@@ -289,31 +292,21 @@ module.exports = function (eleventyConfig) {
   // ========================================================
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
+  eleventyConfig.addTransform("addLightbox", addLightbox)
   eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
   eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   eleventyConfig.addTransform("removeTodos", removeTodos)
   eleventyConfig.addTransform("renderFootnotes", renderFootnotes)
   eleventyConfig.addTransform("renderCitations", renderCitations)
-  // eleventyConfig.addTransform("prettierHtml", prettierHtml)
   eleventyConfig.addTransform("modifyIframes", modifyIframes)
   eleventyConfig.addTransform("makeVideos", makeVideos)
   eleventyConfig.addTransform("modifyFigures", modifyFigures)
   eleventyConfig.addTransform("flagShortPosts", flagShortPosts)
+  eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
+  eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
   eleventyConfig.addTransform("setMetaTags", setOgImage)
 
-  // -------------- Beautify HTML -------------- //
-
-  // Uses https://www.npmjs.com/package/pretty
-  // const pretty = require("pretty")
-  // eleventyConfig.addTransform("pretty", function (content) {
-  //   if (outputPath.endsWith(".html")) {
-  //     let prettyHTML = pretty(content, { ocd: true })
-  //     return prettyHTML
-  //   }
-
-  //   return content
-  // })
 
 
   // ========================================================

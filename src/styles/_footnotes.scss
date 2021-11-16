@@ -21,39 +21,62 @@ sup.fn {
 /* -------------- Link -------------- */
 
 .fn > a {
-    // border-radius: 0.2em;
-    // bottom: 0.1em;
-    cursor: pointer;
-    font-size: 0.8em;
-    line-height: 1em;
-    text-decoration: none;
-    padding: 0.3em 0.25em 0.2em;
-    border: none;    
+    // cursor: pointer;
+    // font-size: 0.8em;
+    // line-height: 1em;
+    // text-decoration: none;
+    // padding: 0.3em 0.25em 0.2em;
+    // border: none;
+    // color: onBackground(calc(var(--bodyTextAlpha) - 0.1));
+    // background-color: onBackground(0.075);     
+    
+    font-size: fontSize(0.8);
+    color: onBackground(calc(var(--bodyTextAlpha) - 0.2));
+    background: none;
+    text-decoration: underline;
+    text-decoration-color: inherit;
+    padding: 0;
+    // Push vertical alignment up a few px.
+    // Code text is bit smaller than surrounding,
+    // So we need to vertically center it.
+    line-height: 0;
+    vertical-align: 0.1em;
+
 }
+
+// @include dark {
+//     .fn > a {
+//         background-color: onBackground(0.125);
+//     }
+// }
 
 // Touch: Make target slightly larger
 @media (hover: none) {
     .fn > a {
-        padding: 0.3em 0.35em 0.2em;
+        padding: 0em 0.1em;
+        // padding: 0.3em 0.35em 0.2em;
     }
 }
 
 // Desktop: Make target slightly smaller
 @media (hover) {
     .fn > a {
-        padding: 0.3em 0.25em 0.2em;
+        padding: 0;
+        // padding: 0.3em 0.25em 0.2em;
     }
 }
 
-
+// Links inside the footnote
 .fn > a:focus {
     @include outline-thin;
-    // color: onBackground(0.95);
-    // @media screen and (prefers-color-scheme: dark) {
-    //     color: foreground(0.5);
-    //     background-color: foreground(0.1);
-    // }
 }
+
+.fn > a:focus,
+.fn > a:hover {
+    color: onBackground(1);
+    // background-color: onBackground(0.2);
+}
+
 
 
 
@@ -74,21 +97,24 @@ blockquote .fn-popup {
 // Figcaption text is smaller, so we need to adjust footnote link
 // styling to match
 figcaption .fn > a {
-    background: none;
-    text-decoration: underline;
-    text-decoration-color: inherit;
-    padding: 0;
-
-    // Push vertical alignment up a few px.
-    // Code text is bit smaller than surrounding,
-    // So we need to vertically center it.
-    line-height: 0;
-    vertical-align: 0.1em;
-
-    &:hover {
-        background: none;
-    }
+    font-size: fontSize(0.75);
 }
+// figcaption .fn > a {
+//     background: none;
+//     text-decoration: underline;
+//     text-decoration-color: inherit;
+//     padding: 0;
+
+//     // Push vertical alignment up a few px.
+//     // Code text is bit smaller than surrounding,
+//     // So we need to vertically center it.
+//     line-height: 0;
+//     vertical-align: 0.1em;
+
+//     &:hover {
+//         background: none;
+//     }
+// }
 
 
 /* 
@@ -98,17 +124,25 @@ FOOTNOTES: POPUP
 */
 
 .fn-popup {
+    @include baselineShiftTypography(
+        $fontSize: fontSize(0.9),
+        $lineHeight: 1.8rem,
+        $marginBottom: 0rem
+    );
     white-space: normal;
-    @include miniTypography;
-    padding: miniGrid(1);
+    padding: 0.9rem;
+    color: onPopup(0.8);
+    background-color: popup();
+    a { color: onPopup(0.9); }
+    a:hover { color: onPopup();}  
 }
 
 // Popup: Desktop and larger touch-based devices
 // Appears as a hovering box 
 @media (hover), (hover: none) and (min-width: 600px) {
     .fn {
-        --notch-size: 0.6em;
-        --popup-distance: -0.5em;
+        --notch-size: 1rem;
+        --popup-distance: -0.75rem;
         --show: 0.05s;
         --hide: 0.05s;
         --delay: 0.1s;
@@ -186,13 +220,13 @@ FOOTNOTES: POPUP
         right: 0;
         z-index: 100;
         // border-radius: grid(0.25) grid(0.5) 0 0;
-        padding: grid(0.75);
-        padding-bottom: calc(grid(1) + grid(0.25));
-        font-size: var(--font-base-size);
-        margin-left: grid(0.25);
-        margin-right: grid(0.25);
+        padding: 1.5rem;
+        padding-bottom: 2.5rem;
+        font-size: fontSize(1);
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
         // line-height: grid(0.75);
-        line-height: grid(1);
+        line-height: 2rem;
         box-shadow: 0px 1px 40px 14px rgba(0, 0, 0, 0.2);
 
         // Transition settings to hidden state.

@@ -2,8 +2,13 @@
 
     {# Logo #}
     <h1>
-        <a href="/">{{ bio.name }}</a><br/>
-        {# <span class="topics">UX Designer</span> #}
+        <a href="/index.html" class="name">{{ bio.name }}</a>
+        <span class="slash">&#47;</span>
+        {% if tags and tags.includes("climate") %}
+            <a href="/index.html#climate" class="section">Climate Notes</a>
+        {% elseif tags and tags.includes("ux") %}
+            <a href="/index.html#ux" class="section">UX</a>
+        {% endif %}
     </h1>
 
     {# Simple links #}
@@ -12,7 +17,7 @@
         <img src="/img/menu-black.svg" alt="Close"" />
     </button> #}
 
-    <nav role="navigation" aria-label="Top-level">
+    {# <nav role="navigation" aria-label="Top-level">
         <ul>
             <li class="hidden">
                 <a href="/" tabindex="0">Home</a>
@@ -30,7 +35,7 @@
                 <a href="/about" tabindex="0">About</a>
             </li>
         </ul>
-    </nav>
+    </nav> #}
 
     {# <nav id="side" role="navigation">
         <ul>
