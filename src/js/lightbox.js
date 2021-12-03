@@ -231,7 +231,7 @@
 
     // The `matches` property of the MediaQueryList tells us if the document meets the media query's requirements.
     // If it matches, set up the lightbox.
-    if (mq.matches) return true
+    return mq.matches
   }
 
   /**
@@ -289,22 +289,20 @@
    * - There are figures with data-lightbox=true
    */
   function setup() {
-    // Check precondition: Is viewport is large enough?
+
+    // Is viewport is large enough?
     const islargeEnough = isViewportLargeEnough()
     if (!islargeEnough) return
 
-    // Check precondition: Is there valid content?
-    const lightboxFigures = document.querySelectorAll('figure[data-lightbox]')
-    if (lightboxFigures.length == 0) return
+    // Is there media we care about?
+    // Find figures that contain img, picture or video
+    const figures = [...document.querySelectorAll('#content figure')].filter((el) => {
+      return el.querySelector(`img, picture, video`) !== null
+    })
+    if (figures.length == 0) return
 
     // Create lightbox
     lightbox = new DOMParser().parseFromString('<div id="lightbox" aria-label="Gallery" role="dialogue" aria-modal="true" aria-live="polite" aria-hidden="true"></div>', 'text/html').body.firstChild
-    // lightbox = document.createElement('div')
-    // lightbox.id = 'lightbox'
-    // lightbox.setAttribute('role', 'dialogue')
-    // lightbox.setAttribute('aria-label', 'Gallery')
-    // lightbox.setAttribute('aria-modal', 'true')
-    // lightbox.setAttribute('aria-live', 'polite')
     lightbox.innerHTML = `
       <button id="close" aria-label="Close gallery"><img src="/img/close.svg" alt="Close"></button>
       <button id="prev" aria-label="Previous"><img src="/img/arrow.svg" alt="Previous"></button>
@@ -327,31 +325,33 @@
     lastFocusableEl = end
 
     // For each `data-lightbox` figure...
-    lightboxFigures.forEach((figure, index) => {
+    figures.forEach((figure, index) => {
+      
       // Store relevant information in a new object in the `items` array
+      const media = figure.querySelector('picture, img, video')
+
       const newItem = {
         id: figure.id,
-        media: figure.querySelector('.thumb'),
-        type: figure.getAttribute('data-lightbox'),
+        media,
+        type: media.localName,
         caption: figure.querySelector('figcaption'),
       }
       items.push(newItem)
 
-      const thumb = figure.querySelector('.thumb')
-
-      // Create button. Move thumb inside it.
-      // `onclick`, button loads item
+      // Wrap media in <button>. Open lightbox on click.
       const button = document.createElement('button')
       button.setAttribute('aria-controls', 'lightbox')
       button.setAttribute('aria-label', `Open ${newItem.type} in gallery`)
       button.id = `${figure.id}-btn`
-      button.appendChild(thumb)
+      button.appendChild(media)
       button.onclick = (e) => {
         e.preventDefault()
         loadItemByIndex(index)
       }
       figure.prepend(button)
     })
+
+    console.log(items)
 
     // Add event listeners
     close.onclick = () => closeLightbox()

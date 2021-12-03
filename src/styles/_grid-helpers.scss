@@ -1,4 +1,6 @@
-@use "mixins_and_functions" as *;
+@use "mixins-and-functions" as *;
+
+// -------------- grid-helpers.js version -------------- //
 
 @include light {
     .backgroundGrid { 
@@ -66,3 +68,52 @@
 // #btnGrid:focus {
 //     outline: 0px solid #fff;
 // }
+
+
+
+// -------------- Portfolio version (newer) -------------- //
+
+body.portfolio.grid article > section {
+    position: relative;
+}
+  
+body.portfolio.grid article > section.grid12::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 60;
+pointer-events: none;
+
+outline: 1px solid accent(0.4);
+
+background: 
+    // Light horizontal
+    repeating-linear-gradient(to bottom, 
+    accent(0.05) 0, 
+    accent(0.05) 1px, 
+    transparent 1px, 
+    transparent 1rem),
+
+    // // Dark horizontal
+    // repeating-linear-gradient(to bottom, rgba(var(--accent), 0.2) 0, rgba(var(--accent), 0.2) 1px, transparent 1px, transparent 2rem),
+
+    // // Vertical 1rem
+    repeating-linear-gradient(to right, 
+    accent(0.2) 0, 
+    accent(0.2) 1px, 
+    transparent 1px, 
+    transparent 1rem),
+    
+    // Dark vertical 8rem
+    repeating-linear-gradient(to right, 
+    accent(0.2) 0, 
+    accent(0.2) 8rem, 
+    transparent 8rem, 
+    transparent 10rem);
+
+background-color: transparent;
+
+}

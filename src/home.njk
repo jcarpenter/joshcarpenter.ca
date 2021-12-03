@@ -1,0 +1,152 @@
+---js
+{
+    date: "Last Modified",
+    permalink: "./index.html",
+    meta: {
+        page_title: "Josh Carpenter, UX Designer - Portfolio & Notes" 
+    },
+    colors: {
+        accent: {
+            light: "0, 163, 102", // Vibrant green
+            dark: "2, 252, 158", // Vibrant green
+        }
+    },
+    css: ["home.css"]
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+    </head>
+    <body id="home">
+        <main class="content-wrapper" role="main" aria-labelledby="title">
+
+            <header class="grid-12">
+                <h1 id="title">{{ bio.name }}</h1>
+                <div class="intro large-text">
+                    <p class="large-text">
+                        <strong class="hello">Hello!</strong> I'm a user experience designer, based in Vancouver, Canada. Currently I am focused on learning more about climate change, and building a Markdown editor. Most recently I led design teams at Google and Mozilla, working to bring virtual and augmented reality to the open web.
+                    </p>
+                </div>
+                <address class="body-text">
+                    <a href="https://twitter.com/{{ bio.twitter }}">Twitter</a>
+                    <span class="divider">|</span>
+                    <a href="{{ bio.github }}">GitHub</a>
+                    <span class="divider">|</span>
+                    <a href="{{ bio.linkedin }}">LinkedIn</a>
+                </address>
+            </header>
+
+            <section id="ux">
+                <h2 class="body-text">Portfolio</h2>
+                <ul>
+                    <li class="body-text">
+                        <a href="/composable-immersive-web/">The Composable Immersive Web</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/chrome-vr/">Chrome VR</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/aframe/">A-Frame VR</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/mozilla-vr/">Mozilla VR</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/firefox-os/">Firefox OS</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/home-automation/">Home Automation</a>
+                    </li>
+                    <li class="body-text">
+                        <a href="/stadium-control/">Stadium Control Center</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="climate">
+                <h2 class="body-text">Climate Notes</h2>
+                <ul>
+                    {%- for post in collections.climate -%}
+                        <li class="body-text">
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            </section>
+
+            {# <section>
+                <h2>Woodworking</h2>
+                <ul>
+                    <li class="body-text">
+                        <a href="">Desk</a>
+                    </li>
+                    <li>
+                        <a href="">Workbench</a>
+                    </li>
+                </ul>
+            </section> #}
+
+            <section id="work-history">
+                <h2>Work History</h2>
+                <table>
+                    <tr>
+                        <td class="org">Google</td>
+                        <td class="role">Staff UX Designer <span class="project">- Daydream</span></td>
+                        <td class="year">
+                            <time>16-19</time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="org">Mozilla</td>
+                        <td class="role">UX Lead <span class="project">- Mozilla VR</span></td>
+                        <td class="year">
+                            <time>14-16</time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="org">Mozilla</td>
+                        <td class="role">Interaction Design Lead <span class="project">- Firefox OS</span></td>
+                        <td class="year">
+                            <time>12-14</time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="org">New Space</td>
+                        <td class="role">Creative Director</td>
+                        <td class="year">
+                            <time>10-11</time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="org">VFS</td>
+                        <td class="role">Instructor <span class="project">- 3D & Motion</span></td>
+                        <td class="year">
+                            <time>08-11</time>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="org">Big Green</td>
+                        <td class="role">Senior Designer</td>
+                        <td class="year">
+                            <time>06-08</time>
+                        </td>
+                    </tr>
+                </table>
+                {# <ul>
+                    <li>Google <span class="org">- Staff UX Designer (Daydream)</span></li>
+                    <li>Mozilla <span class="org">- UX Lead (VR)</span></li>
+                    <li>Mozilla <span class="org">- Interaction Design Lead (Firefox OS)</span></li>
+                    <li>New Space<span class="org">- Creative Director</span></li>
+                    <li>Vancouver Film School <span class="org">- Instructor</span></li>
+                    <li>Big Green <span class="org">- Senior Designer</span></li>
+                </ul> #}
+            </section>
+
+        </main>
+
+        {% include "footer.njk" %}
+
+    </body>
+</html>

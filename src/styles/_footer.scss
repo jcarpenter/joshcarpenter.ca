@@ -1,32 +1,29 @@
-@use "mixins_and_functions.scss" as *;
+@use "mixins-and-functions" as *;
 
 /* 
 ========================================================
 FOOTER
 ========================================================
-*/
-
-/* Footer contains copyright info */
+*/  
 
 body > footer {
-    @include standardWidth;
-    margin: 0 auto 1rem;
-    @media (max-width: 480px) {
-        margin-bottom: 0rem;
-    }
+
+    margin-bottom: 2rem;
 
     small {
-        @include baselineShiftTypography($fontSize: fontSize(0.9));
-        display: block;
+
+        @include baselineShiftTypography(
+            $fontSize: fontSize(0.9)
+        );
+        margin-bottom: 1rem;
         color: onBackground(0.5);
     }
 
     a { 
         text-decoration-color: onBackground(0.3); 
-    }
-    
-    a:hover { 
-        text-decoration-color: onBackground(0.5); 
+
+        &:hover { 
+            text-decoration-color: onBackground(0.5); 
+        }
     }
 }
-

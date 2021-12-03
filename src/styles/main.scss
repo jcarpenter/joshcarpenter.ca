@@ -1,14 +1,21 @@
+// Base
 @use "base";
+
+// Elements
 @use "fonts";
-@use "header";
-@use "posts";
-@use "home";
 @use "tables";
 @use "figure-and-img";
-@use "lightbox";
 @use "footnotes";
+
+// Components
+@use "navigation";
 @use "footer";
+@use "about-the-author";
+@use "lightbox2";
+
+// Helpers
+@use "utility-classes";
+@use "grid-helpers";
 // @use "charts";
 // @use "sanitize";
 // @use "reset";
-@use "grid-helpers";

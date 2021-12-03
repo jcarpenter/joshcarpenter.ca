@@ -14,6 +14,13 @@ It is (optionally) over-ridden by templates or data files.
 <meta name="description" content="{{ meta.summary }}">
 
 {# Tell browser which color themese are supported on the page #}
+{# {% if dark_mode_only %}
+    <meta name="color-scheme" content="dark">
+{% elif light_mode_only %}
+    <meta name="color-scheme" content="light">
+{% else %}
+    <meta name="color-scheme" content="dark light">
+{% endif %} #}
 <meta name="color-scheme" content="dark light">
 
 {# Hide post from SEO if front matter `tags` includes 'hide' #}
@@ -82,15 +89,21 @@ E.g. Use red color for the A-Frame portfolio post.
 {% if colors %}
     <style type="text/css">
         :root {
-            {% if colors.primary.light %}
-                --primary: {{ colors.primary.light }};
+            {% if colors.accent.light %}
+                --accent: {{ colors.accent.light }};
+            {% endif %}
+        }
+
+        :root body.force-dark-mode {
+            {% if colors.accent.dark %}
+                --accent: {{ colors.accent.dark }};
             {% endif %}
         }
 
         @media screen and (prefers-color-scheme: dark) {
             :root {
-                {% if colors.primary.dark %}
-                    --primary: {{ colors.primary.dark }};
+                {% if colors.accent.dark %}
+                    --accent: {{ colors.accent.dark }};
                 {% endif %}
             }
         }

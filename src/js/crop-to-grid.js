@@ -102,13 +102,15 @@ function cropElementToGrid(element) {
   // This will make the new height LARGER than the previous.
   // The sides may get cropped a bit, thanks to 
   // object-fit: cover
-  const newHeightInRem = Math.ceil(originalHeight / gridUnitHeightInPx) + 'rem'
-
-  console.log(element.localName, originalHeight, gridUnitHeightInPx, newHeightInRem)
+  let newHeightInRem = Math.ceil(originalHeight / gridUnitHeightInPx)
+  
+  // Special case: for footnotes, add a rem to avoid
+  // wrapping list items.
+  if (element.parentElement.id == 'footnotes') newHeightInRem++
 
   // Set new height
   // element.style.height = newHeightInPx + 'px'
-  element.style.height = newHeightInRem
+  element.style.height = newHeightInRem + 'rem'
 }
 
 

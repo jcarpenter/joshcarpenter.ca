@@ -1,0 +1,23 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+ABOUT THE AUTHOR
+========================================================
+*/
+
+#about-the-author > div {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 2rem 0;
+  color: onBackground();
+  text-shadow: 1px 1px 5px background(0.5);
+  @include dotBackground(0.1, 0.03);
+  
+  p { 
+      @include baselineShiftTypography(
+          $paddingTop: 1rem,
+      );
+      margin-bottom: 1rem;
+  }
+}

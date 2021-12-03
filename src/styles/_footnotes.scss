@@ -1,4 +1,4 @@
-@use "mixins_and_functions" as *;
+@use "mixins-and-functions" as *;
 
 
 /* 
@@ -20,17 +20,8 @@ sup.fn {
 
 /* -------------- Link -------------- */
 
-.fn > a {
-    // cursor: pointer;
-    // font-size: 0.8em;
-    // line-height: 1em;
-    // text-decoration: none;
-    // padding: 0.3em 0.25em 0.2em;
-    // border: none;
-    // color: onBackground(calc(var(--bodyTextAlpha) - 0.1));
-    // background-color: onBackground(0.075);     
-    
-    font-size: fontSize(0.8);
+.fn > a {    
+    font-size: fontSize(0.9);
     color: onBackground(calc(var(--bodyTextAlpha) - 0.2));
     background: none;
     text-decoration: underline;
@@ -40,8 +31,8 @@ sup.fn {
     // Code text is bit smaller than surrounding,
     // So we need to vertically center it.
     line-height: 0;
-    vertical-align: 0.1em;
-
+    vertical-align: 0.3em;
+    border-radius: 0.03rem;
 }
 
 // @include dark {
@@ -69,6 +60,7 @@ sup.fn {
 // Links inside the footnote
 .fn > a:focus {
     @include outline-thin;
+    outline-offset: 0.2rem;
 }
 
 .fn > a:focus,
@@ -80,16 +72,32 @@ sup.fn {
 
 
 
+/* -------------- Inside .large-text -------------- */
+
+.large-text sup.fn > a {
+    color: inherit;
+    opacity: 0.8;
+    vertical-align: 0.4em;
+    text-decoration: none;
+}
+
 /* -------------- Inside blockquotes -------------- */
 
 // Counteract any blockquote italics styling
 blockquote .fn > a {
     font-style: normal;
+    color: accent(0.8);
+    // background-color: accent(0.075);
+    &:focus, &:hover {
+        color: accent(0.9);
+    // background-color: accent(0.2);
+    }
 }
 
 blockquote .fn-popup {
     font-style: normal;
 }
+
 
 
 /* -------------- Inside figures -------------- */
@@ -127,10 +135,10 @@ FOOTNOTES: POPUP
     @include baselineShiftTypography(
         $fontSize: fontSize(0.9),
         $lineHeight: 1.8rem,
-        $marginBottom: 0rem
     );
+    margin-bottom: 0rem;
     white-space: normal;
-    padding: 0.9rem;
+    padding: 1rem;
     color: onPopup(0.8);
     background-color: popup();
     a { color: onPopup(0.9); }
@@ -261,4 +269,118 @@ FOOTNOTES: POPUP
     //     background-color: rgba(0, 0, 0, 0.5);
     //     z-index: -1;
     // }
+}
+
+
+/* 
+========================================================
+Footnotes: Section
+========================================================
+*/
+
+.portfolio #footnotes {
+    margin-top: 10rem;
+}
+
+#footnotes h2 {
+    color: onBackground(1);
+    &::before {
+        // Disable ## prefix for footnotes header
+        content: initial !important; 
+    }
+}
+  
+
+#footnotes ol {
+    
+    @include baselineShiftTypography(
+        $fontSize: fontSize(0.9),
+        $lineHeight: 1.75rem,
+    );
+    
+    margin-bottom: 0rem;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+#footnotes ol li {
+    
+    grid-column: 1/-1;
+
+    @media (min-width: 768px) {
+        grid-column: span 4;
+    }
+
+    @media (min-width: 1024px) {
+        grid-column: span 3;
+    }
+
+    margin-left: 2rem;
+    margin-bottom: 1.8rem;
+    
+    // Prevent contents breaking across columns. */
+    // break-inside: avoid;
+    // page-break-inside: avoid; /* Firefox */
+    // color: onBackground(0.65);
+
+    // max-width: min(30rem, 50%);
+
+    // Numeric marker
+    &::before {
+        font-size: 0.9em;
+        color: accent(1);
+    }
+
+    // No margin on last one
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    a {
+        font-weight: normal;
+        text-decoration: underline;
+        border: none;
+        color: onBackground(0.85);
+
+        &:hover {
+            border: none;
+            color: onBackground(0.95); 
+        }
+    }
+
+    // Highlight targeted note with a brief flash of
+    // background color.
+    &:target {
+        animation: fadeIn ease-in 2s;
+        border-radius: 0.1em;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            color: foreground(0.95);
+            background-color: foreground(0.1);
+            box-shadow: -0.1em 0 0 0.4em fore(0.1);
+        }
+        100% {
+            color: foreground(0.6);
+            background-color: transparent;
+            box-shadow: -0.1em 0 0 0em transparent;
+        }
+    }
+
+    // Reveal back button when user hovers the list item.
+    .fn-back {
+        text-decoration: none;
+        font-size: 0.9em;
+        line-height: 1em;
+        margin-left: 0.2em;
+        opacity: 0;
+        transition: opacity 200ms;
+        color: onBackground(0.5);
+    }
+    
+    &:hover .fn-back {
+        opacity: 1;
+    }
 }

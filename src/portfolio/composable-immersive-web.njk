@@ -1,0 +1,172 @@
+---js
+{
+    title: "The Composable Immersive Web",
+    tags: ["ux"],
+    publish: true,
+    image: "img/ciw/ciw-meta-1.png",
+    summary: "A series of visualizations exploring a future where the web is everywhere in the world around us, just as instant, accessible, and safe as today's web. Animations were created in Cinema 4D and After Effects.",
+    permalink: "/composable-immersive-web/",
+    colors: {
+        accent: {
+            light: "0, 163, 102", // Vibrant green
+            dark: "2, 252, 158", // Vibrant green
+        }
+    },
+    force_dark_mode: false
+}
+---
+
+<header class="grid-12">
+    <h1 id="title">{{ title }}</h1>
+    <div class="intro large-text">
+        <p>
+            At Google I lead a team that explored the future of the web for virtual and augmented reality. We generated a vision of a future where web content made from simple HTML and CSS populated the world around us: discovered serendipitously, loaded instantly, safe and universally accessible, and easily published by anyone. 
+        </p>
+        <p>
+            I was UX / Product lead of this effort, working with a team of experienced web developers to generate high level specifications, build prototypes, and present our ideas to the web community and internal stakeholders. I created the animations on this page to help communicate our concepts. Most were made in Cinema 4D and After Effects.
+        </p>
+    </div>
+    <div class="metadata small-text">
+        <time>2017/19</time>, <span class="role">Google</span><br>
+        Product Management<br>
+        Interaction Design<br>
+        Visual Design<br>
+        Prototyping<br>
+    </div>
+</header>
+
+{# ----- A sea of information ----- #}
+
+<div class="grid-12 no-row-gap">
+    <div class="cols-all lg-mb-large">
+        <video playsinline autoplay loop muted>
+            <source src="video/ciw-city-discovery.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="video/ciw-city-discovery.mp4" type="video/mp4"></source>
+        </video>
+    </div>
+    <div class="cols-left-right-split">
+        <p class="caption small-text mb-medium lg-mb-zero">
+            A vision of the future: Walking through seas of information, pinned to the world around us, published by anyone, discovered serendipitously and accessed instantly, where and how we want. It felt like the open web we knew and loved.
+        </p>
+        <p class="body-text">
+            This vision required declarative, composable building blocks, wherein the developer described what they wanted the content to look like, by authoring HTML and CSS, but the user's browser ultimately decided how and where it was rendered. This was the classic contract of the web: the user was always in control. It made possible everything from right-clicking on images to save them, to ad blockers, to reader modes, to inspecting page contents. A page built with composable HTML and CSS was also guaranteed to work everywhere, forever, even as new generations of devices shipped (just as classic web content worked automatically on the first iPhone).
+        </p>
+    </div>
+</div>
+
+{# ----- Bus stop ----- #}
+
+<div class="grid-12 no-row-gap">
+    <div class="cols-all mb-small">
+        <video playsinline autoplay loop muted>
+            <source src="video/ciw-city-busstop-hud.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="video/ciw-city-busstop-hud.mp4" type="video/mp4"></source>
+        </video>
+    </div>
+    <div class="cols-all lg-mb-large">
+        <video playsinline autoplay loop muted>
+            <source src="video/ciw-city-busstop-phone.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="video/ciw-city-busstop-phone.mp4" type="video/mp4"></source>
+        </video>
+    </div>
+    <div class="cols-left-right-split">
+        <p class="caption small-text">
+        Future devices surface geolocated content for us, just in time, and let us access it safely. The web will continue to be for everyone; whether you have a fancy headset or a mobile phone. Pages authored in HTML and CSS will scale responsively across devices, as they do today.
+        </p>
+    </div>
+</div>
+
+{# ----- Block traffic ----- #}
+
+<div class="grid-12 no-row-gap">
+    <div class="cols-all lg-mb-large">
+        <video playsinline autoplay loop muted>
+            <source src="video/ciw-city-block-traffic.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="video/ciw-city-block-traffic.mp4" type="video/mp4"></source>
+        </video>
+    </div>
+    <div class="cols-left-right-split">
+        <p class="caption small-text">
+            Low friction requires high trust. If we want a world where we can access content from random third parties instantly, and load it into the world around us, we'll need extremely robust tools for protect   ing our personal space. Ad block for the metaverse.
+        </p>
+    </div>
+</div>
+
+{# ----- Furniture: Mobile & Desktop ----- #}
+
+<div class="grid-12 no-row-gap">
+    <div class="cols-all lg-mb-large">
+        <video playsinline autoplay loop muted>
+            <source src="video/ciw-model-furniture-interoperability.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="video/ciw-model-furniture-interoperability.mp4" type="video/mp4"></source>
+        </video>
+    </div>
+    <div class="cols-left-right-split">
+        <p class="caption small-text mb-medium lg-mb-zero">
+            Rendering the &#60;model&#62; element with depth, whether on a VR browser, or a flat mobile display. We can imagine the perspective shifting as the user scrolls. Perhaps enabled by a property on the element, akin to `autoplay` on media elements. A property that could be disabled globally in browser preferences, for users who experience feelings of motion sickness from parallax effects.
+        </p>
+        <p class="body-text">
+            The enabling crux of this vision was a <code>&#60;model&#62;</code> element, and new CSS properties. We envisioned these would enable today's web developers to progressively enhance their sites with 3D content, with minimal learning curve. You probably wouldn't use these tools to create rich 3D immersive worlds—that was what low level graphics APIs like WebGL were for—but they would be ideal for presenting media and information; the web's classic bread and butter. As we said on the team, XR computing had enough game engines; we wanted to create the printing press.
+        </p>
+    </div>
+</div>
+
+
+{# ----- Furniture: AR ----- #}
+
+<div>
+    <video playsinline autoplay loop muted>
+        <source src="video/ciw-model-furniture-ar.webm" type="video/webm; codecs=vp9,opus"></source>
+        <source src="video/ciw-model-furniture-ar.mp4" type="video/mp4"></source>
+    </video>
+    <p class="caption small-text">Viewing a &#60;model&#62; in mobile AR</p>
+</div>
+
+
+{# ----- Car configurator ----- #}
+
+<div>
+    <video playsinline autoplay loop muted>
+        <source src="video/ciw-model-carconfig.webm" type="video/webm; codecs=vp9,opus"></source>
+        <source src="video/ciw-model-carconfig.mp4" type="video/mp4"></source>
+    </video>
+    <p class="caption small-text">Moving and panning a model &#60;model&#62; in VR</p>
+</div>
+
+{# ----- Model coordinates ----- #}
+
+<div>
+    <video playsinline autoplay loop muted>
+        <source src="video/ciw-model-coordinates.webm" type="video/webm; codecs=vp9,opus"></source>
+        <source src="video/ciw-model-coordinates.mp4" type="video/mp4"></source>
+    </video>
+    <p class="caption small-text">Exploring &#60;model&#62; coordinates and clipping</p>
+</div>
+
+{# ----- C4D rig ----- #}
+
+<div>
+    <img src="img/ciw/c4d-rig-ui.png"></img>
+    <p class="caption small-text">Example Cinema 4D workflow for these animations</p>
+</div>
+
+{# ----- Remix everything ----- #}
+
+
+<div>
+    <video playsinline autoplay loop muted>
+        <source src="video/ciw-model-remix-everything.webm" type="video/webm; codecs=vp9,opus"></source>
+        <source src="video/ciw-model-remix-everything.mp4" type="video/mp4"></source>
+    </video>
+    <p class="caption small-text">Playing with the idea of remixable models</p>
+</div>
+
+{# ----- News ----- #}
+
+<div class="">
+    <video playsinline autoplay loop muted>
+        <source src="video/ciw-news.webm" type="video/webm; codecs=vp9,opus"></source>
+        <source src="video/ciw-news.mp4" type="video/mp4"></source>
+    </video>
+    <p class="caption small-text">Early explorations of responsive design with CSS 3D transforms</p>
+</div>

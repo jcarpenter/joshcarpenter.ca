@@ -1,4 +1,4 @@
-@use "mixins_and_functions" as *;
+@use "mixins-and-functions" as *;
 
 
 /* 
@@ -7,9 +7,24 @@ Lightbox
 ========================================================
 */
 
+body {
+
+    // Lightbox closed
+    &:not(.lightbox-open) {
+        background-color: background(1);
+        transition: background-color calc(var(--lightboxFadeOutDuration) / 2) ease-out;
+    }
+    
+    // Lightbox open
+    &.lightbox-open {
+        background-color: rgba(var(--lightboxBackgroundColor), 1);
+        transition: background-color var(--lightboxFadeInDuration) ease-out var(--lightboxFadeInDuration);
+    }
+}
+
 /* -------------- Thumbnail -------------- */
 
-[data-lightbox] > button {
+figure > button {
     border: none;
     margin: 0;
     padding: 0;
@@ -18,8 +33,19 @@ Lightbox
     aspect-ratio: auto;
     display: inline-grid; // Putting this on button and on parent figure eliminates pesky extra margin below child image.
 
+
     &:focus {
-        @include outline-thin
+        outline: none;
+    }
+
+    // Highlight child media element when button is focused
+    & > * {
+        transition: outline 250ms;
+        outline-color: transparent;
+    }
+
+    &:focus > * {
+        @include outline-thin;
     }
 }
 

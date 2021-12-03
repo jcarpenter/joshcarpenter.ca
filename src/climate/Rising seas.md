@@ -47,7 +47,7 @@ GMSL rise average in mm/year:
 
 ## Greenland and Antarctica ice sheets will be the largest contributors, going forward
 
-![Sources of sea-level rise in 1997–2006 versus 2007–2016. [@rep-GlobalClimate-WMO-19].](img/GMSL-rise-contributors.png)
+![Sources of sea-level rise in 1997–2006 versus 2007–2016. [@rep-GlobalClimate-WMO-19]](img/GMSL-rise-contributors.png)
 
 Per a September 2019 report from the World Meteorological Organization: 
 

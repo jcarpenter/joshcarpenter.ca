@@ -292,7 +292,7 @@ module.exports = function (eleventyConfig) {
   // ========================================================
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
-  eleventyConfig.addTransform("addLightbox", addLightbox)
+  // eleventyConfig.addTransform("addLightbox", addLightbox)
   eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
   eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   eleventyConfig.addTransform("removeTodos", removeTodos)

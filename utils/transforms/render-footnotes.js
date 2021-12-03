@@ -21,6 +21,13 @@ const citekeyComponentsRE = /(?<prefix>[^\n\[\]\(\)]*?)?@(?<id>[a-zA-Z0-9_][^\s,
 // Demo: https://regex101.com/r/33mvVe/1
 const footnotesRE = /\s?\^\[.*?\](?!.?\])/gm
 
+/**
+ * Find markdown footnotes inside output HTML content, and render as HTML.
+ * We could have used a Markdown-It plugin to render our footnotes, but 
+ * we want more control.
+ * @param {*} content 
+ * @returns 
+ */
 module.exports = function (content) {
 
   // Exit early if output path is false, because we aren't 
@@ -28,7 +35,12 @@ module.exports = function (content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
-  const paragraphs = $('#post #content p, #post #content li, #post #content figcaption, #post #content td')
+  const paragraphs = $(`
+    main > article p, 
+    main > article li, 
+    main > article figcaption, 
+    main > article td`
+  )
 
 
   // Wrap citations in inline footnote markdown chararacters ^[...]
@@ -45,23 +57,15 @@ module.exports = function (content) {
   })
 
 
-  // After doing the above, check if there are any footnotes in the doc...
-  // If yes, create a Notes section at the end. Else, exit.
-  const post = $('#post #content').text()
+  // After doing the above, check if there are any footnotes in the doc.
+  // If no, remove footnotes section, and return.
+  const post = $('main > article').text()
   const containsFootnotes = footnotesRE.test(post)
 
-  if (containsFootnotes) {
-
-    // Append new "Notes" section at end of the document
-    $('#post').append(`<section id="footnotes" aria-labelledby="footnotes-header" class="pattern-top-edge">
-      <h2 id="footnotes-header">Notes</h2>
-      <ol class="two-column-list"></ol>
-    </section>`)
-    // <ul class="two-column-list"></ul>
-
-  } else {
-
-    // Exit without modifications, if no footnotes are found...
+  if (!containsFootnotes) {
+    // Remove #footnotes section, and return
+    $('#footnotes').remove()
+    content = $.html()
     return content
   }
 
@@ -69,7 +73,7 @@ module.exports = function (content) {
   // Copy each footnote to an <li> in Notes section...
   // And replace with a link to that <li>...
 
-  const footnotesUl = $('article #footnotes > ol')
+  const footnotesUl = $('#footnotes > ol')
   let counter = 1
 
   // We keep a record of citation footnotes as we go,

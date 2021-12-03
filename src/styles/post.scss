@@ -1,0 +1,232 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+POSTS-SPECIFIC
+========================================================
+*/
+
+
+// main, 
+// #post, 
+// #post section#content {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+// #post header, 
+// #post section#content > *:not(figure),
+// #post section#footnotes
+// {
+//     @include standardWidth;
+// }
+
+// Wrapper
+
+
+
+// -------------- Content width -------------- //
+
+main > article > *,
+.standard-width {
+    
+    --side-margin: 1.5rem;
+    
+    @include small { 
+        --side-margin: 3rem; 
+    }
+    
+    @include medium { 
+        --side-margin: 3rem; 
+        min-width: 20rem;
+        max-width: 56rem;
+    }
+    
+    // @include large { 
+    //   --side-margin: 4rem;
+    //   max-width: 96rem;
+    // }
+    
+    // @include xl { 
+    //     max-width: 118rem; 
+    // }
+  
+    width: 100%;
+    display: block;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+}
+
+
+
+// -------------- Explainer forward -------------- //
+
+#explainer-forward {
+    // @include standardWidth;
+    position: relative;
+
+    p {
+        @include baselineShiftTypography(
+            $fontSize: fontSize(1.2),
+            $lineHeight: 2rem,
+            $paddingTop: 2rem,
+        );
+        // --font-size: #{fontSize(1.2)};
+        // --line-height: 2rem;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        color: onBackground(1);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.2rem;
+        background-color: onBackground(1);
+    }
+}
+
+
+// -------------- Header -------------- //
+
+// Climate posts get some extra styling
+.climate #post header {
+
+    position: relative;
+    padding-top: 5rem;
+    margin-bottom: 1rem;
+
+    time {
+        @include baselineShiftTypography(
+            $fontSize: fontSize(0.9),
+            $lineHeight: 1rem,
+            $paddingTop: 0rem,
+        );
+        margin-bottom: 0;
+        display: block;
+        color: onBackground(0.4);
+        font-weight: 500;
+        // @include monoFont;
+    }
+}
+
+.ux #post header h1 {
+    @include baselineShiftTypography(
+        $fontSize: fontSize(1.2),
+    );
+    margin-bottom: 1rem;
+}
+
+
+// -------------- Content -------------- //
+
+// Add padding at end.
+#post #content {
+    padding-bottom: 2rem;
+
+    // Timeframe span is used at beginning on some posts.
+    // E.g. <span class="timeframe">2016</span>
+    .timeframe {
+        opacity: 0.5;
+        // font-size: 0.95em;
+        // Push vertical alignment up a few px.
+        // Code text is bit smaller than surrounding,
+        // So we need to vertically center it.
+        line-height: 0;
+        vertical-align: 0.05em;
+        font-style: normal;
+    }
+
+    @media (max-width: 480px) {
+        h2, h2 a {
+            // --font-size: #{fontSize(1.4)};
+            font-weight: 600;
+        }
+    }   
+}
+
+
+// Add ## before h2:
+// - Larger screens only (no room on smaller displays)
+// - Normal posts only (NOT short-posts)
+@media (min-width: 481px) {
+
+    #post:not(.short-post) h2 {
+
+        position: relative;
+    
+        &::before {
+            content: '##';
+            font-weight: 500;
+            font-size: fontSize(1);
+            color: onBackground(0.5);
+            left: -0.5rem;
+            transform: translateX(-100%);
+            position: absolute;
+        }
+    }
+}
+
+
+
+// -------------- Related content -------------- //
+
+// TODO: Update for baseline grid system
+// #related-content {
+//     // font-size: var(--font-sml-1);
+//     // line-height: grid(0.75);
+//     // background: foreground(0.075);
+//     // padding: 2rem;
+//     // margin: grid(2) 0 2rem;
+
+//     h2 {
+//         // font-size: var(--font-base-size);
+//         // font-weight: 700;
+//         // margin: 0 0 grid(0.5) 0;
+//         // margin: 2rem 0;
+//     }
+
+//     a.title {
+//         // font-size: var(--font-base-size);
+//         font-weight: 700;
+//         text-decoration: none;
+//         display: inline-block;
+//     }
+
+//     .tag a {
+//         font-weight: normal;
+//         display: inline-block;
+//         text-decoration: none;
+//     }
+
+//     ul {
+//         display: flex;
+//         flex-flow: row wrap;
+//         justify-content: space-between;
+//         list-style: none;
+//         padding: 0;
+//         margin: 0;
+//     }
+
+//     li {
+//         width: 32%;
+//     }
+
+//     #tags {
+//         display: flex;
+//     }
+
+//     #tags > li:not(:last-child):after {
+//         content: ',';
+//         margin-right: 0.25em;
+//     }
+// }
+
+// #related-content .tag a {
+//   color: foreground(0.5);
+// }

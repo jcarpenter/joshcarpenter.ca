@@ -1,5 +1,5 @@
 module.exports = {
-    layout: "climate.njk",
+    layout: "climate-wrapper.njk",
 }
 
 // module.exports = function() {

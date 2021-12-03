@@ -1,4 +1,4 @@
-@use "mixins_and_functions" as *;
+@use "mixins-and-functions" as *;
 
 /* 
 ========================================================
@@ -11,12 +11,12 @@ TABLES
 table {
     --tableBorderRadius: 0.3rem;
     --tableOuterBorderThickness: 1px;
-    --tableOuterBorderColor: #{onBackground(0.4)};
+    --tableOuterBorderColor: #{onBackground(0.3)};
     --tableInnerBorderColor: #{onBackground(0.15)};
     
     @include dark {
-        --tableOuterBorderColor: #{primary(0.4)};
-        --tableInnerBorderColor: #{primary(0.2)};
+        --tableOuterBorderColor: #{accent(0.4)};
+        --tableInnerBorderColor: #{accent(0.2)};
     }
 
     th { 
@@ -36,6 +36,7 @@ table {
         );
         padding-left: 0.5rem;
         padding-right: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     th:first-child, td:first-child {

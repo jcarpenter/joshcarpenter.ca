@@ -1,0 +1,217 @@
+// -------------- Colors  -------------- //
+// Short-hand concise functions for colors.
+// Use like: `color: accent(0.2);`
+
+@function foreground($alpha: 1) {
+  @return rgba(var(--foreground), $alpha);
+}
+
+@function accent($alpha: 1) {
+  @return rgba(var(--accent), $alpha);
+}
+
+@function caption($alpha: 1) {
+  @return rgba(var(--caption), $alpha);
+}
+
+@function background($alpha: 1) {
+  @return rgba(var(--background), $alpha);
+}
+
+@function onBackground($alpha: 1) {
+  @return rgba(var(--on-background), $alpha);
+}
+
+@function popup($alpha: 1) {
+  @return rgba(var(--popup), $alpha);
+}
+
+@function onPopup($alpha: 1) {
+  @return rgba(var(--on-popup), $alpha);
+}
+
+
+// -------------- Layout  -------------- //
+
+@mixin standardWidth() {
+
+  width: calc(100vw - 4rem);
+
+  @media (min-width: 500px) {
+    min-width: 20rem;
+    max-width: 42rem;
+    width: 100%;
+  }
+}
+
+
+// -------------- Media queries  -------------- //
+
+@mixin dark {
+  body.force-dark-mode {
+    @content; 
+  }
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin light {
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
+}
+
+
+// Sizes
+
+@mixin small {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}
+
+
+// -------------- Typography -------------- //
+
+@mixin baselineShiftTypography(
+  $fontSize: fontSize(1),
+  $lineHeight: 2rem,
+  $paddingTop: 0rem,
+  $descenderRatio: 0.18, 
+) {
+
+  // descenderRatio = Height of descender, as ratio //
+  // Derived from: https://jamonserrano.github.io/plumber-sass/measure/
+  // Actually the site says 1.36. But I find I need to set it 
+  // higher or I get gradual drift upwards off the grid.
+
+  // Baseline shift formula: //
+  
+  // We push the text downwards until the baseline sits at the 
+  // bottom of the specified line-height. As is standard in
+  // typography outside the web.
+  
+  // We do this by adding 1) the excess space at the bottom of
+  // the line-height, between the bottom of the font-size and
+  // the bottom of the line-height, and 2) the height of the
+  // descender. By applying these to the padding-top, we move
+  // the font down so the baseline sits on the bottom of the
+  // line-height.
+
+  // Then we also want this block to fit the grid, above and
+  // below. At the top, we achieve this simply by all previous
+  // blocks also fitting to the grid. At the bottom, we achieve
+  // this by subtract the --baseline-offset amount from a 
+  // default padding-bottom (1rem). This ensures that the height 
+  // of the rendered block will fit to the next grid line.
+
+  --excess-line-height-at-bottom: calc(calc(#{$lineHeight} - #{$fontSize}) / 2);
+  --descender-height: calc(#{$fontSize} * #{$descenderRatio});
+   
+  @if -is-integer($lineHeight) {
+
+    // If line-height is integer (e.g. 2rem), baseline-offset
+    // is just the excess line height at bottom of the line,
+    // plus the descender height.
+    --baseline-offset: calc(var(--excess-line-height-at-bottom) + var(--descender-height));
+    
+    // If line-height is integer (e.g. 2), we make eleemnt fit to
+    // grid, by adding padding-bottom equal to gap between the
+    // baseline and the next grid line.
+    padding-bottom: calc(1rem - var(--baseline-offset));
+
+  } @else {
+
+    // If line height is NOT an integer (e.g. 1.5rem), 
+    // baseline-offset is same as above, PLUS the gap between 
+    // the bottom of the line and the start of the next grid line.
+    $gap-at-bottom: ceil($lineHeight) - $lineHeight;
+
+    --baseline-offset: calc(var(--excess-line-height-at-bottom) + var(--descender-height) + #{$gap-at-bottom});
+
+    // If line-height is NOT an integer, we accept that the
+    // element height will not snap to grid, and we fix with
+    // JS after the fact. 
+    padding-bottom: 0;
+  }
+  
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  padding-top: calc($paddingTop + var(--baseline-offset));
+  margin-top: 0;
+}
+
+
+// Utility function: makes setting font-size cleaner.
+// E.g. `font-size: fontSize(1.4);`
+@function fontSize($multiplier: 1) {
+  @if $multiplier == 1 {
+    @return var(--bodyFontSize);
+  } @else {
+    @return calc(var(--bodyFontSize) * $multiplier);
+  }
+}
+
+// Utility mixin: Reusable declaration for mono fonts.
+@mixin monoFont {
+  font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+}
+
+
+// -------------- Mini  -------------- //
+
+@mixin miniBackgroundGrid {
+  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+}
+
+
+// -------------- Misc -------------- //
+
+@mixin outline-thin {
+  outline-width: 0.25rem;
+  outline-style: solid;
+  outline-color: foreground(0.95);
+  outline-offset: 0.2rem;
+}
+
+@mixin dotBackground($dotOpacity: 0.25, $bgOpacity: 0.05) {
+  background-image: 
+      linear-gradient(accent($bgOpacity), accent($bgOpacity)),
+      radial-gradient(accent($dotOpacity) 0.05em, transparent 0);
+  background-size: 
+      cover,
+      0.15em 0.15em;
+  background-position: 
+      top left,
+      top left;
+  background-repeat:
+      no-repeat,
+      repeat; 
+}
+
+// -------------- Misc -------------- //
+
+// Check if a value is a non-negative integer
+@function -is-integer($value) {
+	@return $value == round($value);
+}

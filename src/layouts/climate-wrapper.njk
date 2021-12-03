@@ -1,0 +1,62 @@
+---js
+{
+    bibliography: "./climate-references.json",
+    date: "Last Modified",
+    colors: {
+        primary: {
+            //light: "120, 120, 120",
+            dark: "124, 160, 204"
+        }
+    },
+    eleventyComputed: {
+        meta: {
+            page_title: "{{ title }} | Josh Carpenter - Climate Notes",
+            summary: "{{ summary or meta.summary }}",
+            image: "{{ image or meta.image }}",
+            type: "article"
+        }
+    },
+    css: ["post.css"]
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+        {# <script src="/js/lightbox2.js"></script> #}
+    </head>
+    <body>
+        <a href="#title" class="visibility-hidden">Skip to content</a>
+        {% include "navigation.njk" %}
+        <main role="main" aria-labelledby="title">
+            
+            {# {% if tags and tags.includes("explainer") %}
+                <section class="large-text" id="explainer-forward">
+                    <p>
+                        This is a climate change explainer. I'm writing these for myself, as I try to better understand the science, impacts and potential solutions of climate change. Each explainer tries to sum up a specific topic, such as sea level rise. All explainers are works in progress.
+                    </p>
+                </section>
+            {% endif %} #}
+
+            <article id="post" class="content-wrapper" {% if bibliography %}data-bibliography="{{ bibliography }}" {% endif %}>
+
+                {# ------------ Header ------------ #}
+                <header>
+                    <h1 id="title">{{ title }}</h1>
+                    <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
+                </header>
+
+                {# ------------ Content ------------ #}
+                <section aria-label="Main content body" id="content">
+                    {{ content | safe }}
+                </section>
+
+            </article>
+
+            {# {% include "related-content.njk" %} #}
+            {% include "about-the-author.njk" %}
+        </main>
+        {% include "footer.njk" %}
+        {# {% include "lightbox.njk" %} #}
+    </body>
+</html>

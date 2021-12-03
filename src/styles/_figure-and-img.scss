@@ -1,4 +1,4 @@
-@use "mixins_and_functions" as *;
+@use "mixins-and-functions" as *;
 
 /* 
 ========================================================
@@ -15,17 +15,8 @@ Figure: Layout
 // - Figure and caption align with standard-width
 //   content.
 // - Media is rounded
-figure {
+#content figure {
 
-    // display: flex;
-    // height: auto;
-    // flex-direction: column;
-    // align-items: center;
-
-    --borderRounding: 0.3rem;
-
-    // display: block;
-    // height: auto;
     padding-top: 1rem;
     margin: 0 0 2rem;
 
@@ -46,7 +37,7 @@ figure {
     @media (min-width: 500px) {
 
         // Round media elements
-        img, video, iframe { border-radius: var(--borderRounding); }
+        > img, video, iframe, picture { border-radius: var(--figureBorderRadius); }
 
         min-width: 20rem;
         max-width: 42rem;
@@ -66,7 +57,7 @@ figure {
 // - Caption remains aligned.
 // Over 750px:
 // - Media is rounded
-.wide-images figure {
+.wide-images #content figure {
 
     @media (min-width: 500px) {
 
@@ -86,7 +77,7 @@ figure {
     }
     
     @media (min-width: 750px) {
-        img, video, iframe { border-radius: var(--borderRounding); }
+        > img, video, iframe, picture { border-radius: var(--figureBorderRadius); }
     }
 }
 
@@ -96,8 +87,8 @@ Figure: Media
 ========================================================
 */
 
-figure {
-    img, video, iframe {
+#content figure {
+    img, video, iframe, picture {
     
         // Ensure media container expands to fit parent container.
         width: 100%;
@@ -116,6 +107,14 @@ figure {
         // not fit content exactly, because we crop container
         // to fit the grid.
         object-fit: cover;
+
+        transition: outline 250ms;
+        outline-color: transparent;
+
+        &:focus-visible {
+            @include outline-thin;
+            // outline-color: onBackground(0.7);
+        }
     }
 
     // We need to set the aspect-ratio property on the iframe.
@@ -123,6 +122,12 @@ figure {
     iframe {
         margin: 0;
         background-color: black;
+    }
+
+    // We need to add overflow:hidden to make border-radius on 
+    // picture crop <source> and <img> children.
+    picture {
+        overflow: hidden;
     }
 }
 
@@ -143,7 +148,7 @@ Figure: Caption
 ========================================================
 */
 
-figcaption {
+#content figcaption {
     font-weight: 500;
     
     // Add hyphenation
@@ -154,8 +159,9 @@ figcaption {
     @include baselineShiftTypography(
         $fontSize: fontSize(0.9),
         $lineHeight: 1.8rem,
-        $marginBottom: 0rem
     );
+
+    margin-bottom: 0rem;
 
     // Figcaption adds a bit of visual padding to the bottom
     // of the figure. Too much. So we pull up subsequent
@@ -163,4 +169,17 @@ figcaption {
     margin-bottom: -1rem;
 
     color: onBackground(calc(var(--bodyTextAlpha) - 0.25)); 
+}
+
+
+/* 
+========================================================
+Figure: Lightbox
+========================================================
+*/
+
+// We add this class to img, picture and video elements.
+// Clicking them opens the lightbox.
+#content figure .opens-lightbox {
+    cursor: pointer;
 }

@@ -1,0 +1,13 @@
+<header class="content-wrapper">
+    <div class="standard-width grid-12">
+        <h1>
+            <a href="/index.html" class="name">{{ bio.name }}</a>
+            <span class="slash">&#47;</span>
+            {% if tags and tags.includes("climate") %}
+                <a href="/index.html#climate" class="section">Climate Notes</a>
+            {% elseif tags and tags.includes("ux") %}
+                <a href="/index.html#ux" class="section">UX</a>
+            {% endif %}
+        </h1>
+    </div>
+</header>

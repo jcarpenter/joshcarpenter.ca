@@ -1,0 +1,198 @@
+@use "mixins-and-functions" as *;
+
+// -------------- Content width -------------- //
+
+body {
+  padding-top: 16rem;
+}
+
+main > *,
+.standard-width {
+
+  // @include standardWidth;
+  // margin-bottom: 1rem;
+
+    --side-margin: 1.5rem;
+    @include small { 
+        --side-margin: 3rem; 
+    }
+    // @include medium { --side-margin: 3rem; }
+    
+    max-width: 60rem;
+
+    // @include large { 
+    //   --side-margin: 4rem;
+    //   max-width: 96rem;
+    // }
+    
+    // @include xl { 
+    //     max-width: 118rem; 
+    // }
+  
+    width: 100%;
+    display: block;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+}
+
+
+main > header {
+
+  margin-bottom: 3rem;
+  @include medium { margin-bottom: 4rem; }
+  
+  h1 {
+    grid-column: 1 / -1;
+    color: accent(1);
+    font-weight: 400;
+
+    @include baselineShiftTypography(
+      $fontSize: 1.6rem,
+      $lineHeight: 2rem,
+    );
+    
+    @include medium {
+      font-weight: 300;
+      @include baselineShiftTypography(
+        $fontSize: 2rem,
+        $lineHeight: 3rem,  
+      );
+    }
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+  }
+
+  address {
+    grid-column: 1 / -1;
+  }
+  
+  .hello {
+    margin-left: -0.2rem;
+    font-weight: inherit;
+  }  
+  
+  address {
+    margin-bottom: 0rem;
+    a {
+      text-underline-offset: 0.2em;
+      text-decoration-color: accent(1);
+    }
+    a:hover {
+      color: accent(1);
+      text-decoration-color: accent(1);
+    }
+  }
+
+  .divider {
+    font-size: fontSize(0.8);
+    color: accent(0.3);
+    margin: 0 0.5rem;
+  }
+}
+
+
+// -------- Links -------- //
+
+
+a {
+  text-decoration-color: onBackground(0.4);
+}
+
+a:hover {
+  text-decoration-color: onBackground(1);
+}
+
+
+
+// -------- Lists -------- //
+
+h2 {
+  font-weight: 300;
+  color: accent(1);
+  // @include baselineShiftTypography(
+  //     $fontSize: fontSize(1),
+  //     $paddingTop: 0rem,
+  // );
+  // // --font-size: #{fontSize(1)};
+  // // --padding-top: 0rem;
+  // --margin-bottom: 0;
+  // font-weight: 600;
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  
+  li {
+    margin: 0;  
+  }
+
+  li::before {
+    content: none;  
+  }
+}
+
+
+// -------- Work History -------- //
+
+// We modify the default table styles slightly
+
+table {
+  --tableOuterBorderColor: #{onBackground(0.2)};
+  --tableInnerBorderColor: #{onBackground(0.2)};
+  white-space: nowrap;
+
+  td {
+    // Disable rounded corners
+    border-radius: 0;
+    height: 3rem;
+    overflow-y: hidden;
+  }
+  
+  // Remove border from sides
+  td:first-of-type {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  td:last-of-type {
+    padding-right: 0;
+    border-right: none;
+  }
+}
+
+.org {
+  color: onBackground(1);
+  font-weight: 500; 
+  padding-right: 1rem;
+}
+
+.role {
+  width: 100%;
+  color: onBackground(0.7);
+  overflow: hidden;
+  
+  .project {
+    color: onBackground(0.4);
+  }
+}
+
+td.year {
+  @include monoFont;
+  @include baselineShiftTypography(
+      $fontSize: fontSize(0.8),
+      $descenderRatio: 0.1
+  );
+  margin-bottom: 1rem;
+  color: onBackground(0.3);
+  border-radius: 0.2rem;
+
+  @media (max-width: 481px) {
+    display: none;
+  }
+}
+

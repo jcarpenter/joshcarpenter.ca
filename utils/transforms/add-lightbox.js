@@ -12,7 +12,12 @@ module.exports = function(content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
-  const figures = $('#post #content figure > picture, #post #content figure > video, #post #content figure > img')
+  const figures = $(`
+    #post #content figure > picture, 
+    #post #content figure > video, 
+    #post #content figure > img
+  `)
+  
   if (figures.length) {
     $('head').append('<script src="/js/lightbox.js"></script>')
   }

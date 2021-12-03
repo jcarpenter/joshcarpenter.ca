@@ -1,0 +1,36 @@
+---js
+{
+    date: "Last Modified",
+    eleventyComputed: {
+        meta: {
+            page_title: "{{ title }} | Josh Carpenter - UX Portfolio",
+            summary: "{{ summary or meta.summary }}",
+            image: "{{ image or meta.image }}",
+            type: "article"
+        }
+    },
+    css: ["portfolio.css"]
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+        {# <script src="/js/lightbox2.js"></script> #}
+    </head>
+    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+        {% include "navigation.njk" %}
+        <main role="main" aria-labelledby="title">
+            <article class="content-wrapper">
+
+                {{ content | safe }}
+
+            {% include "footnotes.njk" %}
+            </article>
+            {# {% include "related-content.njk" %} #}
+            {# {% include "about-the-author.njk" %} #}
+        </main>
+        {% include "footer.njk" %}
+        {# {% include "lightbox.njk" %} #}
+    </body>
+</html>
