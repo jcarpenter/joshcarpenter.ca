@@ -9,18 +9,14 @@ TABLES
 // Note: I have to use padding instead of margin to add space to bottom of tables, because of Firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=1492315. It causes margin values to apply to table cels (instead of the table element), if the table is a child of display: grid. Using padding in turn means I have to apply background color, border-radius (etc) to cels, instead of the table itself.
 
 table {
-    --tableBorderRadius: 0.3rem;
+    --tableBorderRadius: 0.2rem;
     --tableOuterBorderThickness: 1px;
-    --tableOuterBorderColor: #{onBackground(0.3)};
-    --tableInnerBorderColor: #{onBackground(0.15)};
+    --tableOuterBorderColor: #{onBackground(0.15)};
+    --tableInnerBorderColor: #{onBackground(0.1)};
     
     @include dark {
-        --tableOuterBorderColor: #{accent(0.4)};
-        --tableInnerBorderColor: #{accent(0.2)};
-    }
-
-    th { 
-        @include dotBackground(0.25, 0.05);
+        --tableOuterBorderColor: #{caption(0.4)};
+        --tableInnerBorderColor: #{caption(0.2)};
     }
 
     width: 100%;
@@ -31,7 +27,7 @@ table {
 
     th, td {
         @include baselineShiftTypography(
-            $fontSize: fontSize(0.9),
+            $fontSize: 1.2rem,
             $lineHeight: 2rem
         );
         padding-left: 0.5rem;
@@ -48,7 +44,10 @@ table {
 /* -------------- Head -------------- */
 
 th { 
-    @include dotBackground(0.25, 0.05);
+    // @include dotBackground(0.25, 0.05);
+    font-weight: 400;
+    color: caption(1);
+    background-color: caption(0.1);
 }
 
   

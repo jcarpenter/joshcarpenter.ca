@@ -2,6 +2,7 @@
 title: "Preliminary Strategic Climate Risk Assessment for British Columbia"
 tags: [climate, problem, bc, canada]
 publish: false
+date: 2019-11-26
 ---
 
 ==TODO: Also re-listen to CBC Fault Lines and pull in notes. Separate earthquake doc? Resiliency tag?==

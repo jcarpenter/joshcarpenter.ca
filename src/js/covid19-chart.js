@@ -174,8 +174,6 @@ function drawChart(stats) {
 
       data.push(figuresForDate[prov])
     }
-
-    // console.log(options.series)
   })
 
   const chart = new ApexCharts(document.getElementById('covid19-cases-canada'), options)

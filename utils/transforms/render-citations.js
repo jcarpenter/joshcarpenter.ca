@@ -66,13 +66,13 @@ module.exports = function (content) {
   // It's set as data-attribute on article#post.
   // NOTE: We'd prefer to get it from elevent data, but transforms
   // do not have access to data :p
-  let bibliography = $('#post').attr('data-bibliography')
+  let bibliography = $('main > article').attr('data-bibliography')
   if (!bibliography) return content
   // Bibliography paths specified in data files are relative
   // If we specify `bibliography: "./climate.json"` in a directory data file at /src/notes/notes.json, we expect to find climate.json in that same /src/notes folder.
   bibliography = path.resolve(path.dirname(this.inputPath), bibliography)
   // Cleanup: Remove the attribute. We don't want it in shipped HTML.
-  $('#post').removeAttr('data-bibliography')
+  $('main > article').removeAttr('data-bibliography')
   
   // Exit if bibliography is missing
   if (!fs.existsSync(bibliography)) return content
@@ -88,7 +88,7 @@ module.exports = function (content) {
 
   // Look inside each footnote <li>
 
-  const footnotes = $('article #footnotes li')
+  const footnotes = $('#footnotes li')
 
   footnotes.each((index, p) => {
 
@@ -146,8 +146,6 @@ module.exports = function (content) {
         }
       }, [], [], 'text')
       
-      // console.log(rendered)
-
       // Update citationsPre and increment noteIndex
       
       // Per https://citeproc-js.readthedocs.io/en/latest/running.html?highlight=previewCitationCluster#processcitationcluster

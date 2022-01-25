@@ -11,7 +11,7 @@ module.exports = function (content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
-  const figures = $('#post #content figure')
+  const figures = $('article #body figure')
 
   figures.each((index, f) => {
 

@@ -110,38 +110,50 @@
 
     lightbox.setAttribute('aria-hidden', 'false')
 
-    const figures = document.querySelectorAll('#content figure')
+    // Get all the data-lightbox elements
+    // These are either a media element, or a wrapper around a media element.
+    const thumbs = document.querySelectorAll('[data-lightbox]')
+    
+    thumbs.forEach((thumb, index) => {
+      
+      // Get the media element associated with the thumb.
+      // This is either the thumb itself, or a child inside the thumb,
+      // (as in case where we wrap the media in a div, or some such).
+      const thumbIsMedia = ['picture', 'img', 'video'].includes(thumb.localName)
+      const media = thumbIsMedia ? thumb : thumb.querySelector('picture, img, video')
 
-    // Populate lightbox 
-    figures.forEach((fig, index) => {
+      // Clone media inside thumb and prune un-needed attributes
+      const clone = media.cloneNode(true)
+      clone.removeAttribute('style')
+      clone.removeAttribute('class')
+      clone.removeAttribute('data-lightbox')
+      clone.removeAttribute('aria-controls')
+      clone.removeAttribute('aria-label')
+      clone.removeAttribute('tabindex')
 
-      const li = document.createElement('li')
-
-      // Clone media and move into new container
-      const media = fig.querySelector('img, video, iframe')
-      const mediaClone = media.cloneNode(true)
-      mediaClone.removeAttribute('style')
-      mediaClone.removeAttribute('class')
-      mediaClone.removeAttribute('aria-controls')
-      mediaClone.removeAttribute('aria-label')
-      mediaClone.removeAttribute('tabindex')
-
-      const container = document.createElement('div')
-      container.classList.add('container')
-      container.appendChild(mediaClone)
-      li.append(container)
-
-      // Copy figcaption (if one exists)
-      const figcaption = fig.querySelector('figcaption')
-      if (figcaption) {
-        const caption = document.createElement('div')
-        caption.classList.add('caption')
-        caption.innerHTML = figcaption.innerHTML
-        li.append(caption)
+      // If media is video, add controls attribute
+      if (media.localName == 'video') {
+        clone.setAttribute('controls', '')
       }
 
+      // Append clone to a new container div,
+      // inside a new list item
+      const container = document.createElement('div')
+      container.classList.add('container')
+      container.appendChild(clone)
+      const li = document.createElement('li')
+      li.append(container)
       li.setAttribute('data-index', index + 1)
-      li.setAttribute('data-type', media.localName)
+      li.setAttribute('data-type', media.localName.toLowerCase())
+
+      // Copy figcaption (if one exists)
+      // const figcaption = fig.querySelector('figcaption')
+      // if (figcaption) {
+      //   const caption = document.createElement('div')
+      //   caption.classList.add('caption')
+      //   caption.innerHTML = figcaption.innerHTML
+      //   li.append(caption)
+      // }
 
       // Watch with intersection observer
       observer.observe(li)
@@ -151,7 +163,7 @@
     })
 
     // Hide prev/next buttons if there's only one item
-    if (figures.length == 1) {
+    if (thumbs.length == 1) {
       prev.setAttribute('aria-hidden', 'true')
       next.setAttribute('aria-hidden', 'true')
     } else {
@@ -165,7 +177,6 @@
 
     // Store currently focused element, so we can restore focus when we close lightbox
     lastItemFocused = document.activeElement
-    // console.log(lastItemFocused)
 
     // Stop scrolling while lightbox is open
     // Wait until background fades in to do this,
@@ -199,8 +210,6 @@
 
     // Restore background color by clearing class
     document.body.classList.remove('lightbox-open')
-
-    console.log(lastItemFocused)
 
     // Restore focus() to the item last focused before lightbox opened (probably button)
     lastItemFocused.focus()
@@ -309,12 +318,12 @@
 
   function onIntersection(entries) {
     entries.forEach((entry) => {
-      
+
       if (entry.isIntersecting) {
-        
+
         // Update variable
         indexOfActiveItem = parseInt(entry.target.dataset.index)
-        
+
         // Add 'loaded' class
         if (!entry.target.classList.contains('loaded')) {
           entry.target.classList.add('loaded')
@@ -344,7 +353,7 @@
         next.disabled = false
       }
     }
-  }  
+  }
 
 
   function setup() {
@@ -357,45 +366,64 @@
     list = lightbox.querySelector('ul')
     end = lightbox.querySelector('span#end')
     background = lightbox.querySelector('div#background')
-    
+
     // Set focusable elements
     // We use these variables to trap tabs inside modal.
     // See tab() and shiftTab() functions
     firstFocusableEl = close
     lastFocusableEl = end
     
-    // Prep figures in document:
-    // - Add attributes, classes
-    // - Add event listener so they open on click
-    const figures = document.querySelectorAll('#content figure')
-    figures.forEach((fig, index) => {
-      const media = fig.querySelector('picture, :scope > img, video')
-      if (media) {
-        media.setAttribute('aria-controls', 'lightbox')
-        media.setAttribute('aria-label', `Open ${fig.localName} in gallery`)
-        media.setAttribute('tabindex', 0)
-        media.classList.add('opens-lightbox')
-        media.addEventListener('click', (e) => {
+    const thumbs = document.querySelectorAll('[data-lightbox]')
+
+    thumbs.forEach((thumb, index) => {
+      thumb.addEventListener('click', (e) => {
+        e.preventDefault()
+        selectItemByIndex(index + 1, false)
+      })
+      thumb.addEventListener('keydown', (e) => {
+        if (e.key == 'Enter') {
           e.preventDefault()
           selectItemByIndex(index + 1, false)
-        })
-        media.addEventListener('keydown', (e) => {
-          if (e.key == 'Enter') {
-            e.preventDefault()
-            selectItemByIndex(index + 1, false)
-          }
-        })
-      }
+        }
+      })
     })
+
+
+    // Prep media elements inside article #body copy:
+    // - Add attributes, classes
+    // - Add event listener so they open on click
+    // const mediaElements = document.querySelectorAll(`
+    //   article #body picture, 
+    //   article #body video, 
+    //   article #body *:not(picture) > img
+    // `)
+
+    // mediaElements.forEach((media, index) => {
+    //   const type = media.localName == 'video' ? 'video' : 'image'
+    //   media.setAttribute('aria-label', `Open ${type} in gallery`)
+    //   media.setAttribute('aria-controls', 'lightbox')
+    //   media.setAttribute('tabindex', 0)
+    //   media.classList.add('opens-lightbox')
+    //   media.addEventListener('click', (e) => {
+    //     e.preventDefault()
+    //     selectItemByIndex(index + 1, false)
+    //   })
+    //   media.addEventListener('keydown', (e) => {
+    //     if (e.key == 'Enter') {
+    //       e.preventDefault()
+    //       selectItemByIndex(index + 1, false)
+    //     }
+    //   })
+    // })
 
     // Setup intersection observer
     observer = new IntersectionObserver(onIntersection, {
-      
+
       // Scrollable element to watch for intersections with.
       // Usually will be closest ancestor. Set as `null` to
       // watch for intersection relative to the viewport.
-      root: null, 
-      
+      root: null,
+
       // Threshold of intersection between the target element 
       // and its root. When reached, callback function is called.
       threshold: 0.5

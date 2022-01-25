@@ -4,9 +4,11 @@
             <a href="/index.html" class="name">{{ bio.name }}</a>
             <span class="slash">&#47;</span>
             {% if tags and tags.includes("climate") %}
-                <a href="/index.html#climate" class="section">Climate Notes</a>
+                <a href="/#posts" class="section">Post</a>
             {% elseif tags and tags.includes("ux") %}
-                <a href="/index.html#ux" class="section">UX</a>
+                <a href="/#portfolio" class="section">Portfolio</a>
+            {% elseif tags and tags.includes("project") %}
+                <a href="/#projects" class="section">Project</a>
             {% endif %}
         </h1>
     </div>

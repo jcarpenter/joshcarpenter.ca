@@ -2,6 +2,7 @@
 title: "Dying Oceans: British Columbia"
 tags: [wip, climate, problem, bc, canada]
 publish: false
+date: 2019-11-26
 ---
 
 ==TODO: Update for mass Heat Dome shellfish die off.==

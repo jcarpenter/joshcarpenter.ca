@@ -45,7 +45,6 @@
 
       // Add link event listeners
       link.addEventListener('click', (e) => {
-        // console.log(isTouch)
         if (isTouch) {
           e.preventDefault()
           link.focus()
@@ -59,7 +58,6 @@
 
       // Toggle popup on 'enter' or 'space' key
       link.addEventListener('keydown', (e) => {
-        // console.log('keydown', e.key)
         if (e.key == ' ' || e.key == 'Enter') {
           e.preventDefault()
           const isExpanded = link.getAttribute('aria-expanded') == 'true'

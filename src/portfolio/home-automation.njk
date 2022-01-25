@@ -6,6 +6,7 @@
     image: "img/ns-iphone-lights.jpg",
     summary: "Touch interface for controling home security, lighting, media, heating, and more. Designed 2010-2011 while I was Creative Director for Vancouver-based New Space Technologies.",
     permalink: "/home-automation/",
+    year: 2010,
     colors: {
         accent: {
             light: "236, 161, 0", // Yellow
@@ -15,11 +16,13 @@
 }
 ---
 
-<header class="grid-12">
+{# ------------ Header ------------ #}
+
+<header class="standard-width grid-12">
     <h1 id="title">{{ title }}</h1>
     <div class="intro large-text">
         <p>
-            Touch interface for high-end residential control system. At the time, home automation systems were notoriously difficult to use. Our goal was to create a next gen interface that was both intuitive to use and attractive. The finished system ran on <a href="https://www.crestron.com">Crestron</a> stack, and was controlled from iOS apps. The skeumorphic icons (pre-iOS7) were a lot of fun to create.
+            Touch interface for high-end residential control system. At the time, home automation systems were notoriously difficult to use. Our goal was to create a next-generation interface that was both attractive and easy to use. The finished system ran on <a href="https://www.crestron.com">Crestron</a> stack, and was controlled from iOS apps. I particularly enjoyed creating the skeumorphic (pre-iOS 7) icons.
         </p>
     </div>
     <div class="metadata small-text">
@@ -30,43 +33,50 @@
     </div>
 </header>
 
-{# ----- iPhone ----- #}
 
-<div class="grid-2 mb-small">
-    <div class="sm-p-small" style="background: #E1E1E1">
-        <img src="img/ns-iphone-lights.jpg"></img>
+{# ------------ Body ------------ #}
+
+<section id="body" class="standard-width copy" aria-label="Article body">    
+
+    {# ----- iPhone ----- #}
+
+    <div class="grid-2 mb-small">
+        <div class="sm-p-small" style="background: #E1E1E1" data-lightbox>
+            <img src="img/ns-iphone-lights.jpg"></img>
+        </div>
+        <div class="sm-p-small" style="background: #E1E1E1" data-lightbox>
+            <img src="img/ns-iphone-security.jpg"></img>
+        </div>
+        <div class="sm-p-small" style="background: #E1E1E1" data-lightbox>
+            <img src="img/ns-iphone-ipod.jpg"></img>
+        </div>
+        <div class="sm-p-small" style="background: #E1E1E1" data-lightbox>
+            <img src="img/ns-iphone-lights.jpg"></img>
+        </div>
     </div>
-    <div class="sm-p-small" style="background: #E1E1E1">
-        <img src="img/ns-iphone-security.jpg"></img>
+
+
+    {# ----- iPad ----- #}
+
+    <div>
+        <div class="cols-all" style="padding: 2vw 6vw; background: #E1E1E1" data-lightbox>
+            <img src="img/ns-ipad-systems.jpg"></img>
+        </div>
     </div>
-    <div class="sm-p-small" style="background: #E1E1E1">
-        <img src="img/ns-iphone-ipod.jpg"></img>
+
+    <div class="grid-12 body-text">
+        <p class="cols-left-half">
+            The interface was subsequently packaged as an end-to-end control solution for condos, under the name New Space Core. I rebranded the company (logo, website, etc) then created the Core marketing campaign, from copy to collateral design.
+        </p>
     </div>
-    <div class="sm-p-small" style="background: #E1E1E1">
-        <img src="img/ns-iphone-lights.jpg"></img>
+
+    {# ----- New Space Core ----- #}
+
+    <div class="grid-2">
+        <img src="img/ns-core-hometheatre.jpg" data-lightbox></img>
+        <img src="img/ns-core-yourhome.jpg" data-lightbox></img>
+        <img src="img/ns-core-control.jpg" data-lightbox></img>
+        <img src="img/ns-core-platform.jpg" data-lightbox></img>
     </div>
-</div>
 
-
-{# ----- iPad ----- #}
-
-<div>
-    <div class="cols-all" style="padding: 2vw 6vw; background: #E1E1E1">
-        <img src="img/ns-ipad-systems.jpg"></img>
-    </div>
-</div>
-
-<div class="grid-12 body-text">
-    <p class="cols-left-half">
-        The interface was subsequently packaged as an end-to-end control solution for condos, under the name New Space Core. I rebranded the company (logo, website, etc) then created the Core marketing campaign, from copy to collateral design.
-    </p>
-</div>
-
-{# ----- New Space Core ----- #}
-
-<div class="grid-2">
-    <img src="img/ns-core-hometheatre.jpg"></img>
-    <img src="img/ns-core-yourhome.jpg"></img>
-    <img src="img/ns-core-control.jpg"></img>
-    <img src="img/ns-core-platform.jpg"></img>
-</div>
+</section>

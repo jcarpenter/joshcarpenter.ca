@@ -15,7 +15,7 @@ const imageInMarkdownImplicitFigureRE = /^!\[.*\]\((?<src>[^\s\)]*)[\s|\)]/gm
 const imageInHtmlRE = /<img\s[^>]*?src\s*=\s*['\"](?<src>[^'\"]*?)['\"][^>]*?>/gm
 
 /**
- * Make array of images in src/ markdown docs
+ * Make array of images in src/ markdown and nunjuck docs
  * - Full local paths to images
  * - Confirmed to exist on disk by `fs`
  * - De-duped

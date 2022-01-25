@@ -1,16 +1,18 @@
 // Base
 @use "base";
-
-// Elements
 @use "fonts";
 @use "tables";
+
+// Copy
+@use "copy";
 @use "figure-and-img";
 @use "footnotes";
 
 // Components
 @use "navigation";
-@use "footer";
 @use "about-the-author";
+@use "more-content";
+@use "footer";
 @use "lightbox2";
 
 // Helpers

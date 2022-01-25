@@ -34,18 +34,19 @@
 // -------------- Layout  -------------- //
 
 @mixin standardWidth() {
+  
+  width: 100%;
+  display: block;
+  padding-left: var(--side-margin);
+  padding-right: var(--side-margin);
 
-  width: calc(100vw - 4rem);
-
-  @media (min-width: 500px) {
-    min-width: 20rem;
-    max-width: 42rem;
-    width: 100%;
+  @include large-screen { 
+    max-width: 96rem;
   }
 }
 
 
-// -------------- Media queries  -------------- //
+// -------------- Media query: Dark mode  -------------- //
 
 @mixin dark {
   body.force-dark-mode {
@@ -63,40 +64,52 @@
 }
 
 
-// Sizes
+// -------------- Media Query: Screen Sizes -------------- //
 
-@mixin small {
+@mixin smaller-screen {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin small-screen {
   @media (min-width: 640px) {
     @content;
   }
 }
 
-@mixin medium {
+@mixin medium-screen {
   @media (min-width: 768px) {
     @content;
   }
 }
 
-@mixin large {
+@mixin large-screen {
   @media (min-width: 1024px) {
     @content;
   }
 }
 
-@mixin xl {
+@mixin xl-screen {
   @media (min-width: 1400px) {
     @content;
   }
 }
 
+@mixin xxl-screen {
+  @media (min-width: 1700px) {
+    @content;
+  }
+}
 
 // -------------- Typography -------------- //
 
 @mixin baselineShiftTypography(
-  $fontSize: fontSize(1),
+  $fontSize: 1.333rem,
   $lineHeight: 2rem,
   $paddingTop: 0rem,
   $descenderRatio: 0.18, 
+  $useMarginInsteadOfPadding: false,
 ) {
 
   // descenderRatio = Height of descender, as ratio //
@@ -156,18 +169,11 @@
   
   font-size: $fontSize;
   line-height: $lineHeight;
-  padding-top: calc($paddingTop + var(--baseline-offset));
-  margin-top: 0;
-}
-
-
-// Utility function: makes setting font-size cleaner.
-// E.g. `font-size: fontSize(1.4);`
-@function fontSize($multiplier: 1) {
-  @if $multiplier == 1 {
-    @return var(--bodyFontSize);
+  @if $useMarginInsteadOfPadding {
+    margin-top: calc($paddingTop + var(--baseline-offset));
   } @else {
-    @return calc(var(--bodyFontSize) * $multiplier);
+    padding-top: calc($paddingTop + var(--baseline-offset));
+    margin-top: 0;
   }
 }
 
@@ -177,13 +183,6 @@
 }
 
 
-// -------------- Mini  -------------- //
-
-@mixin miniBackgroundGrid {
-  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
-  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
-}
-
 
 // -------------- Misc -------------- //
 
@@ -192,6 +191,71 @@
   outline-style: solid;
   outline-color: foreground(0.95);
   outline-offset: 0.2rem;
+}
+
+@mixin outline-on-focus($widthRem: 0.2, $offsetRem: 0.2, $color: foreground(0.95), $borderRadiusEm: 0.05) {
+  
+  &:focus-visible {
+    outline-width: $widthRem * 1rem;
+    outline-offset: $offsetRem * 1rem;
+    outline-color: $color;
+    outline-style: solid;
+    border-radius: $borderRadiusEm * 1em;
+    animation: outlineAppear 0.1s ease-in;
+  }
+
+  @keyframes outlineAppear {
+    from {
+      outline-offset: 0.1em;
+      outline-color: transparent;
+    }
+  
+    to {
+      outline-offset: 0.2em;
+      outline-color: foreground(0.95);
+    }
+  }
+}
+
+// Apply this to `standard-width` elements to create consistent top borders
+@mixin topBorder($color: onBackground(1), $height: 0.1) {
+  
+  // Top-border
+  position: relative;
+  padding-top: calc(var(--large-margin) - 1rem);
+
+  &::before {
+    content: '';
+    width: calc(100% - var(--side-margin) * 2);
+    left: var(--side-margin);
+    height: $height * 1rem;
+    background: $color;
+    position: absolute;
+    top: 0;
+  }
+}
+
+
+
+// -------------- Misc -------------- //
+
+// Check if a value is a non-negative integer
+@function -is-integer($value) {
+	@return $value == round($value);
+}
+
+
+
+
+
+
+// -------------- OLD, UNUSED -------------- //
+
+// -------------- Mini  -------------- //
+
+@mixin miniBackgroundGrid {
+  // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
 }
 
 @mixin dotBackground($dotOpacity: 0.25, $bgOpacity: 0.05) {
@@ -207,11 +271,4 @@
   background-repeat:
       no-repeat,
       repeat; 
-}
-
-// -------------- Misc -------------- //
-
-// Check if a value is a non-negative integer
-@function -is-integer($value) {
-	@return $value == round($value);
 }

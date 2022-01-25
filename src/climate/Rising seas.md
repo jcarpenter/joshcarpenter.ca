@@ -1,12 +1,13 @@
 ---
 title: "Rising Seas"
-tags: [climate, explainer, problem]
+tags: [climate, explainer, highlight, problem]
 publish: true
-summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place?"
-image: "img/GMSL-1900-2010.png"
+summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place? A summary from my climate research notes."
+image: "img/thwaites-1.jpg"
+date: 2019-11-26
 ---
 
-![Global mean sea level relative to 1986–2005. [@rep-AR5Synth-IPCC-14, p.41] ](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
+![Thwaites Ice Shelf edge, as of Oct 16, 2012. Credit: [NASA / James Yungel](https://commons.wikimedia.org/wiki/Category:Thwaites_Ice_Shelf#/media/File:A_close_look_at_the_shelf_(8093672443).jpg)](img/thwaites-1.jpg "Photo of Thwaites ice shelf")
 
 ## How do we define “sea level rise”? 
 
@@ -35,6 +36,8 @@ The IPCC AR5 report said:
 > Ocean [thermal expansion](https://en.wikipedia.org/wiki/Thermal_expansion) and fires melting have been the dominant contributors to 20th century global mean sea level rise. Observations since 1971 indicate that thermal expansion and glaciers (excluding Antarctic glaciers peripheral to the ice sheet) explain **75%** of the observed rise. … The contribution of the Greenland and Antarctic ice sheets has increased since the early 1990s, partly from increased outflow induced by warming of the immediately adjacent ocean. [@rep-AR5PhySci-IPCC-13, p.1139]
 
 ## Sea level rise is accelerating
+
+![Global mean sea level relative to 1986–2005. [@rep-AR5Synth-IPCC-14, p.41] ](img/GMSL-1900-2010.png "Graph showing rising global mean sea level from 1986-2005")
 
 GMSL rise average in mm/year:
 

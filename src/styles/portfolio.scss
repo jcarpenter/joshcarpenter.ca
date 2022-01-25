@@ -2,15 +2,16 @@
 
 /* 
 ========================================================
-PORTFOLIO-SPECIFIC
+PORTFOLIO-SPECIFIC STYLES
 ========================================================
 */
 
-
 // -------------- Base Elements & Styles  -------------- //
 
-p a {
-  font-weight: inherit;
+// All immediate portfolio #body children have same margin-bottom
+article #body > *,
+article #footnotes {
+  margin-bottom: var(--large-margin) !important;
 }
 
 strong {
@@ -18,11 +19,6 @@ strong {
   font-weight: 500;
   color: inherit;
   padding: 0;
-}
-
-// Margin bottom of all article children
-main > article > * {
-  margin-bottom: var(--large-margin);
 }
 
 // Media elements
@@ -33,55 +29,33 @@ picture, img, video, iframe {
 }
 
 
-// -------------- Content width -------------- //
-
-main > article > *,
-.standard-width {
-    --side-margin: 1.5rem;
-    @include small { 
-        --side-margin: 3rem; 
-    }
-    // @include medium { --side-margin: 3rem; }
-    
-    @include large { 
-      --side-margin: 4rem;
-      max-width: 96rem;
-    }
-    
-    @include xl { 
-        max-width: 118rem; 
-    }
-  
-    width: 100%;
-    display: block;
-    padding-left: var(--side-margin);
-    padding-right: var(--side-margin);
-}
-
-
 // -------------- Header -------------- //
 
-main > article > header {
-  margin-bottom: 3rem;
-  @include medium { margin-bottom: 4rem; }
+article header {
+  margin-bottom: var(--large-margin);
+  row-gap: 0 !important;
 }
 
 // h1
 
-main > article > header h1 {
+article header h1 {
 
   grid-column: 1 / -1;
 
   color: accent(1);
   font-weight: 400;
+  @include dark {
+    @include medium-screen {
+      font-weight: 300;
+    }
+  }
 
   @include baselineShiftTypography(
     $fontSize: 1.6rem,
     $lineHeight: 2rem,
   );
   
-  @include medium {
-    font-weight: 300;
+  @include medium-screen {
     @include baselineShiftTypography(
       $fontSize: 2rem,
       $lineHeight: 3rem,  
@@ -91,38 +65,40 @@ main > article > header h1 {
 
 // Intro
 
-main > article > header .intro {
+article header .intro {
   grid-column: 1 / -1;
   order: 2;
-  @include medium {
+  @include medium-screen {
     grid-column: 1 / span 8;
     order: initial;
   }
-  @include xl {
+  @include large-screen {
     grid-column: 1 / span 7;
   }
 }
 
 // Metadata
 
-main > article > header .metadata {
+article header .metadata {
 
   time, .role { color: onBackground(0.7); }
   color: onBackground(0.5);
   line-height: 1.75rem;
 
   // Margin
-  margin-bottom: 1rem;
-  @include medium { margin-top: 1rem; }
-  @include xl { margin-top: 0; }
+  // Nudge downwards so it lines up with intro text
+  // when layout splits into two columns.
+  margin-bottom: 2rem;
+  @include medium-screen { margin-top: 1rem; }
 
   // Grid
   grid-column: 1 / -1;
-  @include medium {
+  @include medium-screen {
+    margin-bottom: 1rem;
     grid-column: 10 / -1;
     order: initial;
   }
-  @include xl {
+  @include large-screen {
     grid-column: 11 / -1;
   }
 }

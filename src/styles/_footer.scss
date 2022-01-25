@@ -8,22 +8,71 @@ FOOTER
 
 body > footer {
 
-    margin-bottom: 2rem;
-
-    small {
-
-        @include baselineShiftTypography(
-            $fontSize: fontSize(0.9)
-        );
-        margin-bottom: 1rem;
-        color: onBackground(0.5);
-    }
+    // margin-top: 4rem;
+    margin-bottom: 0;
 
     a { 
-        text-decoration-color: onBackground(0.3); 
+        text-decoration-color: onBackground(0.2); 
 
         &:hover { 
             text-decoration-color: onBackground(0.5); 
         }
+    }
+}
+
+body > footer > div {
+
+    display: flex !important;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    
+    // Top-border
+    position: relative;
+
+    &::before {
+        content: '';
+        width: calc(100% - var(--side-margin) * 2);
+        height: 0.1rem;
+        background: onBackground(0.15);
+        position: absolute;
+        top: 0;
+        left: var(--side-margin);
+    }
+}
+
+body > footer span {
+    flex: 1 0 auto;
+    color: onBackground(0.6);
+}
+
+body > footer address {
+    
+    white-space: nowrap;
+    color: onBackground(0.5);
+    
+    // Hide address on phone screens.
+    // There's not enough room, and I don't like the look
+    // of splitting address onto a second line.
+    display: none;
+    @include small-screen {
+        display: block;
+    }
+
+    a {
+        text-decoration-color: onBackground(0.4) !important;
+    }
+
+    a:hover {
+        color: onBackground(1);
+        text-decoration-color: onBackground(1);
+    }
+    
+    .divider {
+        font-size: 0.8em;
+        color: onBackground(0.2);
+        margin: 0 0.5rem;
     }
 }

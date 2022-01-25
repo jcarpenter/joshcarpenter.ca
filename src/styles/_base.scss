@@ -1,350 +1,221 @@
 @use "sass:math";
 @use "mixins-and-functions" as *;
 
+// These are base styles that apply site-wide, to all sections.
+// This is where resets and low-level styles are applied.
+
 
 /*
 ========================================================
-Variables
+BASE: VARIABLES
 ========================================================
 */
 
 :root {
 
-    --figureBorderRadius: 0.3rem;
-    --lightboxFadeInDuration: 0.1s;
-    --lightboxFadeOutDuration: 0.1s;
+	/* -------------- Typography -------------- */
 
-    /* -------------- Spacing -------------- */
+	/*
 
-    // Padding
+	html font-size =        1 grid unit = 1 rem
+	body line-height =      2 grid unit = 2 rem
+	body font-size =        1.333 rem
+
+	We're using a baseline grid. 
+	We shift text elements to sit on their baseline
+	by adding padding above, and then pull elements below 
+	upwards by the same amount, using negative margin, so 
+	the page flow is presetved.
+	
+	We try to only use bottom margin, but in some places 
+	have to also use top.
+	 
+	*/
+
+	--htmlFontSize: 11px;
+	--bodyFontSize: 1.333rem;
+	--grid: 1rem;
+	
+	// Scale up base font pixel size as screen size increases
+	@include small-screen { --htmlFontSize: 12px; }
+	@include xl-screen { --htmlFontSize: 13px; }
+	@include xxl-screen { --htmlFontSize: 14px; }
+
+	/* -------------- Layout -------------- */
+
+	--side-margin: 1.5rem;
+
+	@include small-screen { 
+		--side-margin: 3rem; 
+	}
+
+	@include large-screen { 
+		--side-margin: 4rem;
+	}
+
+	/* -------------- Colors -------------- */
+
+	--bodyTextAlpha: 0.7;
+	--foreground: 0, 0, 0;
+	--accent: 0, 163, 102; // Vibrant-green
+	--caption: 140, 140, 140;
+	--background: 247, 247, 247;
+	--on-background: 10, 10, 10;
+	--popup: 65, 65, 65;
+	--on-popup: 250, 250, 250;
+	--lightboxForegroundColor: 255, 255, 255;
+	--lightboxBackgroundColor: 20, 20, 20;
+
+	// Color of overlay grid
+	--overlayGrid: 0, 119, 179;
+
+	@include dark {    
+		--bodyTextAlpha: 0.7;
+		--foreground: 255, 255, 255;
+		--accent: 2, 252, 158; // Vibrant-green
+		--caption: 120, 150, 180;
+		--background: 30, 37, 45;
+		--on-background: 180, 192, 207;
+		--popup: 45, 58, 73;
+		--on-popup: 173, 191, 212;
+		--lightboxBackgroundColor: 10, 14, 16;
+	}
+
+	/* -------------- Misc -------------- */
+
+	--figureBorderRadius: 0.3rem;
+	--lightboxFadeInDuration: 0.1s;
+	--lightboxFadeOutDuration: 0.1s;
+
+	/* -------------- Spacing -------------- */
+
+	// Padding
   
-    --small-pad: 1rem;
-    --medium-pad: 2rem;
-    --large-pad: 3rem;
-    @include large { 
-        --small-pad: 2rem;
-        --medium-pad: 3rem;
-        --large-pad: 4rem; 
-    }
+	--small-pad: 1rem;
+	--medium-pad: 2rem;
+	--large-pad: 3rem;
+	@include large-screen { 
+		--small-pad: 2rem;
+		--medium-pad: 3rem;
+		--large-pad: 4rem; 
+	}
 
-    // Margin
+	// Margin
 
-    --small-margin: 1rem;
-    --medium-margin: 2rem;
-    --large-margin: 3rem;
-    @include medium { 
-        --small-margin: 2rem;
-        --medium-margin: 3rem;
-        --large-margin: 4rem; 
-    }
-
-
-    /* -------------- Colors -------------- */
-
-    --bodyTextAlpha: 0.7;
-    --foreground: 0, 0, 0;
-    --accent: 199, 18, 64; // A-Frame red
-    --caption: 150, 150, 150;
-    --background: 247, 247, 247;
-    --on-background: 10, 10, 10;
-    --popup: 65, 65, 65;
-    --on-popup: 250, 250, 250;
-
-    --lightboxForegroundColor: 255, 255, 255;
-    --lightboxBackgroundColor: 20, 20, 20;
-
-    // Color of overlay grid
-    --overlayGrid: 0, 119, 179;
-
-    @include dark {    
-        --bodyTextAlpha: 0.7;
-        --foreground: 255, 255, 255;
-        --accent: 166, 158, 143; // Sand
-        --caption: 120, 150, 180;
-        --background: 30, 37, 45;
-        --on-background: 180, 192, 207;
-        --popup: 45, 58, 73;
-        --on-popup: 173, 191, 212;
-
-        --lightboxBackgroundColor: 10, 14, 16;
-    }
-
-
-    /* -------------- Typography -------------- */
-
-    /*
-
-    html font-size =        1 grid unit = 1 rem
-    body line-height =      2 grid unit = 2 rem
-    body font-size =        1.333 rem
-
-    We're using a baseline grid. 
-    We shift text elements to sit on their baseline
-    by adding padding above, and then pull elements below 
-    upwards by the same amount, using negative margin, so 
-    the page flow is presetved.
-    
-    We only use bottom margin. Never top.
-     
-    */
-
-    --htmlFontSize: 12px;
-    --bodyFontSize: 1.333rem;
-    --grid: 1rem;
-
-    /* -------------- Animations -------------- */
-
-    --material-incoming-decelerated: cubic-bezier(0, 0, 0.2, 1);
-    --material-outgoing-accelerated: cubic-bezier(0.4, 0, 1, 1);
-    
+	--small-margin: 1rem;
+	--medium-margin: 2rem;
+	--large-margin: 3rem;
+	@include medium-screen { 
+		--small-margin: 2rem;
+		--medium-margin: 3rem;
+		--large-margin: 4rem; 
+	}
 }
 
 
-/* 
+/*
 ========================================================
-Base
+BASE: LAYOUT
 ========================================================
 */
-
-body {
-    margin: 0;
-    padding: 2rem 0rem;
-    overflow-x: hidden;
-    position: relative;
-    color: onBackground(var(--bodyTextAlpha));
-}
 
 html {
-    font-size: var(--htmlFontSize);
+	font-size: var(--htmlFontSize);
 
-    // Universal box sizing with inheritance:
-    // Reset box-sizing to border-box for all elements (including 
-    // pseudo elements). Set on html, and then tell all elements 
-    // to inherit. This allows elements to override. 
-    // Per: https://css-tricks.com/box-sizing/
-    box-sizing: border-box;
+	// Universal box sizing with inheritance:
+	// Reset box-sizing to border-box for all elements (including 
+	// pseudo elements). Set on html, and then tell all elements 
+	// to inherit. This allows elements to override. 
+	// Per: https://css-tricks.com/box-sizing/
+	box-sizing: border-box;
 }
-
-
-
-/* 
-========================================================
-Elements
-========================================================
-*/
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
-    word-break: normal;
-    // line-height: inherit;
+	box-sizing: inherit;
+	word-break: normal;
+	// line-height: inherit;
 }
 
+body {
+	margin: 0;
+	padding: 2rem 0rem;
+	overflow-x: hidden;
+	position: relative;
+	color: onBackground(var(--bodyTextAlpha));
+	background-color: background(1);
+}
+
+// We hide the outline on main, or else it appears when main is clicked.
+// This happens because we set tabindex="-1" on main. We do that because
+// it's recommended for the targets of "Skip to content" links.
+// Per: https://webdesign.tutsplus.com/articles/keyboard-accessibility-tips-using-html-and-css--cms-31966
+main:focus {
+	outline: none;
+}
+
+
+/*
+========================================================
+BASE: ELEMENTS
+========================================================
+*/
 
 /* -------------- Abbr -------------- */
 
 abbr {
-    font-variant-caps: all-small-caps;
-    font-variant-numeric: oldstyle-nums;
+	font-variant-caps: all-small-caps;
+	font-variant-numeric: oldstyle-nums;
 }
-
 
 /* -------------- Address -------------- */
 
 address {
-    font-style: normal;
-}
-
-
-/* -------------- Block quote -------------- */
-
-// Shifted margin is to make room on side for ::before notch (see below).
-
-blockquote {
-    @include baselineShiftTypography;
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-// Border on left side. The ::before element gives us more control.
-blockquote::before {
-    content: '';
-    background-color: accent(0.25);
-    width: 0.15em;
-    position: absolute;
-    height: 100%;
-    border-radius: 2px;
-    box-sizing: content-box;
-    top: 0.8rem;
-    // Reduce height so this visible box only extends as
-    // far as the baseline of the last line. If we don't
-    // do this, it extends to descender and bottom padding.
-    height: calc(100% - 1.6rem);
-}
-
-blockquote p {
-    color: accent();
-    padding-left: 2rem;
-    margin: 0 0 1rem;
-
-    // Normal links inside blockquote
-    & > a { 
-        color: accent();
-        &:hover {
-        color: accent();
-        filter: brightness(0.8); // Darken on hover
-        }
-    }
-}
-
-// Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing.
-blockquote p:last-of-type {
-    margin-bottom: 0 !important;
+	font-style: normal;
 }
 
 
 /* -------------- Buttons -------------- */
 
 button {
-    background: transparent;
-    border: none;
-    padding: 0;
+	background: transparent;
+	border: none;
+	padding: 0;
 }
 
-
-/* -------------- Code -------------- */
-
-// Code element inside paragraph (as opposed to inside `pre` block)
-p code {
-    @include monoFont;
-    font-size: 0.9em;
-    padding: 0em 0.2em;
-    border-radius: 0.2em;
-    // Push vertical alignment up a few px.
-    // Code text is bit smaller than surrounding,
-    // So we need to vertically center it.
-    line-height: 0;
-    vertical-align: 0.05em;
-    
-    // Prevent wrapping
-    white-space: nowrap;
-
-    color: inherit;
-    background-color: onBackground(0.08) !important;
-  
-}
-
-@include dark {
-    p code {
-    //   color: caption(1) !important;
-        color: inherit;
-        background-color: caption(0.2) !important;
-      // filter: brightness(1.2);
-    }  
-  }
-  
-
-
-/* -------------- Headings -------------- */
-
-h1 { color: onBackground(1); }
-
-h2 { 
-    color: onBackground(1); 
-    a { color: inherit; }
-}
-
-h3, 
-#post.short-post h2 { 
-    color: onBackground(0.8); 
-}
-
-@include dark {
-    h1 { 
-        color: accent(1); 
-    }
-
-    h2 { 
-        color: onBackground(1); filter: brightness(1.2); 
-    }
-  
-    h3, 
-    #post.short-post h2 { 
-        color: onBackground(1); 
-    }
-}
+/* -------------- h1, h2, h3 -------------- */
 
 h1,
 h2,
 h3 {
-    font-kerning: normal;
+	font-kerning: normal;
 }
 
-h1 {
-    @include baselineShiftTypography(
-        $fontSize: fontSize(2),
-        $lineHeight: 3rem,
-    );
-    margin-bottom: 1rem;
-    vertical-align: baseline;
-    font-weight: 600;
-    letter-spacing: -0.01em;    
-}
-
+/* -------------- h2 -------------- */
 
 h2 {
-    @include baselineShiftTypography(
-        $fontSize: fontSize(1.2),
-        $lineHeight: 2rem,
-        $paddingTop: 2rem
-    );
-    margin-bottom: 1rem;
-    font-weight: 600;
 
-    // Hide links inside 
-    a {
-        text-decoration: none;
-    }
+	margin-bottom: 2rem;
+
+	color: accent();
+
+	// Slightly heavier on light mode
+	font-weight: 300;
+	@include light { font-weight: 400; }
+
+	@include baselineShiftTypography(
+		$fontSize: 1.333rem, 
+		$lineHeight: 2rem
+	);
 }
-
-// Mobile: Dotted dividers above #content h2,
-// to help create visual separation.
-@media (max-width: 480px) {
-    #post:not(.short-post) {
-        
-        // First h2 is plain, and has no top margin
-        h2:first-of-type {
-            margin-top: 0;
-        }
-
-        // Subsequent h2 get the dotted dividers
-        // and large top margins.
-        h2:not(:first-of-type)::before {
-            content: '';
-            @include dotBackground(0.25, 0);
-            display: block;
-            height: 1rem;
-            margin-bottom: 2rem;
-        }
-    }
-}
-
-h3,
-#post.short-post h2 {
-    @include baselineShiftTypography;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
 
 /* -------------- Horizontal rule  -------------- */
 
 hr {
-    width: 100%;
-    height: 0.5rem;
+	width: 100%;
+	height: 0.5rem;
 }
-
 
 /* -------------- Images & Media -------------- */
 
@@ -352,260 +223,20 @@ img,
 embed,
 object,
 video {
-    max-width: 100%;
+	max-width: 100%;
+	height: auto;
 }
-
 
 /* -------------- Links -------------- */
 
 a {
-    text-decoration: underline;
-    text-underline-offset: 0.05em;
-    
-    // Soften the appearance of the focus outline by 
-    // animating the outline opacity.
-    outline-color: transparent;
-    transition: outline-color 300ms;
-    
-    // Round border so outline :focus is less harsh
-    // NOTE: Only noticeable on browsers where outline follows 
-    // border-radius. Safari does not, unfortunately.
-    border-radius: 0.05rem;
-
-    color: onBackground(var(--bodyTextAlpha));
-
-    &:focus-visible {
-        @include outline-thin;
-    }
-
-    &:hover { 
-        color: onBackground(calc(var(--bodyTextAlpha) + 0.25)); 
-    }
-
-    &:active {
-        outline: none;
-        color: onBackground(1);
-        background-color: onBackground(0.1);   
-    }
+	@include outline-on-focus;
+	transition: color 0.15s, text-decoration-color 0.15s;
 }
-
-
-@media (max-width: 480px) {
-    a {
-        font-weight: 500;
-    }
-}
-
-
-/* -------------- Lists  -------------- */
-
-ol, ul { 
-    padding-left: 2rem;
-}
-
-// Top-level lists
-section > ol,
-section > ul {
-    @include baselineShiftTypography;
-    margin-bottom: 1rem;
-}
-
-// Marker indent from left:
-// Mobile: Markers flush left
-// Desktop: Markers indented slightly.
-@media (max-width: 480px) {
-    section > ol,
-    section > ul { 
-        margin-left: 0; 
-    }
-}
-
-// @media (min-width: 481px) {
-//     section > ol,
-//     section > ul { 
-//         margin-left: 1rem;
-//     }
-// }
-
-// Nested lists
-section > * ul,
-section > * ol {
-    // padding: 0;
-    // Reduce vertical margin (to keep consistent)
-    margin-top: 1rem;
-}
-
-section > ul li:last-of-type,
-section > ol li:last-of-type {
-    margin-bottom: 0;
-}
-
-li {
-    margin-bottom: 1rem;
-
-    p {
-        // Add bit more vertical spacing between list items that
-        // contain paragraphs. Remove all other padding and margins
-        // (parent list items already provide margin)
-        padding: 0;
-        margin: 0 0 2rem;
-    }
-}    
-
-
-// Remove margin-bottom from paragrapah inside last list item 
-// of top-level list, or else the top-level list
-section * > li:last-of-type p {
-    margin-bottom: 0;
-}
-
-// Numbers and bullets:
-// We use ::before inside of ::marker, because we're extremely
-// limited in how we can style the later. 
-li {
-    list-style: none;
-    position: relative;
-    margin-left: 1rem;
-    // margin-left: 0;
-    &::before {
-        position: absolute;
-    }
-}
-
-ol {
-    counter-reset: custom-counter;
-    li {
-        counter-increment: custom-counter;
-    }
-}
-
-// <ol> numbers
-ol li::before {
-    content: counter(custom-counter) '.';
-    font-weight: 500;
-    font-size: fontSize(1);
-    left: -0.5rem;
-    transform: translateX(-100%);
-    // Push vertical alignment up a few px.
-    // Code text is bit smaller than surrounding,
-    // So we need to vertically center it.
-    // line-height: 0;
-    // vertical-align: 0.05em;
-    color: accent(1);
-}
-
-// <ul> bullets
-ul li::before {
-    content: '•';
-    left: -1.5rem;
-    font-weight: 600;
-    // Increase size slightly
-    font-size: fontSize(1);
-    // Nudge upwards by half the value of the size increase
-    // to vertically center the bullet (or else it's too low).
-    margin-top: -0.06em;
-    color: accent(1);
-}
-
-// Nested lists
-section > ol * li::before,
-section > ul * li::before {
-  color: accent(0.5);
-}
-
-
-
-
-/* -------------- Main -------------- */
-
-// We hide the outline on main, or else it appears when main is clicked.
-// This happens because we set tabindex="-1" on main. We do that because
-// it's recommended for the targets of "Skip to content" links.
-// Per: https://webdesign.tutsplus.com/articles/keyboard-accessibility-tips-using-html-and-css--cms-31966
-main:focus {
-    outline: none;
-}
-
 
 /* -------------- Paragraph -------------- */
-
-// Paragraphs NOT nested in li or blockquote
-*:not(li, blockquote) > p {
-    @include baselineShiftTypography();
-    margin-bottom: 1rem;
-    font-variant-numeric: oldstyle-nums;
+	
+p {
+	// By default, remove top margin
+	margin-top: 0;
 }
-
-
-/* -------------- Pre -------------- */
-
-// TODO
-pre {
-    padding: 0.5rem 0.8rem;
-    // padding-left: 0.8rem;
-    // padding-right: 0.8rem;
-    background-color: accent(0.1);
-    // Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
-    // margin-top: 0 !important;
-    margin-bottom: 2rem;
-    border: none !important;
-    border-radius: 0.2em;
-
-    code {
-        @include baselineShiftTypography($fontSize: fontSize(0.9));
-        @include monoFont;
-        white-space: pre-wrap !important;
-        margin-bottom: 1rem;
-    }
-}
-
-
-/* -------------- Strong  -------------- */
-
-strong {
-    font-weight: 500;
-    padding: 0 0.2rem;
-    border-radius: 0.2rem;
-    color: accent(1);
-    background-color: accent(0.05);  
-}
-
-@include dark {
-    strong { 
-      background-color: accent(0.1);
-    }
-  }
-  
-
-/* -------------- Sub and Sup -------------- */
-
-// Prevent sup and sub elements from altering line height of parent text.
-// Adapted from: https://gist.github.com/unruthless/413930
-
-sub,
-sup {
-    // Specified in % so that the sup/sup is the right 
-    // size relative to the surrounding text.
-    font-size: 0.75em;
-    // Zero out the line-height so that it doesn't interfere 
-    // with the positioning that follows.
-    line-height: 0;
-    // Where the magic happens: makes all browsers position
-    // the sup/sup properly, relative to the surrounding text.
-    position: relative;
-    // Note that if you're using Eric Meyer's reset.css, this
-    // is already set and you can remove this rule.
-    vertical-align: baseline;
-}
-
-sup {
-    // Move the superscripted text up.
-    top: -0.5em;
-}
-
-sub {
-    // Move the subscripted text down, but only half as far 
-    // down as the superscript moved up.
-    bottom: -0.25em;
-}
-

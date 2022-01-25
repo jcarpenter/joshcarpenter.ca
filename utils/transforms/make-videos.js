@@ -26,7 +26,7 @@ module.exports = function (content) {
 
   // Copy media files to destination directory.
   // Update src paths.
-  const sources = $('main article video source')
+  const sources = $('main video source')
   sources.each((index, s) => {
     const src = $(s).attr('src')
     if (!src) return true

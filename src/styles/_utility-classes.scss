@@ -2,9 +2,12 @@
 
 /*
 ========================================================
-Utility classees
+Utility classes
 ========================================================
 */
+
+// NOTE, 1/21/2022: Commented-out classes are unused in the 
+// project. Am keeping them for now, but could delete in future.
 
 // -------------- Wrapper -------------- //
 
@@ -16,25 +19,7 @@ Utility classees
 }
 
 .standard-width {
-  --side-margin: 1.5rem;
-  @include small { 
-      --side-margin: 3rem; 
-  }
-  // @include medium { --side-margin: 3rem; }
-  
-  @include large { 
-    --side-margin: 4rem;
-    max-width: 96rem;
-  }
-  
-  @include xl { 
-      max-width: 118rem; 
-  }
-
-  width: 100%;
-  display: block;
-  padding-left: var(--side-margin);
-  padding-right: var(--side-margin);
+  @include standardWidth;
 }
 
 
@@ -52,98 +37,134 @@ Utility classees
 
 .large-text p,
 p.large-text {
+
+  --text-alpha: 0.7;
+  @include dark { --text-alpha: 0.9; }
   
   // Color
-  color: onBackground(0.7);
-  @include dark { color: onBackground(0.9); }
-  a { color: inherit; }
-  a:hover { color: onBackground(1); }
-  
+  color: onBackground(var(--text-alpha));
+
+  // On larger displays and dark mode, we lighten the weight
   font-weight: 400;
-  // Font size and line-height
+  @include dark {
+    @include medium-screen {
+      font-weight: 300;
+    }
+  }
+
+  // Size and line-height
   @include baselineShiftTypography(
-    $fontSize: fontSize(1), 
+    $fontSize: 1.33rem,
     $lineHeight: 2rem
   );
 
-  @include medium {
-    font-weight: 300;
+  @include medium-screen {
     @include baselineShiftTypography(
       $fontSize: 1.6rem,
       $lineHeight: 2.5rem
     );
   }
 
-  @include xl {
-    @include baselineShiftTypography(
-      $fontSize: 2rem,
-      $lineHeight: 3rem
-    );
-  }
-
+  // Margin
   &:last-of-type {
     margin-bottom: 0rem;
+  }
+
+  // Links
+  a {
+    color: inherit;
+    text-underline-offset: 0.08em;
+    text-decoration-color: onBackground(calc(var(--text-alpha) - 0.4));
+  }
+  
+  a:hover { 
+    color: onBackground(1); 
+    text-decoration-color: onBackground(1);
   }
 }
 
 
 // Body text
 
-*:not(p).body-text > *,
-p.body-text {
+.body-text {
+
+  --text-alpha: 0.8;
   
-  color: onBackground(0.8);
-  font-weight: 400;
+  margin-bottom: 1rem;
+  font-variant-numeric: oldstyle-nums;
+
+  // Color
+  color: onBackground(var(--text-alpha));
+  
   @include baselineShiftTypography(
-    $fontSize: fontSize(1), 
+    $fontSize: 1.333rem, 
     $lineHeight: 2rem
   );
-
-  @include medium {
-    font-weight: 300;
-    @include baselineShiftTypography(
-      $fontSize: 1.333rem, 
-      $lineHeight: 2rem
-    );
-  }
-
-  @include xl {
-    @include baselineShiftTypography(
-      $fontSize: 1.6rem, 
-      $lineHeight: 2.5rem
-    );
-  }
-  
-  &:last-of-type {
-    margin-bottom: 0;
-    @include xl {
-        margin-bottom: 1rem;
+    
+  // On larger displays and dark mode, we lighten the weight
+  font-weight: 400;
+  @include dark {
+    @include medium-screen {
+      font-weight: 300;
     }
   }
+
+  // Links
+  a {
+    color: inherit;
+    text-underline-offset: 0.08em;
+    text-decoration-color: onBackground(calc(var(--text-alpha) - 0.4));
+  }
+  
+  a:hover { 
+    color: onBackground(1); 
+    text-decoration-color: onBackground(1);
+  }
+}
+
+p.body-text:last-of-type,
+.body-text p:last-of-type {
+  margin-bottom: 0;
 }
 
 
 // Small text
 
 .small-text {
+
   @include baselineShiftTypography(
     $fontSize: 1.2rem,
     $lineHeight: 1.75rem,
     $paddingTop: 0rem,
   );
 
-  @include xl {
-    @include baselineShiftTypography(
-      $fontSize: 1.333rem,
-      $lineHeight: 2rem,
-      $paddingTop: 1rem,
-    );
-  }
   margin-bottom: 0;
 
-  // @include monoFont;
-  // text-transform: uppercase;
-  // letter-spacing: 0.05em;
+  // Links
+  a {
+    color: inherit;
+    text-underline-offset: 0.1em;
+    text-decoration-color: inherit;
+  }
+}
+
+// Smaller text
+
+.smaller-text {
+  @include baselineShiftTypography(
+    $fontSize: 1rem,
+    $lineHeight: 1.5rem,
+    $paddingTop: 0rem,
+  );
+
+  margin-bottom: 0;
+
+  // Links
+  a {
+    color: inherit;
+    text-underline-offset: 0.15em;
+    text-decoration-color: inherit;
+  }
 }
 
 
@@ -161,7 +182,7 @@ p.body-text {
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 
-  @include medium {
+  @include medium-screen {
       grid-template-columns: repeat(12, 1fr);
       gap: 2rem;
   }
@@ -172,12 +193,13 @@ p.body-text {
 .grid-2 {
 
   display: grid !important;
-  overflow: hidden;
+  overflow: visible;
+  // overflow: hidden;
 
   grid-template-columns: 1fr;
   gap: 1rem;
 
-  @include medium {
+  @include medium-screen {
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
   }
@@ -188,88 +210,109 @@ p.body-text {
 .cols-left-right-split {
   display: contents;
 
-  *:first-child,
-  *:not(:first-child) { grid-column: 1 / -1; }
+  > *:first-child,
+  > *:not(:first-child) { grid-column: 1 / -1; }
   
-  @include medium {
-    *:first-child,
-    *:not(:first-child) { grid-column: 1 / span 8; }
+  @include medium-screen {
+    > *:first-child,
+    > *:not(:first-child) { grid-column: 1 / span 8; }
   }
 
-  @include large {
-    *:first-child { grid-column: 9 / -1; }
-    *:not(:first-child) { grid-column: 1 / span 7; }
+  @include large-screen {
+    > *:first-child { grid-column: 9 / -1; }
+    > *:not(:first-child) { grid-column: 1 / span 7; }
   }
 }
 
+// .cols-right-left-split {
+//   display: contents;
+
+//   > *:first-child,
+//   > *:not(:first-child) { grid-column: 1 / -1; }
+  
+//   @include medium-screen {
+//     > *:first-child,
+//     > *:not(:first-child) { grid-column: 1 / span 8; }
+//   }
+
+//   @include large-screen {
+//     > *:first-child { grid-column: 1 / span 3; }
+//     > *:not(:first-child) { grid-column: 4 / -1; }
+//   }
+// }
+
+
 .cols-left-half {
   grid-column: 1 / -1;
-  @include medium { grid-column: 1 / span 8; }
-  @include large { grid-column: 1 / span 7; }
+  @include medium-screen { grid-column: 1 / span 8; }
+  @include large-screen { grid-column: 1 / span 7; }
 }
 
 .cols-all {
   grid-column: 1/-1;
 }
 
-// TODO
-// .full-bleed {
-//   grid-column: 1 / -1;
-//   width: 100%;
-//   > * {
-//     width: 100%;
-//     > * {
-//       width: 100%;
-//     }
-//   }
-// }
-
 
 // -------------- Gaps -------------- //
 
-.no-gap { gap: 0 !important; }
 .no-col-gap { column-gap: 0 !important; }
 .no-row-gap { row-gap: 0 !important; }
 
 
+// -------------- Object-fit -------------- //
+
+.of-cover,
+.of-contain {
+  width: 100%;
+  height: 100%;
+}
+
+.of-cover { object-fit: cover !important; }
+.of-contain { object-fit: contain !important; }
+
 // -------------- Aspect ratio -------------- //
 
+.aspect-ratio-5-4,
+.aspect-ratio-3-2,
 .aspect-ratio-16-9,
-.aspect-ratio-16-10 {
-  object-fit: cover;
+.aspect-ratio-16-10,
+.aspect-ratio-185-1 {
   overflow: hidden;
 }
 
-.aspect-ratio-16-9 { aspect-ratio: 16 / 9; }
-.aspect-ratio-16-10 { aspect-ratio: 16 / 10; }
+.aspect-ratio-5-4 { aspect-ratio: 3 / 2; }        // 1.25
+.aspect-ratio-3-2 { aspect-ratio: 3 / 2; }        // 1.5
+.aspect-ratio-16-10 { aspect-ratio: 16 / 10; }    // 1.6
+.aspect-ratio-16-9 { aspect-ratio: 16 / 9; }      // 1.778
+.aspect-ratio-185-1 { aspect-ratio: 1.85 / 1; }   // 1.85
 
 
 // -------------- Padding -------------- //
 
-.p-zero { padding: 0 !important; }
+// .p-zero { padding: 0 !important; }
 .p-small { padding: var(--small-pad) !important; }
-.p-medium { padding: var(--medium-pad) !important; }
+// .p-medium { padding: var(--medium-pad) !important; }
 .p-large { padding: var(--large-pad) !important; }
 
-@include small {
-  .sm-p-zero { padding: 0 !important; }
+@include small-screen {
+  // .sm-p-zero { padding: 0 !important; }
   .sm-p-small { padding: var(--small-pad) !important; }
-  .sm-p-medium { padding: var(--medium-pad) !important; }
-  .sm-p-large { padding: var(--large-pad) !important; }
+  // .sm-p-medium { padding: var(--medium-pad) !important; }
+  // .sm-p-large { padding: var(--large-pad) !important; }
 }
 
-@include medium {
-  .md-p-zero { padding: 0 !important; }
-  .md-p-small { padding: var(--small-pad) !important; }
-  .md-p-medium { padding: var(--medium-pad) !important; }
+@include medium-screen {
+  // .md-p-zero { padding: 0 !important; }
+  // .md-p-small { padding: var(--small-pad) !important; }
+  // .md-p-medium { padding: var(--medium-pad) !important; }
   .md-p-large { padding: var(--large-pad) !important; }
 }
 
-@include large {
-  .lg-p-zero { padding: 0 !important; }
-  .lg-p-small { padding: var(--small-pad) !important; }
-  .lg-p-medium { padding: var(--medium-pad) !important; }
-  .lg-p-large { padding: var(--large-pad) !important; }
+@include large-screen {
+  // .lg-p-zero { padding: 0 !important; }
+  // .lg-p-small { padding: var(--small-pad) !important; }
+  // .lg-p-medium { padding: var(--medium-pad) !important; }
+  // .lg-p-large { padding: var(--large-pad) !important; }
 }
 
 
@@ -280,32 +323,25 @@ p.body-text {
 .mb-medium { margin-bottom: var(--medium-margin) !important; }
 .mb-large { margin-bottom: var(--large-margin) !important; }
 
-@include small {
-  .sm-mb-zero { margin-bottom: 0 !important; }
-  .sm-mb-small { margin-bottom: var(--small-margin) !important; }
-  .sm-mb-medium { margin-bottom: var(--medium-margin) !important; }
-  .sm-mb-large { margin-bottom: var(--large-margin) !important; }
+@include small-screen {
+  // .sm-mb-zero { margin-bottom: 0 !important; }
+  // .sm-mb-small { margin-bottom: var(--small-margin) !important; }
+  // .sm-mb-medium { margin-bottom: var(--medium-margin) !important; }
+  // .sm-mb-large { margin-bottom: var(--large-margin) !important; }
 }
 
-@include medium {
+@include medium-screen {
   .md-mb-zero { margin-bottom: 0 !important; }
-  .md-mb-small { margin-bottom: var(--small-margin) !important; }
-  .md-mb-medium { margin-bottom: var(--medium-margin) !important; }
-  .md-mb-large { margin-bottom: var(--large-margin) !important; }
+  // .md-mb-small { margin-bottom: var(--small-margin) !important; }
+  // .md-mb-medium { margin-bottom: var(--medium-margin) !important; }
+  // .md-mb-large { margin-bottom: var(--large-margin) !important; }
 }
 
-@include large {
+@include large-screen {
   .lg-mb-zero { margin-bottom: 0 !important; }
-  .lg-mb-small { margin-bottom: var(--small-margin) !important; }
-  .lg-mb-medium { margin-bottom: var(--medium-margin) !important; }
+  // .lg-mb-small { margin-bottom: var(--small-margin) !important; }
+  // .lg-mb-medium { margin-bottom: var(--medium-margin) !important; }
   .lg-mb-large { margin-bottom: var(--large-margin) !important; }
-}
-
-
-/* -------------- Misc -------------- */
-
-.smallcaps {
-  font-variant: small-caps;
 }
 
 
@@ -341,27 +377,4 @@ p.body-text {
 [aria-hidden='true'] {
   // display: none;
   visibility: hidden;
-}
-
-
-/* -------------- Thick border -------------- */
-
-.dotted-top-edge {
-  &::before {
-      content: '';
-      height: 1rem;
-      display: block;
-      background-image: 
-          linear-gradient(accent(0.05), accent(0.05)),
-          radial-gradient(accent(0.25) 0.05em, transparent 0);
-      background-size: 
-          cover,
-          0.2em 0.2em;
-      background-position: 
-          top left,
-          top left;
-      background-repeat:
-          no-repeat,
-          repeat; 
-  }
 }

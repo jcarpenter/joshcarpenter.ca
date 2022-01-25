@@ -4,6 +4,7 @@ tags: [climate, resiliency]
 publish: true
 summary: "Notes on the basic science, typical components and sample configurations of residential solar installations."
 image: "img/solar-offgrid-with-generator.png"
+date: 2019-11-26
 ---
 
 ## Basic off-grid system

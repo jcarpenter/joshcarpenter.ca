@@ -3,7 +3,7 @@
 
 /* 
 ========================================================
-FOOTNOTES: LINKS
+FOOTNOTES: LINKS INSIDE CONTENT
 ========================================================
 */
 
@@ -21,30 +21,25 @@ sup.fn {
 /* -------------- Link -------------- */
 
 .fn > a {    
-    font-size: fontSize(0.9);
+    font-size: 0.8em;
     color: onBackground(calc(var(--bodyTextAlpha) - 0.2));
     background: none;
     text-decoration: underline;
     text-decoration-color: inherit;
+    text-underline-offset: 0.1em;
     padding: 0;
     // Push vertical alignment up a few px.
     // Code text is bit smaller than surrounding,
     // So we need to vertically center it.
     line-height: 0;
-    vertical-align: 0.3em;
+    vertical-align: 0.1em;
     border-radius: 0.03rem;
 }
-
-// @include dark {
-//     .fn > a {
-//         background-color: onBackground(0.125);
-//     }
-// }
 
 // Touch: Make target slightly larger
 @media (hover: none) {
     .fn > a {
-        padding: 0em 0.1em;
+        // padding: 0em 0.1em;
         // padding: 0.3em 0.35em 0.2em;
     }
 }
@@ -86,10 +81,10 @@ sup.fn {
 // Counteract any blockquote italics styling
 blockquote .fn > a {
     font-style: normal;
-    color: accent(0.8);
+    color: inherit;
     // background-color: accent(0.075);
     &:focus, &:hover {
-        color: accent(0.9);
+        color: inherit;
     // background-color: accent(0.2);
     }
 }
@@ -99,50 +94,30 @@ blockquote .fn-popup {
 }
 
 
-
-/* -------------- Inside figures -------------- */
-
-// Figcaption text is smaller, so we need to adjust footnote link
-// styling to match
-figcaption .fn > a {
-    font-size: fontSize(0.75);
-}
-// figcaption .fn > a {
-//     background: none;
-//     text-decoration: underline;
-//     text-decoration-color: inherit;
-//     padding: 0;
-
-//     // Push vertical alignment up a few px.
-//     // Code text is bit smaller than surrounding,
-//     // So we need to vertically center it.
-//     line-height: 0;
-//     vertical-align: 0.1em;
-
-//     &:hover {
-//         background: none;
-//     }
-// }
-
-
 /* 
 ========================================================
-FOOTNOTES: POPUP
+FOOTNOTES: POPUP OVER LINK
 ========================================================
 */
 
 .fn-popup {
     @include baselineShiftTypography(
-        $fontSize: fontSize(0.9),
+        $fontSize: 1.2rem,
         $lineHeight: 1.8rem,
     );
     margin-bottom: 0rem;
     white-space: normal;
     padding: 1rem;
-    color: onPopup(0.8);
+    color: onPopup(0.7);
     background-color: popup();
-    a { color: onPopup(0.9); }
-    a:hover { color: onPopup();}  
+    a { 
+        color: onPopup(0.9) !important; 
+        text-decoration-color: onPopup(0.5) !important;
+    }
+    a:hover { 
+        color: onPopup() !important;
+        text-decoration-color: onPopup() !important;
+    }  
 }
 
 // Popup: Desktop and larger touch-based devices
@@ -230,7 +205,7 @@ FOOTNOTES: POPUP
         // border-radius: grid(0.25) grid(0.5) 0 0;
         padding: 1.5rem;
         padding-bottom: 2.5rem;
-        font-size: fontSize(1);
+        font-size: 1.33rem;
         margin-left: 0.5rem;
         margin-right: 0.5rem;
         // line-height: grid(0.75);
@@ -274,12 +249,13 @@ FOOTNOTES: POPUP
 
 /* 
 ========================================================
-Footnotes: Section
+FOOTNOTES: SECTION AT END
 ========================================================
 */
 
-.portfolio #footnotes {
-    margin-top: 10rem;
+#footnotes {
+    @include topBorder(onBackground(0.2));    
+    // margin-top: 4rem;
 }
 
 #footnotes h2 {
@@ -290,34 +266,46 @@ Footnotes: Section
     }
 }
   
-
 #footnotes ol {
-    
-    @include baselineShiftTypography(
-        $fontSize: fontSize(0.9),
-        $lineHeight: 1.75rem,
-    );
     
     margin-bottom: 0rem;
     list-style: none;
     padding-left: 0;
     margin: 0;
+    overflow: visible;
+    
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 1rem;
+ 
+    // One column by default
+    // Two columns on `small` screens
+    // Three columns on `medium` and above screens
+    @include small-screen {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 2rem;
+    }
+    
+    @include medium-screen {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 2rem;
+    }
+
+    @include large-screen {
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 2rem;
+    }
 }
 
 #footnotes ol li {
     
-    grid-column: 1/-1;
-
-    @media (min-width: 768px) {
-        grid-column: span 4;
-    }
-
-    @media (min-width: 1024px) {
-        grid-column: span 3;
-    }
+    list-style: none;
+    position: relative;
+    counter-increment: custom-counter;
 
     margin-left: 2rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 0;
     
     // Prevent contents breaking across columns. */
     // break-inside: avoid;
@@ -328,8 +316,13 @@ Footnotes: Section
 
     // Numeric marker
     &::before {
+        content: counter(custom-counter) '.';
+        position: absolute;
+        font-weight: 500;
+        left: -0.5rem;
+        transform: translateX(-100%);
         font-size: 0.9em;
-        color: accent(1);
+        color: caption(1);
     }
 
     // No margin on last one

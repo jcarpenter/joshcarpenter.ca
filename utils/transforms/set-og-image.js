@@ -21,15 +21,14 @@ module.exports = async function (content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
+  const ogImageTag = $('head meta[property="og:image"]')
 
   // First, see if image was defined frontmatter `image` field.
   // If yes, og:image `content` property will be populated.
-  const src = $('head meta[property="og:image"]').attr('content')
+  const src = $(ogImageTag).attr('content')
   if (src) {
     var { url, width, height } = await getImageDetails(path.basename(src), this.inputPath)
   }
-
-  // console.log(`${src}`.bgBlue, path.basename(this.inputPath))
 
   // Else, if image was not specified in frontmatter (or was not found),
   // use first image from the post.
@@ -48,10 +47,12 @@ module.exports = async function (content) {
   //   var height = 635
   // }
 
-  // Insert meta tags
-  $('head meta[property="og:title"]').before(`<meta property="og:image" content="${url}">`)
-  $('head meta[property="og:image"]').after(`<meta property="og:image:height" content="${height}">`)
-  $('head meta[property="og:image"]').after(`<meta property="og:image:width" content="${width}">`)
+  // Update og:image value to working URL
+  $(ogImageTag).attr('content', url)
+
+  // Add with and height meta tags
+  $(ogImageTag).after(`<meta property="og:image:height" content="${height}">`)
+  $(ogImageTag).after(`<meta property="og:image:width" content="${width}">`)
 
   // Return content
   content = $.html()

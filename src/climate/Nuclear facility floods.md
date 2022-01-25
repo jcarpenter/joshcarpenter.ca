@@ -2,8 +2,9 @@
 title: "Nuclear Facility Flooding"
 tags: [climate, problem]
 publish: true
-summary: "Nuclear power plants are commonly built near the sea. What is their risk exposure to sea level rise and increasing storm severity?"
+summary: "Nuclear power plants are commonly built near the sea. What is their risk exposure to sea level rise and increasing storm severity? A summary from my climate research notes."
 image: "img/fukushima-aerial-gettyimages.jpg"
+last_updated: 2019-11-26
 ---
 
 ![Many nuclear power plants were situated next to the ocean to have ready access to huge volumes of water, and sometimes they were built on land that was not very high above mean sea level. These characteristics may cause problems if ocean levels rise the one or two meters that most climatologists project as a result of climate change. — Aerial view of damage to the Fukushima nuclear power plant. Credit: Getty Images](img/fukushima-aerial-gettyimages.jpg "Photo")
@@ -40,7 +41,7 @@ March 2011 tsunami broke through the Fukushima Daiichi plant’s flood defenses.
 
 ## Designs and regulations are outdated
 
-Older plants did not factor in sea level rise. And current IAEA regulations (2011) say operators “should take into account” 18-59 cm sea level rise by 2100. Per the (outdated) 2007 IPCC AR4 report. Projections of potential sea level rise go considerably higher (see: [Rising Seas](/posts/rising-seas/)).
+Older plants did not factor in sea level rise. And current IAEA regulations (2011) say operators “should take into account” 18-59 cm sea level rise by 2100. Per the (outdated) 2007 IPCC AR4 report. Projections of potential sea level rise go considerably higher (see: [Rising Seas](/rising-seas/)).
 
 [Hinkley Point C](https://en.wikipedia.org/wiki/Hinkley_Point_C_nuclear_power_station) in the UK provides a case study:
 

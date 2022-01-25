@@ -28,14 +28,16 @@ It is (optionally) over-ridden by templates or data files.
     <meta name="robots" content="noindex">
 {% endif %}
 
-<meta name="dcterms.date" content="{{ page.date | date("YYYY-MM-DD") }}"/>
-
 {% if meta.add_social_tags %}
     <!-- Social -->
     <meta property="og:type" content="{{ meta.type }}">
     <meta property="og:title" content="{{ meta.page_title }}">
     <meta property="og:url" content="{{ meta.url }}{{ page.url }}">
     <meta property="og:description" content="{{ meta.summary }}">
+    {# 
+        Working og:image URL is set by set-og-image.js transform,
+        along with corresponding width and height meta tags.
+    #}
     {# Meta.image works same as meta.page_title (see notes above). #}
     <meta property="og:image" content="{{ meta.image }}">
     <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
@@ -62,10 +64,12 @@ It is (optionally) over-ridden by templates or data files.
 #}
 
 <!-- Fonts preload -->
-<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2">
-<link rel="preload" href="/fonts/Inter-Italic.woff2" as="font" type="font/woff2">
-<link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2">
 <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Italic.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Light.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2">
+<link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2">
 
 <!-- Styles -->
 <link rel="stylesheet" href="/styles/main.css">
@@ -114,5 +118,5 @@ E.g. Use red color for the A-Frame portfolio post.
 {% for script in js %}
     <script {% if script.type == 'module'%}type="module" {% endif %}src="/js/{{ script.file }}"></script>
 {% endfor %}
-<script src="/js/toggle-grid.js"></script>
-<script src="/js/crop-to-grid.js"></script>
+{# <script src="/js/toggle-grid.js"></script> #}
+{# <script src="/js/crop-to-grid.js"></script> #}

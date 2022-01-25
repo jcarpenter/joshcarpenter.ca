@@ -5,12 +5,12 @@ const getOptimizedImages = require('../getOptimizedImages')
 const path = require('path')
 
 /**
- * Modify images tags inside main > article to be responsive.
+ * Modify images tags inside `main` to be responsive.
  * For each image, find matching optimmized images (matching
  * file names), and update image tags accordingly:
  * - Convert to <picture>, if there are multiple images.
  * - Add `width` and `height` attributes.
- * - ...e tc
+ * - ...etc
  */
 module.exports = async function (content) {
 
@@ -18,13 +18,15 @@ module.exports = async function (content) {
   // going to write this doc to disk. Perf savings.
   if (!this.outputPath) return content
 
+  console.log(this.outputPath)
+
   // Get all optimized images. These are created by
   // optimizeImages.js build step, before eleventy runs.
   let optimizedImages = getOptimizedImages()
 
   // Find images
   const $ = cheerio.load(content)
-  const images = $('main article img')
+  const images = $('img')
 
   if (!images.length) return content
 
@@ -92,7 +94,6 @@ module.exports = async function (content) {
       $(img).attr('height', matches[0].height)
       $(img).attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
       $(img).attr('decoding', 'async')
-      // console.log(`${source.base}`.green)
       
     } else if (isBitmap && optimizedImages.length > 1) {
 
@@ -114,10 +115,15 @@ module.exports = async function (content) {
 
       // Make fallback `img` element.
       let pic_img = $(`<img src="/img/${large.base}" width="${large.width}" heigth="${large.height}" />`)
-      if ($(img).attr('alt')) pic_img.attr('alt', alt)
-      if ($(img).attr('title')) pic_img.attr('title', title)
+      if ($(img).attr('alt')) pic_img.attr('alt', $(img).attr('alt'))
+      if ($(img).attr('title')) pic_img.attr('title', $(img).attr('title'))
       pic_img.attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
       pic_img.attr('decoding', 'async')
+      
+      // Move data-lightbox attribute to picture
+      if ($(img).attr('data-lightbox') !== undefined) {
+        picture.attr('data-lightbox', 'true')
+      }
 
       // Append all to picture
       picture.append(source_1x)

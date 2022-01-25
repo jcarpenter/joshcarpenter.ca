@@ -2,6 +2,7 @@
 title: "Negative Emissions Technologies"
 tags: [climate, solution]
 publish: false
+date: 2019-11-26
 ---
 
 ==TODO: Read Capital article on UVIC carbon capture tech.==

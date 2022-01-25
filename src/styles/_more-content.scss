@@ -1,0 +1,80 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+More Content
+========================================================
+*/
+
+#more-content > div {
+  overflow: visible !important;
+  @include topBorder(onBackground(0.2));
+  margin-bottom: 4rem;
+}
+
+
+#more-content ul {
+  list-style: none;
+  overflow: visible;
+  padding-left: 0;
+  margin: 0;
+  display: grid;
+  // column-gap: 1rem;
+  // row-gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  @include medium-screen {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+#more-content li {
+  
+  overflow: visible;
+  
+  a.thumb { 
+    aspect-ratio: 3 / 2; 
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      transition: box-shadow 0.25s;
+    }
+    
+    &:hover::before {
+      box-shadow: inset 0 0 0 0.35rem accent(1);
+    }
+  }
+
+  video, picture, img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  a.thumb:hover {
+    // filter: grayscale(0);
+  }
+}
+
+#more-content .caption a {
+  display: inline-block;
+
+  // color: onBackground(calc(var(--bodyTextAlpha) + 0.2));
+  text-underline-offset: 0.2em;
+  text-decoration-color: transparent;
+
+  &:focus-visible,
+  &:hover {
+    color: onBackground(1);
+    text-decoration-color: onBackground(0.5);
+  }
+}

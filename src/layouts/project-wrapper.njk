@@ -1,0 +1,49 @@
+---js
+{
+    eleventyComputed: {
+        meta: {
+            page_title: "{{ title }} - Josh Carpenter, UX Designer",
+            summary: "{{ summary or meta.summary }}",
+            image: "{{ image or meta.image }}",
+            type: "article"
+        }
+    },
+    colors: {
+        accent: {
+            light: "21, 170, 255", // Vibrant blue
+            dark: "21, 170, 255", // Vibrant blue
+        }
+    },
+    css: ["portfolio.css"]
+}
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        {% include "head.njk" %}
+    </head>
+    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+
+        <a href="#title" class="visibility-hidden">Skip to content</a>
+        {% include "navigation.njk" %}
+
+        <main role="main" aria-labelledby="title">
+            
+            <article class="content-wrapper">
+
+                {# ------------ Header & Copy ------------ #}
+                {{ content | safe }}
+
+                {# ------------ Footnotes ------------ #}
+                {% include "footnotes.njk" %}
+
+            </article>
+            
+            {# ------------ About the Author ------------ #}
+            {% include "about-the-author.njk" %}
+            
+        </main>
+        {% include "footer.njk" %}
+        {% include "lightbox.njk" %}
+    </body>
+</html>

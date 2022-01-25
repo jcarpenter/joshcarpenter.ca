@@ -1,0 +1,405 @@
+@use "mixins-and-functions" as *;
+
+// These styles apply only to "copy" areas of text (with the
+// the .copy class). For example, the text of a blog post,
+// or a portfolio page, or of #about-the-author section.
+
+/* 
+========================================================
+COPY STYLES
+========================================================
+*/
+
+.copy {
+
+	/* -------------- Block quote -------------- */
+
+	// Shifted margin is to make room on side for ::before notch (see below).
+	blockquote {
+		margin: 0 0 1rem 0;
+		position: relative;
+	}
+
+	// Border on left side. The ::before element gives us more control.
+	blockquote::before {
+		content: '';
+		background-color: caption(0.45);
+		@include dark {
+			background-color: caption(0.65);
+		}
+		// background-color: accent(0.25);
+		width: 0.15em;
+		position: absolute;
+		height: 100%;
+		border-radius: 2px;
+		box-sizing: content-box;
+		top: 0.8rem;
+		// Reduce height so this visible box only extends as
+		// far as the baseline of the last line. If we don't
+		// do this, it extends to descender and bottom padding.
+		height: calc(100% - 1.6rem);
+	}
+
+	blockquote p {
+		color: caption();
+		padding-left: 2rem;
+		margin: 0 0 1rem;
+
+		// Normal links inside blockquote
+		& > a { 
+			color: inherit;
+			&:hover {
+				// color: accent();
+				filter: brightness(0.8); // Darken on hover
+			}
+		}
+	}
+
+	// Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing.
+	blockquote p:last-of-type {
+		margin-bottom: 0 !important;
+	}
+
+	blockquote strong {
+		color: inherit;
+		filter: brightness(1.2);
+	}
+
+
+	/* -------------- Code -------------- */
+
+	// Code element inside paragraph (as opposed to inside `pre` block)
+	p code {
+		@include monoFont;
+		font-size: 0.9em;
+		padding: 0em 0.2em;
+		border-radius: 0.2em;
+		// Push vertical alignment up a few px.
+		// Code text is bit smaller than surrounding,
+		// So we need to vertically center it.
+		line-height: 0;
+		vertical-align: 0.05em;
+		
+		// Prevent wrapping
+		white-space: nowrap;
+
+		color: inherit;
+		background-color: onBackground(0.08) !important;
+
+	}
+
+	@include dark {
+		p code {
+		//   color: caption(1) !important;
+			color: inherit;
+			background-color: caption(0.2) !important;
+			// filter: brightness(1.2);
+		}  
+	}
+
+
+	/* -------------- h2 -------------- */
+
+	// Copy h2's have a few alterations from base h2 style.
+	h2 {
+
+		// Copy h2's have beefer font weights than
+		// default non-copy style
+		font-weight: 400;
+		@include light { font-weight: 500; }
+
+		// Copy h2's also have more top padding
+		@include baselineShiftTypography(
+			$fontSize: 1.333rem, 
+			$lineHeight: 2rem,
+			$paddingTop: 2rem
+		);
+		
+		margin-top: calc(var(--large-margin) + 1rem);
+		margin-bottom: 1rem;
+
+		border-top-width: 1px;
+		border-top-style: solid;
+
+		// Slightly more border opacity on dark
+		border-top-color: onBackground(0.2);
+		@include dark {
+			border-top-color: onBackground(0.3);
+		}
+
+		// Hide link underlines
+		a {
+			color: inherit;
+			text-decoration-color: transparent;
+		}
+
+		// Override default .copy a hover styles.
+		// We don't want underline or color change.
+		a:hover {
+			color: inherit;
+			text-decoration-color: transparent;
+		}
+	}
+
+	// Add ## before h2:
+	// - Larger screens only (no room on smaller displays)
+	// - Normal posts only (NOT short-posts)
+	@include small-screen {
+
+		h2 a {
+
+			position: relative;
+		
+			&::before {
+				content: '##';
+				font-weight: 500;
+				font-size: 1.0em;
+				color: accent(0.3);
+				left: -0.5rem;
+				transform: translateX(-100%);
+				position: absolute;
+				transition: color 0.15s;
+			}
+
+			&:hover::before {
+				color: accent(1);
+			}
+		}
+	}
+
+	/* -------------- h3 -------------- */
+
+	h3 {
+		@include baselineShiftTypography;
+		margin-bottom: 1rem;
+		font-weight: 500;
+		color: onBackground(1); 
+		@include dark {
+			color: onBackground(1); 
+		}
+	}
+
+	/* -------------- Links -------------- */
+
+	a {
+		text-decoration: underline;
+		text-underline-offset: 0.05em;
+		color: onBackground(var(--bodyTextAlpha));
+		text-decoration-color: onBackground(0.3);
+			
+		// Round border so outline :focus is less harsh
+		// NOTE: Only noticeable on browsers where outline follows 
+		// border-radius. Safari does not, unfortunately.
+		border-radius: 0.05rem;
+
+		&:hover { 
+			color: onBackground(1); 
+			text-decoration-color: onBackground(1);
+		}
+
+		&:active {
+			outline: none;
+			color: onBackground(1);
+			background-color: onBackground(0.1);   
+		}
+	}
+
+
+	@media (max-width: 480px) {
+		a {
+			font-weight: 500;
+		}
+	}
+
+	/* -------------- Lists  -------------- */
+
+	ol, ul { 
+		padding-left: 0rem;
+	}
+
+	// Top-level lists
+	& > ol,
+	& > ul {
+		margin-bottom: 1rem;
+	}
+
+	// Marker indent from left:
+	// Mobile: Markers flush left
+	// Desktop: Markers indented slightly.
+	@media (max-width: 480px) {
+		& > ol,
+		& > ul { 
+			margin-left: 0; 
+		}
+	}
+
+	// @media (min-width: 481px) {
+	//     & > ol,
+	//     & > ul { 
+	//         margin-left: 1rem;
+	//     }
+	// }
+
+	// Nested lists
+	& > * ul,
+	& > * ol {
+		// padding: 0;
+		// Reduce vertical margin (to keep consistent)
+		margin-top: 1rem;
+	}
+
+	& > ul li:last-of-type,
+	& > ol li:last-of-type {
+		margin-bottom: 0;
+	}
+
+	li {
+		margin-bottom: 1rem;
+
+		p {
+			// Add bit more vertical spacing between list items that
+			// contain paragraphs. Remove all other padding and margins
+			// (parent list items already provide margin)
+			padding: 0;
+			margin: 0 0 2rem;
+		}
+	} 
+
+	// Remove margin-bottom from paragrapah inside last list item 
+	// of top-level list, or else the top-level list
+	* > li:last-of-type p {
+		margin-bottom: 0;
+	}
+
+	// Numbers and bullets:
+	// We use ::before inside of ::marker, because we're extremely
+	// limited in how we can style the later. 
+	li {
+		list-style: none;
+		position: relative;
+		margin-left: 2rem;
+		// margin-left: 0;
+		&::before {
+			position: absolute;
+		}
+	}
+
+	ol {
+		counter-reset: custom-counter;
+		li {
+			counter-increment: custom-counter;
+		}
+	}
+
+	// <ol> numbers
+	ol li::before {
+		content: counter(custom-counter) '.';
+		font-weight: 500;
+		font-size: 1em;
+		left: -0.9rem;
+		transform: translateX(-100%);
+		// Push vertical alignment up a few px.
+		// Code text is bit smaller than surrounding,
+		// So we need to vertically center it.
+		// line-height: 0;
+		// vertical-align: 0.05em;
+		color: inherit;
+		@include dark  {
+			color: caption(1);
+		}
+	}
+
+	// <ul> bullets
+	ul li::before {
+		content: '•';
+		left: -1.75rem;
+		font-weight: 600;
+		// Increase size slightly
+		font-size: 1.1em;
+		// Nudge upwards by half the value of the size increase
+		// to vertically center the bullet (or else it's too low).
+		margin-top: -0.06em;
+		color: inherit;
+		@include dark  {
+			color: caption(1);
+		}
+	}
+
+	// Nested lists
+	& > ol * li::before,
+	& > ul * li::before {
+		color: caption(1);
+		@include dark  {
+			color: caption(0.8);
+		}
+	}
+
+	/* -------------- Pre -------------- */
+
+	// TODO
+	pre {
+		padding: 0.5rem 0.8rem;
+		// padding-left: 0.8rem;
+		// padding-right: 0.8rem;
+		background-color: accent(0.1);
+		// Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
+		// margin-top: 0 !important;
+		margin-bottom: 2rem;
+		border: none !important;
+		border-radius: 0.2em;
+
+		code {
+			@include baselineShiftTypography(
+				$fontSize: 1.2rem
+			);
+			@include monoFont;
+			white-space: pre-wrap !important;
+			margin-bottom: 1rem;
+		}
+	}
+
+	/* -------------- Strong  -------------- */
+
+	strong {
+		font-weight: 600;
+		color: inheit;
+		@include dark {
+			border-radius: 0.2rem;
+			padding: 0 0.2rem;
+			background-color: onBackground(0.05);
+		}
+	}
+
+	/* -------------- Sub and Sup -------------- */
+
+	// Prevent sup and sub elements from altering line height of parent text.
+	// Adapted from: https://gist.github.com/unruthless/413930
+
+	sub,
+	sup {
+		// Specified in % so that the sup/sup is the right 
+		// size relative to the surrounding text.
+		font-size: 0.75em;
+		// Zero out the line-height so that it doesn't interfere 
+		// with the positioning that follows.
+		line-height: 0;
+		// Where the magic happens: makes all browsers position
+		// the sup/sup properly, relative to the surrounding text.
+		position: relative;
+		// Note that if you're using Eric Meyer's reset.css, this
+		// is already set and you can remove this rule.
+		vertical-align: baseline;
+	}
+
+	sup {
+		// Move the superscripted text up.
+		top: -0.5em;
+	}
+
+	sub {
+		// Move the subscripted text down, but only half as far 
+		// down as the superscript moved up.
+		bottom: -0.25em;
+	}
+}
+

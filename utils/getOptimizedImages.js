@@ -33,7 +33,5 @@ module.exports = function () {
     })
   })
 
-  // console.log(images)
-
   return images
 }

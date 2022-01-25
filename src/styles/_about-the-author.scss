@@ -6,18 +6,37 @@ ABOUT THE AUTHOR
 ========================================================
 */
 
+#about-the-author h2 {
+  flex-basis: 100%;
+}
+
 #about-the-author > div {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin: 2rem 0;
-  color: onBackground();
-  text-shadow: 1px 1px 5px background(0.5);
-  @include dotBackground(0.1, 0.03);
-  
-  p { 
-      @include baselineShiftTypography(
-          $paddingTop: 1rem,
-      );
-      margin-bottom: 1rem;
+  @include topBorder(accent(1));
+  margin-top: calc(var(--large-margin) * 2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: visible !important;
+  margin-bottom: var(--large-margin);
+}
+
+#about-the-author #photo {
+  position: relative;
+  margin: 0 4rem 2rem 0;
+  // flex: 0 0 auto;
+
+  img {
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    background-color: accent(0.1);
   }
 }
+
+#about-the-author #bio {  
+  p {
+    max-width: 66ex;
+    padding-top: 0 !important;
+  }
+}
+

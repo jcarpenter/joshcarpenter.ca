@@ -4,8 +4,9 @@
     tags: ["ux"],
     publish: true,
     image: "img/ffos-billboard.jpg",
-    summary: "Interaction design for Mozilla's web based mobile operating system. Designed 2012-2013 while I was an Interaction Design lead.",
+    summary: "Interaction design for Mozilla's web based mobile operating system, Firefox OS, from 2012-2013 while I was an Interaction Design lead.",
     permalink: "/firefox-os/",
+    year: 2012,
     colors: {
         accent: {
             light: "249, 116, 43", // FFOS orange
@@ -15,15 +16,17 @@
 }
 ---
 
-<header class="grid-12">
+{# ------------ Header ------------ #}
+
+<header class="standard-width grid-12">
     <h1 id="title">{{ title }}</h1>
     <div class="intro large-text">
         <p>
-            Firefox OS was Mozilla’s attempt to build a mobile operating system from web technologies. I joined the team in 2012 to design the initial proof-of-concept, then stayed on as Interaction Design lead for versions 1 and 2. I am particularly proud of the “Haida”^[So named after the <a href="https://en.wikipedia.org/wiki/Haida_people">Haida</a> indigenous peoples of British Columbia, Canada, where I grew up. I've since learned better than to appropriate the names of entire peoples for something as tacky as a product codename—or anything else—and I regret the choice.] concept we created for version 2. It stepped out of the shadow of iOS and Android design conventions and defined a uniquely webby experience, where using the phone was as seamless and low-friction as browsing the web. Haida successfully anticipated features that later became part of Android and iOS, such as edge gestures and instant apps.
+            Firefox OS was Mozilla’s attempt to build a mobile operating system from web technologies. I joined the team to design the initial proof-of-concept, then stayed on as Interaction Design lead for versions 1 and 2. I am particularly proud of the "uniquely web" user experience we^[<a href="https://gordonbrander.com">Gordon Brander</a> and myself] defined for version 2. Our objective was the to bring the seamless feel of browsing the web to a mobile OS. The results anticipated features that would become standard in later verisons of Android and iOS, including edge gestures and system-wide search.
         </p>
-        <p>
+        {# <p>
             Firefox OS ultimately failed in the market was discontinued, but it lives on today in <a href="https://www.kaiostech.com/">KaiOS</a> phones around the world, and in Panasonic smart TVs, both of which run on forks of the open source Firefox OS <a href="https://github.com/mozilla-b2g/B2G">core</a>.
-        </p>
+        </p> #}
     </div>
     <div class="metadata small-text">
         <time>2012/13</time>, <span class="role">Mozilla</span><br>
@@ -31,55 +34,62 @@
     </div>
 </header>
 
-{# ----- Billboard ----- #}
 
-<div>
-    <img src="img/ffos-billboard.jpg"></img>
-    <p class="caption small-text">Billboard for the Firefox OS 1.0 launch</p>
-</div>
+{# ------------ Body ------------ #}
 
-{# ----- Gestures and Camera ----- #}
+<section id="body" class="standard-width copy" aria-label="Article body">    
 
-<div class="grid-2 no-col-gap">
-    <div class="mb-large md-mb-zero">
-        <div class="md-p-large" style="background: #E1E1E1">
-            <video playsinline autoplay loop muted style="max-height: 60rem">
-                <source src="video/ffos-gestures.webm" type="video/webm; codecs=vp9,opus"></source>
-                <source src="video/ffos-gestures.mp4" type="video/mp4"></source>
-            </video>
-        </div>
-        <p class="caption small-text">Firefox OS 2.0: Gestures</p>
-    </div>
+    {# ----- Billboard ----- #}
+
     <div>
-        <div class="md-p-large" style="background: #E1E1E1">
-            <video playsinline autoplay loop muted style="max-height: 60rem">
-                <source src="video/ffos-camera.webm" type="video/webm; codecs=vp9,opus"></source>
-                <source src="video/ffos-camera.mp4" type="video/mp4"></source>
-            </video>
-        </div>
-        <p class="caption small-text">Firefox OS 2.0: Camera app</p>
+        <img src="img/ffos-billboard.jpg" data-lightbox></img>
+        <p class="caption small-text">Billboard for the Firefox OS 1.0 launch</p>
     </div>
-</div>
 
-{# ----- B2G Screens ----- #}
+    {# ----- Gestures and Camera ----- #}
 
-<div class="grid-12 body-text">
-    <p class="cols-left-half">
-        Before Firefox OS became a real project, there was a proof-of-concept prototype, built hastily in advance of Mobile World Congress 2012 to show the world that a mobile operating system could be built on the web stack. I joined the effort to help create icons, and ended up designing the full interface. While <em>very</em> rushed (the home screen was slapped togther in one night in a hotel room in Paris) and dated, I think overall it holds up well.
-    </p>
-</div>
+    <div class="grid-2 no-col-gap">
+        <div class="mb-large md-mb-zero">
+            <div class="md-p-large" style="background: #E1E1E1" data-lightbox>
+                <video playsinline autoplay loop muted style="max-height: 60rem">
+                    <source src="video/ffos-gestures.webm" type="video/webm; codecs=vp9,opus"></source>
+                    <source src="video/ffos-gestures.mp4" type="video/mp4"></source>
+                </video>
+            </div>
+            <p class="caption small-text">Firefox OS 2.0: Gestures</p>
+        </div>
+        <div>
+            <div class="md-p-large" style="background: #E1E1E1" data-lightbox>
+                <video playsinline autoplay loop muted style="max-height: 60rem">
+                    <source src="video/ffos-camera.webm" type="video/webm; codecs=vp9,opus"></source>
+                    <source src="video/ffos-camera.mp4" type="video/mp4"></source>
+                </video>
+            </div>
+            <p class="caption small-text">Firefox OS 2.0: Camera app</p>
+        </div>
+    </div>
 
-<div class="">
-    <img src="img/b2g_screens_1.jpg"></img>
-    <p class="caption small-text">Early Firefox OS prototype: Phone, Messages, and Camera</p>
-</div>
+    {# ----- B2G Screens ----- #}
 
-<div class="">
-    <img src="img/b2g_screens_3.jpg"></img>
-    <p class="caption small-text">Early Firefox OS prototype: Lock screen, Settings, and Browser</p>
-</div>
+    <div class="grid-12 body-text">
+        <p class="cols-left-half">
+            Before Firefox OS became a real project, there was a proof-of-concept prototype, built hastily in advance of Mobile World Congress 2012 to show the world that a mobile operating system could be built on the web stack. I joined the effort to help create icons, and ended up designing the full interface. While <em>very</em> rushed (the home screen was slapped togther in one night in a hotel room in Paris) and dated, I think overall it holds up well.
+        </p>
+    </div>
 
-<div class="">
-    <img src="img/b2g_videoplayer.jpg"></img>
-    <p class="caption small-text">Early Firefox OS prototype: Video player</p>
-</div>
+    <div class="">
+        <img src="img/b2g_screens_1.jpg" data-lightbox></img>
+        <p class="caption small-text">Early Firefox OS prototype: Phone, Messages, and Camera</p>
+    </div>
+
+    <div class="">
+        <img src="img/b2g_screens_3.jpg" data-lightbox></img>
+        <p class="caption small-text">Early Firefox OS prototype: Lock screen, Settings, and Browser</p>
+    </div>
+
+    <div class="">
+        <img src="img/b2g_videoplayer.jpg" data-lightbox></img>
+        <p class="caption small-text">Early Firefox OS prototype: Video player</p>
+    </div>
+
+</section>

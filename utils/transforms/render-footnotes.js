@@ -36,10 +36,10 @@ module.exports = function (content) {
 
   const $ = cheerio.load(content)
   const paragraphs = $(`
-    main > article p, 
-    main > article li, 
-    main > article figcaption, 
-    main > article td`
+    article p, 
+    article li, 
+    article figcaption, 
+    article td`
   )
 
 

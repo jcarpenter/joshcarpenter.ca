@@ -5,7 +5,10 @@ const MarkdownIt = require("markdown-it")
 const markdownItAnchor = require("markdown-it-anchor")
 const markdownItAttrs = require("markdown-it-attrs")
 const markdownItBracketedSpans = require("markdown-it-bracketed-spans")
+const markdownItClass = require("@toycode/markdown-it-class")
 const markdownItDiv = require("markdown-it-div")
+// const markdownItForInline = require("markdown-it-for-inline")
+const markdownItModifyToken = require("markdown-it-modify-token")
 const markdownItImplicitFigures = require("markdown-it-implicit-figures")
 const markdownItMarks = require("markdown-it-mark")
 const markdownItSub = require("markdown-it-sub")
@@ -152,78 +155,56 @@ module.exports = function (eleventyConfig) {
 
   // Format dates.
   // Uses https://www.npmjs.com/package/nunjucks-date-filter
+  // And momentjs formats: https://momentjs.com/docs/#/displaying/format/
+  // E.g: Posted on {{ page.date | date("MMM D YYYY") }}.
+  // "Posted on Dec 28 2021"
   eleventyConfig.addFilter("date", dateFilter)
 
 
   // -------- Collections -------- //
   // Define custom collections
 
-  // Make collections for certain tag combinations
+  // Make portfolio collection
+  eleventyConfig.addCollection("portfolio", (collection) => 
+    collection.getFilteredByTags("ux")
+      .filter((post) => post.data.publish)
+      .sort((a, b) => b.data.year - a.data.year)
+  )
+
+  // Make collection for climate posts
   // 1) Sort alphabetically
-  // 2) Filter out posts with specific tags (e.g. "hide")
-  
+  // 2) Filter out posts marked 'publish: false'
   eleventyConfig.addCollection("climate", (collection) =>
-    collection.getFilteredByTags('climate',)
+    collection.getFilteredByTags("climate",)
+      .filter((post) => post.data.publish)
+      // Sort alphabetically
+      // .sort((a, b) => {
+      //   if (a.data.title > b.data.title) {
+      //     return 1
+      //   } else if (a.data.title < b.data.title) {
+      //     return -1
+      //   } else {
+      //     return 0
+      //   }
+      // })
+      // Put 'explainer' posts at top
       .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
+        if (a.data.tags.includes("explainer")) {
+          return -1
+        } else {
+          return 1
+        }
       })
-      .filter(post => post.data.publish)
+      // Put 'highlight' posts at top
+      .sort((a, b) => {
+        if (a.data.tags.includes("explainer")) {
+          return -1
+        } else {
+          return 1
+        }
+      })
   )
   
-  eleventyConfig.addCollection("climateImpacts", (collection) =>
-    collection.getFilteredByTags('climate', 'problem')
-      .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
-      })
-      .filter(post => !post.data.tags.includes("hide"))
-      .filter(post => !post.data.tags.includes("canada"))
-  )
-
-  eleventyConfig.addCollection("climateImpactsCanada", (collection) =>
-    collection.getFilteredByTags('climate', 'problem', 'canada')
-      .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
-      })
-      .filter(post => !post.data.tags.includes("hide"))
-  )
-
-  eleventyConfig.addCollection("climateSolutions", (collection) =>
-    collection.getFilteredByTags('climate', 'solution')
-      .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
-      })
-      .filter(post => !post.data.tags.includes("hide"))
-  )
-
-  eleventyConfig.addCollection("climateResiliency", (collection) =>
-    collection.getFilteredByTags('climate', 'resiliency')
-      .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
-      })
-      .filter(post => !post.data.tags.includes("hide"))
-  )
-
-  eleventyConfig.addCollection("other", (collection) =>
-    collection.getFilteredByGlob("src/posts/*.md")
-      .sort((a, b) => {
-        if (a.data.title > b.data.title) return 1
-        else if (a.data.title < b.data.title) return -1
-        else return 0
-      })
-      .filter(post => !post.data.tags.includes("hide"))
-      .filter(post => !post.data.tags.includes("climate"))
-  )
-
 
   // ========================================================
   // CONVERT MARKDOWN TO HTML
@@ -239,12 +220,29 @@ module.exports = function (eleventyConfig) {
     linkify: true,
     typographer: true,
     quotes: '“”‘’',
+    modifyToken: function(token, env) {
+      switch (token.type) {
+        // Add `data-lightbox` attribute to images
+        case 'image': {
+          token.attrObj['data-lightbox'] = true
+        }
+      }
+    }
   })
 
   // Improve permalinks with uslug
   // Per docs: https://github.com/valeriangalliat/markdown-it-anchor#unicode-support
   // const uslug = require('uslug')
-  // const uslugify = (s) => uslug(s)
+  // const uslugify = (s) => uslug(s) 
+
+  // Add classes
+  md.use(markdownItClass, {
+    blockquote: "body-text",
+    p: "body-text",
+    ul: "body-text",
+    ol: "body-text",
+    figcaption: "small-text"
+  })
 
   // Add marks with `==...===`
   md.use(markdownItMarks)
@@ -278,6 +276,17 @@ module.exports = function (eleventyConfig) {
     figcaption: true
   })
 
+  // Add data-lightbox attribute to figures
+  md.use(markdownItModifyToken)
+
+  // Add data-lightbox attribute to figures 
+  // (Alternative to using markdown-it-modify-token plugin)
+  // md.renderer.rules.figure_open = function (tokens, idx, options, env, self) {
+  //   tokens[idx].attrPush(['data-lightbox', true]); // add new attribute
+  //   // Pass token to default renderer
+  //   return self.renderToken(tokens, idx, options);
+  // }
+  
 
 
   // -------------- Register markdown-it as library with 11ty -------------- //
@@ -292,7 +301,6 @@ module.exports = function (eleventyConfig) {
   // ========================================================
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
-  // eleventyConfig.addTransform("addLightbox", addLightbox)
   eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
   eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   eleventyConfig.addTransform("removeTodos", removeTodos)
@@ -304,6 +312,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("flagShortPosts", flagShortPosts)
   eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
   eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
+  eleventyConfig.addTransform("addLightbox", addLightbox)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
   eleventyConfig.addTransform("setMetaTags", setOgImage)
 

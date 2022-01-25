@@ -2,7 +2,7 @@
 
 /* 
 ========================================================
-Figure: Layout
+FIGURES
 ========================================================
 */
 
@@ -15,7 +15,7 @@ Figure: Layout
 // - Figure and caption align with standard-width
 //   content.
 // - Media is rounded
-#content figure {
+.copy figure {
 
     padding-top: 1rem;
     margin: 0 0 2rem;
@@ -25,10 +25,10 @@ Figure: Layout
 
     // Under 500px: Add margin to figcaption
     // to align it with standard-width content.
-    figcaption { 
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }
+    // figcaption { 
+    //     margin-left: 2rem;
+    //     margin-right: 2rem;
+    // }
     
     // No rounding
     img, video, iframe, picture { border-radius: 0; }
@@ -57,7 +57,7 @@ Figure: Layout
 // - Caption remains aligned.
 // Over 750px:
 // - Media is rounded
-.wide-images #content figure {
+.wide-images .copy figure {
 
     @media (min-width: 500px) {
 
@@ -81,13 +81,10 @@ Figure: Layout
     }
 }
 
-/* 
-========================================================
-Figure: Media
-========================================================
-*/
 
-#content figure {
+// -------------- Media -------------- //
+
+.copy figure {
     img, video, iframe, picture {
     
         // Ensure media container expands to fit parent container.
@@ -142,44 +139,32 @@ Figure: Media
 //     transition-timing-function: ease-in;
 // }
 
-/* 
-========================================================
-Figure: Caption
-========================================================
-*/
 
-#content figcaption {
-    font-weight: 500;
+// -------------- Caption -------------- //
+
+.copy figcaption {
+    font-weight: 400;
     
     // Add hyphenation
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
-  
-    @include baselineShiftTypography(
-        $fontSize: fontSize(0.9),
-        $lineHeight: 1.8rem,
-    );
-
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
 
     // Figcaption adds a bit of visual padding to the bottom
     // of the figure. Too much. So we pull up subsequent
     // content to close the gap, for consistency.
-    margin-bottom: -1rem;
+    // margin-bottom: -1rem;
 
-    color: onBackground(calc(var(--bodyTextAlpha) - 0.25)); 
+    color: caption(1);
+    // background-color: caption(0.2);
 }
 
 
-/* 
-========================================================
-Figure: Lightbox
-========================================================
-*/
+// -------------- Lightbox -------------- //
 
 // We add this class to img, picture and video elements.
 // Clicking them opens the lightbox.
-#content figure .opens-lightbox {
+.copy figure .opens-lightbox {
     cursor: pointer;
 }

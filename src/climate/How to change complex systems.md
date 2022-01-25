@@ -2,6 +2,7 @@
 title: "Complex Systems"
 tags: [climate, hearts and minds]
 publish: false
+date: 2019-11-26
 ---
 
 ## Complexity can lead to paralysis in the face of change, and then collapse
