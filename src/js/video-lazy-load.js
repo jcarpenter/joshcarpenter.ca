@@ -7,29 +7,29 @@ and copy into it the value of `data-src`. The video then loads.
 From: https://web.dev/lazy-loading-video/#video-gif-replacement
 */
 
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+document.addEventListener('DOMContentLoaded', function() {
+  const lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'))
 
-  if ("IntersectionObserver" in window) {
-    var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+  if ('IntersectionObserver' in window) {
+    const lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
       entries.forEach(function(video) {
         if (video.isIntersecting) {
-          for (var source in video.target.children) {
-            var videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
+          for (const source in video.target.children) {
+            const videoSource = video.target.children[source]
+            if (typeof videoSource.tagName === 'string' && videoSource.tagName === 'SOURCE') {
+              videoSource.src = videoSource.dataset.src
             }
           }
 
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
+          video.target.load()
+          video.target.classList.remove('lazy')
+          lazyVideoObserver.unobserve(video.target)
         }
-      });
-    });
+      })
+    })
 
     lazyVideos.forEach(function(lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
+      lazyVideoObserver.observe(lazyVideo)
+    })
   }
-});
+})

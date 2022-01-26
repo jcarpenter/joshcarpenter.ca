@@ -1,4 +1,4 @@
-(function (window, document) {
+(function(window, document) {
   'use strict'
 
   let lightbox
@@ -26,7 +26,6 @@
    * @param {boolean} animate - Animate on scroll? False to jump instantly.
    */
   function selectItemByIndex(index = 1, animate = true) {
-
     // Update variable
     indexOfActiveItem = index
 
@@ -39,18 +38,18 @@
     const li = list.querySelector(`:scope > li:nth-child(${index})`)
 
     // li.classList.add('selected')
-    // const otherItems = list.querySelectorAll(`:scope > li:not(:nth-child(${index}))`) 
+    // const otherItems = list.querySelectorAll(`:scope > li:not(:nth-child(${index}))`)
     // otherItems.forEach((item) => {
     //   item.classList.remove('selected')
     // })
 
-    // Get all list items 
+    // Get all list items
     const items = list.querySelectorAll(':scope > li')
 
     // Scroll to selected list item
     if (!animate) {
       // To jump instantly (instead of animated scroll)
-      // we modify scrollBehavior to not animate, 
+      // we modify scrollBehavior to not animate,
       // scroll, then re-enable. animation.
       list.style.scrollBehavior = 'auto'
       li.scrollIntoView()
@@ -107,15 +106,13 @@
   // -------- Show / Close -------- //
 
   function openLightbox() {
-
     lightbox.setAttribute('aria-hidden', 'false')
 
     // Get all the data-lightbox elements
     // These are either a media element, or a wrapper around a media element.
     const thumbs = document.querySelectorAll('[data-lightbox]')
-    
+
     thumbs.forEach((thumb, index) => {
-      
       // Get the media element associated with the thumb.
       // This is either the thumb itself, or a child inside the thumb,
       // (as in case where we wrap the media in a div, or some such).
@@ -183,7 +180,7 @@
     // or users will see a jump.
     background.addEventListener('transitionend', () => {
       disableDocScrolling()
-    }, { once: true })
+    }, {once: true})
 
 
     // Focus the list
@@ -193,7 +190,6 @@
 
 
   function closeLightbox() {
-
     // Stop intersection observer from observing all targets
     observer.disconnect()
 
@@ -318,9 +314,7 @@
 
   function onIntersection(entries) {
     entries.forEach((entry) => {
-
       if (entry.isIntersecting) {
-
         // Update variable
         indexOfActiveItem = parseInt(entry.target.dataset.index)
 
@@ -337,7 +331,6 @@
       // } else if (isVideo && !entry.isIntersecting) {
       //   // const video = entry.target.querySelector('video')
       // }
-
     })
 
     // Update arrows
@@ -357,7 +350,6 @@
 
 
   function setup() {
-
     // Get elements
     lightbox = document.getElementById('lightbox')
     close = lightbox.querySelector('button#close')
@@ -372,7 +364,7 @@
     // See tab() and shiftTab() functions
     firstFocusableEl = close
     lastFocusableEl = end
-    
+
     const thumbs = document.querySelectorAll('[data-lightbox]')
 
     thumbs.forEach((thumb, index) => {
@@ -393,8 +385,8 @@
     // - Add attributes, classes
     // - Add event listener so they open on click
     // const mediaElements = document.querySelectorAll(`
-    //   article #body picture, 
-    //   article #body video, 
+    //   article #body picture,
+    //   article #body video,
     //   article #body *:not(picture) > img
     // `)
 
@@ -424,9 +416,9 @@
       // watch for intersection relative to the viewport.
       root: null,
 
-      // Threshold of intersection between the target element 
+      // Threshold of intersection between the target element
       // and its root. When reached, callback function is called.
-      threshold: 0.5
+      threshold: 0.5,
 
     })
 

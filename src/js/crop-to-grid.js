@@ -87,7 +87,6 @@ function getCroppableElements() {
  * 3) set `height` property to new value
  */
 function cropElementToGrid(element) {
-   
   element.style.height = null
 
   // Get grid unit height.
@@ -100,10 +99,10 @@ function cropElementToGrid(element) {
 
   // Calculate new height. Round UP to the next grid line.
   // This will make the new height LARGER than the previous.
-  // The sides may get cropped a bit, thanks to 
+  // The sides may get cropped a bit, thanks to
   // object-fit: cover
   let newHeightInRem = Math.ceil(originalHeight / gridUnitHeightInPx)
-  
+
   // Special case: for footnotes, add a rem to avoid
   // wrapping list items.
   if (element.parentElement.id == 'footnotes') newHeightInRem++

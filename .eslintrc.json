@@ -13,6 +13,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "guard-for-in": "off",
         "semi": ["error", "never"],
         "require-jsdoc": "off",
         "max-len": "off",

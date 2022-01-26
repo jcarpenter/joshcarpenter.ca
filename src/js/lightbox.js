@@ -289,7 +289,6 @@
    * - There are figures with data-lightbox=true
    */
   function setup() {
-
     // Is viewport is large enough?
     const islargeEnough = isViewportLargeEnough()
     if (!islargeEnough) return
@@ -326,7 +325,6 @@
 
     // For each `data-lightbox` figure...
     figures.forEach((figure, index) => {
-      
       // Store relevant information in a new object in the `items` array
       const media = figure.querySelector('picture, img, video')
 
