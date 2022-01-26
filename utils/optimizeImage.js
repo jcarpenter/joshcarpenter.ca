@@ -96,13 +96,13 @@ async function makeBitmap(source) {
   } else if (source.width >= 1200) {
 
     // Create small (900) variation
-    const outputPath = path.resolve('_site/img', `${source.name}-900.jpg`)
-    if (!fs.existsSync(outputPath)) {
-      await sharp(source.path)
-        .resize(900)
-        .jpeg({ quality: 90 })
-        .toFile(outputPath)
-    }
+    // const outputPath = path.resolve('_site/img', `${source.name}-900.jpg`)
+    // if (!fs.existsSync(outputPath)) {
+    //   await sharp(source.path)
+    //     .resize(900)
+    //     .jpeg({ quality: 90 })
+    //     .toFile(outputPath)
+    // }
 
     // Create large variation
     // If original is >1700, resize down to 1600.

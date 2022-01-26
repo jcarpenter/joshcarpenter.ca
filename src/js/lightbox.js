@@ -215,10 +215,12 @@ TODO: Click background to close.
     // Stop scrolling while lightbox is open
     // Wait until background fades in to do this,
     // or users will see a jump.
-    background.addEventListener('transitionend', () => {
-      disableDocScrolling()
-    }, {once: true})
-
+    // background.addEventListener('transitionend', () => {
+    //   disableDocScrolling()
+    // }, {once: true})
+    
+    // Stop scrolling while lightbox is open
+    disableDocScrolling()
 
     // Focus the list
     list.focus()

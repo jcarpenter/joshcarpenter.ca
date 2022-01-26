@@ -86,54 +86,73 @@ module.exports = async function (content) {
 
       // TODO
 
-    } else if (isBitmap && matches.length == 1) {
-
-      // Update img attributes
-      $(img).attr('src', `/img/${matches[0].base}`)
-      $(img).attr('width', matches[0].width)
-      $(img).attr('height', matches[0].height)
-      $(img).attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
-      $(img).attr('decoding', 'async')
+    } else if (isBitmap) {
       
-    } else if (isBitmap && optimizedImages.length > 1) {
-
+      // Sort matchest from small to large
       matches.sort((a, b) => {
-        // Sort matchest from small to large
         if (a.width < b.width) return -1
         if (a.width > b.width) return 1
         return 0
       })
 
-      const small = matches[0]
       const large = matches[matches.length - 1]
 
-      // Make `picture` element
-      let picture = $('<picture></picture>')
-      let source_1x = $(`<source srcset="/img/${small.base}" media="(-webkit-max-device-pixel-ratio: 1)" />`)
-      let source_23x_small = $(`<source srcset="/img/${small.base}" media="(-webkit-min-device-pixel-ratio: 2) and (max-width: 450px)" />`)
-      let source_23x_large = $(`<source srcset="/img/${large.base}" media="(-webkit-min-device-pixel-ratio: 2) and (min-width: 451px)" />`)
+      // Update img attributes
+      $(img).attr('src', `/img/${large.base}`)
+      $(img).attr('width', large.width)
+      $(img).attr('height', large.height)
+      $(img).attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
+      $(img).attr('decoding', 'async')
 
-      // Make fallback `img` element.
-      let pic_img = $(`<img src="/img/${large.base}" width="${large.width}" heigth="${large.height}" />`)
-      if ($(img).attr('alt')) pic_img.attr('alt', $(img).attr('alt'))
-      if ($(img).attr('title')) pic_img.attr('title', $(img).attr('title'))
-      pic_img.attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
-      pic_img.attr('decoding', 'async')
-      
-      // Move data-lightbox attribute to picture
-      if ($(img).attr('data-lightbox') !== undefined) {
-        picture.attr('data-lightbox', 'true')
-      }
-
-      // Append all to picture
-      picture.append(source_1x)
-      picture.append(source_23x_small)
-      picture.append(source_23x_large)
-      picture.append(pic_img)
-
-      // Replace img with picture
-      $(img).replaceWith(picture)
     }
+    // } else if (isBitmap && matches.length == 1) {
+
+    //   // Update img attributes
+    //   $(img).attr('src', `/img/${matches[0].base}`)
+    //   $(img).attr('width', matches[0].width)
+    //   $(img).attr('height', matches[0].height)
+    //   $(img).attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
+    //   $(img).attr('decoding', 'async')
+      
+    // } else if (isBitmap && optimizedImages.length > 1) {
+
+    //   matches.sort((a, b) => {
+    //     // Sort matchest from small to large
+    //     if (a.width < b.width) return -1
+    //     if (a.width > b.width) return 1
+    //     return 0
+    //   })
+
+    //   const small = matches[0]
+    //   const large = matches[matches.length - 1]
+
+    //   // Make `picture` element
+    //   let picture = $('<picture></picture>')
+    //   let source_1x = $(`<source srcset="/img/${small.base}" media="(-webkit-max-device-pixel-ratio: 1)" />`)
+    //   let source_23x_small = $(`<source srcset="/img/${small.base}" media="(-webkit-min-device-pixel-ratio: 2) and (max-width: 450px)" />`)
+    //   let source_23x_large = $(`<source srcset="/img/${large.base}" media="(-webkit-min-device-pixel-ratio: 2) and (min-width: 451px)" />`)
+
+    //   // Make fallback `img` element.
+    //   let pic_img = $(`<img src="/img/${large.base}" width="${large.width}" heigth="${large.height}" />`)
+    //   if ($(img).attr('alt')) pic_img.attr('alt', $(img).attr('alt'))
+    //   if ($(img).attr('title')) pic_img.attr('title', $(img).attr('title'))
+    //   pic_img.attr('loading', `${isFirstImage ? 'eager' : 'lazy'}`)
+    //   pic_img.attr('decoding', 'async')
+      
+    //   // Move data-lightbox attribute to picture
+    //   if ($(img).attr('data-lightbox') !== undefined) {
+    //     picture.attr('data-lightbox', 'true')
+    //   }
+
+    //   // Append all to picture
+    //   picture.append(source_1x)
+    //   picture.append(source_23x_small)
+    //   picture.append(source_23x_large)
+    //   picture.append(pic_img)
+
+    //   // Replace img with picture
+    //   $(img).replaceWith(picture)
+    // }
 
   })
 
