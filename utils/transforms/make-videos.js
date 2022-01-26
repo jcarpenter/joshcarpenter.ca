@@ -85,14 +85,15 @@ module.exports = function (content) {
     // Else, throw warning.
     const poster = $(video).attr('poster')
     if (poster == undefined) {
-      // Throw warning
+      // If poster attribute is missing, throw warning
       console.warn(`A video is missing a poster attribute in: ${this.outputPath}`.yellow, '- [make-videos.js]')
     } else {
       
+      // If poster attribute is present, confirm it exists...
+
       const posterPath = path.resolve(inputDir, poster)
       const posterExists = fs.existsSync(posterPath)
       
-      // Else, copy to destination directory
       if (!posterExists) {
         
         // If specified poster image does not exist, throw warning
@@ -108,10 +109,12 @@ module.exports = function (content) {
         const { width, height, type } = imageSize(posterPath)
         if (type == 'png') {
           optimizePosterAsJpeg(posterPath, '_site/video')
-          $(video).attr('poster', '/' + poster.replace(path.extname(poster), '.jpg'))
+          const filename = path.parse(poster).name + '.jpg'
+          $(video).attr('poster', `/video/${filename}`)
         } else {
           copyMediaToDestination(posterPath, '_site/video')
-          $(video).attr('poster', '/' + poster)
+          const filename = path.basename(poster)
+          $(video).attr('poster', '/video/' + filename)
         }
       }
     }
