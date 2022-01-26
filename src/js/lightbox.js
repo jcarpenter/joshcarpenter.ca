@@ -351,8 +351,6 @@
       figure.prepend(button)
     })
 
-    console.log(items)
-
     // Add event listeners
     close.onclick = () => closeLightbox()
     background.onclick = () => closeLightbox()

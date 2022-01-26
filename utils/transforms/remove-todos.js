@@ -3,8 +3,8 @@ const cheerio = require('cheerio')
 const containsTodoRE = /TODO/
 
 /**
- * Remove marks that contain TODOs
- * Also remove parent nodes made empty in process.
+ * Remove TODOs inside mark tags. I use these as notes to 
+ * myself, and need to remove them from final output.
  */
 module.exports = function (content) {
   
@@ -24,21 +24,11 @@ module.exports = function (content) {
     const text = $(mark).text()
     const containsTodo = containsTodoRE.test(text)
     if (containsTodo) $(mark).remove()
-
-    //// Determine what to remove
-    // const isOnlyChildOfParent = $(mark).parent().children().length == 1
-    // if (containsTodo) { 
-    //   if (isOnlyChildOfParent) {
-    //     $(mark).parent().remove()
-    //   } else {
-    //     $(mark).remove()
-    //   }
-    // }
   })
 
   // Remove empty elements left when marks were removed
   // E.g. <p><mark>...</mark></p> --> <p></p>
-  const empties = $('#post #content p:empty')
+  const empties = $('article #body p:empty')
   empties.each((index, e) => $(e).remove())
 
   content = $.html()

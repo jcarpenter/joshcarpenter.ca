@@ -7,7 +7,7 @@ const { optimize: svgo } = require('svgo')
 
 /**
  * Generate optimized version(s) of specified image 
- * to output _site/img directory.
+ * to output `_site/img` directory.
  * @param {*} sourcePath - Absolute local file path
  */
 module.exports = async function (sourcePath) {

@@ -2,9 +2,15 @@ const colors = require('colors')
 const cheerio = require('cheerio')
 const fs = require('fs')
 const path = require('path')
+const imageSize = require('image-size')
+const sharp = require('sharp')
 
 /**
- * Copy source files to destination and update src paths.
+ * Prep video elements by:
+ * - Copy source files to destination and update `src` paths
+ * - Make autoplay videos lazy-loading, using this technique:
+ *   https://web.dev/lazy-loading-video/#video-gif-replacement
+ * - Optimizing poster images
  */
 module.exports = function (content) {
 
@@ -13,37 +19,126 @@ module.exports = function (content) {
   if (!this.outputPath) return content
 
   // Get input paths
-  const inputPath = this.inputPath
-  const inputDir = path.dirname(inputPath) //E.g: src/notes/ocean.md --> src/notes/
+  const inputDir = path.dirname(this.inputPath) //E.g: src/notes/ocean.md --> src/notes/
 
   const $ = cheerio.load(content)
+  const videos = $('main video')
+  
+  // If there are no videos, return
+  if (!videos.length) return content
+  
+  // For each video...
+  videos.each((index, video) => {
 
-  // Wrap video elements in figures, if they're not already.
-  // const videosWithoutFigures = $('main article *:not(figure) video')
-  // videosWithoutFigures.each((index, v) => {
-  //   $(v).wrap('<figure></figure>')
-  // })
 
-  // Copy media files to destination directory.
-  // Update src paths.
-  const sources = $('main video source')
-  sources.each((index, s) => {
-    const src = $(s).attr('src')
-    if (!src) return true
-    const sourcePath = path.resolve(inputDir, src)
-    const sourceExists = fs.existsSync(sourcePath)
-    if (!sourceExists) {
-      console.warn(`Media not found: ${src}`.yellow, '- [make-videos.js]')
-      return true
+    // --------- Copy video and update source --------- //
+    
+    // For each <source>...
+    // - Copy media files to destination directory.
+    // - Update src paths (change to data-src)
+    const sources = $(video).find('source')
+    sources.each((i, source) => {
+      
+      const src = $(source).attr('src')
+      if (!src) {
+        console.warn(`Video src attribute missing`.yellow, '- [make-videos.js]')
+        return true
+      }
+
+      const sourcePath = path.resolve(inputDir, src)
+      const sourceExists = fs.existsSync(sourcePath)
+      if (!sourceExists) {
+        console.warn(`Video source not found: ${src}`.yellow, '- [make-videos.js]')
+        return true
+      }
+      
+      // Copy video to destination
+      copyMediaToDestination(sourcePath, '_site/video')
+
+      // Update src path
+      $(source).attr('src', `/video/${path.basename(src)}`)      
+    })
+
+
+    // --------- Make autoplay videos lazy-loading --------- //
+
+    const isAutoplay = $(video).attr('autoplay') 
+    if (isAutoplay) {
+      // Add `lazy` class
+      $(video).addClass('lazy')
+      // Copy `srv` value to `data-src`, then delete `src`
+      sources.each((i, source) => {
+        $(source).attr('data-src', $(source).attr('src'))
+        $(source).removeAttr('src')
+      })
+      // Add video-lazy-load.js, if it doesn't already exist
+      const scriptAlreadyExists = $('head script[src*=video-lazy-load]').length
+      if (!scriptAlreadyExists) {
+        $('head').append('<script src="/js/video-lazy-load.js"></script>')
+      }
     }
-    copyMediaToDestination(sourcePath, '_site/video')
-    $(s).attr('src', `/video/${path.basename(src)}`)
+
+
+    // --------- Optimize poster images --------- //
+
+    // If video has `poster` attribute, optimize image and update path
+    // Else, throw warning.
+    const poster = $(video).attr('poster')
+    if (poster == undefined) {
+      // Throw warning
+      console.warn(`A video is missing a poster attribute in: ${this.outputPath}`.yellow, '- [make-videos.js]')
+    } else {
+      
+      const posterPath = path.resolve(inputDir, poster)
+      const posterExists = fs.existsSync(posterPath)
+      
+      // Else, copy to destination directory
+      if (!posterExists) {
+        
+        // If specified poster image does not exist, throw warning
+        console.warn(`Video poster image not found: ${poster} in ${this.inputPath}`.yellow, '- [make-videos.js]')
+
+      } else {
+        
+        // If poster image does exist, load it with imageSize,
+        // and either optimize as JPEG (if it's a PNG), or 
+        // simply copy to output direcory (if it's already JPEG).
+        // Then update poster attribute if necessary,
+        // and add `width` and `height` attributes.
+        const { width, height, type } = imageSize(posterPath)
+        if (type == 'png') {
+          optimizePosterAsJpeg(posterPath, '_site/video')
+          $(video).attr('poster', '/' + poster.replace(path.extname(poster), '.jpg'))
+        } else {
+          copyMediaToDestination(posterPath, '_site/video')
+          $(video).attr('poster', '/' + poster)
+        }
+      }
+    }
   })
 
   content = $.html()
   return content
 }
 
+/**
+ * Save a PNG poster image as a JPEG
+ * @param {*} posterPath 
+ * @param {*} destinationDirectory 
+ */
+async function optimizePosterAsJpeg(posterPath, destinationDirectory) {
+
+  const outputFilename = path.parse(posterPath).name + '.jpg'
+  const outputPath = path.resolve(destinationDirectory, outputFilename)
+  
+  await sharp(posterPath)
+    .resize({
+      width: 1000,
+      withoutEnlargement: true
+    })
+    .jpeg({ quality: 80 })
+    .toFile(outputPath)
+}
 
 /**
  * Copy media from source to destination

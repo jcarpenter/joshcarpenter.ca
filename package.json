@@ -8,14 +8,6 @@
         "url": "https://github.com/jcarpenter/joshcarpenter.ca"
     },
     "scripts": {
-        "fetch-covid19-stats": "node utils/fetch-covid19-stats.js && bash utils/old/push-update.sh",
-        "fetch-climate-notes:prep": "rm -rf src/notes/tmp",
-        "fetch-climate-notes:clone": "git clone -b exported https://github.com/jcarpenter/climate-research.git src/notes/tmp",
-        "fetch-climate-notes:update-notes": "node utils/fetch-climate-posts/update-notes.js",
-        "fetch-climate-notes:move-notes": "cpy 'src/notes/tmp/*' 'src/notes'",
-        "fetch-climate-notes:move-images": "node utils/fetch-climate-posts/move-images.js",
-        "fetch-climate-notes:cleanup": "rm -rf src/notes/tmp",
-        "fetch-climate-notes": "run-s fetch-climate-notes:*",
         "clean": "rm -rf _site && mkdir _site",
         "copy:prism": "cpy 'src/styles/prism/**' '_site/styles/prism'",
         "copy:fonts": "cpy 'src/fonts/**' '_site/fonts'",
@@ -73,8 +65,6 @@
         "markdown-it-attrs": "^4.0.0",
         "markdown-it-bracketed-spans": "^1.0.1",
         "markdown-it-div": "^1.1.0",
-        "markdown-it-for-inline": "^0.1.1",
-        "markdown-it-header-sections": "^1.0.0",
         "markdown-it-implicit-figures": "^0.10.0",
         "markdown-it-mark": "^3.0.1",
         "markdown-it-modify-token": "^1.0.2",

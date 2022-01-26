@@ -7,15 +7,11 @@ const markdownItAttrs = require("markdown-it-attrs")
 const markdownItBracketedSpans = require("markdown-it-bracketed-spans")
 const markdownItClass = require("@toycode/markdown-it-class")
 const markdownItDiv = require("markdown-it-div")
-// const markdownItForInline = require("markdown-it-for-inline")
 const markdownItModifyToken = require("markdown-it-modify-token")
 const markdownItImplicitFigures = require("markdown-it-implicit-figures")
 const markdownItMarks = require("markdown-it-mark")
 const markdownItSub = require("markdown-it-sub")
 const markdownItSup = require("markdown-it-sup")
-
-// Plugins
-// const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 
 // Filters
 const dateFilter = require("nunjucks-date-filter")
@@ -23,7 +19,6 @@ const slugify = require("slugify")
 
 // Transforms
 const addLightbox = require('./utils/transforms/add-lightbox')
-const flagShortPosts = require('./utils/transforms/flag-short-posts')
 const hangingPunctuation = require('./utils/transforms/hanging-punctuation')
 const makeImagesResponsive = require('./utils/transforms/make-images-responsive')
 const makeVideos = require('./utils/transforms/make-videos')
@@ -105,10 +100,19 @@ module.exports = function (eleventyConfig) {
   }
 
 
+  // -------- Ignore files -------- //
+  // Tell eleventy to ignore certain files.
+  // Am doing it here instead of an .eleventyIgnore file.
+  // Docs: https://www.11ty.dev/docs/ignores/
+
+  eleventyConfig.ignores.add("README.md")
+
+
   // -------- Enable Deep Data Merge -------- //
   // This feature allows additive tags (combine tags from multiple levels of the data cascade, instead of replacing them). It may have unintended side effects, however.
   // Per: https://www.11ty.dev/docs/data-deep-merge/
   // Per: https://www.11ty.dev/docs/data-cascade/
+  // As of 1.0, this is on by default.
 
   eleventyConfig.setDataDeepMerge(true)
 
@@ -116,12 +120,6 @@ module.exports = function (eleventyConfig) {
   // -------- Passthrough file copy -------- //
   // Copy files and directories to output directories
   // NOTE: I've switched to using npm for this.
-
-
-  // -------- Plugins -------- //
-  // Custom code that Eleventy imports from an external repository
-
-  // eleventyConfig.addPlugin(syntaxHighlight)
 
 
   // -------- Filters -------- //
@@ -309,12 +307,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("modifyIframes", modifyIframes)
   eleventyConfig.addTransform("makeVideos", makeVideos)
   eleventyConfig.addTransform("modifyFigures", modifyFigures)
-  eleventyConfig.addTransform("flagShortPosts", flagShortPosts)
   eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
   eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
   eleventyConfig.addTransform("addLightbox", addLightbox)
-  // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
   eleventyConfig.addTransform("setMetaTags", setOgImage)
+  // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
 
 
 

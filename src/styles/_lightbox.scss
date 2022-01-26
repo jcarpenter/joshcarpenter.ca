@@ -7,46 +7,35 @@ Lightbox
 ========================================================
 */
 
-body {
 
-    // Lightbox closed
-    &:not(.lightbox-open) {
-        background-color: background(1);
-        transition: background-color calc(var(--lightboxFadeOutDuration) / 2) ease-out;
-    }
-    
-    // Lightbox open
-    &.lightbox-open {
-        background-color: rgba(var(--lightboxBackgroundColor), 1);
-        transition: background-color var(--lightboxFadeInDuration) ease-out var(--lightboxFadeInDuration);
-    }
-}
+/* -------------- Thumbs -------------- */
 
-/* -------------- Thumbnail -------------- */
+[data-lightbox] {
+  @include outline-on-focus;
+	transition: color 0.15s, text-decoration-color 0.15s;
 
-figure > button {
-    border: none;
-    margin: 0;
-    padding: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
     cursor: pointer;
-    font-size: 0;
-    aspect-ratio: auto;
-    display: inline-grid; // Putting this on button and on parent figure eliminates pesky extra margin below child image.
-
-
-    &:focus {
-        outline: none;
-    }
-
-    // Highlight child media element when button is focused
-    & > * {
-        transition: outline 250ms;
-        outline-color: transparent;
-    }
-
-    &:focus > * {
-        @include outline-thin;
-    }
+  }
+ 
+  // &::before {
+  //   content: '';
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   position: absolute;
+  //   z-index: 2;
+  //   transition: box-shadow 0.25s;
+  // }
+  
+  // &:hover::before {
+  //   box-shadow: inset 0 0 0 0.35rem accent(1);
+  // }
 }
 
 /* -------------- Transition -------------- */
@@ -54,150 +43,245 @@ figure > button {
 // We're just defining visibility transition delays here. `visibility:hidden` is set by a top-level `[aria-hidden="true"]` selector. When aria-hidden=true, we delay visibility long enough for opacity tweens to finish.
 
 #lightbox[aria-hidden="true"] {
-    transition: visibility 0.5s;
+  transition: visibility var(--lightboxFadeOutDuration);
 }
 
 // When aria-hidden != true, we flip visibility immediately, so opacity tweens can start.
 #lightbox {
-    transition: visibility 0s;
+  transition: visibility 0s;
 }
 
-/* -------------- Media & Captions -------------- */
-
-#lightbox {
-    .item {
-        align-items: center;
-        bottom: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        left: 0;
-        opacity: 0;
-        padding: grid(2) grid(0.5) grid(1);
-        pointer-events: none;
-        position: fixed;
-        right: 0;
-        top: 0;
-        transition-timing-function: ease-out;
-        transition: opacity 0.1s;
-        z-index: 1;
-    }
-
-    .item.open {
-        opacity: 1;
-        transition-timing-function: ease-in;
-    }
-
-    .media {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-
-        img {
-            pointer-events: all;
-            z-index: 1;
-            max-width: 100%;
-            height: auto;
-        }
-    }
-
-    .caption {
-        pointer-events: all;
-        color: foreground(0.3);
-        flex: 0 1 auto;
-        margin-top: grid(1);
-        max-width: 64em;
-        z-index: 1;
-    }
-
-    // Tweaked version of note styles
-    .fn button {
-        background-color: foreground(0.7);
-        color: foreground(0.3);
-    }
-
-    .fn:hover button {
-        background-color: foreground(0.5);
-    }
-}
 
 /* -------------- Controls -------------- */
 
 #lightbox > button {
-    background-color: transparent;
-    cursor: pointer;
-    margin: 0;
-    opacity: 0.4;
-    pointer-events: initial;
-    position: fixed;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
+  opacity: 0.4;
+  pointer-events: initial;
+  position: fixed;
+  border-radius: 0.2rem;
+  z-index: 12;
+  opacity: 0.5;
+  
+  @include outline-on-focus;
+	transition: color 0.15s, text-decoration-color 0.15s, outline 250ms, opacity 100ms;
 
-    &:hover {
-        opacity: 1;
-    }
+  // &:focus-visible {
+  //     @include outline-thin;
+  //     outline-color: rgba(var(--lightboxForegroundColor), 0.7);
+  // }
 
-    &[aria-disabled="true"] {
-        opacity: 0.15;
-        pointer-events: none;
-    }
+  &:disabled {
+    cursor: initial;
+    opacity: 0.08;
+  }
 
-    img {
-        width: grid(1);
-        height: auto;
-    }
+  &:enabled:hover {
+      opacity: 1;
+  }
+
+  &[aria-disabled="true"] {
+      opacity: 0.15;
+      pointer-events: none;
+  }
+
+  img {
+      width: 2rem;
+      height: 2rem;
+  }
 }
 
 #lightbox {
-    #prev,
-    #next,
-    #close {
-        top: grid(0.5);
-    }
 
-    #close {
-        left: grid(0.5);
-    }
+  #prev,
+  #next,
+  #close {
+      top: 1rem;
+  }
 
-    #prev {
-        right: grid(1.5);
-    }
+  #close {
+      left: 1rem;
+  }
 
-    #next {
-        right: grid(0.5);
-        transform: rotateZ(180deg);
-    }
+  #prev {
+      right: 3rem;
+  }
 
-    // #leftSideOfImage {
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0;
-    //     width: 25%;
-    //     height: 100%;
-    //     background-color: rgba(255, 0, 0, 0.5);
-    //     z-index: 2;
-    // }
+  #next {
+      right: 1rem;
+      transform: rotateZ(180deg)  ;
+  }
 }
+
+
+/* -------------- Media & Captions -------------- */
+
+#lightbox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  flex: none;
+  flex-flow: row nowrap;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  z-index: 11;
+
+  &:focus {
+    outline: none;
+  }
+  
+}
+
+#lightbox li {
+  // background-color: rgba(140, 20, 20, 0.5);
+  // border: 1px solid white;
+  
+  width: 100vw;
+  flex: none;
+  font-size: 20rem;
+  color: white;
+  // Create gap between items.
+  // It will not be visible when at rest.
+  margin: 0 2rem; 
+  padding: 1rem 0;
+  overflow: hidden;
+  scroll-snap-align: center;
+  // Disallow free scrolling. Always increment by one stop.
+  scroll-snap-stop: always;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  
+  &::before {
+    content: initial;
+  }
+  
+  &.loaded {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+  }
+  
+  &:not(.loaded) {
+    transition: opacity 0.1s ease-in;
+    opacity: 0.2;
+  }
+
+  @media (min-width: 480px) {
+    padding: 6rem 2rem 3rem;
+  }
+
+  @media (min-width: 1000px) {
+    padding: 6rem 6rem 3rem;
+  }
+}
+
+
+#lightbox div.container {
+
+  width: 100%;
+  height: 100%;
+  max-width: 200rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // overflow: hidden;
+  
+  // > * {
+  //   box-shadow: 0 0 10px red;
+  // }
+
+  > img, video, iframe {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    // object-fit: contain;
+    // Need to set this, or else media taller than avaialble 
+    // height will not shrink to fit, and figcaption will be
+    // pushed off the page. min-height is usually 0 by default,
+    // but with flex it's `auto` (is my understanding).
+    min-height: 0;
+  }
+
+  > img {
+    object-fit: contain;
+  }
+
+  // picture { 
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   overflow: hidden;
+  //   width: 100%;
+
+  //   source, img {
+  //     display: block;
+  //     width: 100%;
+  //     height: auto;
+  //     max-height: 100%;
+  //     object-fit: contain;
+  //   }
+  // }
+}
+
+#lightbox div.caption  {
+  flex: none;
+  font-size: 1.33rem;
+  line-height: 2rem;
+  max-width: 64rem;
+  padding: 2rem 1rem 0rem;
+  color: rgba(var(--lightboxForegroundColor), 0.5);
+
+  @media (min-width: 480px) {
+    padding: 2rem 0 0;
+  }
+}
+
 
 /* -------------- Background -------------- */
 
 #lightbox[aria-hidden="true"] #background {
-    opacity: 0;
-    transition: opacity 0.2s ease-in;
+  opacity: 0;
+  transition: opacity var(--lightboxFadeOutDuration) ease-in;
 }
 
 #lightbox #background {
-    background-color: rgba(20, 20, 20, 0.92);
-    bottom: 0;
-    cursor: default;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 0;
-    opacity: 1;
-    transition: opacity 0.2s ease-out;
+  background-color: rgba(var(--lightboxBackgroundColor), 1);
+  // backdrop-filter: blur(2px);
+  // bottom: 0;
+  cursor: default;
+  position: fixed;
+  top: 0;
+  left: 0;
+  // bottom: 0;
+  // right: 0;
+  width: 100%;
+  height: 100%; 
+  z-index: 10;
+  opacity: 1;
+  transition: opacity var(--lightboxFadeInDuration) ease-out;
 }

@@ -21,6 +21,7 @@ const citekeyComponentsRE = /(?<prefix>[^\n\[\]\(\)]*?)?@(?<id>[a-zA-Z0-9_][^\s,
 // Demo: https://regex101.com/r/33mvVe/1
 const footnotesRE = /\s?\^\[.*?\](?!.?\])/gm
 
+
 /**
  * Find markdown footnotes inside output HTML content, and render as HTML.
  * We could have used a Markdown-It plugin to render our footnotes, but 

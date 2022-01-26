@@ -1,7 +1,4 @@
 const cheerio = require('cheerio')
-const path = require('path')
-
-// const path = require('path')
 
 /**
  * Append lightbox.js script if the page contains 
@@ -14,7 +11,7 @@ module.exports = function(content) {
   if (!this.outputPath) return content
 
   const $ = cheerio.load(content)
-  const tableHeads = $('#post #content table thead')
+  const tableHeads = $('article #body table thead')
 
   tableHeads.each((index, thead) => { 
     const text = $(thead).text()

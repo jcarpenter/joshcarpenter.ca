@@ -5,9 +5,9 @@ const getOptimizedImages = require('../getOptimizedImages')
 const path = require('path')
 
 /**
- * Modify images tags inside `main` to be responsive.
- * For each image, find matching optimmized images (matching
- * file names), and update image tags accordingly:
+ * Modify image elements to be responsive.
+ * For each image element, get `src`, and find matching files
+ * in img output directory, then update element accordingly:
  * - Convert to <picture>, if there are multiple images.
  * - Add `width` and `height` attributes.
  * - ...etc
@@ -18,20 +18,20 @@ module.exports = async function (content) {
   // going to write this doc to disk. Perf savings.
   if (!this.outputPath) return content
 
-  console.log(this.outputPath)
-
   // Get all optimized images. These are created by
   // optimizeImages.js build step, before eleventy runs.
   let optimizedImages = getOptimizedImages()
 
-  // Find images
+  // Find image elements in HTML
   const $ = cheerio.load(content)
   const images = $('img')
 
   if (!images.length) return content
 
-  // Find images with matching names in output img directory
-  // Based on images we find, make image responsive.
+  // For each image element...
+  // - Find matching image files in output directory
+  // - Do (or do not) make image element responsive,
+  //   depending on the image files we find.
   images.each((index, img) => {
 
     const src = $(img).attr('src')

@@ -35,10 +35,11 @@ It is (optionally) over-ridden by templates or data files.
     <meta property="og:url" content="{{ meta.url }}{{ page.url }}">
     <meta property="og:description" content="{{ meta.summary }}">
     {# 
-        Working og:image URL is set by set-og-image.js transform,
-        along with corresponding width and height meta tags.
+        Initial og:image is set by frontmatter `image` field.
+        It's then updated to a full working URL on joshcarpenter.ca
+        by the set-og-image.js transform, along with corresponding 
+        width and height meta tags.
     #}
-    {# Meta.image works same as meta.page_title (see notes above). #}
     <meta property="og:image" content="{{ meta.image }}">
     <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
     <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">

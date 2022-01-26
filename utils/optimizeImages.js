@@ -10,16 +10,21 @@ const { default: imageSize } = require('image-size')
 // Demo: https://regex101.com/r/qi8ysh/1/
 const imageInMarkdownImplicitFigureRE = /^!\[.*\]\((?<src>[^\s\)]*)[\s|\)]/gm
 
-// Find images in html
-// Demo: https://regex101.com/r/OA1DgE/1
+// Find images in HTML. With `src` group.
+// Demo: https://regex101.com/r/8EhoSo/1
 const imageInHtmlRE = /<img\s[^>]*?src\s*=\s*['\"](?<src>[^'\"]*?)['\"][^>]*?>/gm
 
+// Find videos in HTML. With `poster` group.
+// Demo: https://regex101.com/r/fq8uke/1
+const videoInHtmlRE = /<video\s[^>]*?poster\s*=\s*['\"](?<poster>[^'\"]*?)['\"][^>]*?>/gm
+
 /**
- * Make array of images in src/ markdown and nunjuck docs
- * - Full local paths to images
- * - Confirmed to exist on disk by `fs`
- * - De-duped
- * - Only `publish: true`
+ * Return array of images in src/ markdown and nunjuck templates:
+ * - Markdown: Find images inside figures
+ * - Nunjucks: Find images inside img and video posters.
+ * Ignore templates without `publish: true` in frontmatter.
+ * Get full local paths to images. And de-dupe.
+ * Warn on images that aren't found on disk.
  */
 async function getPostImages() {
 
@@ -50,15 +55,21 @@ async function getPostImages() {
     if (path.extname(post) == '.md') {
       // Markdown posts...
       const { content } = matter.read(post)
+      // Find in figures
       for (const match of content.matchAll(imageInMarkdownImplicitFigureRE)) {
         postImages.push(match.groups.src)
       }
     } else if (path.extname(post) == '.njk') {
       // Nunjucks posts...
       const content = fs.readFileSync(post, 'utf-8')
+      // Find in img `src`
       for (const match of content.matchAll(imageInHtmlRE)) {
         postImages.push(match.groups.src)
       }
+      // Find in video `poster`
+      // for (const match of content.matchAll(videoInHtmlRE)) {
+      //   postImages.push(match.groups.poster)
+      // }
     }
 
     // Also get image in frontmatter `image` field (if present)
@@ -90,11 +101,10 @@ async function getPostImages() {
 
 
 /**
- * Generate optimized versions of images and 
- * output to _site/img directory.
+ * Output optimized versions of images to `_site/img` directory.
  * Find images in:
- * - src/img/
- * - `publish: true` markdown files (including frontmatter `image`)
+ * - Markdown and Nunjucks templates marked `publish: true`
+ * - The `src/img/` directory
  */
 (async function() {
 
@@ -106,7 +116,7 @@ async function getPostImages() {
   // Array of images to optimize.
   // Each entry is string with absolute local path
   let images = []
-  // Get images from posts
+  // Get images from markdown and nunjucks posts
   images.push(...await getPostImages())
   // Get images from src/img directory
   images.push(...await globby("./src/img/**", { absolute: true }))
