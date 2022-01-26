@@ -38,17 +38,26 @@ Lightbox
   // }
 }
 
+/* -------------- Placeholders -------------- */
+
+.lightbox-placeholder {
+  // display: none;
+  background: pink;
+  // min-height: 2rem;
+  // width: 100%;
+}
+
 /* -------------- Transition -------------- */
 
 // We're just defining visibility transition delays here. `visibility:hidden` is set by a top-level `[aria-hidden="true"]` selector. When aria-hidden=true, we delay visibility long enough for opacity tweens to finish.
 
 #lightbox[aria-hidden="true"] {
-  transition: visibility var(--lightboxFadeOutDuration);
+  // transition: visibility var(--lightboxFadeOutDuration);
 }
 
 // When aria-hidden != true, we flip visibility immediately, so opacity tweens can start.
 #lightbox {
-  transition: visibility 0s;
+  // transition: visibility 0s;
 }
 
 
@@ -68,7 +77,7 @@ Lightbox
   opacity: 0.5;
   
   @include outline-on-focus;
-	transition: color 0.15s, text-decoration-color 0.15s, outline 250ms, opacity 100ms;
+	transition: color 0.15s, text-decoration-color 0.15s;
 
   // &:focus-visible {
   //     @include outline-thin;
@@ -176,12 +185,12 @@ Lightbox
   }
   
   &.loaded {
-    transition: opacity 0.3s ease-in-out;
+    // transition: opacity 0.3s ease-in-out;
     opacity: 1;
   }
   
   &:not(.loaded) {
-    transition: opacity 0.1s ease-in;
+    // transition: opacity 0.1s ease-in;
     opacity: 0.2;
   }
 
@@ -199,14 +208,14 @@ Lightbox
 
   width: 100%;
   height: 100%;
-  max-width: 200rem;
+  max-width: 160rem;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // overflow: hidden;
+  overflow: hidden;
   
   // > * {
   //   box-shadow: 0 0 10px red;
@@ -230,22 +239,22 @@ Lightbox
     object-fit: contain;
   }
 
-  // picture { 
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  //   overflow: hidden;
-  //   width: 100%;
+  picture { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
 
-  //   source, img {
-  //     display: block;
-  //     width: 100%;
-  //     height: auto;
-  //     max-height: 100%;
-  //     object-fit: contain;
-  //   }
-  // }
+    source, img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
 }
 
 #lightbox div.caption  {
@@ -266,7 +275,7 @@ Lightbox
 
 #lightbox[aria-hidden="true"] #background {
   opacity: 0;
-  transition: opacity var(--lightboxFadeOutDuration) ease-in;
+  // transition: opacity var(--lightboxFadeOutDuration) ease-in;
 }
 
 #lightbox #background {
@@ -283,5 +292,5 @@ Lightbox
   height: 100%; 
   z-index: 10;
   opacity: 1;
-  transition: opacity var(--lightboxFadeInDuration) ease-out;
+  // transition: opacity var(--lightboxFadeInDuration) ease-out;
 }

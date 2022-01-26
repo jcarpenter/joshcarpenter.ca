@@ -1,13 +1,21 @@
+/*
+Basic lightbox. Supports swiping through images with mouse or touch.
+TODO: Fix missing area at bottom on iOS (+15?).
+TODO: Swipe down to close.
+TODO: Click background to close.
+*/
+
 (function(window, document) {
   'use strict'
 
-  // Elements
   let lightbox
   let close
   let prev
   let next
-  let background
+  let list
   let end
+  let background
+  let observer
   const items = []
   let firstFocusableEl
   let lastFocusableEl
@@ -20,175 +28,65 @@
   // -------- Load -------- //
 
   /**
-   * Clone element. Into a holder div.
-   * Holder is removed when transition on it ends and it doesn't have `open` class.
-   * Holder > Media is populated with `src` version of image.
-   * We clone the original img element, then remove responsive attributes.
+   * Scroll to the <li> specified by `index`.
+   * @param {*} index - Index of <li> to load
+   * @param {boolean} animate - Animate on scroll? False to jump instantly.
    */
-  function loadItemByIndex(index) {
-    // Create elements
-    const item = document.createElement('div')
-    const mediaWrapper = document.createElement('div')
-    const caption = document.createElement('div')
-    item.classList.add('item')
-    mediaWrapper.classList.add('media')
-    caption.classList.add('caption')
-    item.appendChild(mediaWrapper)
-    item.appendChild(caption)
-
-    // Add item to DOM, before <span id="end"> element.
-    lightbox.insertBefore(item, end)
-
-    // Get media content (img, video, etc)
-    // If media content is an image, remove responsive sizes and styles.
-    // 1) We don't need these, and 2) they interfer with layout if left in.
-    const media = items[index].media.cloneNode(true)
-    if (media) {
-      media.setAttribute('sizes', '100vw')
-      media.removeAttribute('style')
-    }
-
-    // Populate mediaWrapper and captionWrapper with media and caption
-    mediaWrapper.appendChild(media)
-    caption.innerHTML = items[index].caption.innerHTML
-
-    // Setup listener on item:
-    // Remove item `ontransitionend` if classList does not contain `open`
-    item.ontransitionend = () => {
-      if (!item.classList.contains('open')) {
-        item.remove()
-      }
-    }
-
-    // Update URL with selected img id
-    // E.g. http://joshcarpenter.ca/notes/rising-seas/?view=GMSL-1900-2010-lg-fig
-    const url = new URL(window.location.href)
-    const params = new URLSearchParams(url.search)
-    params.set('view', items[index].id)
-    url.search = params.toString()
-    window.history.pushState('', '', url.toString())
-
-    // Update `indexOfActiveItem` with the index of the id in the `items` array
-    // We use it in prev/next functions to determine if we're at start or finish.
-    // indexOfActiveItem = items.findIndex((item) => item === id)
+  function selectItemByIndex(index = 1, animate = true) {
+    // Update variable
     indexOfActiveItem = index
-
-    // Update prev/next controls
-    // Disable prev or next if we're on first or last image
-    if (items.length > 1) {
-      if (indexOfActiveItem === 0) {
-        prev.setAttribute('aria-disabled', 'true')
-        next.setAttribute('aria-disabled', 'false')
-      } else if (indexOfActiveItem === items.length - 1) {
-        prev.setAttribute('aria-disabled', 'false')
-        next.setAttribute('aria-disabled', 'true')
-      } else {
-        prev.setAttribute('aria-disabled', 'false')
-        next.setAttribute('aria-disabled', 'false')
-      }
-    }
 
     // Show lightbox, if it's not already visible
     if (!isOpen()) {
       openLightbox()
     }
 
-    // Reveal new item by adding `.open` to its holder
-    // Note: We must wait a few ms after appendChild(), or the initial values will not be set, and the element will appear in its final state. Per: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions#JavaScript_examples
-    window.setTimeout(() => {
-      item.classList.add('open')
-    }, 5)
-  }
+    // Get selected list item
+    const li = list.querySelector(`:scope > li:nth-child(${index})`)
 
+    // li.classList.add('selected')
+    // const otherItems = list.querySelectorAll(`:scope > li:not(:nth-child(${index}))`)
+    // otherItems.forEach((item) => {
+    //   item.classList.remove('selected')
+    // })
 
-  // -------- Show / Close -------- //
+    // Get all list items
+    const items = list.querySelectorAll(':scope > li')
 
-  /**
-   * Check if aria-hidden == true or false
-   * Convert string to boolean with equals operator
-   * Then invert value with `!`, because aria-hidden="true" means "not open".
-   */
-  function isOpen() {
-    return !(lightbox.getAttribute('aria-hidden') == 'true')
-  }
-
-  function openLightbox() {
-    lightbox.setAttribute('aria-hidden', 'false')
-
-    // Store currently focused element, so we can restore focus when we close lightbox
-    lastItemFocused = document.activeElement
-
-    // Stop scrolling while lightbox is open
-    // Adapted from: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
-    const scrollY = window.scrollY
-    document.body.style.position = 'fixed'
-    document.body.style.width = '100%'
-    document.body.style.top = `-${scrollY}px`
-
-    // Set focus to close button
-    close.focus()
-  }
-
-  function closeLightbox() {
-    // Hide and empty
-    lightbox.setAttribute('aria-hidden', 'true')
-    emptyLightbox()
-
-    // Update URL (clear hash)
-    // Per: https://stackoverflow.com/a/2295951
-    window.history.pushState('', '', window.location.pathname)
-
-    // Null active item
-    indexOfActiveItem = null
-
-    // Restore focus() to the item last focused before lightbox opened (probably button)
-    lastItemFocused.focus()
-
-    // Reactivate scrolling
-    const scrollY = document.body.style.top
-    document.body.style.position = ''
-    document.body.style.width = ''
-    document.body.style.top = ''
-    window.scrollTo(0, parseInt(scrollY || '0') * -1)
-  }
-
-  function emptyLightbox() {
-    // After fade out is complete, remove any instances of holder class
-    const lightboxItems = lightbox.querySelectorAll('.item')
-
-    lightboxItems.forEach((item) => {
-      item.remove()
-    })
+    // Scroll to selected list item
+    if (!animate) {
+      // To jump instantly (instead of animated scroll)
+      // we modify scrollBehavior to not animate,
+      // scroll, then re-enable. animation.
+      list.style.scrollBehavior = 'auto'
+      li.scrollIntoView()
+      list.style.scrollBehavior = 'smooth'
+    } else {
+      li.scrollIntoView()
+    }
   }
 
 
   // -------- Prev & Next -------- //
 
   /**
-   * Remove the `open` class from the outgoing holder
-   * This will trigger the opacity transition.
-   * On transition complete, the ontransitionend event listener for the element (which we setup in loadItem) will trigger, and remove the holder from the lightbox.
-  */
-  function hideOutgoingItem() {
-    const lightboxOpenItems = lightbox.querySelectorAll('.item.open')
-    if (lightboxOpenItems) {
-      lightboxOpenItems.forEach((item) => {
-        item.classList.remove('open')
-      })
-    }
-  }
-
+   * Scroll to previous list item
+   */
   function prevItem() {
-    if (indexOfActiveItem !== 0) {
-      hideOutgoingItem()
-      loadItemByIndex(indexOfActiveItem - 1)
+    if (indexOfActiveItem !== 1) {
+      const li = list.querySelector(`:scope > li:nth-child(${indexOfActiveItem - 1})`)
+      li.scrollIntoView()
     }
   }
 
+  /**
+   * Scroll to next list item
+   */
   function nextItem() {
-    if (indexOfActiveItem !== items.length - 1) {
-      hideOutgoingItem()
-      loadItemByIndex(indexOfActiveItem + 1)
+    const items = list.querySelectorAll(':scope > li')
+    if (indexOfActiveItem !== items.length) {
+      const li = list.querySelector(`:scope > li:nth-child(${indexOfActiveItem + 1})`)
+      li.scrollIntoView()
     }
   }
 
@@ -198,6 +96,7 @@
    * And vice versa for shift-tab.
    */
   function tab(e) {
+    console.log('tab')
     if (isOpen() && document.activeElement === lastFocusableEl) {
       e.preventDefault()
       firstFocusableEl.focus()
@@ -211,28 +110,207 @@
     }
   }
 
-
-  // -------- Setup -------- //
+  // -------- Show / Close -------- //
 
   /**
-   * We only want lightbox to work on tablet and desktop-sized devices.
-   * We check the viewport size using matchMedia API.
-   * Docs: https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia
+   * 
    */
-  function isViewportLargeEnough() {
-    // Check for matchMedia API support. If it doesn't exist, return true.
-    // Support for matchMedia is very good: https://caniuse.com/#feat=matchmedia
-    if (!matchMedia) return false
+  function openLightbox() {
+    lightbox.setAttribute('aria-hidden', 'false')
 
-    // Check if the document matches min-width and height.
-    // This returns a MediaQueryList object.
-    // We only want lightbox for desktop and tablets (larger screens). We combine min-width and min-height to ensure that phones in landscape are also filtered out (and not just phones in portrait).
-    const mq = window.matchMedia('screen and (min-width: 680px) and (min-height: 480px)')
+    // Get all the data-lightbox elements
+    // These are either a media element, or a wrapper around a media element.
+    const thumbs = document.querySelectorAll('[data-lightbox]')
 
-    // The `matches` property of the MediaQueryList tells us if the document meets the media query's requirements.
-    // If it matches, set up the lightbox.
-    return mq.matches
+    thumbs.forEach((thumb, index) => {
+      
+      // Get the media element associated with the thumb.
+      // This is either the thumb itself, or a child inside the thumb,
+      // (as in case where we wrap the media in a div, or some such).
+      const thumbIsMedia = ['picture', 'img', 'video'].includes(thumb.localName)
+      const media = thumbIsMedia ? thumb : thumb.querySelector('picture, img, video')
+
+      // Create a placeholder div. We'll insert this where 
+      // the media currently is. Then move the media into 
+      // the lightbox. When we close the lightbox, we'll 
+      // reverse this, and delete the placeholder.
+      const placeholder = document.createElement('div')
+      placeholder.classList.add('lightbox-placeholder')
+      placeholder.setAttribute('data-index', index)
+      placeholder.style.width = media.clientWidth + 'px'
+      placeholder.style.height = media.clientHeight + 'px'
+      media.insertAdjacentElement('beforebegin', placeholder)
+
+      // Move media into a container div, in a list element.
+      // inside a new list item
+      const container = document.createElement('div')
+      container.classList.add('container')
+      container.append(media)
+      const li = document.createElement('li')
+      li.setAttribute('data-index', index + 1)
+      li.setAttribute('data-type', media.localName.toLowerCase())
+      li.append(container)
+
+      /* --- Old approach --- */
+      // 2022/01/25: Originally I cloned the nodes,
+      // but this forced the media to reload.
+      // So now we move the nodes instead.
+
+      // // Clone media inside thumb and prune un-needed attributes
+      // const clone = media.cloneNode(true)
+      // clone.removeAttribute('style')
+      // clone.removeAttribute('class')
+      // clone.removeAttribute('data-lightbox')
+      // clone.removeAttribute('aria-controls')
+      // clone.removeAttribute('aria-label')
+      // clone.removeAttribute('tabindex')
+
+      // // If media is video, add controls attribute
+      // if (media.localName == 'video') {
+      //   clone.setAttribute('controls', '')
+      // }
+
+      // // Append clone to a new container div,
+      // // inside a new list item
+      // const container = document.createElement('div')
+      // container.classList.add('container')
+      // container.appendChild(clone)
+      // const li = document.createElement('li')
+      // li.append(container)
+      // li.setAttribute('data-index', index + 1)
+      // li.setAttribute('data-type', media.localName.toLowerCase())
+
+      // Copy figcaption (if one exists)
+      // const figcaption = fig.querySelector('figcaption')
+      // if (figcaption) {
+      //   const caption = document.createElement('div')
+      //   caption.classList.add('caption')
+      //   caption.innerHTML = figcaption.innerHTML
+      //   li.append(caption)
+      // }
+
+      // Watch with intersection observer
+      observer.observe(li)
+
+      // Append the item to the list
+      list.append(li)
+    })
+
+    // Hide prev/next buttons if there's only one item
+    if (thumbs.length == 1) {
+      prev.setAttribute('aria-hidden', 'true')
+      next.setAttribute('aria-hidden', 'true')
+    } else {
+      prev.setAttribute('aria-hidden', 'false')
+      next.setAttribute('aria-hidden', 'false')
+    }
+
+    // Set background color of body to match lightbox.
+    // Looks better in Mobile Safari.
+    document.body.classList.add('lightbox-open')
+
+    // Store currently focused element, so we can restore focus when we close lightbox
+    lastItemFocused = document.activeElement
+
+    // Stop scrolling while lightbox is open
+    // Wait until background fades in to do this,
+    // or users will see a jump.
+    background.addEventListener('transitionend', () => {
+      disableDocScrolling()
+    }, {once: true})
+
+
+    // Focus the list
+    list.focus()
+    // firstFocusableEl.focus()
   }
+
+
+  function closeLightbox() {
+
+    // Stop intersection observer from observing all targets
+    observer.disconnect()
+
+    // Hide lightbox and remove items
+    lightbox.setAttribute('aria-hidden', 'true')
+    emptyLightbox()
+
+    // Update URL (clear hash)
+    // Per: https://stackoverflow.com/a/2295951
+    window.history.pushState('', '', window.location.pathname)
+
+    // Null active item
+    indexOfActiveItem = null
+
+    // Restore background color by clearing class
+    document.body.classList.remove('lightbox-open')
+
+    // Restore focus() to the item last focused before lightbox opened (probably button)
+    lastItemFocused.focus()
+
+    // Re-enable scrolling
+    restoreDocScrolling()
+  }
+  
+  /**
+   * Move lightbox media elmeents back to their original places in the
+   * document, delete the placeholders, then also delete the lightbox
+   * list items.
+   */
+   function emptyLightbox() {
+
+    const medias = lightbox.querySelectorAll('ul li .container > *:first-child')
+    const placeholders = document.querySelectorAll('.lightbox-placeholder')
+    
+    medias.forEach((media, index) => {
+      const placeholder = placeholders[index]
+      // Move media elements back to their placeholders
+      placeholder.insertAdjacentElement('beforebegin', media)
+      // Delete the placeholder
+      placeholder.remove()
+    })
+
+    // Delete the lightbox list items
+    const items = lightbox.querySelectorAll('ul li')
+    items.forEach((item) => {
+      item.remove()
+    })
+  }
+
+  /**
+   * Check if aria-hidden == true or false
+   * Convert string to boolean with equals operator
+   * Then invert value with `!`, because aria-hidden="true" means "not open".
+   */
+  function isOpen() {
+    return !(lightbox.getAttribute('aria-hidden') == 'true')
+  }
+
+
+  /**
+   * Stop doc from scrolling while Lightbox is open
+   * Adapted from: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
+   */
+  function disableDocScrolling() {
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+  }
+
+
+  /**
+   * Re-enable document scrolling
+   */
+  function restoreDocScrolling() {
+    const scrollY = document.body.style.top
+    document.body.style.position = ''
+    document.body.style.top = ''
+    // document.body.style.width = ''
+    window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  }
+
+
+  // -------- Setup -------- //
 
   /**
    * Add keyboard controls
@@ -240,25 +318,25 @@
   function addKeyboardControls() {
     lightbox.addEventListener('keydown', (e) => {
       if (isOpen()) {
-        if (e.defaultPrevented) return
-        const key = e.key || e.keyCode
-
-        if (key === 'Escape' || key === 'Esc' || key === 27) {
-          closeLightbox()
-        } else if (key === 'ArrowLeft' || key === 37) {
-          if (items.length > 1) {
+        // if (e.defaultPrevented) return
+        switch (e.key) {
+          case 'Escape':
+          case 'Esc':
+            closeLightbox()
+            break
+          case 'ArrowLeft':
             prevItem()
-          }
-        } else if (key === 'ArrowRight' || key === 39) {
-          if (items.length > 1) {
+            break
+          case 'ArrowRight':
             nextItem()
-          }
-        } else if (key === 'Tab' || key === 9) {
-          if (e.shiftKey) {
-            shiftTab(e)
-          } else {
-            tab(e)
-          }
+            break
+          case 'Tab':
+            if (e.shiftKey) {
+              shiftTab(e)
+            } else {
+              tab(e)
+            }
+            break
         }
       }
     })
@@ -277,45 +355,59 @@
       // If yes, load that item
       for (let i = 0; i < items.length; i++) {
         if (items[i].id === params.get('view')) {
-          loadItemByIndex(i)
+          selectItemByIndex(i)
         }
       }
     }
   }
 
-  /**
-   * Setup lightbox if preconditions are met:
-   * - Viewport is large enough
-   * - There are figures with data-lightbox=true
-   */
-  function setup() {
-    // Is viewport is large enough?
-    const islargeEnough = isViewportLargeEnough()
-    if (!islargeEnough) return
 
-    // Is there media we care about?
-    // Find figures that contain img, picture or video
-    const figures = [...document.querySelectorAll('#content figure')].filter((el) => {
-      return el.querySelector(`img, picture, video`) !== null
+  function onIntersection(entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Update variable
+        indexOfActiveItem = parseInt(entry.target.dataset.index)
+
+        // Add 'loaded' class
+        if (!entry.target.classList.contains('loaded')) {
+          entry.target.classList.add('loaded')
+        }
+      }
+      // Play/pause videos
+      // const isVideo = entry.target.dataset.type == 'video'
+      // if (isVideo && entry.isIntersecting) {
+      //   const video = entry.target.querySelector('video')
+      //   // TODO
+      // } else if (isVideo && !entry.isIntersecting) {
+      //   // const video = entry.target.querySelector('video')
+      // }
     })
-    if (figures.length == 0) return
 
-    // Create lightbox
-    lightbox = new DOMParser().parseFromString('<div id="lightbox" aria-label="Gallery" role="dialogue" aria-modal="true" aria-live="polite" aria-hidden="true"></div>', 'text/html').body.firstChild
-    lightbox.innerHTML = `
-      <button id="close" aria-label="Close gallery"><img src="/img/close.svg" alt="Close"></button>
-      <button id="prev" aria-label="Previous"><img src="/img/arrow.svg" alt="Previous"></button>
-      <button id="next" aria-label="Next"><img src="/img/arrow.svg" alt="Next"></button>
-      <span tabindex="0" class="visibility-hidden" id="end">End of gallery</span>
-      <div id="background"></div>`
-    document.body.append(lightbox)
+    // Update arrows
+    if (list.children.length > 1) {
+      if (indexOfActiveItem == 1) {
+        prev.disabled = true
+        next.disabled = false
+      } else if (indexOfActiveItem == list.children.length) {
+        prev.disabled = false
+        next.disabled = true
+      } else {
+        prev.disabled = false
+        next.disabled = false
+      }
+    }
+  }
 
+
+  function setup() {
     // Get elements
-    close = lightbox.querySelector('#close')
-    prev = lightbox.querySelector('#prev')
-    next = lightbox.querySelector('#next')
-    background = lightbox.querySelector('#background')
-    end = lightbox.querySelector('#end')
+    lightbox = document.getElementById('lightbox')
+    close = lightbox.querySelector('button#close')
+    prev = lightbox.querySelector('button#prev')
+    next = lightbox.querySelector('button#next')
+    list = lightbox.querySelector('ul')
+    end = lightbox.querySelector('span#end')
+    background = lightbox.querySelector('div#background')
 
     // Set focusable elements
     // We use these variables to trap tabs inside modal.
@@ -323,49 +415,46 @@
     firstFocusableEl = close
     lastFocusableEl = end
 
-    // For each `data-lightbox` figure...
-    figures.forEach((figure, index) => {
-      // Store relevant information in a new object in the `items` array
-      const media = figure.querySelector('picture, img, video')
+    const thumbs = document.querySelectorAll('[data-lightbox]')
 
-      const newItem = {
-        id: figure.id,
-        media,
-        type: media.localName,
-        caption: figure.querySelector('figcaption'),
-      }
-      items.push(newItem)
-
-      // Wrap media in <button>. Open lightbox on click.
-      const button = document.createElement('button')
-      button.setAttribute('aria-controls', 'lightbox')
-      button.setAttribute('aria-label', `Open ${newItem.type} in gallery`)
-      button.id = `${figure.id}-btn`
-      button.appendChild(media)
-      button.onclick = (e) => {
+    thumbs.forEach((thumb, index) => {
+      thumb.addEventListener('click', (e) => {
         e.preventDefault()
-        loadItemByIndex(index)
-      }
-      figure.prepend(button)
+        selectItemByIndex(index + 1, false)
+      })
+      thumb.addEventListener('keydown', (e) => {
+        if (e.key == 'Enter') {
+          e.preventDefault()
+          selectItemByIndex(index + 1, false)
+        }
+      })
     })
 
-    // Add event listeners
+    // Setup intersection observer
+    observer = new IntersectionObserver(onIntersection, {
+
+      // Scrollable element to watch for intersections with.
+      // Usually will be closest ancestor. Set as `null` to
+      // watch for intersection relative to the viewport.
+      root: null,
+
+      // Threshold of intersection between the target element
+      // and its root. When reached, callback function is called.
+      threshold: 0.5,
+
+    })
+
+    // Add button event listeners
     close.onclick = () => closeLightbox()
-    background.onclick = () => closeLightbox()
     prev.onclick = () => prevItem()
     next.onclick = () => nextItem()
+    list.onclick = () => list.focus()
 
-    // If there's only one item, hide prev and next buttons.
-    if (items.length == 1) {
-      prev.setAttribute('aria-hidden', 'true')
-      next.setAttribute('aria-hidden', 'true')
-    }
-
-    // Add keyboard controls
+    // Add keyboard event listeners
     addKeyboardControls()
 
     // On load, check URL hash
-    checkUrlHash()
+    // checkUrlHash()
   }
 
   window.addEventListener('DOMContentLoaded', setup)

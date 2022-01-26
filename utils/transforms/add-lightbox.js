@@ -13,20 +13,21 @@ module.exports = function(content) {
 
   const $ = cheerio.load(content)
   
-  const thumbnails = $(`article #body [data-lightbox]`)
+  const thumbs = $(`article #body [data-lightbox]`)
 
   // If there are no data-lightbox elements, return without changes
-  if (!thumbnails.length) return content
+  if (!thumbs.length) return content
 
   // Add other attributes to each data-lightbox thumbnail
-  thumbnails.each((index, thumb) => {
+  thumbs.each((index, thumb) => {
     $(thumb).attr('aria-label', 'Open in gallery')
     $(thumb).attr('aria-controls', 'lightbox')
     $(thumb).attr('tabindex', '0')
+    $(thumb).attr('data-lightbox', index)
   })
   
   // Add lightbox JS
-  $('head').append('<script src="/js/lightbox2.js"></script>')
+  $('head').append('<script src="/js/lightbox.js"></script>')
 
   content = $.html()
   return content
