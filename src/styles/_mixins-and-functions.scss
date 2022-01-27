@@ -201,7 +201,7 @@
     outline-color: $color;
     outline-style: solid;
     border-radius: $borderRadiusEm * 1em;
-    animation: outlineAppear 0.1s ease-in;
+    animation: outlineAppear 0.08s ease-in;
   }
 
   @keyframes outlineAppear {
@@ -218,7 +218,7 @@
 }
 
 // Apply this to `standard-width` elements to create consistent top borders
-@mixin topBorder($color: onBackground(1), $height: 0.1) {
+@mixin topBorder($color: onBackground(1)) {
   
   // Top-border
   position: relative;
@@ -228,7 +228,7 @@
     content: '';
     width: calc(100% - var(--side-margin) * 2);
     left: var(--side-margin);
-    height: $height * 1rem;
+    height: 1px;
     background: $color;
     position: absolute;
     top: 0;

@@ -3,7 +3,7 @@ title: "Storms"
 tags: [climate, explainer, problem]
 publish: true
 summary: "To what degree are storms increasing in severity and frequency? What are the causes and potential impacts? A summary from my climate research notes."
-image: "img/hurricane-irma-satellite.jpg"
+meta_image: "img/hurricane-irma-satellite.jpg"
 date: 2020-01-04
 ---
 

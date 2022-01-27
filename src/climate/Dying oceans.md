@@ -3,7 +3,7 @@ title: "Dying Oceans"
 tags: [climate, explainer, problem]
 publish: true
 summary: "What damages are we seeing in marine ecosystems? What are the causes, and future projections? A summary from my climate research notes."
-image: "img/Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere.jpg"
+meta_image: "img/Schematic-illustration-of-key-components-and-changes-of-the-ocean-and-cryosphere.jpg"
 date: 2019-11-26
 ---
 

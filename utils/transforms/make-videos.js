@@ -131,8 +131,11 @@ module.exports = function (content) {
  */
 async function optimizePosterAsJpeg(posterPath, destinationDirectory) {
 
-  const outputFilename = path.parse(posterPath).name + '.jpg'
-  const outputPath = path.resolve(destinationDirectory, outputFilename)
+  const filename = path.parse(posterPath).name + '.jpg'
+  const outputPath = path.resolve(destinationDirectory, filename)
+
+  // If output file already exists, do nothing (don't overwrite)
+  if (fs.existsSync(outputPath)) return
   
   await sharp(posterPath)
     .resize({

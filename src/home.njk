@@ -1,17 +1,11 @@
 ---js
 {
-    date: "Last Modified",
     permalink: "./index.html",
     publish: true,
-    meta: {
-        page_title: "Josh Carpenter, UX Designer - Portfolio & Notes" 
-    },
-    colors: {
-        accent: {
-            light: "0, 163, 102", // Vibrant green
-            dark: "2, 252, 158", // Vibrant green
-        }
-    },
+    date: "Last Modified",
+    meta_image: "portfolio/img/composable-3D/composable-3D-meta.png",
+    meta_type: 'website',
+    meta_twitter_card_type: 'summary_large_image',
     force_dark_mode: true,
     css: ["home.css"]
 }
@@ -64,10 +58,10 @@
                             <a href="/firefox-os/">Firefox OS</a>
                         </li>
                         <li>
-                            <a href="/home-automation/">Home Automation</a>
+                            <a href="/stadium-control/">Stadium Control Center</a>
                         </li>
                         <li>
-                            <a href="/stadium-control/">Stadium Control Center</a>
+                            <a href="/home-automation/">Home Automation</a>
                         </li>
                     </ul>
                 </div>
@@ -88,7 +82,7 @@
 
                     <div class="narrow" >
                         <a href="/chrome-vr/" class="thumb">
-                            <img src="portfolio/img/chromevr-2d-screenshot.png"></img>
+                            <img src="portfolio/img/chromevr/chromevr-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
                             <a href="/chrome-vr/">Chrome VR</a>
@@ -97,7 +91,7 @@
 
                     <div class="narrow" >
                         <a href="/aframe/" class="thumb">
-                            <img src="portfolio/img/aframe-logo.png"></img>
+                            <img src="portfolio/img/aframe-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
                             <a href="/aframe/">A-Frame VR</a>
@@ -106,10 +100,11 @@
 
                     <div class="narrow" >
                         <a href="/mozilla-vr/" class="thumb">
-                            <video class="aspect-ratio-185-1 of-cover cols-all" playsinline autoplay loop muted poster="portfolio/video/mozvr-hiro-loading-concept-poster.jpg">>
+                            <img src="portfolio/img/mozvr/mozvr-meta.png"></img>
+                            {# <video class="aspect-ratio-185-1 of-cover cols-all" playsinline autoplay loop muted poster="portfolio/video/mozvr-hiro-loading-concept-poster.jpg">>
                                 <source src="portfolio/video/mozvr-hiro-loading-concept.webm" type="video/webm; codecs=vp9,opus"></source>
                                 <source src="portfolio/video/mozvr-hiro-loading-concept.mp4" type="video/mp4"></source>
-                            </video>
+                            </video> #}
                         </a>
                         <div class="caption smaller-text">
                             <a href="/mozilla-vr/">Mozilla VR</a>
@@ -118,7 +113,7 @@
 
                     <div class="narrow" >
                         <a href="/firefox-os/" class="thumb">
-                            <img src="portfolio/img/ffos-billboard.jpg"></img>
+                            <img src="portfolio/img/ffos-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
                             <a href="/firefox-os/">Firefox OS</a>
@@ -126,20 +121,20 @@
                     </div>
 
                     <div class="narrow" >
-                        <a href="/home-automation/" class="thumb">
-                            <img class="of-contain" src="portfolio/img/ns-core-hometheatre.jpg"></img>
+                        <a href="/stadium-control/" class="thumb">
+                            <img class="of-cover" src="portfolio/img/bcp-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
-                            <a href="/home-automation/">Home Automation</a>
+                            <a href="/stadium-control/">Stadium Control Center</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
-                        <a style="background: #E1E1E1;" href="/stadium-control/" class="thumb">
-                            <img class="of-contain" style="padding: 0.5vw" src="portfolio/img/bcp-pa.png"></img>
+                        <a href="/home-automation/" class="thumb">
+                            <img class="of-cover" src="portfolio/img/ns-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
-                            <a href="/stadium-control/">Stadium Control Center</a>
+                            <a href="/home-automation/">Home Automation</a>
                         </div>
                     </div>
                 </div>
@@ -247,8 +242,8 @@
                 <div class="thumbnail-grid">
 
                     <div class="narrow">
-                        <a style="background: #E1E1E1;" href="/desk/" class="thumb">
-                            <img class="of-contain" style="padding: 0.5vw" src="projects/img/desk-meta.png"></img>
+                        <a href="/desk/" class="thumb">
+                            <img src="projects/img/desk-meta.png"></img>
                         </a>
                         <div class="caption smaller-text">
                             <a href="/desk/">Desk</a>

@@ -14,7 +14,10 @@
         "copy:json": "cpy 'js/**/*.json'  '../_site/' --cwd=src --parents",
         "copy:js:third-party": "cpy 'js/third-party/**/*' '../_site/' --cwd=src --parents",
         "copy": "run-p copy:*",
-        "optimize-images": "node utils/optimizeImages.js",
+        "images:body": "node utils/optimize-body-images.js",
+        "images:meta": "node utils/optimize-meta-images.js",
+        "images:img_directory": "cpy 'src/img/**' '_site/img'",
+        "images": "mkdir -p _site/img && run-p images:*",
         "sass:dev": "sass src/styles:_site/styles --no-error-css --update --style=expanded",
         "sass:build": "sass src/styles:_site/styles --no-error-css --no-source-map --style=compressed",
         "js:dev": "cpy 'js/*.js' '../_site/' --cwd=src --parents",
@@ -28,8 +31,8 @@
         "watch:eleventy": "onchange 'config.js' 'src/**/*.{md,njk}' '.eleventy.js' 'utils/**/*.js' -d 250 -- npm run eleventy",
         "watch": "run-p watch:*",
         "serve": "npm run browsersync & npm run watch",
-        "dev": "npm run clean && run-p copy optimize-images sass:dev js:dev && run-s eleventy serve",
-        "build": "npm run clean && run-p copy optimize-images sass:build js:build && run-s eleventy format-html"
+        "dev": "npm run clean && run-p copy images sass:dev js:dev && run-s eleventy serve",
+        "build": "npm run clean && run-p copy images sass:build js:build && run-s eleventy format-html"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",

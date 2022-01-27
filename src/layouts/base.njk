@@ -1,14 +1,20 @@
 <!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         {% include "head.njk" %}
     </head>
-    <body>
+    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+        
         <a href="#title" class="visibility-hidden">Skip to content</a>
-        {% include "header.njk" %}
+        {% include "navigation.njk" %}
+        
         <main role="main" aria-labelledby="title">
+
             {{ content | safe }}
+
         </main>
         {% include "footer.njk" %}
+        {% include "lightbox.njk" %}
     </body>
 </html>

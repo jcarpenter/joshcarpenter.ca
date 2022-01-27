@@ -3,7 +3,7 @@ title: "Nuclear Facility Flooding"
 tags: [climate, problem]
 publish: true
 summary: "Nuclear power plants are commonly built near the sea. What is their risk exposure to sea level rise and increasing storm severity? A summary from my climate research notes."
-image: "img/fukushima-aerial-gettyimages.jpg"
+meta_image: "img/fukushima-aerial-gettyimages.jpg"
 last_updated: 2019-11-26
 ---
 

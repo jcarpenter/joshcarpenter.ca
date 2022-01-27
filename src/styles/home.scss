@@ -114,7 +114,7 @@ main > header {
 
   .intro {
     max-width: 60ex;
-
+    
     a {
       text-underline-offset: 0.1em;
       text-decoration-color: onBackground(calc(var(--bodyTextAlpha) - 0.2));
@@ -144,7 +144,7 @@ main > header {
   address {
     
     margin-bottom: 0rem;
-    font-weight: 300;
+    font-weight: 400;
 
     @include baselineShiftTypography(
       $fontSize: 1.333rem, 
@@ -223,6 +223,7 @@ h2 {
   display: block;
   position: relative;
   overflow: hidden;
+  object-fit: cover;
  
   &::before {
     content: '';
@@ -357,7 +358,7 @@ h2 {
   display: inline-block;
   color: onBackground(1);
   text-underline-offset: 0.2em;
-  text-decoration-thickness:  0.15em;
+  // text-decoration-thickness: 2px;
   text-decoration-color: transparent;
 
   &:focus-visible,

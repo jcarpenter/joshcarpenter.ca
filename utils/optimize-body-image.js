@@ -69,11 +69,16 @@ function makeSvg(source) {
   }
 }
 
+/**
+ * Save optimized versions of source bitmap.
+ * If original width is <1200, do not resize.
+ * If original is >=1200, create 900 and 1200-1700 variations.
+ * @param {*} source 
+ */
 async function makeBitmap(source) {
 
+ 
   // If original width is <1200, use original.
-  // Convert PNG to JPG.
-  
   // Else, if original width is >=1200, create two variations:
   // 900, and 1200-1700
 

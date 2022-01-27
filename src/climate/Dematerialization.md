@@ -1,5 +1,6 @@
 ---
 title: "Dematerialization"
+meta_image: "TODO"
 tags: [climate, solution]
 publish: false
 ---

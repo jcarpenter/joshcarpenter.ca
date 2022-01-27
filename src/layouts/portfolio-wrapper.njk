@@ -2,65 +2,44 @@
 {
     date: "Last Modified",
     eleventyComputed: {
-        meta: {
-            page_title: "{{ title }} - Josh Carpenter, UX Designer",
-            summary: "{{ summary or meta.summary }}",
-            image: "{{ image or meta.image }}",
-            type: "article"
-        }
+        meta_title: "{{ title }} - Josh Carpenter, UX Designer",
     },
+    meta_twitter_card_type: 'summary_large_image',
+    layout: "base.njk",
     css: ["portfolio.css"]
 }
 ---
-<!doctype html>
-<html lang="en">
-    <head>
-        {% include "head.njk" %}
-    </head>
-    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
-        
-        <a href="#title" class="visibility-hidden">Skip to content</a>
-        {% include "navigation.njk" %}
-        
-        <main role="main" aria-labelledby="title">
+<article class="content-wrapper">
+    
+    {# ------------ Header & Copy ------------ #}
+    {{ content | safe }}
 
-            <article class="content-wrapper">
-                
-                {# ------------ Header & Copy ------------ #}
-                {{ content | safe }}
+    {# ------------ Footnotes ------------ #}
+    {% include "footnotes.njk" %}
+    
+</article>
 
-                {# ------------ Footnotes ------------ #}
-                {% include "footnotes.njk" %}
-                
-            </article>
+{# ------------ About the Author ------------ #}
+{% include "about-the-author.njk" %}
 
-            {# ------------ About the Author ------------ #}
-            {% include "about-the-author.njk" %}
-
-            {# ------------ More Content ------------ #}
-            {# (Links to other portfolio posts) #}
-            <section aria-labelledby="more-content-heading" role="region" id="more-content" class="content-wrapper">
-                <div class="standard-width">
-                    <h2 id="more-content-heading">Portfolio</h2>
-                    <ul>
-                        {%- for post in collections.portfolio -%}
-                            {# {% if page.url != post.url %} #}
-                                <li>
-                                    <a href="{{ post.url }}" class="thumb">
-                                        <img src="{{ post.data.image }}"></img>
-                                    </a>
-                                    <div class="caption smaller-text">
-                                        <a href="{{ post.url }}">{{ post.data.title }}</a>
-                                    </div>
-                                </li>
-                            {# {% endif %} #}
-                        {%- endfor -%}
-                    </ul>
-                </div>
-            </section>
-
-        </main>
-        {% include "footer.njk" %}
-        {% include "lightbox.njk" %}
-    </body>
-</html>
+{# ------------ More Content ------------ #}
+{# (Links to other portfolio posts) #}
+<section aria-labelledby="more-content-heading" role="region" id="more-content" class="content-wrapper">
+    <div class="standard-width">
+        <h2 id="more-content-heading">Portfolio</h2>
+        <ul>
+            {%- for post in collections.portfolio -%}
+                {# {% if page.url != post.url %} #}
+                    <li>
+                        <a href="{{ post.url }}" class="thumb">
+                            <img src="{{ post.data.meta_image }}"></img>
+                        </a>
+                        <div class="caption smaller-text">
+                            <a href="{{ post.url }}">{{ post.data.title }}</a>
+                        </div>
+                    </li>
+                {# {% endif %} #}
+            {%- endfor -%}
+        </ul>
+    </div>
+</section>

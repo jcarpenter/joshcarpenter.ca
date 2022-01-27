@@ -1,12 +1,8 @@
 ---js
 {
+    date: "Last Modified",
     eleventyComputed: {
-        meta: {
-            page_title: "{{ title }} - Josh Carpenter, UX Designer",
-            summary: "{{ summary or meta.summary }}",
-            image: "{{ image or meta.image }}",
-            type: "article"
-        }
+        meta_title: "{{ title }} - Josh Carpenter, Portfolio & Notes",
     },
     colors: {
         accent: {
@@ -14,36 +10,20 @@
             dark: "21, 170, 255", // Vibrant blue
         }
     },
+    meta_twitter_card_type: 'summary_large_image',
+    layout: "base.njk",
     css: ["portfolio.css"]
 }
 ---
-<!doctype html>
-<html lang="en">
-    <head>
-        {% include "head.njk" %}
-    </head>
-    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+<article class="content-wrapper">
 
-        <a href="#title" class="visibility-hidden">Skip to content</a>
-        {% include "navigation.njk" %}
+    {# ------------ Header & Copy ------------ #}
+    {{ content | safe }}
 
-        <main role="main" aria-labelledby="title">
-            
-            <article class="content-wrapper">
+    {# ------------ Footnotes ------------ #}
+    {% include "footnotes.njk" %}
 
-                {# ------------ Header & Copy ------------ #}
-                {{ content | safe }}
+</article>
 
-                {# ------------ Footnotes ------------ #}
-                {% include "footnotes.njk" %}
-
-            </article>
-            
-            {# ------------ About the Author ------------ #}
-            {% include "about-the-author.njk" %}
-            
-        </main>
-        {% include "footer.njk" %}
-        {% include "lightbox.njk" %}
-    </body>
-</html>
+{# ------------ About the Author ------------ #}
+{% include "about-the-author.njk" %}

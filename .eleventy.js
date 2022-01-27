@@ -29,7 +29,7 @@ const removeEmptyTableHeads = require('./utils/transforms/remove-empty-table-hea
 const renderCitations = require('./utils/transforms/render-citations')
 const renderFootnotes = require('./utils/transforms/render-footnotes')
 const stopMeasurementsWrapping = require('./utils/transforms/stop-measurements-wrapping')
-const setOgImage = require('./utils/transforms/set-og-image')
+const setMetaImage = require('./utils/transforms/set-meta-image')
 // const tagAbbreviations = require('./utils/transforms/tag-abbreviations')
 
 module.exports = function (eleventyConfig) {
@@ -195,7 +195,7 @@ module.exports = function (eleventyConfig) {
       })
       // Put 'highlight' posts at top
       .sort((a, b) => {
-        if (a.data.tags.includes("explainer")) {
+        if (a.data.tags.includes("highlight")) {
           return -1
         } else {
           return 1
@@ -300,7 +300,7 @@ module.exports = function (eleventyConfig) {
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
   eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
-  eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
+  eleventyConfig.addTransform("setMetaTags", setMetaImage)
   eleventyConfig.addTransform("removeTodos", removeTodos)
   eleventyConfig.addTransform("renderFootnotes", renderFootnotes)
   eleventyConfig.addTransform("renderCitations", renderCitations)
@@ -310,7 +310,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
   eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
   eleventyConfig.addTransform("addLightbox", addLightbox)
-  eleventyConfig.addTransform("setMetaTags", setOgImage)
+  eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
 
 

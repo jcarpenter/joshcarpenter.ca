@@ -1,6 +1,7 @@
 ---
 title: "Preliminary Strategic Climate Risk Assessment for British Columbia"
 tags: [climate, problem, bc, canada]
+meta_image: "TODO"
 publish: false
 date: 2019-11-26
 ---

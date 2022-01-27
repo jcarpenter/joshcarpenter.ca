@@ -179,6 +179,11 @@ COPY STYLES
 		}
 	}
 
+	/* -------------- Img -------------- */
+
+	// While images load, slight background color is visible.
+	img { background-color: accent(0.1); }
+
 	/* -------------- Links -------------- */
 
 	a {

@@ -3,7 +3,7 @@ title: "Rising Seas"
 tags: [climate, explainer, highlight, problem]
 publish: true
 summary: "How much will sea levels rise, and how fast? What are the drivers? How do we measure sea level rise in the first place? A summary from my climate research notes."
-image: "img/thwaites-1.jpg"
+meta_image: "img/thwaites-1.jpg"
 date: 2019-11-26
 ---
 

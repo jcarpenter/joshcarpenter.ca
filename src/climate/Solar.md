@@ -3,7 +3,7 @@ title: "Residential Solar Power"
 tags: [climate, resiliency]
 publish: true
 summary: "Notes on the basic science, typical components and sample configurations of residential solar installations."
-image: "img/solar-offgrid-with-generator.png"
+meta_image: "img/solar-offgrid-with-generator.png"
 date: 2019-11-26
 ---
 

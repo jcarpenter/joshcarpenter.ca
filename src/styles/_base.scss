@@ -76,14 +76,13 @@ BASE: VARIABLES
 		--caption: 120, 150, 180;
 		--background: 30, 37, 45;
 		--on-background: 180, 192, 207;
-		--popup: 45, 58, 73;
+		--popup: 21, 23, 26;
 		--on-popup: 173, 191, 212;
 		--lightboxBackgroundColor: 10, 14, 16;
 	}
 
 	/* -------------- Misc -------------- */
 
-	--figureBorderRadius: 0.3rem;
 	--lightboxFadeInDuration: 0.1s;
 	--lightboxFadeOutDuration: 0.1s;
 
@@ -231,7 +230,7 @@ video {
 
 a {
 	@include outline-on-focus;
-	transition: color 0.15s, text-decoration-color 0.15s;
+	transition: color 0.1s, text-decoration-color 0.1s;
 }
 
 /* -------------- Paragraph -------------- */

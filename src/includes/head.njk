@@ -4,14 +4,11 @@
 {# Do NOT interpret number sequences as phone numbers, on mobile devices. #}
 <meta name="format-detection" content="telephone=no">
 
-{# 
-By default, meta.page_title default is same as meta.site_title.
-It is (optionally) over-ridden by templates or data files.
-#}
-<title>{{ meta.page_title }}</title>
+{# Use frontmatter `meta_title`. Else, fallback. #}
+<title>{{ meta_title or "Josh Carpenter - Portfolio & Notes" }}</title>
 
-{# Meta.summary works same as meta.page_title (see notes above). #}
-<meta name="description" content="{{ meta.summary }}">
+{# Use frontmatter `summary`. Else, fallback. #}
+<meta name="description" content="{{ summary or 'Design portfolio, projects, and notes of Josh Carpenter, UX designer. Currently learning about climate change and creating a Markdown editor. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of the A-Frame VR web development framework, and interaction design lead for Firefox OS. Lives in Vancouver, Canada' }}">
 
 {# Tell browser which color themese are supported on the page #}
 {# {% if dark_mode_only %}
@@ -28,27 +25,27 @@ It is (optionally) over-ridden by templates or data files.
     <meta name="robots" content="noindex">
 {% endif %}
 
-{% if meta.add_social_tags %}
-    <!-- Social -->
-    <meta property="og:type" content="{{ meta.type }}">
-    <meta property="og:title" content="{{ meta.page_title }}">
-    <meta property="og:url" content="{{ meta.url }}{{ page.url }}">
-    <meta property="og:description" content="{{ meta.summary }}">
-    {# 
-        Initial og:image is set by frontmatter `image` field.
-        It's then updated to a full working URL on joshcarpenter.ca
-        by the set-og-image.js transform, along with corresponding 
-        width and height meta tags.
-    #}
-    <meta property="og:image" content="{{ meta.image }}">
-    <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
-    <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">
-    <meta property="og:site_name" content="{{ meta.site_title }}">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ bio.twitter }}">
-    <meta name="twitter:creator" content="@{{ bio.twitter }}">
-{% endif %}
+<!-- Social -->
+<meta property="og:title" content="{{ meta_title or 'Josh Carpenter - Portfolio & Notes' }}">
+<meta property="og:type" content="{{ meta_type or 'article' }}">
+<meta property="og:url" content="https://joshcarpenter.ca{{ page.url }}">
+
+{# Use frontmatter `summary`. Else, fallback. #}
+<meta property="og:description" content="{{ summary or 'Design portfolio, projects, and notes of Josh Carpenter, UX designer. Currently learning about climate change and creating a Markdown editor. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of the A-Frame VR web development framework, and interaction design lead for Firefox OS. Lives in Vancouver, Canada' }}">
+{# 
+    Initial og:image is set by frontmatter `meta_image` property.
+    It's then updated to a full working URL on joshcarpenter.ca
+    by the set-og-image.js transform, and corresponding width and 
+    height meta tags are added.
+#}
+<meta property="og:image" content="{{ meta_image }}">
+<meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+<meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+<meta property="og:site_name" content="Josh Carpenter, Portfolio & Notes">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="{{ meta_twitter_card_type or 'summary_large_image' }}">
+<meta name="twitter:site" content="@{{ bio.twitter }}">
+<meta name="twitter:creator" content="@{{ bio.twitter }}">
 
 {#
 <!-- Favicon -->

@@ -1,6 +1,7 @@
 ---
 title: "Dying Oceans: British Columbia"
 tags: [wip, climate, problem, bc, canada]
+meta_image: "TODO"
 publish: false
 date: 2019-11-26
 ---

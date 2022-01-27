@@ -50,7 +50,7 @@ body > header {
 body > header a {
     transition: color 0.15s, text-decoration-color 0.15s;
     text-decoration: underline;
-    text-decoration-thickness: 0.15em;
+    text-decoration-thickness: 2px;
     text-underline-offset: 0.2em;
     text-decoration-color: transparent;
     &:hover {

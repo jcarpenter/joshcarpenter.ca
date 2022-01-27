@@ -29,23 +29,17 @@ FIGURES
     //     margin-left: 2rem;
     //     margin-right: 2rem;
     // }
-    
-    // No rounding
-    img, video, iframe, picture { border-radius: 0; }
-    
+        
     // Over 500px: 
     @media (min-width: 500px) {
-
-        // Round media elements
-        > img, video, iframe, picture { border-radius: var(--figureBorderRadius); }
 
         min-width: 20rem;
         max-width: 42rem;
         
-      figcaption {
-          margin-left: 0;
-          margin-right: 0;
-      }
+        figcaption {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
 
