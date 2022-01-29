@@ -61,6 +61,12 @@ for future visits using local storage.
       setScheme('dark', false)
     }
 
+    // Disable
+    // document.querySelector('body').style.backgroundColor = "red !important"
+    // document.body.style.backgroundColor = "red !important";
+    // setTimeout(() => {console.log("this is the first message")}, 5000);
+
+
     /* ----- On system preference change ----- */
 
     // On change to system preference, update accordingly,
@@ -84,6 +90,8 @@ for future visits using local storage.
       const newScheme = document.body.dataset.colorScheme == 'dark' ? 'light' : 'dark'
       setScheme(newScheme, true)
     })
+
+
     
   }
 
