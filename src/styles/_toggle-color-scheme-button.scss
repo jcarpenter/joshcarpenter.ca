@@ -6,6 +6,7 @@ TOGGLE COLOR SCHEME BUTTON
 ========================================================
 */
 
+// Wrapper
 #toggle-color-scheme {
   border-radius: 1rem;
   width: 4rem;
@@ -14,6 +15,7 @@ TOGGLE COLOR SCHEME BUTTON
   transition: background-color 0.2s;
 }
 
+// Slider
 #toggle-color-scheme #slider  {
   width: 2rem;
   height: 2rem;
@@ -22,6 +24,7 @@ TOGGLE COLOR SCHEME BUTTON
   transition: background-color 0.2s, transform 0.25s ease-out;
 }
 
+// Label
 #toggle-color-scheme #label {
   font-size: 1rem;
   color: caption(0.6);
@@ -33,6 +36,7 @@ TOGGLE COLOR SCHEME BUTTON
   white-space: nowrap;
   transition: opacity 0.1s 0.1s;
   pointer-events: none;
+  background-color: none;
 }
 
 #toggle-color-scheme:hover #label {
@@ -40,7 +44,14 @@ TOGGLE COLOR SCHEME BUTTON
   transition: opacity 0.1s 0.2s;
 }
 
+@media (hover: none) {
+  // Hide label on mobile
+  #toggle-color-scheme #label {
+    display: none;
+  } 
+}
 
+// Dark / Light colors
 body[data-color-scheme=light] {
   #toggle-color-scheme {
     background-color: onBackground(0.08);
@@ -72,3 +83,4 @@ body[data-color-scheme=dark] {
     }
   }
 }
+

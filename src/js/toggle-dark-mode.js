@@ -62,7 +62,10 @@ for future visits using local storage.
     }
 
     // Disable
-    // document.querySelector('body').style.backgroundColor = "red !important"
+    console.log(document.body.style.backgroundColor)
+    document.body.style.backgroundColor = "red !important"
+    // document.querySelector('body') = "red !important"
+    console.log(document.body.style.backgroundColor)
     // document.body.style.backgroundColor = "red !important";
     // setTimeout(() => {console.log("this is the first message")}, 5000);
 
