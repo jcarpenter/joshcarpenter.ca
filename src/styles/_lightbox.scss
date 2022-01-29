@@ -266,7 +266,7 @@ LIGHTBOX
   line-height: 2rem;
   max-width: 64rem;
   padding: 2rem 1rem 0rem;
-  color: rgba(var(--lightboxForegroundColor), 0.5);
+  color: rgba(255, 255, 255, 0.5);
 
   @media (min-width: 480px) {
     padding: 2rem 0 0;
@@ -282,7 +282,7 @@ LIGHTBOX
 }
 
 #lightbox #background {
-  background-color: rgba(var(--lightboxBackgroundColor), 1);
+  background-color: rgba(10, 10, 10, 1);
   // backdrop-filter: blur(2px);
   // bottom: 0;
   cursor: default;
