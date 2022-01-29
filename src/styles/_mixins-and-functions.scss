@@ -2,32 +2,36 @@
 // Short-hand concise functions for colors.
 // Use like: `color: accent(0.2);`
 
-@function foreground($alpha: 1) {
-  @return rgba(var(--foreground), $alpha);
-}
-
 @function accent($alpha: 1) {
   @return rgba(var(--accent), $alpha);
-}
-
-@function caption($alpha: 1) {
-  @return rgba(var(--caption), $alpha);
 }
 
 @function background($alpha: 1) {
   @return rgba(var(--background), $alpha);
 }
 
+@function caption($alpha: 1) {
+  @return rgba(var(--caption), $alpha);
+}
+
+@function foreground($alpha: 1) {
+  @return rgba(var(--foreground), $alpha);
+}
+
+@function horizontalRule($alpha: 1) {
+  @return rgba(var(--horizontal-rule), $alpha);
+}
+
 @function onBackground($alpha: 1) {
   @return rgba(var(--on-background), $alpha);
 }
 
-@function popup($alpha: 1) {
-  @return rgba(var(--popup), $alpha);
-}
-
 @function onPopup($alpha: 1) {
   @return rgba(var(--on-popup), $alpha);
+}
+
+@function popup($alpha: 1) {
+  @return rgba(var(--popup), $alpha);
 }
 
 
@@ -228,8 +232,8 @@
     content: '';
     width: calc(100% - var(--side-margin) * 2);
     left: var(--side-margin);
-    height: 1px;
-    background: $color;
+    height: 2px;
+    background-color: $color;
     position: absolute;
     top: 0;
   }

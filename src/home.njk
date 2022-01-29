@@ -6,7 +6,6 @@
     meta_image: "portfolio/img/composable-3D/composable-3D-meta.png",
     meta_type: 'website',
     meta_twitter_card_type: 'summary_large_image',
-    force_dark_mode: true,
     css: ["home.css"]
 }
 ---
@@ -15,14 +14,16 @@
     <head>
         {% include "head.njk" %}
     </head>
-    <body id="home" class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+    <body data-color-scheme="light">
+        {% include "toggle-color-scheme-button.njk" %}
         <main class="content-wrapper" role="main" aria-labelledby="title">
 
             <header>
                 <h1 id="title">
-                    <span class="name">{{ bio.name }}</span>, <span class="title">UX Designer</span>
+                    <span class="name">{{ bio.name }}</span>
+                    {# , <span class="title">UX Designer</span> #}
                 </h1>
-                <p class="intro large-text copy">
+                <p class="intro large-text">
                     I'm a user experience designer based in Vancouver, Canada. Most recently I led design teams at Google and Mozilla, working to bring virtual and augmented reality to the open web. My experience is a mix of product leadership, interaction design, visual design, motion graphics, programming and community engagement. <a href="https://en.wikipedia.org/wiki/The_Hedgehog_and_the_Fox">A fox&#8212;not a hedgehog</a>. Since 2019 I've been traveling and working on a series of personal projects, including an Electron-based Markdown editor and a deep dive into climate change. 
                 </p>
                 <address>
@@ -75,7 +76,7 @@
                                 <source src="portfolio/video/city-discovery.mp4" type="video/mp4"></source>
                             </video>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/composable-3d-web/">The Composable 3D Web</a>
                         </div>
                     </div>
@@ -84,7 +85,7 @@
                         <a href="/chrome-vr/" class="thumb">
                             <img src="portfolio/img/chromevr/chromevr-meta.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/chrome-vr/">Chrome VR</a>
                         </div>
                     </div>
@@ -93,7 +94,7 @@
                         <a href="/aframe/" class="thumb">
                             <img src="portfolio/img/aframe-meta.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/aframe/">A-Frame VR</a>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
                                 <source src="portfolio/video/mozvr-hiro-loading-concept.mp4" type="video/mp4"></source>
                             </video> #}
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/mozilla-vr/">Mozilla VR</a>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                         <a href="/firefox-os/" class="thumb">
                             <img src="portfolio/img/ffos-meta.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/firefox-os/">Firefox OS</a>
                         </div>
                     </div>
@@ -124,7 +125,7 @@
                         <a href="/stadium-control/" class="thumb">
                             <img class="of-cover" src="portfolio/img/bcp-meta.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/stadium-control/">Stadium Control Center</a>
                         </div>
                     </div>
@@ -133,7 +134,7 @@
                         <a href="/home-automation/" class="thumb">
                             <img class="of-cover" src="portfolio/img/ns-meta.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="smaller-text">
                             <a href="/home-automation/">Home Automation</a>
                         </div>
                     </div>
@@ -148,42 +149,42 @@
                     <tr>
                         <td class="org">Google</td>
                         <td class="role">Staff UX Designer <span class="project">- Daydream</span></td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2016-19</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Mozilla</td>
                         <td class="role">UX Lead <span class="project">- Mozilla VR</span></td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2014-16</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Mozilla</td>
                         <td class="role">Interaction Design Lead <span class="project">- Firefox OS</span></td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2012-14</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">New Space</td>
                         <td class="role">Creative Director</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2010-11</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">VFS</td>
                         <td class="role">Instructor <span class="project">- 3D & Motion</span></td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2008-11</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Big Green</td>
                         <td class="role">Senior Designer</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time>2006-08</time>
                         </td>
                     </tr>
@@ -207,14 +208,15 @@
                     {%- for post in collections.climate -%}
                         <div class="narrow">
                             <a class="title" href="{{ post.url }}"><h3>{{ post.data.title }}</h3></a>
-                            <p class="summary">
+                            <p class="summary small-text">
                                 <span class="tag climate">Climate</span>
-                                {% if post.data.tags.includes('explainer') %}
+                                {# {% if post.data.tags.includes('explainer') %}
                                     <span class="tag explainer">Explainer</span>
-                                {% endif %}
+                                {% endif %} #}
+                                <time>{{ post.date | date("MM/YYYY") }}</time>
                                 {{ post.data.summary }}
                             </p>
-                            <time class="smaller-text">{{ post.date | date("MMM D YYYY") }}</time>
+                            {# <time class="smaller-text">{{ post.date | date("MMM D YYYY") }}</time> #}
                         </div>
                     {%- endfor -%}
                 </div>
@@ -233,9 +235,6 @@
                         <li>
                             <a href="/mobile-work-setup/">Mobile Work Setup</a>
                         </li>
-                        {# <li>
-                            <a href="/sct/">Sunshine Coast Trail</a>
-                        </li> #}
                     </ul>
                 </div>
 
@@ -259,15 +258,6 @@
                         </div>
                     </div>
 
-                    {# <div class="narrow" >
-                        <a href="/sunshine-coast-trail/" class="thumb">
-                            <img src="projects/img/sct-1.jpg"></img>
-                        </a>
-                        <a href="/sunshine-coast-trail/" class="caption smaller-text">
-                            Sunshine Coast Trail
-                        </a>
-                    </div> #}
-
                 </div>
 
             </section>
@@ -280,49 +270,49 @@
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=rrIYojWSHwk">ARCore: Augmented Reality at Android scale</a></td>
                         <td class="venue">Augmented World Expo</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Jun</span> 2018</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=8Ev7Wh9dSfo">Future of the VR Web</a></td>
                         <td class="venue">Awwwards LA</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Jun</span> 2017</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=rqXbLb1Bd7o">The Future of Immersive Experiences on the Web</a></td>
                         <td class="venue">Chrome Dev Summit</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Oct</span> 2017</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=mpcgcVwvUgA">Designing the VR Browser</a></td>
                         <td class="venue">W3C Workshop on WebVR</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Oct</span> 2016</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=eIrH2zXvw0I">Future of the Immersive Web</a></td>
                         <td class="venue">Forward 4 Web Summit</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Apr</span> 2016</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=ZOaOYTOpwyM">UX Design for WebVR</a></td>
                         <td class="venue">SFHTML5</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Jan</span> 2015</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://vimeo.com/114106893">Virtual Reality &amp; The Future of the Web</a></td>
                         <td class="venue">Push UX</td>
-                        <td class="year mono">
+                        <td class="year smaller-text caption">
                             <time><span class="month">Dec</span> 2014</time>
                         </td>
                     </tr>

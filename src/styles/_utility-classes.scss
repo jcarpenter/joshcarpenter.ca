@@ -2,7 +2,7 @@
 
 /*
 ========================================================
-Utility classes
+UTILITY CLASSES
 ========================================================
 */
 
@@ -38,19 +38,19 @@ Utility classes
 .large-text p,
 p.large-text {
 
-  --text-alpha: 0.7;
-  @include dark { --text-alpha: 0.9; }
+  // --text-alpha: 0.8;
+  // @include dark { --text-alpha: 0.9; }
   
   // Color
-  color: onBackground(var(--text-alpha));
+  color: onBackground(0.8);
 
-  // On larger displays and dark mode, we lighten the weight
   font-weight: 400;
-  @include dark {
-    @include medium-screen {
-      font-weight: 300;
-    }
-  }
+  // On larger displays and dark mode, we lighten the weight
+  // @include dark {
+  //   @include medium-screen {
+  //     font-weight: 300;
+  //   }
+  // }
 
   // Size and line-height
   @include baselineShiftTypography(
@@ -74,13 +74,13 @@ p.large-text {
   a {
     color: inherit;
     text-underline-offset: 0.08em;
-    text-decoration-color: onBackground(calc(var(--text-alpha) - 0.3));
+    text-decoration-color: onBackground(0.3);
     text-decoration-thickness: 2px;
   }
   
   a:hover { 
     color: onBackground(1); 
-    text-decoration-color: onBackground(1);
+    text-decoration-color: onBackground(0.8);
   }
 }
 

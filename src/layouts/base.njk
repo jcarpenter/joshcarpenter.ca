@@ -1,10 +1,10 @@
 <!doctype html>
-<!doctype html>
 <html lang="en">
     <head>
         {% include "head.njk" %}
     </head>
-    <body class="{% if force_dark_mode %}force-dark-mode{% endif %}">
+    <body data-color-scheme="light">
+    {# <body class="{% if force_dark_mode %}force-dark-mode{% endif %}"> #}
         
         <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "navigation.njk" %}

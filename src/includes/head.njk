@@ -10,14 +10,6 @@
 {# Use frontmatter `summary`. Else, fallback. #}
 <meta name="description" content="{{ summary or 'Design portfolio, projects, and notes of Josh Carpenter, UX designer. Currently learning about climate change and creating a Markdown editor. Previously: UX Lead for WebVR/AR at Google, lead of the Mozilla WebVR team, co-creator of the A-Frame VR web development framework, and interaction design lead for Firefox OS. Lives in Vancouver, Canada' }}">
 
-{# Tell browser which color themese are supported on the page #}
-{# {% if dark_mode_only %}
-    <meta name="color-scheme" content="dark">
-{% elif light_mode_only %}
-    <meta name="color-scheme" content="light">
-{% else %}
-    <meta name="color-scheme" content="dark light">
-{% endif %} #}
 <meta name="color-scheme" content="dark light">
 
 {# Hide post from SEO if front matter `tags` includes 'hide' #}
@@ -113,8 +105,14 @@ E.g. Use red color for the A-Frame portfolio post.
 {% endif %}
 
 <!-- Scripts -->
-{% for script in js %}
-    <script {% if script.type == 'module'%}type="module" {% endif %}src="/js/{{ script.file }}"></script>
-{% endfor %}
-{# <script src="/js/toggle-grid.js"></script> #}
+<script src="/js/toggle-dark-mode.js"></script>
 {# <script src="/js/crop-to-grid.js"></script> #}
+
+{# 
+We can define js files on a template-by-template basis
+using the `js` frontmatter property. It takes an object
+with `file` path and `isModule` boolean.
+#}
+{% for script in js %}
+    <script {% if script.isModule%}type="module" {% endif %}src="/js/{{ script.file }}"></script>
+{% endfor %}

@@ -1,5 +1,5 @@
-<header class="content-wrapper">
-    <div class="standard-width grid-12">
+<header id="navigation" class="content-wrapper">
+    <div class="standard-width">
         <h1>
             <a href="/index.html" class="name">{{ bio.name }}</a>
             <span class="slash">&#47;</span>
@@ -11,5 +11,8 @@
                 <a href="/#projects" class="section">Projects</a>
             {% endif %}
         </h1>
+
+        {% include "toggle-color-scheme-button.njk" %}
+
     </div>
 </header>

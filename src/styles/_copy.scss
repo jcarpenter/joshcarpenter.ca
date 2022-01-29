@@ -105,8 +105,8 @@ COPY STYLES
 
 		// Copy h2's have beefer font weights than
 		// default non-copy style
-		font-weight: 400;
-		@include light { font-weight: 500; }
+		font-weight: 500;
+		@include dark { font-weight: 500; }
 
 		// Copy h2's also have more top padding
 		@include baselineShiftTypography(
@@ -120,12 +120,7 @@ COPY STYLES
 
 		border-top-width: 1px;
 		border-top-style: solid;
-
-		// Slightly more border opacity on dark
-		border-top-color: onBackground(0.2);
-		@include dark {
-			border-top-color: onBackground(0.3);
-		}
+		border-top-color: horizontalRule(1);
 
 		// Hide link underlines
 		a {
@@ -189,7 +184,7 @@ COPY STYLES
 	a {
 		text-decoration: underline;
 		text-underline-offset: 0.05em;
-		color: onBackground(var(--bodyTextAlpha));
+		color: onBackground(var(--baseTextAlpha));
 		text-decoration-color: onBackground(0.3);
 			
 		// Round border so outline :focus is less harsh

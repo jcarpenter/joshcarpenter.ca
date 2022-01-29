@@ -1,0 +1,74 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+TOGGLE COLOR SCHEME BUTTON
+========================================================
+*/
+
+#toggle-color-scheme {
+  border-radius: 1rem;
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#toggle-color-scheme #slider  {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  will-change: transform;
+  transition: background-color 0.2s, transform 0.25s ease-out;
+}
+
+#toggle-color-scheme #label {
+  font-size: 1rem;
+  color: caption(0.6);
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  transform: translate(-100%, -50%);
+  white-space: nowrap;
+  transition: opacity 0.1s 0.1s;
+  pointer-events: none;
+}
+
+#toggle-color-scheme:hover #label {
+  opacity: 1;
+  transition: opacity 0.1s 0.2s;
+}
+
+
+body[data-color-scheme=light] {
+  #toggle-color-scheme {
+    background-color: onBackground(0.08);
+    #slider {
+      background-color: onBackground(0.2);
+      transform: translateX(0) scale(0.7);
+    }
+  }
+  #toggle-color-scheme:hover {
+    background-color: onBackground(0.2);
+    #slider {
+      background-color: onBackground(0.6);
+    }
+  }
+}
+
+body[data-color-scheme=dark] {
+  #toggle-color-scheme {
+    background-color: onBackground(0.12);
+    #slider {
+      background-color: onBackground(0.3);
+      transform: translateX(2rem) scale(0.7);
+    }
+  }
+  #toggle-color-scheme:hover {
+    background-color: onBackground(0.2);
+    #slider {
+      background-color: onBackground(0.6);
+    }
+  }
+}

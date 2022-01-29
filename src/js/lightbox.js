@@ -1,8 +1,8 @@
 /*
 Basic lightbox. Supports swiping through images with mouse or touch.
-TODO: Fix missing area at bottom on iOS (+15?).
-TODO: Swipe down to close.
-TODO: Click background to close.
+- TODO: Fix missing area at bottom (Mobile Safari, +iOS 15?)
+- TODO: Swipe down to close (mobile)
+- TODO: Click background to close
 */
 
 (function(window, document) {
@@ -113,7 +113,9 @@ TODO: Click background to close.
   // -------- Show / Close -------- //
 
   /**
-   * 
+   * On open, we reparent the [data-lightbox] media elements
+   * to the #lightbox, and insert placeholder divs where 
+   * they used to be. On close, we reverse this process.
    */
   function openLightbox() {
     lightbox.setAttribute('aria-hidden', 'false')
@@ -150,35 +152,6 @@ TODO: Click background to close.
       li.setAttribute('data-index', index + 1)
       li.setAttribute('data-type', media.localName.toLowerCase())
       li.append(container)
-
-      /* --- Old approach --- */
-      // 2022/01/25: Originally I cloned the nodes,
-      // but this forced the media to reload.
-      // So now we move the nodes instead.
-
-      // // Clone media inside thumb and prune un-needed attributes
-      // const clone = media.cloneNode(true)
-      // clone.removeAttribute('style')
-      // clone.removeAttribute('class')
-      // clone.removeAttribute('data-lightbox')
-      // clone.removeAttribute('aria-controls')
-      // clone.removeAttribute('aria-label')
-      // clone.removeAttribute('tabindex')
-
-      // // If media is video, add controls attribute
-      // if (media.localName == 'video') {
-      //   clone.setAttribute('controls', '')
-      // }
-
-      // // Append clone to a new container div,
-      // // inside a new list item
-      // const container = document.createElement('div')
-      // container.classList.add('container')
-      // container.appendChild(clone)
-      // const li = document.createElement('li')
-      // li.append(container)
-      // li.setAttribute('data-index', index + 1)
-      // li.setAttribute('data-type', media.localName.toLowerCase())
 
       // Copy figcaption (if one exists)
       // const figcaption = fig.querySelector('figcaption')

@@ -2,11 +2,9 @@
 
 // -------------- grid-helpers.js version -------------- //
 
-@include light {
-    .backgroundGrid { 
-        --alpha-X: 0.2; 
-        --alpha-Y: 0.05; 
-    }
+.backgroundGrid { 
+    --alpha-X: 0.2; 
+    --alpha-Y: 0.05; 
 }
 
 @include dark {
