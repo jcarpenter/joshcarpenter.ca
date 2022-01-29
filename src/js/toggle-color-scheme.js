@@ -17,8 +17,10 @@ for future visits using local storage.
    * @param {boolean} wasSetManually 
    */
   function setScheme(newScheme, wasSetManually) {
+    console.trace('setScheme')
     
     // Update body attribute 
+    document.body.classList.add('first-run')
     document.body.setAttribute('data-color-scheme', newScheme)
     
     // Save user preference using local storage
@@ -59,13 +61,15 @@ for future visits using local storage.
 
     if (shouldSetDarkMode) {
       setScheme('dark', false)
+    } else {
+      setScheme('light', false)
     }
 
     // Disable
-    console.log(document.body.style.backgroundColor)
-    document.body.style.backgroundColor = "red !important"
+    
+    // document.body.style.backgroundColor = "red !important"
     // document.querySelector('body') = "red !important"
-    console.log(document.body.style.backgroundColor)
+    // console.log(document.body.style.backgroundColor)
     // document.body.style.backgroundColor = "red !important";
     // setTimeout(() => {console.log("this is the first message")}, 5000);
 

@@ -61,6 +61,14 @@ body {
 	transition: color 0.2s, background-color 0.2s;
 }
 
+// This stops a flash of white on page load. Then 
+// toggle-color-scheme.js sets the data-color-scheme
+// value to 'light' or 'dark', and the page renders.
+body[data-color-scheme=none] {
+  transition: none !important;
+  display: none;
+}
+
 // We hide the outline on main, or else it appears when main is clicked.
 // This happens because we set tabindex="-1" on main. We do that because
 // it's recommended for the targets of "Skip to content" links.
