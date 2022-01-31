@@ -8,6 +8,8 @@ TOGGLE COLOR SCHEME BUTTON
 
 // Wrapper
 #toggle-color-scheme {
+
+  position: relative;
   border-radius: 1rem;
   width: 4rem;
   height: 2rem;
@@ -26,12 +28,12 @@ TOGGLE COLOR SCHEME BUTTON
 
 // Label
 #toggle-color-scheme #label {
-  font-size: 1rem;
-  color: caption(0.6);
-  opacity: 0;
   position: absolute;
   top: 50%;
   left: -1rem;
+  font-size: 1rem;
+  color: caption(0.6);
+  opacity: 0;
   transform: translate(-100%, -50%);
   white-space: nowrap;
   transition: opacity 0.1s 0.1s;

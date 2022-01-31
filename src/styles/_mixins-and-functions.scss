@@ -222,12 +222,12 @@
 }
 
 // Apply this to `standard-width` elements to create consistent top borders
-@mixin topBorder($color: onBackground(1)) {
+@mixin topBorder($color: horizontalRule(1)) {
   
   // Top-border
   position: relative;
   padding-top: calc(var(--large-margin) - 1rem);
-
+  
   &::before {
     content: '';
     width: calc(100% - var(--side-margin) * 2);
@@ -236,6 +236,7 @@
     background-color: $color;
     position: absolute;
     top: 0;
+    transition: background-color 0.2s;
   }
 }
 

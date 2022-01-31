@@ -121,6 +121,7 @@ COPY STYLES
 		border-top-width: 1px;
 		border-top-style: solid;
 		border-top-color: horizontalRule(1);
+		transition: border-color 0.2s;
 
 		// Hide link underlines
 		a {

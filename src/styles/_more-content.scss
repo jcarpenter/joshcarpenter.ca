@@ -7,8 +7,8 @@ MORE CONTENT
 */
 
 #more-content > div {
+  @include topBorder(horizontalRule(1));
   overflow: visible !important;
-  @include topBorder(onBackground(0.2));
   margin-bottom: 4rem;
 }
 

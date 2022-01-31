@@ -254,7 +254,7 @@ FOOTNOTES: SECTION AT END
 */
 
 #footnotes {
-    @include topBorder(onBackground(0.2));    
+    @include topBorder(horizontalRule(0.8));    
     // margin-top: 4rem;
 }
 
