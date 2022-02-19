@@ -1,4 +1,4 @@
-const colors = require('colors')
+const colors = require('@colors/colors')
 const fs = require('fs');
 const matter = require('gray-matter');
 const path = require('path');

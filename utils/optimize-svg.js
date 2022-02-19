@@ -1,4 +1,4 @@
-const colors = require('colors');
+const colors = require('@colors/colors');
 const fs = require("fs");
 const path = require("path");
 const { optimize: svgo } = require('svgo');

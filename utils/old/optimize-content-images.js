@@ -1,4 +1,4 @@
-const colors = require('colors');
+const colors = require('@colors/colors');
 const fs = require('fs');
 const imageSize = require('image-size')
 const matter = require('gray-matter');

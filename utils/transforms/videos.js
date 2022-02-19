@@ -1,4 +1,4 @@
-const colors = require('colors')
+const colors = require('@colors/colors')
 const cheerio = require('cheerio')
 const path = require('path')
 

@@ -1,12 +1,11 @@
 const cheerio = require("cheerio");
-const colors = require("colors");
+const colors = require("@colors/colors");
 const fs = require("fs");
 const path = require('path');
 const imageSize = require("image-size");
 const optimizeSvg = require("./optimize-svg");
 const copyImage = require("./copy-image");
 const optimizeBitmap = require("./optimize-bitmap");
-
 /**
  * Save images and update HTML.
  * Runs after eleventy has output HTML.

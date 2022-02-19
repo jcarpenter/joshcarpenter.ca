@@ -1,4 +1,4 @@
-const colors = require('colors');
+const colors = require('@colors/colors');
 const fs = require('fs');
 const matter = require('gray-matter');
 const optimizeBodyImage = require('./optimize-body-image');
