@@ -8,7 +8,6 @@ From: https://web.dev/lazy-loading-video/#video-gif-replacement
 */
 
 document.addEventListener('DOMContentLoaded', function() {
-  
   const lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'))
 
   if ('IntersectionObserver' in window) {

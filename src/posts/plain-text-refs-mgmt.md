@@ -3,20 +3,14 @@ title: "Plaintext references management with Markdown and Zotero"
 tags: [post, web, tutorial]
 post_layout: "large"
 publish: true
-permalink: "/plain-text-references-management/"
+permalink: "/plain-text-refs-mgmt/"
 summary: "My workflow for capturing and managing research references without reliance on closed apps or services."
-# meta_image: "img/thwaites-1.jpg"
+meta_image: "/img/plain-text-refs-mgmt/workflow-overview.png"
 date: 2021-02-18
 layout: "post-wrapper.njk"
 ---
 
-<figure class="splash">
-        <video playsinline autoplay loop muted data-lightbox poster="/img/plain-text-refs-mgmt/workflow-poster.png">
-            <source src="/video/plain-text-refs-mgmt/workflow.webm" type="video/webm; codecs=vp9,opus"></source>
-            <source src="/video/plain-text-refs-mgmt/workflow.mp4" type="video/mp4"></source>
-        </video>
-        <figcaption class="caption-clr small-text"><strong>The workflow</strong>: Capturing references with <a href="https://www.zotero.org/">Zotero</a>, citing them in Markdown notes, and then publishing to the web. We'll cover publishing in a later post.</figcaption>
-</figure>
+![Capturing references with [Zotero](https://www.zotero.org), citing them in Markdown notes, and then publishing to the web. We'll cover publishing in a later post.](/img/plain-text-refs-mgmt/workflow-overview.png){.splash}
 
 ## The need for better tools {.hide}
 
@@ -29,6 +23,14 @@ I also wanted this workflow to be based on plain text formats. That way I'd reta
 After fussing with various tools, I arrived at the following workflow for capturing and managing references. It's not perfect, but it checks the above boxes, and I'm using it with hundreds of references and dozens of notes. In a future post I'll share my workflow for publishing documents and references to the web.
 
 ### At a high level, my workflow looks like the following
+
+<figure class="splash">
+        <video playsinline autoplay loop muted data-lightbox poster="/img/plain-text-refs-mgmt/workflow-poster.png">
+            <source src="/video/plain-text-refs-mgmt/workflow.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="/video/plain-text-refs-mgmt/workflow.mp4" type="video/mp4"></source>
+        </video>
+        <!-- <figcaption class="caption-clr small-text">The workflow</figcaption> -->
+</figure>
 
 1. Capture and manage references with [Zotero](https://www.zotero.org/). Each reference receives a unique "citation key" ID.
 1. Write notes in Markdown.^[I use the [GitHub Flavored Markdown spec](https://github.github.com/gfm/) syntax, plus a few [Pandoc Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) extensions for [footnotes](https://pandoc.org/MANUAL.html#footnotes), [implicit figures](https://pandoc.org/MANUAL.html#extension-implicit_figures), and [citations](https://pandoc.org/MANUAL.html#citation-syntax).] 

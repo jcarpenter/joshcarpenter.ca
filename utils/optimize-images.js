@@ -101,7 +101,7 @@ const optimizeBitmap = require("./optimize-bitmap");
 
       // Upate path
       const { dir } = path.parse(ogImageSrc)
-      $(ogImage).attr('content', `https://joshcarpenter.ca${dir}/${filename}.jpg`)
+      $(ogImage).attr('content', `https://joshcarpenter.ca${dir}/${filename}`)
     }
 
     // ------ Write changes ------ //

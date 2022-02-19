@@ -11,6 +11,14 @@ last_updated: 2019-11-26
 
 ## 25% of working nuclear reactors are on coastlines
 
+* The world has 460 working commercial nuclear reactors.
+* 50 are under construction. Another 150 are planned. 
+* 25% are on coastlines. Many only 10-20 meters above sea level.
+* China: 45 operational. 15 under construction.[@web-NuclearPowerChina-19] 15 (and many of the ones under construction) are on the coast. 
+* US: 9 plants are within 3km of ocean. Already, 20 flooding incidents have been recorded since early 80’s.[@web-FloodingNuclearPlant-15]
+* UK: 12 of 19 sites vulnerable
+* Spent nuclear fuel often stored on site. E.g. At 12 of 19 sites in the UK.[@web-ReportOnNukeFloodingRisks-12]
+
 At least 100 could be vulnerable to flooding driven by climate change:
 
 > …research by Ensia suggests that at least 100 U.S., European, and Asian nuclear power stations built just a few meters above sea level could be threatened by serious flooding caused by accelerating sea-level rise and more frequent storm surges.[@web-AreCoastalNuclear-18]

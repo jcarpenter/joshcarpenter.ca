@@ -32,8 +32,8 @@ for future visits using local storage.
 
     // Swap prism between light and dark themes
     // const prismLink = document.querySelector("head link[href*='prism']")
-    // const newPrismStylesheet = newTheme == 'dark' ? 
-    //   "prism-material-oceanic.css" : 
+    // const newPrismStylesheet = newTheme == 'dark' ?
+    //   "prism-material-oceanic.css" :
     //   "prism-duotone-light.css"
     // prismLink.setAttribute("href", `/styles/prism/${newPrismStylesheet}`)
   }
