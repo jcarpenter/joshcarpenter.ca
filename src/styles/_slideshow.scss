@@ -1,0 +1,149 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+SLIDESHOW
+========================================================
+*/
+
+
+.gallery {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+	overflow: hidden;
+}
+
+.gallery .wrapper {
+	position: relative;
+}
+
+.gallery ul {
+	
+	border-radius: var(--media-border-radius);
+	position: relative;
+	width: 100%;
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	flex: none;
+	flex-flow: row nowrap;
+
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	// position: absolute;
+	// top: 0;
+	// bottom: 0;
+	// left: 0;
+	// right: 0;
+}
+
+.gallery li {
+
+	width: 100%;
+	flex: none;
+	// font-size: 20rem;
+	// color: white;
+	// Create gap between items.
+	// It will not be visible when at rest.
+	margin: 0 2rem; 
+	padding: 0;
+	overflow: hidden;
+	scroll-snap-align: center;
+	// Disallow free scrolling. Always increment by one stop.
+	scroll-snap-stop: always;
+  
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  
+}
+
+.gallery li:first-of-type {
+	margin-left: 0;
+}
+
+/* -------------- Controls -------------- */
+
+// .gallery:focus-within button,
+// .gallery .wrapper:hover button {
+// 	opacity: 0.5;
+// }
+
+.gallery button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
+  opacity: 0.5;
+  pointer-events: initial;
+  border-radius: 0.2rem;
+  z-index: 1;
+  
+  @include outline-on-focus;
+	transition: opacity 0.15s;
+
+  &:disabled {
+    cursor: initial;
+    display: none;
+  }
+
+  &:enabled:hover,
+	&:enabled:focus {
+      opacity: 1;
+  }
+
+  &[aria-disabled="true"] {
+      opacity: 0.15;
+      pointer-events: none;
+  }
+
+  img {
+      width: 3rem;
+      height: 3rem;
+			background-color: transparent;
+  }
+
+	&.prev,
+  &.next {
+      top: 50%;
+  }
+
+  &.prev { 
+		left: 0rem;
+		transform: translateY(-50%);
+	}
+
+  &.next {
+		right: 0rem;
+		transform: translateY(-50%) rotateZ(180deg);
+  }
+}
+
+
+/* -------------- Caption -------------- */
+
+.copy figcaption {
+	font-weight: 400;
+
+	// Add hyphenation
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	margin-bottom: 1rem;
+
+	// Figcaption adds a bit of visual padding to the bottom
+	// of the figure. Too much. So we pull up subsequent
+	// content to close the gap, for consistency.
+	// margin-bottom: -1rem;
+
+	color: caption(1);
+	// background-color: caption(0.2);
+}

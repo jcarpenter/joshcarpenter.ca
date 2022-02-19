@@ -6,8 +6,19 @@ MORE CONTENT
 ========================================================
 */
 
+#more-content h2 {
+  color: accent(1);
+  font-weight: 500;
+  margin-bottom: 1rem;
+
+	@include baselineShiftTypography(
+		$fontSize: 1.333rem, 
+		$lineHeight: 2rem
+	);
+}
+
 #more-content > div {
-  @include topBorder(horizontalRule(1));
+  @include topBorder(sectionDivider(1));
   overflow: visible !important;
   margin-bottom: 4rem;
 }
@@ -47,6 +58,7 @@ MORE CONTENT
       position: absolute;
       z-index: 2;
       transition: box-shadow 0.25s;
+      border-radius: var(--media-border-radius);
     }
     
     &:hover::before {
@@ -58,6 +70,7 @@ MORE CONTENT
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: var(--media-border-radius);
   }
 
   a.thumb:hover {
@@ -65,16 +78,7 @@ MORE CONTENT
   }
 }
 
-#more-content .caption a {
-  display: inline-block;
-
-  // color: onBackground(calc(var(--baseTextAlpha) + 0.2));
-  text-underline-offset: 0.2em;
-  text-decoration-color: transparent;
-
-  &:focus-visible,
-  &:hover {
-    color: onBackground(1);
-    text-decoration-color: onBackground(0.5);
-  }
+// Hide link underlines when not hovered
+#more-content .caption-clr a:not(:hover) {
+  text-decoration-color: transparent !important;
 }

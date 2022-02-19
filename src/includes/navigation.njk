@@ -1,18 +1,24 @@
-<header id="navigation" class="content-wrapper">
+<header id="navigation" class="content-wrapper" role="banner">
     <div class="standard-width">
         <h1>
             <a href="/index.html" class="name">{{ bio.name }}</a>
             <span class="slash">&#47;</span>
-            {% if tags and tags.includes("climate") %}
-                <a href="/#posts" class="section">Climate Notes</a>
-            {% elseif tags and tags.includes("ux") %}
-                <a href="/#portfolio" class="section">Portfolio</a>
-            {% elseif tags and tags.includes("project") %}
-                <a href="/#projects" class="section">Projects</a>
+            {% if tags %}
+                {% if tags.includes("post") %}
+                    {% if tags.includes("climate") %}
+                        <a href="/#posts" class="section">Climate Notes</a>
+                    {% else %}
+                        <a href="/#posts" class="section">Posts</a>
+                    {% endif %}
+                {% elseif tags.includes("ux") %}
+                    <a href="/#portfolio" class="section">Portfolio</a>
+                {% elseif tags.includes("project") %}
+                    <a href="/#projects" class="section">Projects</a>
+                {% endif %}
             {% endif %}
         </h1>
 
-        {% include "toggle-color-scheme-button.njk" %}
+        {% include "toggle-theme-button.njk" %}
 
     </div>
 </header>

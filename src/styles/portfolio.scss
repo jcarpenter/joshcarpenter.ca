@@ -44,11 +44,11 @@ article header h1 {
 
   color: accent(1);
   font-weight: 400;
-  @include dark {
-    @include medium-screen {
-      font-weight: 300;
-    }
-  }
+  // @include dark {
+  //   @include medium-screen {
+  //     font-weight: 300;
+  //   }
+  // }
 
   @include baselineShiftTypography(
     $fontSize: 1.6rem,

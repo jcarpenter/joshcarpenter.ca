@@ -1,4 +1,4 @@
-@use "mixins-and-functions" as *;
+@use 'mixins-and-functions' as *;
 
 /*
 ========================================================
@@ -6,7 +6,7 @@ UTILITY CLASSES
 ========================================================
 */
 
-// NOTE, 1/21/2022: Commented-out classes are unused in the 
+// NOTE, 1/21/2022: Commented-out classes are unused in the
 // project. Am keeping them for now, but could delete in future.
 
 // -------------- Wrapper -------------- //
@@ -22,177 +22,130 @@ UTILITY CLASSES
   @include standardWidth;
 }
 
-
-// -------------- Typography -------------- //
+// -------------- Colors -------------- //
 
 // Captions
 
-.caption {
+.caption-clr {
   font-weight: 400;
   color: caption(1);
+
+  a {
+    color: caption(1);
+    text-decoration-color: caption(0.6);
+
+    &:hover {
+      color: caption(1);
+      text-decoration-color: caption(0.8);
+      // Make links stand out a bit from the surrounding text
+      @include light {
+        filter: brightness(0.8);
+      }
+      @include dark {
+        filter: brightness(1.1);
+      }
+    }
+
+    &:active {
+      outline: none;
+      background-color: caption(0.1);
+    }
+  }
 }
 
+// -------------- Typography -------------- //
 
 // Large text
 
 .large-text p,
 p.large-text {
-
-  // --text-alpha: 0.8;
-  // @include dark { --text-alpha: 0.9; }
-  
-  // Color
-  color: onBackground(0.8);
-
-  font-weight: 400;
-  // On larger displays and dark mode, we lighten the weight
-  // @include dark {
-  //   @include medium-screen {
-  //     font-weight: 300;
-  //   }
-  // }
-
-  // Size and line-height
-  @include baselineShiftTypography(
-    $fontSize: 1.33rem,
-    $lineHeight: 2rem
-  );
+  @include baselineShiftTypography($fontSize: 1.33rem, $lineHeight: 2rem);
 
   @include medium-screen {
-    @include baselineShiftTypography(
-      $fontSize: 1.6rem,
-      $lineHeight: 2.5rem
-    );
+    @include baselineShiftTypography($fontSize: 1.6rem, $lineHeight: 2.5rem);
   }
 
-  // Margin
+  font-weight: 400;
+
   &:last-of-type {
     margin-bottom: 0rem;
   }
 
   // Links
   a {
-    color: inherit;
+    text-decoration-line: underline;
     text-underline-offset: 0.08em;
-    text-decoration-color: onBackground(0.3);
     text-decoration-thickness: 2px;
   }
-  
-  a:hover { 
-    color: onBackground(1); 
-    text-decoration-color: onBackground(0.8);
-  }
 }
-
 
 // Body text
 
 .body-text {
+  @include baselineShiftTypography($fontSize: 1.333rem, $lineHeight: 2rem);
 
-  --text-alpha: 0.8;
-  
   margin-bottom: 1rem;
   font-variant-numeric: oldstyle-nums;
-
-  // Color
-  color: onBackground(var(--text-alpha));
-  
-  @include baselineShiftTypography(
-    $fontSize: 1.333rem, 
-    $lineHeight: 2rem
-  );
-    
-  // On larger displays and dark mode, we lighten the weight
   font-weight: 400;
-  @include dark {
-    @include medium-screen {
-      font-weight: 300;
-    }
-  }
 
-  // Links
   a {
-    color: inherit;
-    text-underline-offset: 0.08em;
-    text-decoration-color: onBackground(calc(var(--text-alpha) - 0.4));
-  }
-  
-  a:hover { 
-    color: onBackground(1); 
-    text-decoration-color: onBackground(1);
+    text-decoration-line: underline;
+    text-underline-offset: 0.1em;
   }
 }
 
 p.body-text:last-of-type,
 .body-text p:last-of-type {
-  margin-bottom: 0;
+  // margin-bottom: 0;
 }
-
 
 // Small text
 
 .small-text {
-
-  @include baselineShiftTypography(
-    $fontSize: 1.2rem,
-    $lineHeight: 1.75rem,
-    $paddingTop: 0rem,
-  );
+  @include baselineShiftTypography($fontSize: 1.2rem, $lineHeight: 1.75rem, $paddingTop: 0rem);
 
   margin-bottom: 0;
 
-  // Links
   a {
-    color: inherit;
+    text-decoration-line: underline;
     text-underline-offset: 0.1em;
-    text-decoration-color: inherit;
   }
 }
 
 // Smaller text
 
 .smaller-text {
-  @include baselineShiftTypography(
-    $fontSize: 1rem,
-    $lineHeight: 1.5rem,
-    $paddingTop: 0rem,
-  );
+  @include baselineShiftTypography($fontSize: 1rem, $lineHeight: 1.5rem, $paddingTop: 0rem);
 
   margin-bottom: 0;
 
-  // Links
   a {
-    color: inherit;
+    text-decoration-line: underline;
     text-underline-offset: 0.15em;
-    text-decoration-color: inherit;
   }
 }
-
-
 
 // -------------- Grid -------------- //
 
 // Grid - 12 columns
 
 .grid-12 {
-  
   display: grid !important;
   overflow: hidden;
-  
+
   grid-auto-flow: column;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 
   @include medium-screen {
-      grid-template-columns: repeat(12, 1fr);
-      gap: 2rem;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
   }
 }
 
 // Grid - 2 columns
 
 .grid-2 {
-
   display: grid !important;
   overflow: visible;
   // overflow: hidden;
@@ -201,8 +154,8 @@ p.body-text:last-of-type,
   gap: 1rem;
 
   @include medium-screen {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }
 
@@ -212,16 +165,24 @@ p.body-text:last-of-type,
   display: contents;
 
   > *:first-child,
-  > *:not(:first-child) { grid-column: 1 / -1; }
-  
+  > *:not(:first-child) {
+    grid-column: 1 / -1;
+  }
+
   @include medium-screen {
     > *:first-child,
-    > *:not(:first-child) { grid-column: 1 / span 8; }
+    > *:not(:first-child) {
+      grid-column: 1 / span 8;
+    }
   }
 
   @include large-screen {
-    > *:first-child { grid-column: 9 / -1; }
-    > *:not(:first-child) { grid-column: 1 / span 7; }
+    > *:first-child {
+      grid-column: 9 / -1;
+    }
+    > *:not(:first-child) {
+      grid-column: 1 / span 7;
+    }
   }
 }
 
@@ -230,7 +191,7 @@ p.body-text:last-of-type,
 
 //   > *:first-child,
 //   > *:not(:first-child) { grid-column: 1 / -1; }
-  
+
 //   @include medium-screen {
 //     > *:first-child,
 //     > *:not(:first-child) { grid-column: 1 / span 8; }
@@ -242,23 +203,28 @@ p.body-text:last-of-type,
 //   }
 // }
 
-
 .cols-left-half {
   grid-column: 1 / -1;
-  @include medium-screen { grid-column: 1 / span 8; }
-  @include large-screen { grid-column: 1 / span 7; }
+  @include medium-screen {
+    grid-column: 1 / span 8;
+  }
+  @include large-screen {
+    grid-column: 1 / span 7;
+  }
 }
 
 .cols-all {
   grid-column: 1/-1;
 }
 
-
 // -------------- Gaps -------------- //
 
-.no-col-gap { column-gap: 0 !important; }
-.no-row-gap { row-gap: 0 !important; }
-
+.no-col-gap {
+  column-gap: 0 !important;
+}
+.no-row-gap {
+  row-gap: 0 !important;
+}
 
 // -------------- Object-fit -------------- //
 
@@ -268,8 +234,12 @@ p.body-text:last-of-type,
   height: 100%;
 }
 
-.of-cover { object-fit: cover !important; }
-.of-contain { object-fit: contain !important; }
+.of-cover {
+  object-fit: cover !important;
+}
+.of-contain {
+  object-fit: contain !important;
+}
 
 // -------------- Aspect ratio -------------- //
 
@@ -281,23 +251,38 @@ p.body-text:last-of-type,
   overflow: hidden;
 }
 
-.aspect-ratio-5-4 { aspect-ratio: 3 / 2; }        // 1.25
-.aspect-ratio-3-2 { aspect-ratio: 3 / 2; }        // 1.5
-.aspect-ratio-16-10 { aspect-ratio: 16 / 10; }    // 1.6
-.aspect-ratio-16-9 { aspect-ratio: 16 / 9; }      // 1.778
-.aspect-ratio-185-1 { aspect-ratio: 1.85 / 1; }   // 1.85
-
+.aspect-ratio-5-4 {
+  aspect-ratio: 3 / 2;
+} // 1.25
+.aspect-ratio-3-2 {
+  aspect-ratio: 3 / 2;
+} // 1.5
+.aspect-ratio-16-10 {
+  aspect-ratio: 16 / 10;
+} // 1.6
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+} // 1.778
+.aspect-ratio-185-1 {
+  aspect-ratio: 1.85 / 1;
+} // 1.85
 
 // -------------- Padding -------------- //
 
 // .p-zero { padding: 0 !important; }
-.p-small { padding: var(--small-pad) !important; }
+.p-small {
+  padding: var(--small-pad) !important;
+}
 // .p-medium { padding: var(--medium-pad) !important; }
-.p-large { padding: var(--large-pad) !important; }
+.p-large {
+  padding: var(--large-pad) !important;
+}
 
 @include small-screen {
   // .sm-p-zero { padding: 0 !important; }
-  .sm-p-small { padding: var(--small-pad) !important; }
+  .sm-p-small {
+    padding: var(--small-pad) !important;
+  }
   // .sm-p-medium { padding: var(--medium-pad) !important; }
   // .sm-p-large { padding: var(--large-pad) !important; }
 }
@@ -306,7 +291,9 @@ p.body-text:last-of-type,
   // .md-p-zero { padding: 0 !important; }
   // .md-p-small { padding: var(--small-pad) !important; }
   // .md-p-medium { padding: var(--medium-pad) !important; }
-  .md-p-large { padding: var(--large-pad) !important; }
+  .md-p-large {
+    padding: var(--large-pad) !important;
+  }
 }
 
 @include large-screen {
@@ -316,13 +303,20 @@ p.body-text:last-of-type,
   // .lg-p-large { padding: var(--large-pad) !important; }
 }
 
-
 // -------------- Margin -------------- //
 
-.mb-zero { margin-bottom: 0 !important; }
-.mb-small { margin-bottom: var(--small-margin) !important; }
-.mb-medium { margin-bottom: var(--medium-margin) !important; }
-.mb-large { margin-bottom: var(--large-margin) !important; }
+.mb-zero {
+  margin-bottom: 0 !important;
+}
+.mb-small {
+  margin-bottom: var(--small-margin) !important;
+}
+.mb-medium {
+  margin-bottom: var(--medium-margin) !important;
+}
+.mb-large {
+  margin-bottom: var(--large-margin) !important;
+}
 
 @include small-screen {
   // .sm-mb-zero { margin-bottom: 0 !important; }
@@ -332,19 +326,24 @@ p.body-text:last-of-type,
 }
 
 @include medium-screen {
-  .md-mb-zero { margin-bottom: 0 !important; }
+  .md-mb-zero {
+    margin-bottom: 0 !important;
+  }
   // .md-mb-small { margin-bottom: var(--small-margin) !important; }
   // .md-mb-medium { margin-bottom: var(--medium-margin) !important; }
   // .md-mb-large { margin-bottom: var(--large-margin) !important; }
 }
 
 @include large-screen {
-  .lg-mb-zero { margin-bottom: 0 !important; }
+  .lg-mb-zero {
+    margin-bottom: 0 !important;
+  }
   // .lg-mb-small { margin-bottom: var(--small-margin) !important; }
   // .lg-mb-medium { margin-bottom: var(--medium-margin) !important; }
-  .lg-mb-large { margin-bottom: var(--large-margin) !important; }
+  .lg-mb-large {
+    margin-bottom: var(--large-margin) !important;
+  }
 }
-
 
 /* -------------- Hanging punctuation -------------- */
 
@@ -357,7 +356,6 @@ p.body-text:last-of-type,
 .hanging-punctuation * {
   text-indent: 0;
 }
-
 
 /* -------------- Hidden -------------- */
 

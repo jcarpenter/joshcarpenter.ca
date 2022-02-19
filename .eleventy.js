@@ -7,6 +7,7 @@ const markdownItAttrs = require("markdown-it-attrs")
 const markdownItBracketedSpans = require("markdown-it-bracketed-spans")
 const markdownItClass = require("@toycode/markdown-it-class")
 const markdownItDiv = require("markdown-it-div")
+const markdownItHeaderSections = require('markdown-it-header-sections')
 const markdownItModifyToken = require("markdown-it-modify-token")
 const markdownItImplicitFigures = require("markdown-it-implicit-figures")
 const markdownItMarks = require("markdown-it-mark")
@@ -17,19 +18,20 @@ const markdownItSup = require("markdown-it-sup")
 const dateFilter = require("nunjucks-date-filter")
 const slugify = require("slugify")
 
+// Plugins
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+
 // Transforms
-const addLightbox = require('./utils/transforms/add-lightbox')
+const citations = require('./utils/transforms/citations')
+const figures = require('./utils/transforms/figures')
+const footnotes = require('./utils/transforms/footnotes')
 const hangingPunctuation = require('./utils/transforms/hanging-punctuation')
-const makeImagesResponsive = require('./utils/transforms/make-images-responsive')
-const makeVideos = require('./utils/transforms/make-videos')
-const modifyFigures = require('./utils/transforms/modify-figures')
-const modifyIframes = require('./utils/transforms/modify-iframes')
-const removeTodos = require('./utils/transforms/remove-todos')
+const iframes = require('./utils/transforms/iframes')
+const lightbox = require('./utils/transforms/lightbox')
 const removeEmptyTableHeads = require('./utils/transforms/remove-empty-table-heads')
-const renderCitations = require('./utils/transforms/render-citations')
-const renderFootnotes = require('./utils/transforms/render-footnotes')
+const removeTodos = require('./utils/transforms/remove-todos')
 const stopMeasurementsWrapping = require('./utils/transforms/stop-measurements-wrapping')
-const setMetaImage = require('./utils/transforms/set-meta-image')
+const videos = require('./utils/transforms/videos')
 // const tagAbbreviations = require('./utils/transforms/tag-abbreviations')
 
 module.exports = function (eleventyConfig) {
@@ -74,7 +76,6 @@ module.exports = function (eleventyConfig) {
       // Markdown files run through this template engine before transforming to HTML.
       // https://www.11ty.dev/docs/config/#default-template-engine-for-markdown-files
       markdownTemplateEngine: "njk",
-
 
       dataTemplateEngine: "njk",
 
@@ -141,13 +142,13 @@ module.exports = function (eleventyConfig) {
   })
 
   // Slugify urls, filenames, ids. 
-  // Uses https://www.npmjs.com/package/@sindresorhus/slugify
+  // Uses https://www.npmjs.com/package/slugify
   // This will come built-in with Eleventy 1.0,
   // per https://www.11ty.dev/docs/filters/slugify/
   eleventyConfig.addFilter("slugify", (string) => {
     return slugify(string, {
       lower: true,
-      remove: /[*+~.()'"!:@]/g
+      remove: /[\*+~.,()'"!:@]/g
     })
   })
 
@@ -162,18 +163,28 @@ module.exports = function (eleventyConfig) {
   // -------- Collections -------- //
   // Define custom collections
 
-  // Make portfolio collection
+  // Portfolio
   eleventyConfig.addCollection("portfolio", (collection) => 
     collection.getFilteredByTags("ux")
       .filter((post) => post.data.publish)
       .sort((a, b) => b.data.year - a.data.year)
   )
 
-  // Make collection for climate posts
-  // 1) Sort alphabetically
-  // 2) Filter out posts marked 'publish: false'
+  // Posts
+  eleventyConfig.addCollection("posts", (collection) => 
+    collection.getFilteredByTags("post")
+      // Remove posts marked 'publish: false'
+      .filter((post) => post.data.publish)
+      .sort((a, b) => b.data.date - a.data.date)
+      // Newest at top
+      // // Put 'highlight' posts at top
+      // .sort((a, b) => a.data.tags.includes("highlight") ? -1 : 1)
+  )
+
+  // Climate posts
   eleventyConfig.addCollection("climate", (collection) =>
-    collection.getFilteredByTags("climate",)
+    collection.getFilteredByTags("climate")
+      // Remove posts marked 'publish: false'
       .filter((post) => post.data.publish)
       // Sort alphabetically
       // .sort((a, b) => {
@@ -202,8 +213,12 @@ module.exports = function (eleventyConfig) {
         }
       })
   )
-  
 
+  // -------- Plugins -------- //
+
+  eleventyConfig.addPlugin(syntaxHighlight);
+
+  
   // ========================================================
   // CONVERT MARKDOWN TO HTML
   // ========================================================
@@ -218,11 +233,17 @@ module.exports = function (eleventyConfig) {
     linkify: true,
     typographer: true,
     quotes: '“”‘’',
+    // markdownItModifyToken configuration
     modifyToken: function(token, env) {
       switch (token.type) {
-        // Add `data-lightbox` attribute to images
         case 'image': {
+          // Add `data-lightbox` attribute to images
           token.attrObj['data-lightbox'] = true
+          // Set `data-res` of images
+          // If it's a splash image, it gets Large-Medium-Small
+          // Else, it gets Medium-Medium-Small
+          const resolution = token.attrObj['class']?.includes('splash') ? "LMS" : "MMS"
+          token.attrObj['data-res'] = resolution
         }
       }
     }
@@ -239,7 +260,7 @@ module.exports = function (eleventyConfig) {
     p: "body-text",
     ul: "body-text",
     ol: "body-text",
-    figcaption: "small-text"
+    figcaption: "caption-clr small-text"
   })
 
   // Add marks with `==...===`
@@ -251,10 +272,10 @@ module.exports = function (eleventyConfig) {
 
   // Add anchors to headers
   md.use(markdownItAnchor, {
-    level: [2],
+    level: [2, 3],
     slugify: (s) => slugify(s, {
       lower: true,
-      remove: /[*+~.()'"!:@]/g
+      remove: /[*+~.,()'"!:@]/g
     }),
     permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
     // permalinkSymbol: svgAnchorIcon,
@@ -263,15 +284,21 @@ module.exports = function (eleventyConfig) {
   // Add block divs with `::: #warning`
   md.use(markdownItDiv)
 
-  // Add spans with square brackets. Eg: paragraph with [a span]{.myClass}
+  // Add spans with square brackets. 
+  // Eg: paragraph with [a span]{.myClass}
   md.use(markdownItBracketedSpans)
 
-  // Add classes, identifiers and attributes with curly brackets. Eg: {.class #identifier attr=value}
+  // Add classes, identifiers and attributes with curly brackets. 
+  // Eg: {.class #identifier attr=value}
   md.use(markdownItAttrs)
+
+  // Wrap headers in sections
+  md.use(markdownItHeaderSections)
 
   // Render images occurring by itself in a paragraph as `<figure>< img ...></figure>`, similar to pandoc's implicit_figures
   md.use(markdownItImplicitFigures, {
-    figcaption: true
+    figcaption: true,
+    copyAttrs: 'class'
   })
 
   // Add data-lightbox attribute to figures
@@ -299,18 +326,17 @@ module.exports = function (eleventyConfig) {
   // ========================================================
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
-  eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
-  eleventyConfig.addTransform("setMetaTags", setMetaImage)
   eleventyConfig.addTransform("removeTodos", removeTodos)
-  eleventyConfig.addTransform("renderFootnotes", renderFootnotes)
-  eleventyConfig.addTransform("renderCitations", renderCitations)
-  eleventyConfig.addTransform("modifyIframes", modifyIframes)
-  eleventyConfig.addTransform("makeVideos", makeVideos)
-  eleventyConfig.addTransform("modifyFigures", modifyFigures)
+  eleventyConfig.addTransform("footnotes", footnotes)
+  eleventyConfig.addTransform("citations", citations)
+  eleventyConfig.addTransform("modifyIframes", iframes)
+  eleventyConfig.addTransform("videos", videos)
+  eleventyConfig.addTransform("figures", figures)
+  eleventyConfig.addTransform("lightbox", lightbox)
+  // eleventyConfig.addTransform("metaImage", metaImage)
+  eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
   eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
   eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
-  eleventyConfig.addTransform("addLightbox", addLightbox)
-  eleventyConfig.addTransform("makeImagesResponsive", makeImagesResponsive)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
 
 

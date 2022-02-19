@@ -1,0 +1,29 @@
+{# 
+A gallery macro. Pass in array of images, at minimum.
+Argument `params` is an object with the following:
+{
+    images: ["sam.png", "max.png", "boops.png"],
+    backgroundColor: "#cc0000",
+    caption-clr: "Cats"
+}
+Note: The `{%- -%}` dashes is important. It prevents nunjucks from
+adding unwanted whitespace. Otherwise whitespace would be added, and
+if we use this macro in markdown documents, it will interpret the
+indendent HTML as a code block. 
+#}
+{% macro gallery(params) %}
+<div class="gallery">
+    <div class="wrapper">
+        <button class="prev" aria-label="Previous"><img src="/img/arrow.svg" alt="Previous"></button>
+        <button class="next" aria-label="Next"><img src="/img/arrow.svg" alt="Next"></button>
+        <ul {%if params.backgroundColor %}style="background-color: #8F8F8F" {% endif %}>
+            {%- for img in params.images -%}
+                <li><img src="{{ img }}" data-lightbox data-res="MMS"/></li>
+            {%- endfor -%}
+        </ul>
+    </div>
+    {%if- caption-clr -%}
+    <div class="caption-clr small-text">{{ params.caption-clr }}</div>
+    {%- endif -%}
+</div>
+{% endmacro %}

@@ -10,13 +10,13 @@
 }
 ---
 <article class="content-wrapper">
-    
+
     {# ------------ Header & Copy ------------ #}
     {{ content | safe }}
 
     {# ------------ Footnotes ------------ #}
     {% include "footnotes.njk" %}
-    
+
 </article>
 
 {# ------------ About the Author ------------ #}
@@ -28,18 +28,62 @@
     <div class="standard-width">
         <h2 id="more-content-heading">Portfolio</h2>
         <ul>
-            {%- for post in collections.portfolio -%}
-                {# {% if page.url != post.url %} #}
-                    <li>
-                        <a href="{{ post.url }}" class="thumb">
-                            <img src="{{ post.data.meta_image }}"></img>
-                        </a>
-                        <div class="caption smaller-text">
-                            <a href="{{ post.url }}">{{ post.data.title }}</a>
-                        </div>
-                    </li>
-                {# {% endif %} #}
-            {%- endfor -%}
+            <li>
+                <a href="/composable-3d-web/" class="thumb">
+                    <img src="/img/c3d/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/composable-3d-web/">The Composable 3D Web</a>
+                </div>
+            </li>
+            <li>
+                <a href="/chrome-vr/" class="thumb">
+                    <img src="/img/chromevr/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/chrome-vr/">Chrome VR</a>
+                </div>
+            </li>
+            <li>
+                <a href="/aframe/" class="thumb">
+                    <img src="/img/aframe/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/aframe/">A-Frame VR</a>
+                </div>
+            </li>
+            <li>
+                <a href="/mozilla-vr/" class="thumb">
+                    <img src="/img/mozvr/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/mozilla-vr/">Mozilla VR</a>
+                </div>
+            </li>
+            <li>
+                <a href="/firefox-os/" class="thumb">
+                    <img src="/img/ffos/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/firefox-os/">Firefox OS</a>
+                </div>
+            </li>
+            <li>
+                <a href="/stadium-control/" class="thumb">
+                    <img src="/img/ns/bcp/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/stadium-control/">Stadium Control Center</a>
+                </div>
+            </li>
+            <li>
+                <a href="/home-automation/" class="thumb">
+                    <img src="/img/ns/home/thumb.png"></img>
+                </a>
+                <div class="caption-clr smaller-text">
+                    <a href="/home-automation/">Home Automation</a>
+                </div>
+            </li>
         </ul>
     </div>
 </section>

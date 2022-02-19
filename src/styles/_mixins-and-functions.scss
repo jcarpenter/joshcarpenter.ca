@@ -10,20 +10,32 @@
   @return rgba(var(--background), $alpha);
 }
 
+@function blockquote($alpha: 1) {
+  @return rgba(var(--blockquote), $alpha);
+}
+
 @function caption($alpha: 1) {
   @return rgba(var(--caption), $alpha);
+}
+
+@function code($alpha: 1) {
+  @return rgba(var(--code), $alpha);
 }
 
 @function foreground($alpha: 1) {
   @return rgba(var(--foreground), $alpha);
 }
 
-@function horizontalRule($alpha: 1) {
-  @return rgba(var(--horizontal-rule), $alpha);
+@function sectionDivider($alpha: 1) {
+  @return rgba(var(--section-divider), $alpha);
 }
 
 @function onBackground($alpha: 1) {
   @return rgba(var(--on-background), $alpha);
+}
+
+@function onCode($alpha: 1) {
+  @return rgba(var(--on-code), $alpha);
 }
 
 @function onPopup($alpha: 1) {
@@ -32,6 +44,10 @@
 
 @function popup($alpha: 1) {
   @return rgba(var(--popup), $alpha);
+}
+
+@function caution($alpha: 1) {
+  @return rgba(var(--caution), $alpha);
 }
 
 
@@ -53,18 +69,15 @@
 // -------------- Media query: Dark mode  -------------- //
 
 @mixin dark {
-  body.force-dark-mode {
-    @content; 
-  }
-  @media (prefers-color-scheme: dark) {
-    @content;
-  }
+	@at-root body[data-theme=dark] & {
+		@content;
+	}
 }
 
 @mixin light {
-  @media (prefers-color-scheme: light) {
-    @content;
-  }
+	@at-root body[data-theme=light] & {
+		@content;
+	}
 }
 
 
@@ -183,7 +196,7 @@
 
 // Utility mixin: Reusable declaration for mono fonts.
 @mixin monoFont {
-  font-family: Roboto Mono, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
 }
 
 
@@ -197,7 +210,7 @@
   outline-offset: 0.2rem;
 }
 
-@mixin outline-on-focus($widthRem: 0.2, $offsetRem: 0.2, $color: foreground(0.95), $borderRadiusEm: 0.05) {
+@mixin outline-on-focus($widthRem: 0.2, $offsetRem: 0.2, $color: foreground(0.75), $borderRadiusEm: 0.05) {
   
   &:focus-visible {
     outline-width: $widthRem * 1rem;
@@ -222,7 +235,7 @@
 }
 
 // Apply this to `standard-width` elements to create consistent top borders
-@mixin topBorder($color: horizontalRule(1)) {
+@mixin topBorder($color: sectionDivider(1)) {
   
   // Top-border
   position: relative;

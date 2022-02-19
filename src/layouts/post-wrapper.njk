@@ -1,0 +1,70 @@
+---js
+{
+    eleventyComputed: {
+        meta_title: "{{ title }} - Josh Carpenter",
+    },
+    meta_twitter_card_type: 'summary',
+    layout: "base.njk",
+    css: ["post.css"]
+}
+---
+<article class="content-wrapper {{ post_layout }}">
+
+    {# ------------ Header ------------ #}
+    <header class="standard-width">
+
+        <h1 id="title">{{ title }}</h1>
+
+        <div id="front-matter">
+            <div class="wrapper">
+
+                {% if post_layout == "large" %}
+
+                    <section id="summary" class="large-text copy">
+                        <p>{{ summary }}</p>
+                    </section>
+
+                    <div id="details" class="small-text">
+                        <div id="photo"><img src="/img/josh-1.png" alt="Josh Carpenter"/></div>
+                        <a href="/" class="author">{{ bio.name }}</a>
+                        <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
+                    </div>
+
+                {% elif post_layout == "compact" %}
+
+                    <div id="details" class="small-text">
+                        <a href="/" class="author">{{ bio.name }}</a>
+                        <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
+                        <ul id="tags">
+                            {% if tags and tags.includes("climate") %}
+                                <li class="tag climate">Climate</li>
+                            {% endif %}
+                            {% if tags and tags.includes("explainer") %}
+                                <li class="tag explainer">Explainer</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <section id="summary"  class="small-text copy">
+                        <p>{{ summary }}</p>
+                    </section>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+    </header>
+
+    {# ------------ Body ------------ #}
+    <section id="body" class="standard-width copy" aria-label="Article body">
+        {{ content | safe }}
+    </section>
+
+    {# ------------ Footnotes ------------ #}
+    {% include "footnotes.njk" %}
+
+</article>
+
+{# ------------ About the Author ------------ #}
+{% include "about-the-author.njk" %}

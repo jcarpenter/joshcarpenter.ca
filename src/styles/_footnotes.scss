@@ -1,5 +1,4 @@
-@use "mixins-and-functions" as *;
-
+@use 'mixins-and-functions' as *;
 
 /* 
 ========================================================
@@ -7,33 +6,54 @@ FOOTNOTES: LINKS INSIDE CONTENT
 ========================================================
 */
 
+/* -------------- nbsp before the visible link -------------- */
+
+// We precede the sup/link with an nbsp in a span
+// to prevent footnote links from being orphaned on a
+// new line from the text that precedes them.
+
+.fn-gap {
+    // visibility: hidden;
+    width: 0.2em;
+    display: inline-block;
+}
+
 /* -------------- Wrapping <sup> -------------- */
 
 sup.fn {
     position: relative;
-    vertical-align: baseline;
-    font-size: 1em;
-    top: initial;
-    bottom: 0.1em;
+    // vertical-align: baseline;
+    bottom: -0.3em;
+    line-height: 0;
+    // font-size: 1em;
+    // top: initial;
 }
-
 
 /* -------------- Link -------------- */
 
-.fn > a {    
-    font-size: 0.8em;
-    color: onBackground(calc(var(--baseTextAlpha) - 0.2));
-    background: none;
-    text-decoration: underline;
-    text-decoration-color: inherit;
-    text-underline-offset: 0.1em;
-    padding: 0;
-    // Push vertical alignment up a few px.
-    // Code text is bit smaller than surrounding,
-    // So we need to vertically center it.
+.fn > a {
+    font-size: 0.9em;
+    padding: 0.15em 0.2em;
+    text-decoration-line: none !important;
     line-height: 0;
-    vertical-align: 0.1em;
-    border-radius: 0.03rem;
+    border-radius: 0.25em;
+    
+    @include light {
+        color: onBackground(0.6);
+        background-color: onBackground(0.1);
+        &:hover {
+            background-color: onBackground(0.2);
+        }
+    }
+    
+    @include dark {
+        color: onBackground(0.8);
+        background-color: onBackground(0.2);
+        &:hover {
+            color: onBackground(1);
+            background-color: onBackground(0.35);
+        }
+    }
 }
 
 // Touch: Make target slightly larger
@@ -47,7 +67,7 @@ sup.fn {
 // Desktop: Make target slightly smaller
 @media (hover) {
     .fn > a {
-        padding: 0;
+        // padding: 0;
         // padding: 0.3em 0.25em 0.2em;
     }
 }
@@ -61,19 +81,71 @@ sup.fn {
 .fn > a:focus,
 .fn > a:hover {
     color: onBackground(1);
-    // background-color: onBackground(0.2);
 }
 
+// /* -------------- Wrapping <sup> -------------- */
 
+// sup.fn {
+//     position: relative;
+//     vertical-align: baseline;
+//     font-size: 1em;
+//     top: initial;
+//     bottom: 0.1em;
+// }
 
+// /* -------------- Link -------------- */
+
+// .fn > a {
+//     font-size: 0.8em;
+//     color: onBackground(calc(var(--base-text-alpha) - 0.2));
+//     background: none;
+//     text-decoration: underline;
+//     text-decoration-color: inherit;
+//     text-underline-offset: 0.1em;
+//     padding: 0;
+//     // Push vertical alignment up a few px.
+//     // Code text is bit smaller than surrounding,
+//     // So we need to vertically center it.
+//     line-height: 0;
+//     vertical-align: 0.1em;
+//     border-radius: 0.03rem;
+// }
+
+// // Touch: Make target slightly larger
+// @media (hover: none) {
+//     .fn > a {
+//         // padding: 0em 0.1em;
+//         // padding: 0.3em 0.35em 0.2em;
+//     }
+// }
+
+// // Desktop: Make target slightly smaller
+// @media (hover) {
+//     .fn > a {
+//         padding: 0;
+//         // padding: 0.3em 0.25em 0.2em;
+//     }
+// }
+
+// // Links inside the footnote
+// .fn > a:focus {
+//     @include outline-thin;
+//     outline-offset: 0.2rem;
+// }
+
+// .fn > a:focus,
+// .fn > a:hover {
+//     color: onBackground(1);
+//     // background-color: onBackground(0.2);
+// }
 
 /* -------------- Inside .large-text -------------- */
 
 .large-text sup.fn > a {
-    color: inherit;
-    opacity: 0.8;
-    vertical-align: 0.4em;
-    text-decoration: none;
+    // color: inherit;
+    // opacity: 0.8;
+    // vertical-align: 0.4em;
+    // text-decoration: none;
 }
 
 /* -------------- Inside blockquotes -------------- */
@@ -83,16 +155,16 @@ blockquote .fn > a {
     font-style: normal;
     color: inherit;
     // background-color: accent(0.075);
-    &:focus, &:hover {
+    &:focus,
+    &:hover {
         color: inherit;
-    // background-color: accent(0.2);
+        // background-color: accent(0.2);
     }
 }
 
 blockquote .fn-popup {
     font-style: normal;
 }
-
 
 /* 
 ========================================================
@@ -101,27 +173,44 @@ FOOTNOTES: POPUP OVER LINK
 */
 
 .fn-popup {
-    @include baselineShiftTypography(
-        $fontSize: 1.2rem,
-        $lineHeight: 1.8rem,
-    );
     margin-bottom: 0rem;
     white-space: normal;
-    padding: 1rem;
-    color: onPopup(0.7);
+    padding: 1rem !important;
+                
+    color: onPopup(0.8);
     background-color: popup();
-    a { 
-        color: onPopup(0.9) !important; 
-        text-decoration-color: onPopup(0.5) !important;
+
+    a {
+        color: onPopup(0.9);
+        text-decoration-color: onPopup(0.6);
+
+        &:hover {
+            color: onPopup(1);
+            text-decoration-color: onPopup(0.8);
+            @include light {
+                filter: brightness(0.8);
+            }
+            @include dark {
+                filter: brightness(1.1);
+            }
+        }
+
+        &:active {
+            outline: none;
+            background-color: onBackground(0.1);
+        }
+
+        // Make links stand out a bit from the surrounding text
+        // filter: brightness(1.1);
     }
-    a:hover { 
-        color: onPopup() !important;
-        text-decoration-color: onPopup() !important;
-    }  
+
+    @include dark {
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    }
 }
 
 // Popup: Desktop and larger touch-based devices
-// Appears as a hovering box 
+// Appears as a hovering box
 @media (hover), (hover: none) and (min-width: 600px) {
     .fn {
         --notch-size: 1rem;
@@ -143,7 +232,7 @@ FOOTNOTES: POPUP OVER LINK
         transition-timing-function: ease-out;
         /* Notch */
         &::before {
-            content: "";
+            content: '';
             width: var(--notch-size);
             height: var(--notch-size);
             position: absolute;
@@ -176,7 +265,7 @@ FOOTNOTES: POPUP OVER LINK
         }
     }
 
-    .fn:focus-within a[aria-expanded="true"] + .fn-popup,
+    .fn:focus-within a[aria-expanded='true'] + .fn-popup,
     .fn:hover .fn-popup {
         // display: block;
         opacity: 1;
@@ -188,11 +277,11 @@ FOOTNOTES: POPUP OVER LINK
 }
 
 // Popup — For smaller touch-based devices.
-// The popup appears along the bottom of the screen, and a 
+// The popup appears along the bottom of the screen, and a
 // dark overlay covers the rest of the content.
 
-// TODO: What about Windows devices with both tap and touch? 
-// They won'  be able to tap. May want to instead use 
+// TODO: What about Windows devices with both tap and touch?
+// They won'  be able to tap. May want to instead use
 // `@media (pointer:fine)` and `@media (pointer:coarse)`?
 
 @media (hover: none) and (max-width: 599px) {
@@ -223,7 +312,7 @@ FOOTNOTES: POPUP OVER LINK
 
     // Activated
     // .fn:hover .fn-popup,
-    .fn:focus-within a[aria-expanded="true"] + .fn-popup {
+    .fn:focus-within a[aria-expanded='true'] + .fn-popup {
         // Transition settings to visible state.
         // Set visibility immediately (0s).
         bottom: -0.5em;
@@ -233,7 +322,7 @@ FOOTNOTES: POPUP OVER LINK
         transition-timing-function: ease-out;
     }
 
-    // Overlay 
+    // Overlay
     // .note .popup::after {
     //     content: '';
     //     position: fixed;
@@ -246,7 +335,6 @@ FOOTNOTES: POPUP OVER LINK
     // }
 }
 
-
 /* 
 ========================================================
 FOOTNOTES: SECTION AT END
@@ -254,7 +342,7 @@ FOOTNOTES: SECTION AT END
 */
 
 #footnotes {
-    @include topBorder(horizontalRule(0.8));    
+    @include topBorder(sectionDivider(0.8));
     // margin-top: 4rem;
 }
 
@@ -262,22 +350,21 @@ FOOTNOTES: SECTION AT END
     color: onBackground(1);
     &::before {
         // Disable ## prefix for footnotes header
-        content: initial !important; 
+        content: initial !important;
     }
 }
-  
+
 #footnotes ol {
-    
     margin-bottom: 0rem;
     list-style: none;
     padding-left: 0;
     margin: 0;
     overflow: visible;
-    
+
     display: grid;
     grid-auto-flow: row;
     row-gap: 1rem;
- 
+
     // One column by default
     // Two columns on `small` screens
     // Three columns on `medium` and above screens
@@ -286,7 +373,7 @@ FOOTNOTES: SECTION AT END
         column-gap: 1rem;
         row-gap: 2rem;
     }
-    
+
     @include medium-screen {
         grid-template-columns: repeat(3, 1fr);
         column-gap: 2rem;
@@ -299,20 +386,18 @@ FOOTNOTES: SECTION AT END
 }
 
 #footnotes ol li {
-    
     list-style: none;
     position: relative;
     counter-increment: custom-counter;
 
     margin-left: 2rem;
     margin-bottom: 0;
-    
+
     // Prevent contents breaking across columns. */
     // break-inside: avoid;
     // page-break-inside: avoid; /* Firefox */
     // color: onBackground(0.65);
 
-    // max-width: min(30rem, 50%);
 
     // Numeric marker
     &::before {
@@ -330,15 +415,28 @@ FOOTNOTES: SECTION AT END
         margin-bottom: 0;
     }
 
+
+    color: onBackground(0.7);
+
     a {
-        font-weight: normal;
-        text-decoration: underline;
-        border: none;
         color: onBackground(0.85);
+        text-decoration-color: onBackground(0.5);
 
         &:hover {
-            border: none;
-            color: onBackground(0.95); 
+            color: onBackground(1);
+            text-decoration-color: onBackground(0.8);
+            // Make links stand out a bit from the surrounding text
+            @include light {
+                filter: brightness(0.8);
+            }
+            @include dark {
+                filter: brightness(1.1);
+            }
+        }
+
+        &:active {
+            outline: none;
+            background-color: onBackground(0.1);
         }
     }
 
@@ -372,7 +470,7 @@ FOOTNOTES: SECTION AT END
         transition: opacity 200ms;
         color: onBackground(0.5);
     }
-    
+
     &:hover .fn-back {
         opacity: 1;
     }

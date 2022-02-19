@@ -43,7 +43,7 @@ NAVIGATION
         text-underline-offset: 0.2em;
         text-decoration-color: transparent;
         &:hover {
-            color: accent(1);
+            color: accent(1) !important;
             text-decoration-color: accent(0.5);
         }
     }
@@ -58,6 +58,8 @@ NAVIGATION
     .section { color: onBackground(0.5); }
   
     @include dark {
-        .name, .section { color: onBackground(0.87); }
+        .name, .section { 
+            color: onBackground(0.87); 
+        }
     }
 }

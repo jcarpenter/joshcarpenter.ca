@@ -2,6 +2,89 @@
 
 /* 
 ========================================================
+TABLES (NEW APPROACH)
+========================================================
+*/
+
+.table {
+
+    --tableOuterBorderColor: #{onBackground(0.15)};
+    --tableInnerBorderColor: #{onBackground(0.1)};
+    
+    @include dark {
+        --tableOuterBorderColor: #{caption(0.4)};
+        --tableInnerBorderColor: #{caption(0.2)};
+    }
+
+    border: 1px solid var(--tableOuterBorderColor);
+    border-radius: var(--media-border-radius);
+
+    display: grid;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+
+    .head > * {
+        font-weight: 500;
+        color: caption(1);
+        background-color: caption(0.1);
+    }
+
+    .section > * {
+        font-weight: 500;
+        background-color: caption(0.05);
+    }
+
+    .full-width > * {
+        grid-column: 1 / -1;
+    }
+
+    .row {
+      display: contents;
+    }
+
+    .row:not(.head) span {
+        border-top: 1px solid caption(0.2);
+    }
+
+    .row.section span {
+        border-top: 1px solid caption(0.4);
+    }
+
+    // .row > span:first-of-type {
+    //     padding-left: 0.5rem;
+    // }
+
+    // .row > span:last-of-type {
+    //     padding-right: 0.5rem;
+    // }
+
+    span {
+        @include baselineShiftTypography(
+            $fontSize: 1.1rem,
+            $lineHeight: 2rem
+        );
+        padding-left: 1rem;
+        padding-right: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.cols-2 {
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    // grid-template-columns: repeat(2, fit-content(100%));
+}
+
+.cols-3 {
+    grid-template-columns: repeat(3, minmax(auto, 1fr));
+    // grid-template-columns: repeat(3, fit-content(100%));
+}
+
+/* 
+========================================================
 TABLES
 ========================================================
 */

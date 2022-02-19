@@ -114,7 +114,7 @@ Basic lightbox. Supports swiping through images with mouse or touch.
 
   /**
    * On open, we reparent the [data-lightbox] media elements
-   * to the #lightbox, and insert placeholder divs where 
+   * to the #lightbox, and insert placeholder divs where
    * they used to be. On close, we reverse this process.
    */
   function openLightbox() {
@@ -125,16 +125,15 @@ Basic lightbox. Supports swiping through images with mouse or touch.
     const thumbs = document.querySelectorAll('[data-lightbox]')
 
     thumbs.forEach((thumb, index) => {
-      
       // Get the media element associated with the thumb.
       // This is either the thumb itself, or a child inside the thumb,
       // (as in case where we wrap the media in a div, or some such).
       const thumbIsMedia = ['picture', 'img', 'video'].includes(thumb.localName)
       const media = thumbIsMedia ? thumb : thumb.querySelector('picture, img, video')
 
-      // Create a placeholder div. We'll insert this where 
-      // the media currently is. Then move the media into 
-      // the lightbox. When we close the lightbox, we'll 
+      // Create a placeholder div. We'll insert this where
+      // the media currently is. Then move the media into
+      // the lightbox. When we close the lightbox, we'll
       // reverse this, and delete the placeholder.
       const placeholder = document.createElement('div')
       placeholder.classList.add('lightbox-placeholder')
@@ -191,7 +190,7 @@ Basic lightbox. Supports swiping through images with mouse or touch.
     // background.addEventListener('transitionend', () => {
     //   disableDocScrolling()
     // }, {once: true})
-    
+
     // Stop scrolling while lightbox is open
     disableDocScrolling()
 
@@ -202,7 +201,6 @@ Basic lightbox. Supports swiping through images with mouse or touch.
 
 
   function closeLightbox() {
-
     // Stop intersection observer from observing all targets
     observer.disconnect()
 
@@ -226,17 +224,16 @@ Basic lightbox. Supports swiping through images with mouse or touch.
     // Re-enable scrolling
     restoreDocScrolling()
   }
-  
+
   /**
    * Move lightbox media elmeents back to their original places in the
    * document, delete the placeholders, then also delete the lightbox
    * list items.
    */
-   function emptyLightbox() {
-
+  function emptyLightbox() {
     const medias = lightbox.querySelectorAll('ul li .container > *:first-child')
     const placeholders = document.querySelectorAll('.lightbox-placeholder')
-    
+
     medias.forEach((media, index) => {
       const placeholder = placeholders[index]
       // Move media elements back to their placeholders

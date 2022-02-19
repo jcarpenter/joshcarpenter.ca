@@ -29,7 +29,7 @@
       // Create popup
       const popup = document.createElement('span')
       popup.id = `fn${index}-popup`
-      popup.classList.add('fn-popup', 'above')
+      popup.classList.add('fn-popup', 'above', 'small-text')
       // Populate popup with contents of associated footnote <li>.
       const contents = document.querySelector(`#fn${index}`).cloneNode(true).childNodes
       const frag = document.createDocumentFragment()

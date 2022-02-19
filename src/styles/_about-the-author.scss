@@ -8,6 +8,14 @@ ABOUT THE AUTHOR
 
 #about-the-author h2 {
   flex-basis: 100%;
+  color: accent(1);
+  font-weight: 500;
+  margin-bottom: 1rem;
+
+	@include baselineShiftTypography(
+		$fontSize: 1.333rem, 
+		$lineHeight: 2rem
+	);
 }
 
 #about-the-author > div {
@@ -21,12 +29,11 @@ ABOUT THE AUTHOR
 }
 
 #about-the-author #photo {
-  position: relative;
   margin: 0 4rem 2rem 0;
   // flex: 0 0 auto;
-
+  
   img {
-    position: relative;
+    border-radius: var(--media-border-radius);
     width: 12rem;
     height: 12rem;
     background-color: accent(0.1);

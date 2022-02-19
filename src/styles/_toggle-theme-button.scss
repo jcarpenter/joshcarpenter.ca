@@ -1,0 +1,88 @@
+@use "mixins-and-functions" as *;
+
+/* 
+========================================================
+TOGGLE COLOR SCHEME BUTTON
+========================================================
+*/
+
+// Wrapper
+#toggle-theme {
+
+  position: relative;
+  border-radius: 1rem;
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+// Slider
+#toggle-theme #slider  {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  will-change: transform;
+  transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+}
+
+// Label
+#toggle-theme #label {
+  position: absolute;
+  top: 50%;
+  left: -1rem;
+  font-size: 1rem;
+  color: caption(0.6);
+  opacity: 0;
+  transform: translate(-100%, -50%);
+  white-space: nowrap;
+  transition: opacity 0.1s 0.1s;
+  pointer-events: none;
+  background-color: none;
+}
+
+#toggle-theme:hover #label {
+  opacity: 1;
+  transition: opacity 0.1s 0.2s;
+}
+
+@media (hover: none) {
+  // Hide label on mobile
+  #toggle-theme #label {
+    display: none;
+  } 
+}
+
+// Dark / Light colors
+body[data-theme=light] {
+  #toggle-theme {
+    background-color: onBackground(0.08);
+    #slider {
+      background-color: onBackground(0.2);
+      transform: translateX(0) scale(0.7);
+    }
+  }
+  #toggle-theme:hover {
+    background-color: onBackground(0.2);
+    #slider {
+      background-color: onBackground(0.6);
+    }
+  }
+}
+
+body[data-theme=dark] {
+  #toggle-theme {
+    background-color: onBackground(0.12);
+    #slider {
+      background-color: onBackground(0.3);
+      transform: translateX(2rem) scale(0.7);
+    }
+  }
+  #toggle-theme:hover {
+    background-color: onBackground(0.2);
+    #slider {
+      background-color: onBackground(0.6);
+    }
+  }
+}
+

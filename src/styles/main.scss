@@ -5,7 +5,6 @@
 
 // Copy: Styles grouped under .copy
 @use "copy";
-@use "figure-and-img";
 
 // Includes
 @use "about-the-author";
@@ -14,7 +13,8 @@
 @use "lightbox";
 @use "more-content";
 @use "navigation";
-@use "toggle-color-scheme-button";
+@use "slideshow";
+@use "toggle-theme-button";
 
 // Helpers
 @use "utility-classes";
@@ -33,7 +33,7 @@ BASE: LAYOUT
 */
 
 html {
-	font-size: var(--htmlFontSize);
+	font-size: var(--html-font-size);
 
 	// Universal box sizing with inheritance:
 	// Reset box-sizing to border-box for all elements (including 
@@ -56,15 +56,15 @@ body {
 	padding: 2rem 0rem;
 	overflow-x: hidden;
 	position: relative;
-	color: onBackground(var(--baseTextAlpha));
+	color: onBackground(var(--base-text-alpha));
 	background-color: background(1);
 	transition: color 0.2s, background-color 0.2s;
 }
 
 // This stops a flash of white on page load. Then 
-// toggle-color-scheme.js sets the data-color-scheme
+// toggle-theme.js sets the data-theme
 // value to 'light' or 'dark', and the page renders.
-body[data-color-scheme=none] {
+body[data-theme=none] {
   transition: none !important;
   display: none;
 }
@@ -114,21 +114,6 @@ h3 {
 	font-kerning: normal;
 }
 
-/* -------------- h2 -------------- */
-
-h2 {
-
-	margin-bottom: 2rem;
-
-	color: accent(1);
-
-	font-weight: 400;
-
-	@include baselineShiftTypography(
-		$fontSize: 1.333rem, 
-		$lineHeight: 2rem
-	);
-}
 
 /* -------------- Horizontal rule  -------------- */
 

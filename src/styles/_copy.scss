@@ -1,4 +1,4 @@
-@use "mixins-and-functions" as *;
+@use 'mixins-and-functions' as *;
 
 // These styles apply only to "copy" areas of text (with the
 // the .copy class). For example, the text of a blog post,
@@ -10,10 +10,15 @@ COPY STYLES
 ========================================================
 */
 
+.copy *::selection {
+	@include dark {
+		background-color: code(0.3);
+	}
+}
+
+/* -------------- Block quote -------------- */
+
 .copy {
-
-	/* -------------- Block quote -------------- */
-
 	// Shifted margin is to make room on side for ::before notch (see below).
 	blockquote {
 		margin: 0 0 1rem 0;
@@ -23,11 +28,6 @@ COPY STYLES
 	// Border on left side. The ::before element gives us more control.
 	blockquote::before {
 		content: '';
-		background-color: caption(0.45);
-		@include dark {
-			background-color: caption(0.65);
-		}
-		// background-color: accent(0.25);
 		width: 0.15em;
 		position: absolute;
 		height: 100%;
@@ -38,19 +38,41 @@ COPY STYLES
 		// far as the baseline of the last line. If we don't
 		// do this, it extends to descender and bottom padding.
 		height: calc(100% - 1.6rem);
+
+		@include light {
+			background-color: blockquote(0.45);
+		}
+		@include dark {
+			background-color: blockquote(0.65);
+		}
 	}
 
 	blockquote p {
-		color: caption();
+		color: blockquote(1);
 		padding-left: 2rem;
 		margin: 0 0 1rem;
 
 		// Normal links inside blockquote
-		& > a { 
-			color: inherit;
+		& > a {
+			color: blockquote(1);
+			text-decoration-color: blockquote(0.5);
+
 			&:hover {
-				// color: accent();
-				filter: brightness(0.8); // Darken on hover
+				color: blockquote(1);
+				text-decoration-color: blockquote(0.8);
+			}
+
+			&:active {
+				outline: none;
+				background-color: blockquote(0.1);
+			}
+
+			// Make links stand out a bit from the surrounding text
+			@include light {
+				filter: brightness(0.8);
+			}
+			@include dark {
+				filter: brightness(1.1);
 			}
 		}
 	}
@@ -59,162 +81,191 @@ COPY STYLES
 	blockquote p:last-of-type {
 		margin-bottom: 0 !important;
 	}
+}
 
-	blockquote strong {
-		color: inherit;
-		filter: brightness(1.2);
+/* -------------- Code and Pre -------------- */
+
+.copy {
+	pre {
+		padding: 0.5rem 0.8rem;
+		// Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
+		margin-top: 2rem !important;
+		margin-bottom: 2rem !important;
+		border: none !important;
+		border-radius: var(--media-border-radius);
+
+		code {
+			@include monoFont;
+			font-size: 1.1rem;
+			line-height: 1.75rem;
+			white-space: pre-wrap !important;
+			margin-bottom: 1rem;
+		}
 	}
 
-
-	/* -------------- Code -------------- */
-
 	// Code element inside paragraph (as opposed to inside `pre` block)
-	p code {
+	:not(pre) > code {
 		@include monoFont;
-		font-size: 0.9em;
-		padding: 0em 0.2em;
 		border-radius: 0.2em;
 		// Push vertical alignment up a few px.
 		// Code text is bit smaller than surrounding,
 		// So we need to vertically center it.
 		line-height: 0;
 		vertical-align: 0.05em;
-		
+		padding: 0.075em 0.25em 0.15em;
+
 		// Prevent wrapping
-		white-space: nowrap;
+		// white-space: nowrap;
 
-		color: inherit;
-		background-color: onBackground(0.08) !important;
-
+		color: code(1);
+		background-color: code(0.12) !important;
 	}
 
-	@include dark {
-		p code {
-		//   color: caption(1) !important;
-			color: inherit;
-			background-color: caption(0.2) !important;
-			// filter: brightness(1.2);
-		}  
+	// Code inside paragraphs and lists should be slightly
+	// smaller em font size. Otherwise it looks too big.
+	// Code inside table should be same em size as other text.
+
+	p code,
+	li code {
+		font-size: 0.85em;
 	}
 
+	.table code {
+		font-size: 1em !important;
+	}
+}
 
-	/* -------------- h2 -------------- */
+/* -------------- Figure -------------- */
 
-	// Copy h2's have a few alterations from base h2 style.
-	h2 {
+.copy figure {
+	padding-top: 1rem;
+	margin: 0 0 2rem;
+	height: auto;
+	width: 100%;
 
-		// Copy h2's have beefer font weights than
-		// default non-copy style
-		font-weight: 500;
-		@include dark { font-weight: 500; }
+	@include smaller-screen {
+		min-width: 20rem;
+		// max-width: 42rem;
 
-		// Copy h2's also have more top padding
-		@include baselineShiftTypography(
-			$fontSize: 1.333rem, 
-			$lineHeight: 2rem,
-			$paddingTop: 2rem
-		);
-		
-		margin-top: calc(var(--large-margin) + 1rem);
-		margin-bottom: 1rem;
-
-		border-top-width: 1px;
-		border-top-style: solid;
-		border-top-color: horizontalRule(1);
-		transition: border-color 0.2s;
-
-		// Hide link underlines
-		a {
-			color: inherit;
-			text-decoration-color: transparent;
-		}
-
-		// Override default .copy a hover styles.
-		// We don't want underline or color change.
-		a:hover {
-			color: inherit;
-			text-decoration-color: transparent;
+		figcaption {
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 
-	// Add ## before h2:
-	// - Larger screens only (no room on smaller displays)
-	// - Normal posts only (NOT short-posts)
-	@include small-screen {
+	// Media
+	img,
+	video,
+	iframe,
+	picture {
+		border-radius: var(--media-border-radius);
 
-		h2 a {
+		// Ensure media container expands to fit parent container.
+		width: 100%;
+		max-width: 100%;
+		height: auto;
 
-			position: relative;
-		
-			&::before {
-				content: '##';
-				font-weight: 500;
-				font-size: 1.0em;
-				color: accent(0.3);
-				left: -0.5rem;
-				transform: translateX(-100%);
-				position: absolute;
-				transition: color 0.15s;
-			}
+		// Remove gap below media elements by changing them
+		// from display inline to block.
+		display: block;
 
-			&:hover::before {
-				color: accent(1);
-			}
+		// Add box-shadow
+		box-shadow: 0px 0px 2em rgba(0, 0, 0, 0.05);
+
+		// Ensure media container contents expand to fill the
+		// container. Need to set this because we container will
+		// not fit content exactly, because we crop container
+		// to fit the grid.
+		object-fit: cover;
+
+		transition: outline 250ms;
+		outline-color: transparent;
+
+		&:focus-visible {
+			@include outline-thin;
+			// outline-color: onBackground(0.7);
 		}
 	}
 
-	/* -------------- h3 -------------- */
-
-	h3 {
-		@include baselineShiftTypography;
-		margin-bottom: 1rem;
-		font-weight: 500;
-		color: onBackground(1); 
-		@include dark {
-			color: onBackground(1); 
-		}
+	// We need to set the aspect-ratio property on the iframe.
+	// E.g. <iframe style="aspect-ratio: 4/3" ...>
+	iframe {
+		margin: 0;
+		background-color: black;
 	}
 
-	/* -------------- Img -------------- */
+	// We need to add overflow:hidden to make border-radius on
+	// picture crop <source> and <img> children.
+	picture {
+		overflow: hidden;
+	}
+}
 
-	// While images load, slight background color is visible.
-	img { background-color: accent(0.1); }
+// Figcaption
 
-	/* -------------- Links -------------- */
+.copy figcaption {
+	font-weight: 400;
 
-	a {
-		text-decoration: underline;
-		text-underline-offset: 0.05em;
-		color: onBackground(var(--baseTextAlpha));
+	// Add hyphenation
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
+	margin-bottom: 1rem;
+}
+
+/* -------------- Img -------------- */
+
+// While images load, slight background color is visible.
+.copy img {
+	background-color: accent(0.1);
+}
+
+/* -------------- Links -------------- */
+
+.copy {
+	// Top-level links only.
+	// We need to be restrictive here or the stylinng
+	// will flow to the footnote popup as well.
+	& > a,
+	& > p > a,
+	li > a,
+	li > p > a,
+	section > p > a,
+	& > div > p > a {
+
+		color: onBackground(var(--base-text-alpha));
 		text-decoration-color: onBackground(0.3);
-			
-		// Round border so outline :focus is less harsh
-		// NOTE: Only noticeable on browsers where outline follows 
-		// border-radius. Safari does not, unfortunately.
-		border-radius: 0.05rem;
 
-		&:hover { 
-			color: onBackground(1); 
-			text-decoration-color: onBackground(1);
+		&:hover {
+			color: onBackground(1);
+			text-decoration-color: onBackground(0.6);
 		}
 
 		&:active {
 			outline: none;
-			color: onBackground(1);
-			background-color: onBackground(0.1);   
+			background-color: onBackground(0.1);
 		}
-	}
 
-
-	@media (max-width: 480px) {
-		a {
-			font-weight: 500;
+		// Make links stand out a bit from the surrounding text
+		@include light {
+			filter: brightness(0.8);
 		}
+		@include dark {
+			filter: brightness(1.1);
+		}
+
+		// Round border so outline :focus is less harsh
+		// NOTE: Only noticeable on browsers where outline follows
+		// border-radius. Safari does not, unfortunately.
+		border-radius: 0.05rem;
 	}
+}
 
-	/* -------------- Lists  -------------- */
+/* -------------- Lists  -------------- */
 
-	ol, ul { 
+.copy {
+	ol,
+	ul {
 		padding-left: 0rem;
 	}
 
@@ -229,14 +280,14 @@ COPY STYLES
 	// Desktop: Markers indented slightly.
 	@media (max-width: 480px) {
 		& > ol,
-		& > ul { 
-			margin-left: 0; 
+		& > ul {
+			margin-left: 0;
 		}
 	}
 
 	// @media (min-width: 481px) {
 	//     & > ol,
-	//     & > ul { 
+	//     & > ul {
 	//         margin-left: 1rem;
 	//     }
 	// }
@@ -255,7 +306,7 @@ COPY STYLES
 	}
 
 	li {
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 
 		p {
 			// Add bit more vertical spacing between list items that
@@ -264,9 +315,9 @@ COPY STYLES
 			padding: 0;
 			margin: 0 0 2rem;
 		}
-	} 
+	}
 
-	// Remove margin-bottom from paragrapah inside last list item 
+	// Remove margin-bottom from paragrapah inside last list item
 	// of top-level list, or else the top-level list
 	* > li:last-of-type p {
 		margin-bottom: 0;
@@ -274,7 +325,7 @@ COPY STYLES
 
 	// Numbers and bullets:
 	// We use ::before inside of ::marker, because we're extremely
-	// limited in how we can style the later. 
+	// limited in how we can style the later.
 	li {
 		list-style: none;
 		position: relative;
@@ -305,7 +356,7 @@ COPY STYLES
 		// line-height: 0;
 		// vertical-align: 0.05em;
 		color: inherit;
-		@include dark  {
+		@include dark {
 			color: caption(1);
 		}
 	}
@@ -321,7 +372,7 @@ COPY STYLES
 		// to vertically center the bullet (or else it's too low).
 		margin-top: -0.06em;
 		color: inherit;
-		@include dark  {
+		@include dark {
 			color: caption(1);
 		}
 	}
@@ -330,58 +381,36 @@ COPY STYLES
 	& > ol * li::before,
 	& > ul * li::before {
 		color: caption(1);
-		@include dark  {
+		@include dark {
 			color: caption(0.8);
 		}
 	}
+}
 
-	/* -------------- Pre -------------- */
+/* -------------- Strong  -------------- */
 
-	// TODO
-	pre {
-		padding: 0.5rem 0.8rem;
-		// padding-left: 0.8rem;
-		// padding-right: 0.8rem;
-		background-color: accent(0.1);
-		// Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
-		// margin-top: 0 !important;
-		margin-bottom: 2rem;
-		border: none !important;
-		border-radius: 0.2em;
-
-		code {
-			@include baselineShiftTypography(
-				$fontSize: 1.2rem
-			);
-			@include monoFont;
-			white-space: pre-wrap !important;
-			margin-bottom: 1rem;
-		}
+.copy strong {
+	font-weight: 600;
+	color: inherit;
+	@include light {
+		filter: brightness(0.9);
 	}
-
-	/* -------------- Strong  -------------- */
-
-	strong {
-		font-weight: 600;
-		color: inheit;
-		@include dark {
-			border-radius: 0.2rem;
-			padding: 0 0.2rem;
-			background-color: onBackground(0.05);
-		}
+	@include dark {
+		filter: brightness(1.1);
 	}
+}
 
-	/* -------------- Sub and Sup -------------- */
+/* -------------- Sub and Sup -------------- */
 
-	// Prevent sup and sub elements from altering line height of parent text.
-	// Adapted from: https://gist.github.com/unruthless/413930
-
+// Prevent sup and sub elements from altering line height of parent text.
+// Adapted from: https://gist.github.com/unruthless/413930
+.copy {
 	sub,
-	sup {
-		// Specified in % so that the sup/sup is the right 
+	sup:not(.fn) {
+		// Specified in % so that the sup/sup is the right
 		// size relative to the surrounding text.
 		font-size: 0.75em;
-		// Zero out the line-height so that it doesn't interfere 
+		// Zero out the line-height so that it doesn't interfere
 		// with the positioning that follows.
 		line-height: 0;
 		// Where the magic happens: makes all browsers position
@@ -392,15 +421,14 @@ COPY STYLES
 		vertical-align: baseline;
 	}
 
-	sup {
+	sup:not(.fn) {
 		// Move the superscripted text up.
 		top: -0.5em;
 	}
 
 	sub {
-		// Move the subscripted text down, but only half as far 
+		// Move the subscripted text down, but only half as far
 		// down as the superscript moved up.
 		bottom: -0.25em;
 	}
 }
-

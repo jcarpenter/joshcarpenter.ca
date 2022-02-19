@@ -61,7 +61,8 @@ body > footer address {
         display: block;
     }
 
-    a {
+    a:not(:hover) {
+        color: onBackground(0.5) !important;
         text-decoration-color: transparent !important;
     }
 

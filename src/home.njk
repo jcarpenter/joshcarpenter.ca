@@ -3,7 +3,7 @@
     permalink: "./index.html",
     publish: true,
     date: "Last Modified",
-    meta_image: "portfolio/img/composable-3D/composable-3D-meta.png",
+    meta_image: "/img/c3d/meta.png",
     meta_type: 'website',
     meta_twitter_card_type: 'summary_large_image',
     css: ["home.css"]
@@ -14,8 +14,8 @@
     <head>
         {% include "head.njk" %}
     </head>
-    <body data-color-scheme="none">
-        {% include "toggle-color-scheme-button.njk" %}
+    <body data-theme="none">
+        {% include "toggle-theme-button.njk" %}
         <main class="content-wrapper" role="main" aria-labelledby="title">
 
             <header>
@@ -23,7 +23,7 @@
                     <span class="name">{{ bio.name }}</span>
                     {# , <span class="title">UX Designer</span> #}
                 </h1>
-                <p class="intro large-text">
+                <p class="intro large-text copy">
                     I'm a user experience designer based in Vancouver, Canada. Most recently I led design teams at Google and Mozilla, working to bring virtual and augmented reality to the open web. My experience is a mix of product leadership, interaction design, visual design, motion graphics, programming and community engagement. <a href="https://en.wikipedia.org/wiki/The_Hedgehog_and_the_Fox">A fox&#8212;not a hedgehog</a>. Since 2019 I've been traveling and working on a series of personal projects, including an Electron-based Markdown editor and a deep dive into climate change. 
                 </p>
                 <address>
@@ -71,70 +71,70 @@
 
                     <div class="wide" >
                         <a href="/composable-3d-web/" class="thumb">
-                            <video playsinline autoplay loop muted poster="portfolio/video/city-discovery-poster.jpg">
-                                <source src="portfolio/video/city-discovery.webm" type="video/webm; codecs=vp9,opus"></source>
-                                <source src="portfolio/video/city-discovery.mp4" type="video/mp4"></source>
+                            <video playsinline autoplay loop muted poster="/img/c3d/city-discovery-poster.jpg">
+                                <source src="/video/c3d/city-discovery.webm" type="video/webm; codecs=vp9,opus"></source>
+                                <source src="/video/c3d/city-discovery.mp4" type="video/mp4"></source>
                             </video>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/composable-3d-web/">The Composable 3D Web</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/chrome-vr/" class="thumb">
-                            <img src="portfolio/img/chromevr/chromevr-meta.png"></img>
+                            <img src="/img/chromevr/thumb.png"></img>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/chrome-vr/">Chrome VR</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/aframe/" class="thumb">
-                            <img src="portfolio/img/aframe-meta.png"></img>
+                            <img src="/img/aframe/thumb.png"></img>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/aframe/">A-Frame VR</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/mozilla-vr/" class="thumb">
-                            <img src="portfolio/img/mozvr/mozvr-meta.png"></img>
+                            <img src="/img/mozvr/thumb.png"></img>
                             {# <video class="aspect-ratio-185-1 of-cover cols-all" playsinline autoplay loop muted poster="portfolio/video/mozvr-hiro-loading-concept-poster.jpg">>
-                                <source src="portfolio/video/mozvr-hiro-loading-concept.webm" type="video/webm; codecs=vp9,opus"></source>
-                                <source src="portfolio/video/mozvr-hiro-loading-concept.mp4" type="video/mp4"></source>
+                                <source src="/video/mozvr-hiro-loading-concept.webm" type="video/webm; codecs=vp9,opus"></source>
+                                <source src="/video/mozvr-hiro-loading-concept.mp4" type="video/mp4"></source>
                             </video> #}
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/mozilla-vr/">Mozilla VR</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/firefox-os/" class="thumb">
-                            <img src="portfolio/img/ffos-meta.png"></img>
+                            <img src="/img/ffos/thumb.png"></img>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/firefox-os/">Firefox OS</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/stadium-control/" class="thumb">
-                            <img class="of-cover" src="portfolio/img/bcp-meta.png"></img>
+                            <img class="of-cover" src="/img/ns/bcp/thumb.png"></img>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/stadium-control/">Stadium Control Center</a>
                         </div>
                     </div>
 
                     <div class="narrow" >
                         <a href="/home-automation/" class="thumb">
-                            <img class="of-cover" src="portfolio/img/ns-meta.png"></img>
+                            <img class="of-cover" src="/img/ns/home/thumb.png"></img>
                         </a>
-                        <div class="smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/home-automation/">Home Automation</a>
                         </div>
                     </div>
@@ -149,42 +149,42 @@
                     <tr>
                         <td class="org">Google</td>
                         <td class="role">Staff UX Designer <span class="project">- Daydream</span></td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2016-19</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Mozilla</td>
                         <td class="role">UX Lead <span class="project">- Mozilla VR</span></td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2014-16</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Mozilla</td>
                         <td class="role">Interaction Design Lead <span class="project">- Firefox OS</span></td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2012-14</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">New Space</td>
                         <td class="role">Creative Director</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2010-11</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">VFS</td>
                         <td class="role">Instructor <span class="project">- 3D & Motion</span></td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2008-11</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="org">Big Green</td>
                         <td class="role">Senior Designer</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time>2006-08</time>
                         </td>
                     </tr>
@@ -196,27 +196,24 @@
             <section class="grid-12" id="posts">
                 <div>
                     <h2>Posts</h2>
-                    {# <ul class="list-of-links">
-                        {%- for post in collections.climate -%}
-                            <li>
-                                <a href="{{ post.url }}">{{ post.data.title }}</a>
-                            </li>
-                        {%- endfor -%}
-                    </ul> #}
                 </div>
                 <div class="thumbnail-grid">
-                    {%- for post in collections.climate -%}
+                    {%- for post in collections.posts -%}
                         <div class="narrow">
-                            <a class="title" href="{{ post.url }}"><h3>{{ post.data.title }}</h3></a>
+                            <h3><a class="title" href="{{ post.url }}">{{ post.data.title }}</a></h3>
                             <p class="summary small-text">
-                                <span class="tag climate">Climate</span>
-                                {# {% if post.data.tags.includes('explainer') %}
-                                    <span class="tag explainer">Explainer</span>
-                                {% endif %} #}
-                                <time>{{ post.date | date("MM/YYYY") }}</time>
+                                {% if post.data.tags.includes('web') %}
+                                    <span class="tag web">Web</span>
+                                {% endif %}
+                                {% if post.data.tags.includes('tutorial') %}
+                                    <span class="tag tutorial">Tutorial</span>
+                                {% endif %}
+                                {% if post.data.tags.includes('climate') %}
+                                    <span class="tag climate">Climate</span>
+                                {% endif %}
                                 {{ post.data.summary }}
+                                <time>{{ post.date | date("MMM YYYY") }}</time>
                             </p>
-                            {# <time class="smaller-text">{{ post.date | date("MMM D YYYY") }}</time> #}
                         </div>
                     {%- endfor -%}
                 </div>
@@ -242,18 +239,18 @@
 
                     <div class="narrow">
                         <a href="/desk/" class="thumb">
-                            <img src="projects/img/desk-meta.png"></img>
+                            <img src="/img/desk/thumb.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/desk/">Desk</a>
                         </div>
                     </div>
 
                     <div class="narrow">
                         <a href="/mobile-work-setup/" class="thumb">
-                            <img src="projects/img/mobile-work-meta.png"></img>
+                            <img src="/img/mobile-work/thumb.png"></img>
                         </a>
-                        <div class="caption smaller-text">
+                        <div class="caption-clr smaller-text">
                             <a href="/mobile-work-setup/">Mobile Work Setup</a>
                         </div>
                     </div>
@@ -270,49 +267,49 @@
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=rrIYojWSHwk">ARCore: Augmented Reality at Android scale</a></td>
                         <td class="venue">Augmented World Expo</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Jun</span> 2018</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=8Ev7Wh9dSfo">Future of the VR Web</a></td>
                         <td class="venue">Awwwards LA</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Jun</span> 2017</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=rqXbLb1Bd7o">The Future of Immersive Experiences on the Web</a></td>
                         <td class="venue">Chrome Dev Summit</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Oct</span> 2017</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=mpcgcVwvUgA">Designing the VR Browser</a></td>
                         <td class="venue">W3C Workshop on WebVR</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Oct</span> 2016</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=eIrH2zXvw0I">Future of the Immersive Web</a></td>
                         <td class="venue">Forward 4 Web Summit</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Apr</span> 2016</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://www.youtube.com/watch?v=ZOaOYTOpwyM">UX Design for WebVR</a></td>
                         <td class="venue">SFHTML5</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Jan</span> 2015</time>
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><a href="https://vimeo.com/114106893">Virtual Reality &amp; The Future of the Web</a></td>
                         <td class="venue">Push UX</td>
-                        <td class="year smaller-text caption">
+                        <td class="year smaller-text caption-clr">
                             <time><span class="month">Dec</span> 2014</time>
                         </td>
                     </tr>
