@@ -277,7 +277,8 @@ module.exports = function (eleventyConfig) {
       lower: true,
       remove: /[*+~.,()'"!:@]/g
     }),
-    permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
+    permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true }),
+    tabIndex: false
     // permalinkSymbol: svgAnchorIcon,
   })
 
