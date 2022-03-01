@@ -46,7 +46,6 @@ body > footer > div.standard-width {
     flex-wrap: wrap;
     overflow: hidden;
     padding-bottom: 2rem;
-    // padding: 0 2rem 2rem !important;
     @include medium-screen {
         padding: 1rem var(--side-margin) 1.5rem !important;
     }

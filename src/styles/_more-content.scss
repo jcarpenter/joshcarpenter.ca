@@ -30,6 +30,10 @@ MORE CONTENT
   --color: var(--caption);
   @include font-small;
   font-weight: 600 !important;
+  margin-bottom: 1rem;
+  &::before { 
+    content: none;
+  }
 }
 
 #more-content ul {
