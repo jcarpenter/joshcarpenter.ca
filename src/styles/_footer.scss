@@ -1,79 +1,75 @@
-@use "mixins-and-functions" as *;
+@use 'mixins-and-functions' as *;
 
 /* 
 ========================================================
 FOOTER
 ========================================================
-*/  
+*/
 
 body > footer {
-
-    // margin-top: 4rem;
-    margin-bottom: 0;
-
-    a { 
-        text-decoration-color: onBackground(0.2); 
-
-        &:hover { 
-            text-decoration-color: onBackground(0.5); 
-        }
+    padding: 4rem 2rem 0;
+    @include font-smaller;
+    background-color: var(--footer);
+    @include small-screen {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
-body > footer > div {
+body[data-theme='light'] > footer {
+    --color: var(--on-background);
+    @include links($brightnessShift: true);
+    > * {
+        opacity: 0.4;
+    }
+    span {
+        filter: brightness(var(--brightness-shift));
+    }
+}
 
+body[data-theme='dark'] > footer {
+    --color: var(--on-background);
+    @include links($brightnessShift: false);
+    > * {
+        opacity: 0.5;
+    }
+
+    // span,
+    // address {
+    //     filter: brightness(1.2);
+    // }
+}
+
+
+body > footer > div.standard-width {
     display: flex !important;
     flex-wrap: wrap;
     overflow: hidden;
-
-    padding-top: 1rem;
-    margin-bottom: 1rem;
-    
-    // Top-border
-    position: relative;
-
-    &::before {
-        content: '';
-        width: calc(100% - var(--side-margin) * 2);
-        height: 0.1rem;
-        background: onBackground(0.15);
-        position: absolute;
-        top: 0;
-        left: var(--side-margin);
+    padding-bottom: 2rem;
+    // padding: 0 2rem 2rem !important;
+    @include medium-screen {
+        padding: 1rem var(--side-margin) 1.5rem !important;
     }
 }
 
-body > footer span {
+body > footer .copyright {
     flex: 1 0 auto;
-    color: onBackground(0.6);
 }
 
 body > footer address {
-    
     white-space: nowrap;
-    color: onBackground(0.5);
-    
+
     // Hide address on phone screens.
     // There's not enough room, and I don't like the look
     // of splitting address onto a second line.
     display: none;
     @include small-screen {
-        display: block;
+        display: inline;
     }
 
-    a:not(:hover) {
-        color: onBackground(0.5) !important;
-        text-decoration-color: transparent !important;
-    }
-
-    a:hover {
-        color: onBackground(1);
-        text-decoration-color: onBackground(0.8);
-    }
-    
     .divider {
         font-size: 0.8em;
-        color: onBackground(0.2);
         margin: 0 0.5rem;
+        opacity: 0.25;
     }
 }

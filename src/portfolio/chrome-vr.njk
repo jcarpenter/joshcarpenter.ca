@@ -7,25 +7,23 @@
     summary: "Interaction and visual design for Chrome VR, a virtual reality version of Chrome for Android that shipped in 2018 for Google's Daydream VR platform.",
     permalink: "/chrome-vr/",
     year: 2016,
-    colors: {
-        accent: {
-            light: "0, 138, 255", // Chrome logo blue
-            dark: "77, 173, 255", // Chrome logo blue
-        }
+    accent_override: {
+        light: "0, 138, 255", // Chrome logo blue
+        dark: "77, 173, 255", // Chrome logo blue
     }
 }
 ---
 
 {# ------------ Header ------------ #}
 
-<header class="standard-width copy grid-12">
+<header class="standard-width grid-12">
     <h1 id="title">{{ title }}</h1>
-    <div class="intro large-text">
+    <div class="intro">
         <p>
             Chrome VR was a virtual reality version of Chrome for Android, designed for Google's <a href="https://en.wikipedia.org/wiki/Google_Daydream">Daydream</a> VR platform. I joined Google in 2016 as UX Lead for the project. Before Google, I'd spent a two years at Mozilla prototyping VR browsers, and so I was extremely excited to apply those learnings to Chrome. I started as the solo designer, responsible for interaction and visual design, and was later joined by <a href="https://gordonbrander.com">Gordon Brander</a>.
         </p>
     </div>
-    <div class="metadata small-text">
+    <div class="metadata">
         <time>2016/17</time>, <span class="role">Google</span><br>
         Interaction Design<br>
         Visual Design<br>
@@ -35,31 +33,27 @@
 
 {# ------------ Body ------------ #}
 
-<section id="body" class="standard-width copy" aria-label="Article body">    
+<section id="body" class="standard-width" aria-label="Article body">    
 
     {# ----- 2D browsing ----- #}
 
-    <div class="">
+    <figure>
         <div class="aspect-ratio-16-10 of-cover">
             <video playsinline autoplay loop muted data-lightbox poster="/img/chromevr/2d-browsing-poster.jpg">
                 <source src="/video/chromevr/2d-browsing.webm" type="video/webm; codecs=vp9,opus"></source>
                 <source src="/video/chromevr/2d-browsing.mp4" type="video/mp4"></source>
             </video>
         </div>
-        <p class="caption-clr small-text">Browsing traditional 2D content</p>
-    </div>
+        <figcaption>Browsing traditional 2D content</figcaption>
+    </figure>
 
-    <div class="grid-12">
-        <div class="cols-left-half body-text">
-            <p>
-                Throughout the design process, prototyping and user testing were our best friends, helping us iterate towards effective solutions. Prototypes were built in a mix of Unity, WebVR, and Chrome VR itself, which used a new 3D UI stack built by Chrome engineers.
-            </p>
-            <p>
-                Our primary design challenge was adapting the conventions of traditional browsing to the affordances of Daydream's low-resolution displays and laser pointer-style controllers. Text and buttons needed to be larger, relative to content, in order to be legible and accessible. This limited how much UI could be displayed concurrently, requiring new approaches to common browsing tasks such as managing tabs, entering URLs, and switching to Incognito mode. These new solutions had to both be effective within VR, and conform to Chrome for Android conventions, so that VR and mobile felt cohesive (particularly important on Daydream, where users could switch between VR and mobile in an instant, by simply removing their phone from the Daydream headset).
-            </p>
-        </div>
-    </div>
+    <p>
+        Throughout the design process, prototyping and user testing were our best friends, helping us iterate towards effective solutions. Prototypes were built in a mix of Unity, WebVR, and Chrome VR itself, which used a new 3D UI stack built by Chrome engineers.
+    </p>
 
+    <p>
+        Our primary design challenge was adapting the conventions of traditional browsing to the affordances of Daydream's low-resolution displays and laser pointer-style controllers. Text and buttons needed to be larger, relative to content, in order to be legible and accessible. This limited how much UI could be displayed concurrently, requiring new approaches to common browsing tasks such as managing tabs, entering URLs, and switching to Incognito mode. These new solutions had to both be effective within VR, and conform to Chrome for Android conventions, so that VR and mobile felt cohesive (particularly important on Daydream, where users could switch between VR and mobile in an instant, by simply removing their phone from the Daydream headset).
+    </p>
 
     {# ----- Gestures ----- #}
 
@@ -80,11 +74,9 @@
         </div>
     </div>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            The key meta challenge of the project was incubating a new product for a small audience within a mature product for a billion plus users. Our team's top priorities were validating a new VR user experience and UI stack. To do that as fast as possible, we wanted to iterate rapidly in-market with real user feedback, by shipping often and keeping initial feature set minimal. But the Chrome organization understandably prioritized shipping a bug free, highly-optimized mobile browser to a billion-plus Android users. And required UX conformity across mobile and VR, for both consistency and legal reasons (e.g. needing to show prompts in certain regions for regulatory reasons). By building Chrome VR inside the larger Chrome organization and codebase, we inherited world-class technical foundations and processes, but at the cost of development velocity. Chrome VR would ideally have shipped as a launch title with Daydream on November 2016. Instead it shipped in summer 2018—after the internal announcement that the Daydream platform had being cancelled.
-        </p>
-    </div>
+    <p>
+        The key meta challenge of the project was incubating a new product for a small audience within a mature product for a billion plus users. Our team's top priorities were validating a new VR user experience and UI stack. To do that as fast as possible, we wanted to iterate rapidly in-market with real user feedback, by shipping often and keeping initial feature set minimal. But the Chrome organization understandably prioritized shipping a bug free, highly-optimized mobile browser to a billion-plus Android users. And required UX conformity across mobile and VR, for both consistency and legal reasons (e.g. needing to show prompts in certain regions for regulatory reasons). By building Chrome VR inside the larger Chrome organization and codebase, we inherited world-class technical foundations and processes, but at the cost of development velocity. Chrome VR would ideally have shipped as a launch title with Daydream on November 2016. Instead it shipped in summer 2018—after the internal announcement that the Daydream platform had being cancelled.
+    </p>
 
     {# ----- Accessing Tabs ----- #}
 

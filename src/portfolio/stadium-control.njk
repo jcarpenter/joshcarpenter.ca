@@ -7,26 +7,24 @@
     summary: "Touch-based control room interface for monitoring, scheduling and controling large equipment in Vancouver's largest stadium, BC Place. Designed in 2011, while Creative Director of New Space Technologies.",
     permalink: "/stadium-control/",
     year: 2011,
-    colors: {
-        accent: {
-            light: "236, 161, 0", // Yellow
-            dark: "236, 161, 0" // Yellow
-        }
-    },
+    accent_override: {
+        light: "236, 161, 0", // Yellow
+        dark: "236, 161, 0" // Yellow
+    }
 }
 ---
 
 {# ------------ Header ------------ #}
 
-<header class="standard-width copy grid-12">
+<header class="standard-width grid-12">
     <h1 id="title">{{ title }}</h1>
-    <div class="intro large-text">
+    <div class="intro">
         <p>
             While working at New Space I designed this touch-based control room solution for the monitoring, scheduling and control of Vancouver's largest stadium, <a href="https://www.bcplace.com/">BC Place</a>. I was responsible for the end-to-end design process: from project definition with engineering peers and client stakeholders, to prototyping, to visual design, to final interface implementation in a proprietary front end development application from Crestron.
         </p>
         {# Applications used were predominantly Keynote for wireframes and interactive prototypes, Photoshop for visual design and asset production, and InDesign for documentation. #}
     </div>
-    <div class="metadata small-text">
+    <div class="metadata">
         <time>2011</time>, <span class="role">New Space</span><br>
         Interaction Design<br>
         Visual Design<br>
@@ -36,64 +34,52 @@
 
 {# ------------ Body ------------ #}
 
-<section id="body" class="standard-width copy" aria-label="Article body">    
+<section id="body" class="standard-width" aria-label="Article body">    
 
     {# ----- PA System ----- #}
 
-    <div>
-        <div style="padding: 2vw 8vw; background: #E1E1E1" data-lightbox>
-            <img src="/img/ns/bcp/pa.png"></img>
-        </div>
-    </div>
+    <figure style="padding: 2vw 8vw; background: #E1E1E1" data-lightbox>
+        <img src="/img/ns/bcp/pa.png"></img>
+    </figure>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            The stadium features a retractable roof which is vulnerable to wind and rainfall during the slow transition between open and closed states. Facility operations staff must make the determination about whether to alter the roof's settings hours in advance, based on incoming weather. This made the weather monitoring interface of the control room critical.
-        </p>
-    </div>
+    <p>
+        The stadium features a retractable roof which is vulnerable to wind and rainfall during the slow transition between open and closed states. Facility operations staff must make the determination about whether to alter the roof's settings hours in advance, based on incoming weather. This made the weather monitoring interface of the control room critical.
+    </p>
 
     {# ----- Weather ----- #}
 
-    <div>
-        <div class="cols-all" style="padding: 2vw 8vw; background: #E1E1E1" data-lightbox>
-            <img src="/img/ns/bcp/weather.png"></img>
-        </div>
-    </div>
+    <figure style="padding: 2vw 8vw; background: #E1E1E1" data-lightbox>
+        <img src="/img/ns/bcp/weather.png"></img>
+    </figure>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            Presets emerged early as a key requirement, enabling operators to easily flip hundreds of mechanical devices (eg: lights, audio systems, signage, etc) between standard configurations.
-        </p>
-    </div>
+    <p>
+        Presets emerged early as a key requirement, enabling operators to easily flip hundreds of mechanical devices (eg: lights, audio systems, signage, etc) between standard configurations.
+    </p>
 
     {# ----- Countdown and Alarm ----- #}
 
     <div class="grid-2">
-        <div class="p-large" style="background: #E1E1E1" data-lightbox>
+        <figure class="p-large" style="background: #E1E1E1" data-lightbox>
             <img src="/img/ns/bcp/alarm.png"></img>
-        </div>
-        <div class="p-large" style="background: #E1E1E1" data-lightbox>
+        </figure>
+        <figure class="p-large" style="background: #E1E1E1" data-lightbox>
             <img src="/img/ns/bcp/countdown.png"></img>
-        </div>
+        </figure>
     </div>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            Life safety issues were a critical design consideration. The stadium contains components that weigh many tons and can be moved between multiple configurations. The roof being the most obvious example, but the massive display suspended above center-field being another. When staff need to modify the screen (to make repairs, for example) it must be lowered via lifts to the field below. This creates obvious life safety risks. The system needed to therefore incorporate safeties against foot guns, including but not limited to confirmation dialogues, countdowns, opportunities to cancel operations, and visual aids.
-        </p>
-    </div>
+    <p>
+        Life safety issues were a critical design consideration. The stadium contains components that weigh many tons and can be moved between multiple configurations. The roof being the most obvious example, but the massive display suspended above center-field being another. When staff need to modify the screen (to make repairs, for example) it must be lowered via lifts to the field below. This creates obvious life safety risks. The system needed to therefore incorporate safeties against foot guns, including but not limited to confirmation dialogues, countdowns, opportunities to cancel operations, and visual aids.
+    </p>
 
 
     {# ----- Room render ----- #}
 
-    <div>
-        <img src="/img/ns/bcp/weather.png" data-lightbox></img>
-    </div>
+    <figure data-lightbox>
+        <img src="/img/ns/bcp/room-render.jpg"></img>
+    </figure>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            While the original project charter called only for design and implementation of the software component, we made the case during development for a more holistic approach, taking into consideration the ergonomics and equipment in the space itself, the better to facilitate the worker's tasks. I gathered requirements from stakeholders and proposed various solutions, communicating concepts with the aid of renderings created in Cinema4D.
-        </p>
-    </div>
+    <p>
+        While the original project charter called only for design and implementation of the software component, we made the case during development for a more holistic approach, taking into consideration the ergonomics and equipment in the space itself, the better to facilitate the worker's tasks. I gathered requirements from stakeholders and proposed various solutions, communicating concepts with the aid of renderings created in Cinema4D.
+    </p>
 
 </section>

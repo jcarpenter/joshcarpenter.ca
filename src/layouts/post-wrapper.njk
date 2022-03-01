@@ -8,7 +8,7 @@
     css: ["post.css"]
 }
 ---
-<article class="content-wrapper {{ post_layout }}">
+<article class="content-wrapper">
 
     {# ------------ Header ------------ #}
     <header class="standard-width">
@@ -20,11 +20,11 @@
 
                 {% if post_layout == "large" %}
 
-                    <section id="summary" class="large-text copy">
+                    <section id="summary">
                         <p>{{ summary }}</p>
                     </section>
 
-                    <div id="details" class="small-text">
+                    <div id="details">
                         <div id="photo"><img src="/img/josh-1.png" alt="Josh Carpenter"/></div>
                         <a href="/" class="author">{{ bio.name }}</a>
                         <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
@@ -32,7 +32,7 @@
 
                 {% elif post_layout == "compact" %}
 
-                    <div id="details" class="small-text">
+                    <div id="details">
                         <a href="/" class="author">{{ bio.name }}</a>
                         <time datetime="{{ page.date }}">Updated {{ page.date | date("MMM D YYYY") }}</time>
                         <ul id="tags">
@@ -45,7 +45,7 @@
                         </ul>
                     </div>
 
-                    <section id="summary"  class="small-text copy">
+                    <section id="summary">
                         <p>{{ summary }}</p>
                     </section>
 
@@ -57,7 +57,7 @@
     </header>
 
     {# ------------ Body ------------ #}
-    <section id="body" class="standard-width copy" aria-label="Article body">
+    <section id="body" class="standard-width" aria-label="Article body">
         {{ content | safe }}
     </section>
 
@@ -68,3 +68,6 @@
 
 {# ------------ About the Author ------------ #}
 {% include "about-the-author.njk" %}
+
+{# ------------ More Content ------------ #}
+{% include "more-content.njk" %}

@@ -1,5 +1,30 @@
 @use 'mixins-and-functions' as *;
 
+/*
+Remove all text utility classes
+Set text per-element, at top of post, home, portfolio, project, etc.
+Use function to make it clearer what's what
+Easy to adapt fonts 
+
+Bring utility classes to headers.
+Make utility classes more abstract.
+
+*/
+
+
+#body section > p {
+	--color: var(--body-text);
+	@include font-body;
+	@include links;
+	margin-bottom: 2rem;
+}
+
+#body figcaption {
+  --color: var(--caption);
+  @include font-small;
+  @include links($brightnessShift: false);
+}
+
 /* 
 ========================================================
 POST-SPECIFIC STYLES
@@ -8,6 +33,7 @@ POST-SPECIFIC STYLES
 
 article {
 	--max-post-width: 50rem;
+	margin-bottom: calc(var(--large-margin) + 2rem);
 }
 
 // -------------- Header - Shared -------------- //
@@ -19,23 +45,24 @@ article header {
 }
 
 article h1 {
-	vertical-align: baseline;
-	letter-spacing: -0.01em;
-	color: accent(1);
-	font-weight: 400;
-	max-width: 34ch;
-	margin-bottom: 1rem;
-	max-width: 34ch;
+	--color: var(--accent);
+	@include font-large-4;
 
-	@include baselineShiftTypography($fontSize: 1.6rem, $lineHeight: 2rem);
+	max-width: 34ch;
+	
+	// font-weight: 500;
+	// @include baselineShiftTypography($fontSize: 2.5rem, $lineHeight: 3rem);
 
-	@include medium-screen {
-		font-weight: 400;
-		@include baselineShiftTypography($fontSize: 2rem, $lineHeight: 3rem);
-	}
+	// @include medium-screen {
+	// 	font-weight: 400;
+	// 	@include baselineShiftTypography($fontSize: 2rem, $lineHeight: 3rem);
+	// }
 }
 
 article header #front-matter #details {
+	--color: var(--body-text);
+	@include font-small;
+	@include links($hideUnderlineUntilHover: true, $brightnessShift: false);
 	flex: 0 0 content;
 	white-space: nowrap;
 
@@ -44,17 +71,11 @@ article header #front-matter #details {
 	}
 
 	.author {
-		color: onBackground(var(--base-text-alpha));
-		text-decoration-color: transparent;
-		text-underline-offset: 0.15em;
-		&:hover {
-			color: onBackground(0.8);
-			text-decoration-color: onBackground(0.8);
-		}
+		font-weight: 500;
 	}
 
 	time {
-		color: onBackground(var(--base-text-alpha));
+		opacity: 0.8;
 	}
 
 	#tags {
@@ -81,13 +102,13 @@ article header #front-matter #details {
 
 // -------------- Header - Large -------------- //
 
-article.large {
+main.large {
 	header {
-		margin-bottom: 4rem;
+		margin-bottom: var(--large-margin);
 	}
 
 	h1 {
-		margin-bottom: 3rem;
+		margin-bottom: 2rem;
 	}
 
 	#front-matter {
@@ -97,6 +118,50 @@ article.large {
 
 	#front-matter .wrapper {
 		max-width: var(--max-post-width);
+	}
+
+	#front-matter #summary {
+		--color: var(--body-text);
+		@include font-large-2;
+		position: relative;
+		margin-right: 1rem;
+		margin-bottom: 2rem;
+	
+		@include small-screen {
+			&::before {
+				content: '';
+				min-width: 2px;
+				max-width: 0.2em;
+				position: absolute;
+				height: 100%;
+				border-radius: 2px;
+				box-sizing: content-box;
+				top: 0.5rem;
+				// Reduce height so this visible box only extends as
+				// far as the baseline of the last line. If we don't
+				// do this, it extends to descender and bottom padding.
+				height: calc(100% - 1rem);
+	
+				@include light {
+					background-color: accent(1);
+				}
+				@include dark {
+					background-color: accent(1);
+				}
+			}
+
+			p {
+				padding-left: 1.5rem;
+			}
+		}
+
+		p {
+			// font-weight: 500;
+			// line-height: 2rem;
+			max-width: 52ch;
+			padding-top: 0 !important;
+			margin: 0;
+		}
 	}
 
 	#front-matter #details {
@@ -114,69 +179,27 @@ article.large {
 				background-color: accent(0.1);
 			}
 		}
-
-		.author,
-		time {
-			// grid-column: 2;
-		}
-	}
-
-	#front-matter #summary {
-		position: relative;
-		margin-right: 1rem;
-		margin-bottom: 2rem;
-		filter: brightness(1.2);
-
-		&::before {
-			content: '';
-			min-width: 2px;
-			max-width: 0.2em;
-			position: absolute;
-			height: 100%;
-			border-radius: 2px;
-			box-sizing: content-box;
-			top: 0.5rem;
-			// Reduce height so this visible box only extends as
-			// far as the baseline of the last line. If we don't
-			// do this, it extends to descender and bottom padding.
-			height: calc(100% - 1rem);
-
-			@include light {
-				background-color: accent(1);
-			}
-			@include dark {
-				background-color: accent(1);
-			}
-		}
-
-		p {
-			line-height: 2.25rem;
-			max-width: 52ch;
-			padding-top: 0 !important;
-			padding-left: 1.5rem;
-			margin: 0;
-		}
 	}
 }
 
 // -------------- Header - Compact -------------- //
 
-article.compact {
+main.compact {
 	h1 {
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	#front-matter {
-		margin: 2rem 0 0;
+		margin: 0;
 		padding: 1.5rem 0 2rem;
 
 		@include small-screen {
 			padding-bottom: 3rem;
 		}
 
-		border-top-width: 1px;
+		border-top-width: 2px;
 		border-top-style: solid;
-		border-top-color: onBackground(0.2);
+		border-top-color: accent(1);
 	}
 
 	#front-matter .wrapper {
@@ -190,26 +213,14 @@ article.compact {
 	}
 
 	#front-matter #details {
+		--color: var(--body-text);
+		@include font-small;
 		flex: 0 0 content;
 		white-space: nowrap;
 
 		> * {
 			display: block;
 		}
-
-		// .author {
-		// 	color: onBackground(0.5);
-		// 	text-decoration-color: transparent;
-		// 	text-underline-offset: 0.15em;
-		// 	&:hover {
-		// 		color: onBackground(0.8);
-		// 		text-decoration-color: onBackground(0.8);
-		// 	}
-		// }
-
-		// time {
-		// 	color: onBackground(0.5);
-		// }
 
 		// #tags {
 		// 	margin: 0;
@@ -239,8 +250,9 @@ article.compact {
 		// padding: 0;
 
 		p {
+			--color: var(--body-text);
+			@include font-small;
 			margin-bottom: 0rem;
-			color: onBackground(0.7);
 			font-weight: 500;
 		}
 	}
@@ -251,21 +263,30 @@ article.compact {
 // Consistent margin-bottom for top-level
 // children (sections and divs). More margin
 // for .large posts.
-article.large #body > * {
-	margin-bottom: calc(var(--large-margin) + 1rem) !important;
-	&.splash {
-		margin-bottom: var(--large-margin) !important;
-	}
+main.large #body > * {
+	margin-bottom: calc(var(--large-margin) + 2rem) !important;
 }
-article.compact #body > * {
+
+main.large #body > .splash,
+main.large #body > figure:first-child {
 	margin-bottom: var(--large-margin) !important;
+
+}
+
+main.compact #body > * {
+	margin-bottom: calc(var(--large-margin) + 1rem) !important;
+}
+
+main.compact #body > .splash,
+main.compact #body > figure:first-child {
+	margin-bottom: var(--small-margin) !important;
 }
 
 // Borders on top of top-level sections
 #body > section {
-	border-top-width: 1px;
+	border-top-width: 2px;
 	border-top-style: solid;
-	border-top-color: sectionDivider(1);
+	border-top-color: sectionDivider(0.6);
 	transition: border-color 0.2s;
 }
 
@@ -291,11 +312,12 @@ article.compact #body > * {
 
 /* -------------- H2 -------------- */
 
-.copy h2 {
-	color: accent(1);
-	font-weight: 500;
+h2 {
+	--color: var(--accent);
+	padding-top: 2rem;
+	margin-bottom: 2rem;
 	margin-top: 0;
-	margin-bottom: 1rem;
+	font-weight: 600 !important; 
 
 	// Hide link underlines
 	a {
@@ -309,17 +331,27 @@ article.compact #body > * {
 	}
 }
 
+// Larger typography on .large articles
+// Smaller on .compact
+main.large h2 {
+	@include font-large-2;
+}
+
+main.compact h2 {
+	@include font-large-1;
+}
+
 // Add ## before h2:
 // - Larger screens only (no room on smaller displays)
 @include small-screen {
-	.copy h2 a {
+	h2 a {
 		position: relative;
 
 		&::before {
 			content: '##';
-			font-weight: 300;
+			font-weight: 500;
 			font-size: 0.9em;
-			color: accent(0.2);
+			color: accent(0.4);
 			left: -0.5rem;
 			transform: translateX(-100%);
 			position: absolute;
@@ -327,28 +359,17 @@ article.compact #body > * {
 		}
 
 		&:hover::before {
-			color: accent(1);
+			color: accent(0.8);
 		}
 	}
 }
 
-// Larger typography on .large articles
-// Smaller on .compact
-article.large .copy h2 {
-	@include baselineShiftTypography($fontSize: 1.6rem, $lineHeight: 2.5rem, $paddingTop: 2rem);
-}
-
-article.compact .copy h2 {
-	@include baselineShiftTypography($fontSize: 1.333rem, $lineHeight: 2rem, $paddingTop: 2rem);
-}
-
 /* -------------- H3 -------------- */
 
-.copy h3 {
-	color: onBackground(1);
-	font-weight: 500;
-	margin-bottom: 1rem;
-	@include baselineShiftTypography;
+h3 {
+	--color: var(--body-text);
+	@include font-large-1;
+	margin-bottom: 2rem;
 
 	// Hide link underlines
 	a {
@@ -364,15 +385,22 @@ article.compact .copy h2 {
 	}
 }
 
-// In article.large h3's:
+main.large h3 {
+	@include font-large-1;
+	font-weight: 600;
+}
+
+main.compact h3 {
+	@include font-body;
+	font-weight: 500;
+}
+
+// In main.large h3's:
 // - Top padding
 // - Brighten
 // - Add ### prefix (on >large screens)
-article.large .copy h3 {
-	
-	margin-top: 2rem;
-	filter: brightness(1.1);
-	
+main.large h3 {
+		
 	@include large-screen {
 		position: relative;
 	
@@ -392,6 +420,7 @@ article.large .copy h3 {
 		}
 	}
 }
+
 
 /* -------------- Aside -------------- */
 
@@ -451,11 +480,4 @@ article.large .copy h3 {
 .caution p > a {
 	color: caution(1) !important;
 
-}
-
-// -------------- Other section -------------- //
-
-#footnotes,
-#about-the-author {
-	margin-top: var(--large-margin);
 }

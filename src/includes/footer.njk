@@ -1,15 +1,17 @@
 <footer role="contentinfo" class="content-wrapper">
-    <div class="standard-width smaller-text">
-        <span>
-            Copyright © {{ page.date | date("YYYY") }}, {{ bio.name }}
-            {# Made with <a href="https://www.11ty.dev/">Eleventy</a>.#}
+    <div class="standard-width">
+        <span class="copyright ">
+            Copyright © {% year %}, {{ bio.name }}
+            {# Made with <a href="https://www.11ty.dev/">Eleventy</a>. #}
         </span>
-        <address>
+        {# <address>
             <a href="https://twitter.com/{{ bio.twitter }}">Twitter</a>
             <span class="divider">|</span>
             <a href="{{ bio.github }}">GitHub</a>
             <span class="divider">|</span>
             <a href="{{ bio.linkedin }}">LinkedIn</a>
-        </address>
+            <span class="divider">|</span>
+        </address> #}
+        {# <a href="https://github.com/jcarpenter/joshcarpenter.ca">Source</a> #}
     </div>
 </footer>

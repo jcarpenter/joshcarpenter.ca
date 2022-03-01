@@ -18,30 +18,38 @@ body {
 body[data-theme='light'] {
 	--accent: 0, 185, 115; // Vibrant-green
 	--background: 247, 247, 247;
-	--blockquote: 140, 140, 140;
+	--blockquote-border: rgba(var(--accent), 0.8);
+	--blockquote-text: 110, 110, 110;
 	--caption: 140, 140, 140;
 	--caution: 255, 112, 90; // Orange
 	--code: 58, 136, 106; // Darker vibrant-green
 	--foreground: 0, 0, 0;
 	--on-background: 40, 40, 40; // Was 10,10,10
-	--on-popup: 250, 250, 250;
+	--body-text: 80, 80, 80;
+	--on-popup: 220, 220, 220;
 	--overlayGrid: 0, 119, 179;
 	--popup: 65, 65, 65;
 	--section-divider: 220, 220, 220;
+	--footer: rgba(0, 0, 0, 0.05);
+	--brightness-shift: 0.7;
 }
 
 body[data-theme='dark'] {
 	--accent: 2, 252, 158; // Vibrant-green
 	--background: 30, 37, 45; // Dark blue
-	--blockquote: 120, 150, 180; // Slight blue
+	--blockquote-border: rgba(var(--blockquote-text), 0.65);
+	--blockquote-text: 120, 150, 180; // Slight blue
 	--caption: 120, 150, 180; // Slight blue
 	--caution: 255, 112, 90; // Orange
 	--code: 172, 180, 227; // Purple
 	--foreground: 255, 255, 255;
 	--on-background: 180, 192, 207;
+	--body-text: 150, 161, 175;
 	--on-popup: 183, 201, 212;
 	--popup: 51, 58, 72;
-	--section-divider: 66, 84, 102;
+	--section-divider: 47, 60, 73;
+	--footer: rgba(0, 0, 0, 0.15);
+	--brightness-shift: 1.2;
 }
 
 :root {
@@ -100,10 +108,10 @@ body[data-theme='dark'] {
 	// On smallest screens: No rounding
 	// On small and above: Apply some rounding
 
-	--media-border-radius: 0;
+	// --media-border-radius: 0;
 
+	--media-border-radius: 0.2rem;
 	@include smaller-screen {
-		--media-border-radius: 0.2rem;
 	}
 
 	/* -------------- Spacing -------------- */

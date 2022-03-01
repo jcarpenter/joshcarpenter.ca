@@ -1,0 +1,86 @@
+{# (Links to other portfolio posts) #}
+
+<section role="region" id="more-content" class="content-wrapper">
+    <div class="standard-width">
+        <div>
+            <h3>Portfolio</h3>
+            <ul>
+                {%- for post in collections.portfolio -%}
+                <li>
+                    <a class="title" href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+        <div>
+            <h3>Posts</h3>
+            <ul>
+                {%- for post in collections.posts -%}
+                <li>
+                    <a class="title" href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+        <div>
+            <h3>Projects</h3>
+            <ul>
+                {%- for post in collections.projects -%}
+                <li>
+                    <a class="title" href="{{ post.url }}">{{ post.data.title }}</a>
+                </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</section>
+
+{# <section aria-labelledby="more-content-heading" role="region" id="more-content" class="content-wrapper">
+    <div class="standard-width">
+        <h2 id="more-content-heading">Portfolio</h2>
+        <div class="thumbs">
+            <figure>
+                <a href="/composable-3d-web/" class="thumb">
+                    <img src="/img/c3d/thumb.png"></img>
+                </a>
+                <figcaption><a href="/composable-3d-web/">The Composable 3D Web</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/chrome-vr/" class="thumb">
+                    <img src="/img/chromevr/thumb.png"></img>
+                </a>
+                <figcaption><a href="/chrome-vr/">Chrome VR</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/aframe/" class="thumb">
+                    <img src="/img/aframe/thumb.png"></img>
+                </a>
+                <figcaption><a href="/aframe/">A-Frame VR</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/mozilla-vr/" class="thumb">
+                    <img src="/img/mozvr/thumb.png"></img>
+                </a>
+                <figcaption><a href="/mozilla-vr/">Mozilla VR</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/firefox-os/" class="thumb">
+                    <img src="/img/ffos/thumb.png"></img>
+                </a>
+                <figcaption><a href="/firefox-os/">Firefox OS</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/stadium-control/" class="thumb">
+                    <img src="/img/ns/bcp/thumb.png"></img>
+                </a>
+                <figcaption><a href="/stadium-control/">Stadium Control Center</a></figcaption>
+            </figure>
+            <figure>
+                <a href="/home-automation/" class="thumb">
+                    <img src="/img/ns/home/thumb.png"></img>
+                </a>
+                <figcaption><a href="/home-automation/">Home Automation</a></figcaption>
+            </figure>
+        </div>
+    </div>
+</section> #}

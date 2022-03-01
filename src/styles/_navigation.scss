@@ -1,5 +1,4 @@
-
-@use "mixins-and-functions" as *;
+@use 'mixins-and-functions' as *;
 
 /* 
 ========================================================
@@ -19,47 +18,49 @@ NAVIGATION
 
 #navigation > div {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    align-items: center;
 }
 
 #navigation h1 {
-
-    flex: 1 0 auto;
     @include monoFont;
-    @include baselineShiftTypography(
-        $fontSize: 0.925rem,
-        $lineHeight: 1rem,
-        $paddingTop: 0,
-    );
-    font-weight: 600;
-    margin-bottom: 0;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
     text-transform: uppercase;
     letter-spacing: 0.12em;
- 
     a {
-        transition: color 0.15s, text-decoration-color 0.15s;
-        text-decoration: underline;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 0.2em;
+        text-underline-offset: 2px !important;
+        text-decoration-thickness: 0.2rem !important;
         text-decoration-color: transparent;
         &:hover {
             color: accent(1) !important;
-            text-decoration-color: accent(0.5);
+            text-decoration-color: accent(0.7) !important;
         }
     }
+
+    flex: 1 0 auto;
+    margin-bottom: 0;
+    padding: 0 !important;
 
     .slash {
         margin-left: -0.2rem;
         margin-right: -0.2rem;
-    }   
-  
-    .name { color: onBackground(0.5); }
-    .slash { color: accent(1); }
-    .section { color: onBackground(0.5); }
-  
+    }
+
+    .name {
+        color: onBackground(0.5);
+    }
+    .slash {
+        color: accent(1);
+    }
+    .section {
+        color: onBackground(0.5);
+    }
+
     @include dark {
-        .name, .section { 
-            color: onBackground(0.87); 
+        .name,
+        .section {
+            color: onBackground(0.87);
         }
     }
 }

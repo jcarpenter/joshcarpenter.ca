@@ -8,7 +8,7 @@ TABLES (NEW APPROACH)
 
 .table {
 
-    --tableOuterBorderColor: #{onBackground(0.15)};
+    --tableOuterBorderColor: #{onBackground(0.2)};
     --tableInnerBorderColor: #{onBackground(0.1)};
     
     @include dark {
@@ -109,10 +109,11 @@ table {
     margin-bottom: 2rem;
 
     th, td {
-        @include baselineShiftTypography(
-            $fontSize: 1.2rem,
-            $lineHeight: 2rem
-        );
+        --color: var(--body-text);
+        @include font-small;
+        @include links($hideUnderlineUntilHover: true, $brightnessShift: false);
+        line-height: 2.0em !important;
+
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         margin-bottom: 1rem;

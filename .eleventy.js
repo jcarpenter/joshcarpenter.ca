@@ -34,7 +34,7 @@ const stopMeasurementsWrapping = require('./utils/transforms/stop-measurements-w
 const videos = require('./utils/transforms/videos')
 // const tagAbbreviations = require('./utils/transforms/tag-abbreviations')
 
-module.exports = function (eleventyConfig) {
+module.exports = (config) => {
   
   /* 
 
@@ -106,7 +106,7 @@ module.exports = function (eleventyConfig) {
   // Am doing it here instead of an .eleventyIgnore file.
   // Docs: https://www.11ty.dev/docs/ignores/
 
-  eleventyConfig.ignores.add("README.md")
+  config.ignores.add("README.md")
 
 
   // -------- Enable Deep Data Merge -------- //
@@ -115,7 +115,7 @@ module.exports = function (eleventyConfig) {
   // Per: https://www.11ty.dev/docs/data-cascade/
   // As of 1.0, this is on by default.
 
-  eleventyConfig.setDataDeepMerge(true)
+  config.setDataDeepMerge(true)
 
 
   // -------- Passthrough file copy -------- //
@@ -127,7 +127,7 @@ module.exports = function (eleventyConfig) {
   // Called by template engines (e.g. nunjucks)
 
   // Return excerpts from content
-  eleventyConfig.addFilter("excerpt", (content, label) => {
+  config.addFilter("excerpt", (content, label) => {
 
     if (!content) return
 
@@ -145,7 +145,7 @@ module.exports = function (eleventyConfig) {
   // Uses https://www.npmjs.com/package/slugify
   // This will come built-in with Eleventy 1.0,
   // per https://www.11ty.dev/docs/filters/slugify/
-  eleventyConfig.addFilter("slugify", (string) => {
+  config.addFilter("slugify", (string) => {
     return slugify(string, {
       lower: true,
       remove: /[\*+~.,()'"!:@]/g
@@ -157,21 +157,21 @@ module.exports = function (eleventyConfig) {
   // And momentjs formats: https://momentjs.com/docs/#/displaying/format/
   // E.g: Posted on {{ page.date | date("MMM D YYYY") }}.
   // "Posted on Dec 28 2021"
-  eleventyConfig.addFilter("date", dateFilter)
+  config.addFilter("date", dateFilter)
 
 
   // -------- Collections -------- //
   // Define custom collections
 
   // Portfolio
-  eleventyConfig.addCollection("portfolio", (collection) => 
+  config.addCollection("portfolio", (collection) => 
     collection.getFilteredByTags("ux")
       .filter((post) => post.data.publish)
       .sort((a, b) => b.data.year - a.data.year)
   )
 
   // Posts
-  eleventyConfig.addCollection("posts", (collection) => 
+  config.addCollection("posts", (collection) => 
     collection.getFilteredByTags("post")
       // Remove posts marked 'publish: false'
       .filter((post) => post.data.publish)
@@ -181,8 +181,15 @@ module.exports = function (eleventyConfig) {
       // .sort((a, b) => a.data.tags.includes("highlight") ? -1 : 1)
   )
 
+  // Portfolio
+  config.addCollection("projects", (collection) => 
+    collection.getFilteredByTags("project")
+      .filter((post) => post.data.publish)
+      .sort((a, b) => b.data.year - a.data.year)
+  )
+
   // Climate posts
-  eleventyConfig.addCollection("climate", (collection) =>
+  config.addCollection("climate", (collection) =>
     collection.getFilteredByTags("climate")
       // Remove posts marked 'publish: false'
       .filter((post) => post.data.publish)
@@ -216,7 +223,7 @@ module.exports = function (eleventyConfig) {
 
   // -------- Plugins -------- //
 
-  eleventyConfig.addPlugin(syntaxHighlight);
+  config.addPlugin(syntaxHighlight);
 
   
   // ========================================================
@@ -255,13 +262,13 @@ module.exports = function (eleventyConfig) {
   // const uslugify = (s) => uslug(s) 
 
   // Add classes
-  md.use(markdownItClass, {
-    blockquote: "body-text",
-    p: "body-text",
-    ul: "body-text",
-    ol: "body-text",
-    figcaption: "caption-clr small-text"
-  })
+  // md.use(markdownItClass, {
+  //   blockquote: "body-text",
+  //   p: "body-text",
+  //   ul: "body-text",
+  //   ol: "body-text",
+  //   figcaption: "caption-clr small-text"
+  // })
 
   // Add marks with `==...===`
   md.use(markdownItMarks)
@@ -318,26 +325,32 @@ module.exports = function (eleventyConfig) {
   // -------------- Register markdown-it as library with 11ty -------------- //
 
   // This has to go after other Markdown-It configurations (IIUC)
-  eleventyConfig.setLibrary("md", md)
+  config.setLibrary("md", md)
 
 
+
+  // ========================================================
+  // SHORTCODES
+  // ========================================================
+
+  config.addShortcode("year", () => `${new Date().getFullYear()}`)
 
   // ========================================================
   // TRANSFORMS
   // ========================================================
 
   // NOTE: Order matters for some of these, so best not to re-arrange.
-  eleventyConfig.addTransform("removeTodos", removeTodos)
-  eleventyConfig.addTransform("footnotes", footnotes)
-  eleventyConfig.addTransform("citations", citations)
-  eleventyConfig.addTransform("modifyIframes", iframes)
-  eleventyConfig.addTransform("videos", videos)
-  eleventyConfig.addTransform("figures", figures)
-  eleventyConfig.addTransform("lightbox", lightbox)
+  config.addTransform("removeTodos", removeTodos)
+  config.addTransform("footnotes", footnotes)
+  config.addTransform("citations", citations)
+  config.addTransform("modifyIframes", iframes)
+  config.addTransform("videos", videos)
+  config.addTransform("figures", figures)
+  config.addTransform("lightbox", lightbox)
   // eleventyConfig.addTransform("metaImage", metaImage)
-  eleventyConfig.addTransform("hangingPunctuation", hangingPunctuation)
-  eleventyConfig.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
-  eleventyConfig.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
+  config.addTransform("hangingPunctuation", hangingPunctuation)
+  config.addTransform("removeEmptyTableHeads", removeEmptyTableHeads)
+  config.addTransform("stopMeasurementsWrapping", stopMeasurementsWrapping)
   // eleventyConfig.addTransform("tagAbbreviations", tagAbbreviations)
 
 

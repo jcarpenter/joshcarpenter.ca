@@ -13,14 +13,14 @@
 
 {# ------------ Header ------------ #}
 
-<header class="standard-width copy grid-12">
+<header class="standard-width grid-12">
     <h1 id="title">{{ title }}</h1>
-    <div class="intro large-text">
+    <div class="intro">
         <p>
             The goal of this Google project was to define new composable and declarative 3D building blocks for the web platform, chief among them a &#60;model&#62; element. I was UX and Product lead, working with a multi-disciplinary team ^[<a href="https://gordonbrander.com">Gordon Brander</a>, <a href="https://twitter.com/jsantell">Jordan Santell</a>, <a href="https://twitter.com/0xcda7a">Chris Joel</a>, and <a href="https://www.syedrezaali.com/">Reza Ali</a>, plus contributions from <a href="https://www.linkedin.com/in/max-rebuschatis-b7963532/">Max Rebuschatis</a>.], and creating prototypes, specifications, and visualizations. Our work culminated in the release of <a href="https://modelviewer.dev/">model-viewer</a>, an open source solution for adding interactive 3D models to websites. Meanwhile the dream of a &#60;model&#62; element for the web lives on in <a href="https://github.com/WebKit/explainers/tree/main/model">this proposal</a> from Apple.
         </p>
     </div>
-    <div class="metadata small-text">
+    <div class="metadata">
         <time>2017-19</time>, <span class="role">Google</span><br>
         Product Management<br>
         Interaction Design<br>
@@ -32,23 +32,21 @@
 
 {# ------------ Body ------------ #}
 
-<section id="body" class="standard-width copy" aria-label="Article body">    
+<section id="body" class="standard-width" aria-label="Article body">    
 
 
     {# ----- Discovery ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/city-discovery-poster.jpg">
             <source src="/video/c3d/city-discovery.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/city-discovery.mp4" type="video/mp4"></source>
         </video>
-    </div>
+    </figure>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            In these "city" animations I tried to paint a picture of aspects of the future we envisioned (for better and worse): walking through a sea of information, pinned to the world around us, discovered serendipitously, accessed instantly, from a wide variety of devices, published by anyone, potentially dangerous if placed in the wrong location, etc. Modeling, animation and rendering were done in Cinema 4D, then compositing in After Effects. These visuals proved surprisingly helpful at framing our discussions inside and outside the team.
-        </p>
-    </div>
+    <p>
+        In these "city" animations I tried to paint a picture of aspects of the future we envisioned (for better and worse): walking through a sea of information, pinned to the world around us, discovered serendipitously, accessed instantly, from a wide variety of devices, published by anyone, potentially dangerous if placed in the wrong location, etc. Modeling, animation and rendering were done in Cinema 4D, then compositing in After Effects. These visuals proved surprisingly helpful at framing our discussions inside and outside the team.
+    </p>
 
     {# <div class="grid-12 no-row-gap">
         <div class="cols-all lg-mb-large">
@@ -70,20 +68,20 @@
 
     {# ----- Bus stop ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/city-busstop-hud-poster.jpg">
             <source src="/video/c3d/city-busstop-hud.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/city-busstop-hud.mp4" type="video/mp4"></source>
         </video>
-    </div>
+    </figure>
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/city-busstop-phone-poster.jpg">
             <source src="/video/c3d/city-busstop-phone.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/city-busstop-phone.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Content will need to be accessible to all users, regardless of device.</p>
-    </div>
+        <figcaption>Content will need to be accessible to all users, regardless of device.</figcaption>
+    </figure>
 
     {# <div class="grid-12 no-row-gap">
         <div class="cols-all mb-small">
@@ -107,13 +105,13 @@
 
     {# ----- Block traffic ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/city-block-traffic-poster.jpg">
             <source src="/video/c3d/city-block-traffic.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/city-block-traffic.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Controlling where and how content renders will be critical.</p>
-    </div>
+        <figcaption>Controlling where and how content renders will be critical.</figcaption>
+    </figure>
 
     {# <div class="grid-12 no-row-gap">
         <div class="cols-all lg-mb-large">
@@ -132,30 +130,28 @@
 
     {# ----- Furniture: VR ----- #}
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
-            Most of my time was spent exploring how a &#60;model&#62; element and new 3D CSS properties might work. I created a series of animations (below) and prototypes (not shown) which played with, among other things: cropping when models exceeded their bounding boxes; responsive interfaces across mobile, VR, and AR; coordinate systems; and real world use cases. Most of the animations were created in Cinema 4D. I made heavy use of the built-in scripting engine, XPresso, to help automate otherwise laborious manual keyframing. It enabled me to build complex hierarchies of interconnected animation values, exposed as simple UI sliders and toggles.
-        </p>
-    </div>
+    <p>
+        Most of my time was spent exploring how a &#60;model&#62; element and new 3D CSS properties might work. I created a series of animations (below) and prototypes (not shown) which played with, among other things: cropping when models exceeded their bounding boxes; responsive interfaces across mobile, VR, and AR; coordinate systems; and real world use cases. Most of the animations were created in Cinema 4D. I made heavy use of the built-in scripting engine, XPresso, to help automate otherwise laborious manual keyframing. It enabled me to build complex hierarchies of interconnected animation values, exposed as simple UI sliders and toggles.
+    </p>
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-furniture-vr-firstperson-poster.jpg">
             <source src="/video/c3d/model-furniture-vr-firstperson.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-furniture-vr-firstperson.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Rendering &#60;model&#62; elements with depth on VR browsers.</p>
-    </div>
+        <figcaption>Rendering &#60;model&#62; elements with depth on VR browsers.</figcaption>
+    </figure>
 
 
     {# ----- Furniture: Mobile & Desktop ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-furniture-mobile-and-desktop-poster.jpg">
             <source src="/video/c3d/model-furniture-mobile-and-desktop.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-furniture-mobile-and-desktop.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Perspective could shift as the user scrolls on mobile and desktop.</p>
-    </div>
+        <figcaption>Perspective could shift as the user scrolls on mobile and desktop.</figcaption>
+    </figure>
 
     {# <div class="grid-12 no-row-gap">
         <div class="cols-all lg-mb-large">
@@ -176,62 +172,62 @@
 
     {# ----- Furniture: AR ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-furniture-ar-poster.jpg">
             <source src="/video/c3d/model-furniture-ar.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-furniture-ar.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Viewing a &#60;model&#62; in mobile augmented reality</p>
-    </div>
+        <figcaption>Viewing a &#60;model&#62; in mobile augmented reality</figcaption>
+    </figure>
 
 
     {# ----- Car configurator ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-carconfig-poster.jpg">
             <source src="/video/c3d/model-carconfig.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-carconfig.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Moving and panning a &#60;model&#62; in VR</p>
-    </div>
+        <figcaption>Moving and panning a &#60;model&#62; in VR</figcaption>
+    </figure>
 
     {# ----- Model coordinates ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-coordinates-poster.jpg">
             <source src="/video/c3d/model-coordinates.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-coordinates.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Exploring &#60;model&#62; coordinates and clipping</p>
-    </div>
+        <figcaption>Exploring &#60;model&#62; coordinates and clipping</figcaption>
+    </figure>
 
     {# ----- C4D rig ----- #}
 
-    <div>
+    <figure>
         <img src="/img/c3d/c4d-rig.png" data-lightbox></img>
-        <p class="caption-clr small-text">Using XPresso in Cinema 4D to help simplify complex animations</p>
-    </div>
+        <figcaption>Using XPresso in Cinema 4D to help simplify complex animations</figcaption>
+    </figure>
 
     {# ----- Remix everything ----- #}
 
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/model-remix-everything-poster.jpg">
             <source src="/video/c3d/model-remix-everything.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/model-remix-everything.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Playing with the idea of remixable models</p>
-    </div>
+        <figcaption>Playing with the idea of remixable models</figcaption>
+    </figure>
 
     {# ----- News ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/c3d/layout-poster.jpg">
             <source src="/video/c3d/layout.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/c3d/layout.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Exploring layouts made with models and 3D transforms.</p>
-    </div>
+        <figcaption>Exploring layouts made with models and 3D transforms.</figcaption>
+    </figure>
 
     {# ----- News ----- #}
 

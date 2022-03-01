@@ -8,13 +8,13 @@ FONTS
 // @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
 
 // Inter
-@font-face {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url("/fonts/Inter-Light.woff2") format("woff2");
-}
+// @font-face {
+//     font-family: "Inter";
+//     font-style: normal;
+//     font-weight: 300;
+//     font-display: swap;
+//     src: url("/fonts/Inter-Light.woff2") format("woff2");
+// }
 
 // Inter
 @font-face {
@@ -49,13 +49,13 @@ FONTS
     src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
 }
 
-@font-face {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url("/fonts/Inter-Bold.woff2") format("woff2");
-}
+// @font-face {
+//     font-family: "Inter";
+//     font-style: normal;
+//     font-weight: 700;
+//     font-display: swap;
+//     src: url("/fonts/Inter-Bold.woff2") format("woff2");
+// }
 
 body {
     font-family: "Inter", sans-serif;

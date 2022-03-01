@@ -1,4 +1,4 @@
-@use "mixins-and-functions" as *;
+@use 'mixins-and-functions' as *;
 
 /* 
 ========================================================
@@ -6,44 +6,99 @@ ABOUT THE AUTHOR
 ========================================================
 */
 
+#about-the-author {
+  background-color: var(--footer);
+}
+
 #about-the-author h2 {
-  flex-basis: 100%;
+  --color: var(--accent);
+  // @include font-large-1;
+  // font-weight: 600;
+  // margin-top: 0;
+  // margin-bottom: 2rem;
+}
+
+#about-the-author .tag {
   color: accent(1);
-  font-weight: 500;
-  margin-bottom: 1rem;
-
-	@include baselineShiftTypography(
-		$fontSize: 1.333rem, 
-		$lineHeight: 2rem
-	);
+  font-weight: 600;
 }
 
-#about-the-author > div {
-  @include topBorder(accent(1));
-  margin-top: calc(var(--large-margin) * 2);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow: visible !important;
-  margin-bottom: var(--large-margin);
+#about-the-author #bio {
+  --color: var(--body-text);
+  @include font-body;
+  @include links($brightnessShift: false);
 }
 
-#about-the-author #photo {
-  margin: 0 4rem 2rem 0;
-  // flex: 0 0 auto;
+#about-the-author address {
+  white-space: nowrap;
+}
+
+#about-the-author .divider {
+  font-size: 0.8em;
+  color: onBackground(0.2) !important;
+  margin: 0 0.25rem;
+}
+
+// ------ Smallest screens (mobile phones) ------ //
+
+@include max-small-screen {
+  #about-the-author {
+    padding: 4rem 2rem 0rem;
+
+    h2 {
+      --color: var(--accent);
+      // Settings are inherited by parent `post.scss` or `portfolio.scss`
+    }
   
-  img {
-    border-radius: var(--media-border-radius);
-    width: 12rem;
-    height: 12rem;
-    background-color: accent(0.1);
+    #photo {
+      aspect-ratio: 5/3;
+      overflow: hidden;
+      object-fit: cover;
+      margin-bottom: 2rem;
+    }
+  
+    #bio {
+      // margin: 2rem;
+    }
   }
 }
 
-#about-the-author #bio {  
-  p {
-    max-width: 66ex;
-    padding-top: 0 !important;
+// ------ Larger screens (small tablets and up) ------ //
+
+@include small-screen {
+  #about-the-author {
+    padding: 6rem 0;
+  }
+
+  #about-the-author div.standard-width {
+    // @include topBorder(accent(1));
+    padding-top: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #about-the-author #photo {
+    // aspect-ratio: 1/1;
+    // overflow: hidden;
+
+    margin: 0 4rem 2rem 0;
+    // flex: 0 0 auto;
+
+    img {
+      object-fit: cover;
+      border-radius: var(--media-border-radius);
+      width: 12rem;
+      height: 12rem;
+      background-color: accent(0.1);
+    }
+  }
+
+  #about-the-author #bio {
+    margin: 0;
+    p {
+      max-width: 66ex;
+      padding-top: 0 !important;
+    }
   }
 }
-

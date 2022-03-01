@@ -126,24 +126,3 @@ SLIDESHOW
 		transform: translateY(-50%) rotateZ(180deg);
   }
 }
-
-
-/* -------------- Caption -------------- */
-
-.copy figcaption {
-	font-weight: 400;
-
-	// Add hyphenation
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	hyphens: auto;
-	margin-bottom: 1rem;
-
-	// Figcaption adds a bit of visual padding to the bottom
-	// of the figure. Too much. So we pull up subsequent
-	// content to close the gap, for consistency.
-	// margin-bottom: -1rem;
-
-	color: caption(1);
-	// background-color: caption(0.2);
-}

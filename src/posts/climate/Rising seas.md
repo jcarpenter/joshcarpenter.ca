@@ -7,7 +7,7 @@ meta_image: "/img/climate/thwaites-1.jpg"
 date: 2019-11-26
 ---
 
-![Thwaites Ice Shelf edge, as of Oct 16, 2012. Credit: [NASA / James Yungel](https://w.wiki/4pLM)](/img/climate/thwaites-1.jpg "Photo of Thwaites ice shelf")
+![Thwaites Ice Shelf edge, as of Oct 16, 2012. Credit: [NASA/James Yungel](https://w.wiki/4pLM)](/img/climate/thwaites-1.jpg "Photo of Thwaites ice shelf")
 
 ## How do we define “sea level rise”? 
 
@@ -113,7 +113,9 @@ The Arctic contains vast quantities of frozen permafrost. As the planet warms, t
 “Meltwater pulses” saw sea levels rise 40-60 mm per year for centuries. The last glacial maximum was 20,000 years ago. Deglaciation subsequently raised sea levels about **100 m over 17,000 years**. During which there were several “Meltwater Pulses”—periods of accelerated sea level rise triggered by major ice-loss events related to ice sheet collapse: [@wiki-EarlyHoloceneSea]
 
 * **1A**: 16-25 m rise over 400-500 years, for 40–60 mm annual mean rate. [@wiki-MeltwaterPulse1A]
+
 * **1B**: Lots of disagreement over timing and magnitude. A 2004 estimate said: 13 m rise over 300 years, for 40 mm annual mean rate. [@wiki-MeltwaterPulse1B]
+
 * **1C**: 6.5 m rise over 140 years, for 46 mm annual mean rate.
 
 ## Sea level rise will not be uniform

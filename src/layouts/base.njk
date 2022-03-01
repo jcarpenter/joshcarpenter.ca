@@ -4,12 +4,11 @@
         {% include "head.njk" %}
     </head>
     <body data-theme="none" {% if bibliography %}data-bibliography="{{ bibliography }}"{% endif %}>
-    {# <body class="{% if force_dark_mode %}force-dark-mode{% endif %}"> #}
         
         <a href="#title" class="visibility-hidden">Skip to content</a>
         {% include "navigation.njk" %}
         
-        <main role="main" aria-labelledby="title">
+        <main role="main" aria-labelledby="title" class="{{ post_layout }}">
 
             {{ content | safe }}
 

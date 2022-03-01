@@ -14,15 +14,15 @@ layout: "post-wrapper.njk"
 
 ## The need for better tools {.hide}
 
-In 2019 I decided to learn more climate change. As I read and took notes, I tried to track my sources, usually by pasting a URL next to this fact or that figure. But I quickly realized this wouldn't scale: ad hoc citations were quickly cluttering up my documents; I was inconsistent about what information I captured; and there was no centralized system for managing shared references across documents. 
+In 2019 I decided to learn more climate change. As I read and took notes, I tried to track my sources by pasting URLs next to this fact or that figure. But I quickly realized this wouldn't scale: ad hoc citations were quickly cluttering up my documents; I was inconsistent about what information I captured; and there was no centralized system for managing shared references across documents. 
 
-I needed a workflow that let me 1) easily capture references, 2) with full metadata (e.g. author, date, title, url), 3) into a distinct, canonical repository, and then 4) easily insert citations into my notes. 
+I needed a workflow that let me 1) easily capture references, 2) with full metadata (e.g. author, date, title, url), 3) into a distinct, canonical repository, and 4) easily insert citations into my notes. 
 
-I also wanted this workflow to be based on plain text formats. That way I'd retain control over my data, and not be limited by third-party apps or services. I knew I eventually wanted to build a scripted publishing pipeline for my notes, and using plain formats like JSON and Markdown would be possible. Keeping my data out of proprietary apps and services also ensured longevity; I wouldn't have to worry about my work being stuck in with a company that might disappear, or change business models, etc.
+I also wanted this workflow to be 100% plain text. Using formats such as JSON and Markdown would make it possible to create scripted publishing workflows that I could tune to exactly my liking. And keeping my data out of proprietary apps and services helped ensured I would always have access to it.
 
-After fussing with various tools, I arrived at the following workflow for capturing and managing references. It's not perfect, but it checks the above boxes, and I'm using it with hundreds of references and dozens of notes. In a future post I'll share my workflow for publishing documents and references to the web.
+After fussing with various tools, I arrived at the following workflow for capturing and managing references. It's not perfect, but it checks the above boxes, and I'm using it with hundreds of references. In a future post I'll share my workflow for publishing  the web.
 
-### At a high level, my workflow looks like the following
+### At a high level, my workflow looks like the following:
 
 <figure class="splash">
         <video playsinline autoplay loop muted data-lightbox poster="/img/plain-text-refs-mgmt/workflow-poster.png">

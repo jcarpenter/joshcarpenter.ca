@@ -7,25 +7,23 @@
     summary: "Product and design for A-Frame VR, an open source framework for creating virtual reality web experiences, released in 2015 by the Mozilla VR team.",
     permalink: "/aframe/",
     year: 2015,
-    colors: {
-        accent: {
-            light: "239, 45, 94", // A-Frame red
-            dark: "241, 57, 104", // A-Frame red
-        }
+    accent_override: {
+        light: "239, 45, 94", // A-Frame red
+        dark: "241, 57, 104", // A-Frame red
     }
 }
 ---
 
 {# ------------ Header ------------ #}
 
-<header class="standard-width copy grid-12">
+<header class="standard-width grid-12">
     <h1 id="title">A-Frame VR</h1>
-    <div class="intro large-text">
+    <div class="intro">
         <p>
             <a href="https://aframe.io">A-Frame</a> is a framework for creating VR web experiences. I was Product lead and internal customer of the first release. Initially created by <a href="https://twitter.com/dmarcos">Diego Marcos</a> of the <a href="/mozilla-vr/">Mozilla VR</a> team as an internal tool to accelerate prototyping, A-Frame makes it easy for existing web developers to create VR content by wrapping complex JavaScript in approachable HTML custom elements such as <code>&lt;a-cube&gt;</code> and <code>&lt;a-sky&gt;</code>. Power users can also create and share their own building blocks, helping to build a community of collaboration. During development of the 1.0 release I created demos, wrote documentation, contributed to the API, and designed the rollout touchpoints (logo, site, etc).
         </p>
     </div>
-    <div class="metadata small-text">
+    <div class="metadata">
         <time>2015</time>, <span class="role">Mozilla</span><br>
         Product<br>
         Documentation<br>
@@ -36,42 +34,70 @@
 
 {# ------------ Body ------------ #}
 
-<section id="body" class="standard-width copy" aria-label="Article body">    
+<section id="body" class="standard-width" aria-label="Article body">    
 
     {# ----- E-Commerce ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/shopping-loop-poster.jpg">
             <source src="/video/aframe/shopping-loop.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/aframe/shopping-loop.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">E-commerce concept</p>
-    </div>
+        <figcaption>E-commerce <a href="">concept</a></figcaption>
+    </figure>
 
-    <div class="grid-12 body-text">
-        <p class="cols-left-half">
+    <p>
+        Since launch, under the stewardship of Diego and <a href="https://twitter.com/kevopuff">Kevin Ngo</a>, A-Frame has become one of the most popular ways to create VR web content, with a worldwide community of tens of thousands of developers and open source <a href="https://github.com/aframevr/aframe/graphs/contributors">contributors</a>. The animations on this page are screen captures of a few of the documentation samples I created during development, including an animated version of the A-Frame logo.
+    </p>
+
+    {# <div>
+        <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/shopping-loop-poster.jpg">
+            <source src="/video/aframe/shopping-loop.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="/video/aframe/shopping-loop.mp4" type="video/mp4"></source>
+        </video>
+        <p class="caption">E-commerce concept</p>
+    </div> #}
+
+    {# <div class="grid-12">
+        <p class="cols-left-half body">
             Since launch, under the stewardship of Diego and <a href="https://twitter.com/kevopuff">Kevin Ngo</a>, A-Frame has become one of the most popular ways to create VR web content, with a worldwide community of tens of thousands of developers and open source <a href="https://github.com/aframevr/aframe/graphs/contributors">contributors</a>. The animations on this page are screen captures of a few of the documentation samples I created during development, including an animated version of the A-Frame logo.
         </p>
-    </div>
+    </div> #}
 
     {# ----- Anime UI ----- #}
-
-    <div>
+    
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/anime-poster.jpg">
             <source src="/video/aframe/anime.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/aframe/anime.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">Anime UI concept</p>
-    </div>
+        <figcaption>Anime UI concept</figcaption>
+    </figure>
+
+    {# <div>
+        <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/anime-poster.jpg">
+            <source src="/video/aframe/anime.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="/video/aframe/anime.mp4" type="video/mp4"></source>
+        </video>
+        <p class="caption">Anime UI concept</p>
+    </div> #}
 
     {# ----- A-Frame logo ----- #}
 
-    <div>
+    <figure>
         <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/logo-poster.jpg">
             <source src="/video/aframe/logo.webm" type="video/webm; codecs=vp9,opus"></source>
             <source src="/video/aframe/logo.mp4" type="video/mp4"></source>
         </video>
-        <p class="caption-clr small-text">A-Frame logo, animated in A-Frame</p>
-    </div>
+        <figcaption>A-Frame logo, animated in A-Frame</figcaption>
+    </figure>
+
+    {# <div>
+        <video playsinline autoplay loop muted data-lightbox poster="/img/aframe/logo-poster.jpg">
+            <source src="/video/aframe/logo.webm" type="video/webm; codecs=vp9,opus"></source>
+            <source src="/video/aframe/logo.mp4" type="video/mp4"></source>
+        </video>
+        <p class="caption">A-Frame logo, animated in A-Frame</p>
+    </div> #}
 
 </section>

@@ -1,3 +1,129 @@
+// -------------- NEW (Feb 24)  -------------- //
+
+@mixin font-large-5() {
+  font-weight: 500;
+  font-size: 2.402rem;
+  line-height: 1.3em;
+  letter-spacing: -0.01em;
+  color: rgba(var(--color), 1);
+}
+
+@mixin font-large-4() {
+  font-weight: 500;
+  font-size: 2.135rem;
+  line-height: 1.3em;
+  letter-spacing: -0.01em;
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 2px;
+  }
+}
+
+@mixin font-large-3 {
+  font-weight: 500;
+  font-size: 1.898rem;
+  line-height: 1.4em;
+  letter-spacing: -0.01em;
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 2px;
+  }
+}
+
+@mixin font-large-2 {
+  font-weight: 500;
+  font-size: 1.687rem;
+  line-height: 1.4em;
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 2px;
+  }
+}
+
+@mixin font-large-1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.6em;
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 2px;
+  }
+}
+
+@mixin font-body {
+  font-weight: 400;
+  font-size: 1.333rem;
+  line-height: 1.6em; // 2rem
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 0.12em;
+  }
+}
+
+@mixin font-small {
+  font-size: 1.185rem;
+  line-height: 1.5em;
+  font-weight: 500;
+  @include medium-screen() {
+    font-weight: 400;
+  }
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.08em;
+    text-decoration-thickness: 0.12em;
+  }
+}
+
+@mixin font-smaller {
+  font-size: 1.053rem;
+  line-height: 1.5em;
+  font-weight: 500;
+  @include medium-screen() {
+    font-weight: 400;
+  }
+  color: rgba(var(--color), 1);
+  a {
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 0.12em;
+  }
+}
+
+@mixin links($alpha: 1, $underlineAlpha: 0.4, $hideUnderlineUntilHover: false, $brightnessShift: true, $important: false) {
+  
+  a {
+    color: rgba(var(--color), $alpha);
+
+    @if $hideUnderlineUntilHover {
+      text-decoration-color: transparent;
+    } @else {
+      text-decoration-color: rgba(var(--color), $underlineAlpha);
+    }
+
+    @if $brightnessShift {
+      filter: brightness(var(--brightness-shift));
+    }
+
+    &:hover {
+      color: rgba(var(--color), 1);
+      text-decoration-color: rgba(var(--color), $underlineAlpha + 0.4);
+    }
+
+    &:active {
+      outline: none;
+    }
+  }
+
+  // Round border so outline :focus is less harsh
+  // NOTE: Only noticeable on browsers where outline follows
+  // border-radius. Safari does not, unfortunately.
+  border-radius: 0.05rem;
+}
+
 // -------------- Colors  -------------- //
 // Short-hand concise functions for colors.
 // Use like: `color: accent(0.2);`
@@ -50,41 +176,49 @@
   @return rgba(var(--caution), $alpha);
 }
 
-
 // -------------- Layout  -------------- //
 
 @mixin standardWidth() {
-  
   width: 100%;
   display: block;
   padding-left: var(--side-margin);
   padding-right: var(--side-margin);
 
-  @include large-screen { 
+  @include large-screen {
     max-width: 96rem;
   }
 }
 
-
 // -------------- Media query: Dark mode  -------------- //
 
 @mixin dark {
-	@at-root body[data-theme=dark] & {
-		@content;
-	}
+  @at-root body[data-theme='dark'] & {
+    @content;
+  }
 }
 
 @mixin light {
-	@at-root body[data-theme=light] & {
-		@content;
-	}
+  @at-root body[data-theme='light'] & {
+    @content;
+  }
 }
-
 
 // -------------- Media Query: Screen Sizes -------------- //
 
+@mixin max-smaller-screen {
+  @media (max-width: 479px) {
+    @content;
+  }
+}
+
 @mixin smaller-screen {
   @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin max-small-screen {
+  @media (max-width: 639px) {
     @content;
   }
 }
@@ -125,21 +259,20 @@
   $fontSize: 1.333rem,
   $lineHeight: 2rem,
   $paddingTop: 0rem,
-  $descenderRatio: 0.18, 
-  $useMarginInsteadOfPadding: false,
+  $descenderRatio: 0.18,
+  $useMarginInsteadOfPadding: false
 ) {
-
   // descenderRatio = Height of descender, as ratio //
   // Derived from: https://jamonserrano.github.io/plumber-sass/measure/
-  // Actually the site says 1.36. But I find I need to set it 
+  // Actually the site says 1.36. But I find I need to set it
   // higher or I get gradual drift upwards off the grid.
 
   // Baseline shift formula: //
-  
-  // We push the text downwards until the baseline sits at the 
+
+  // We push the text downwards until the baseline sits at the
   // bottom of the specified line-height. As is standard in
   // typography outside the web.
-  
+
   // We do this by adding 1) the excess space at the bottom of
   // the line-height, between the bottom of the font-size and
   // the bottom of the line-height, and 2) the height of the
@@ -150,29 +283,26 @@
   // Then we also want this block to fit the grid, above and
   // below. At the top, we achieve this simply by all previous
   // blocks also fitting to the grid. At the bottom, we achieve
-  // this by subtract the --baseline-offset amount from a 
-  // default padding-bottom (1rem). This ensures that the height 
+  // this by subtract the --baseline-offset amount from a
+  // default padding-bottom (1rem). This ensures that the height
   // of the rendered block will fit to the next grid line.
 
   --excess-line-height-at-bottom: calc(calc(#{$lineHeight} - #{$fontSize}) / 2);
   --descender-height: calc(#{$fontSize} * #{$descenderRatio});
-   
-  @if -is-integer($lineHeight) {
 
+  @if -is-integer($lineHeight) {
     // If line-height is integer (e.g. 2rem), baseline-offset
     // is just the excess line height at bottom of the line,
     // plus the descender height.
     --baseline-offset: calc(var(--excess-line-height-at-bottom) + var(--descender-height));
-    
+
     // If line-height is integer (e.g. 2), we make eleemnt fit to
     // grid, by adding padding-bottom equal to gap between the
     // baseline and the next grid line.
     padding-bottom: calc(1rem - var(--baseline-offset));
-
   } @else {
-
-    // If line height is NOT an integer (e.g. 1.5rem), 
-    // baseline-offset is same as above, PLUS the gap between 
+    // If line height is NOT an integer (e.g. 1.5rem),
+    // baseline-offset is same as above, PLUS the gap between
     // the bottom of the line and the start of the next grid line.
     $gap-at-bottom: ceil($lineHeight) - $lineHeight;
 
@@ -180,10 +310,10 @@
 
     // If line-height is NOT an integer, we accept that the
     // element height will not snap to grid, and we fix with
-    // JS after the fact. 
+    // JS after the fact.
     padding-bottom: 0;
   }
-  
+
   font-size: $fontSize;
   line-height: $lineHeight;
   @if $useMarginInsteadOfPadding {
@@ -199,8 +329,6 @@
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !important;
 }
 
-
-
 // -------------- Misc -------------- //
 
 @mixin outline-thin {
@@ -211,7 +339,6 @@
 }
 
 @mixin outline-on-focus($widthRem: 0.2, $offsetRem: 0.2, $color: foreground(0.75), $borderRadiusEm: 0.05) {
-  
   &:focus-visible {
     outline-width: $widthRem * 1rem;
     outline-offset: $offsetRem * 1rem;
@@ -226,7 +353,7 @@
       outline-offset: 0.1em;
       outline-color: transparent;
     }
-  
+
     to {
       outline-offset: 0.2em;
       outline-color: $color;
@@ -236,11 +363,10 @@
 
 // Apply this to `standard-width` elements to create consistent top borders
 @mixin topBorder($color: sectionDivider(1)) {
-  
   // Top-border
   position: relative;
   padding-top: calc(var(--large-margin) - 1rem);
-  
+
   &::before {
     content: '';
     width: calc(100% - var(--side-margin) * 2);
@@ -253,19 +379,12 @@
   }
 }
 
-
-
 // -------------- Misc -------------- //
 
 // Check if a value is a non-negative integer
 @function -is-integer($value) {
-	@return $value == round($value);
+  @return $value == round($value);
 }
-
-
-
-
-
 
 // -------------- OLD, UNUSED -------------- //
 
@@ -273,20 +392,26 @@
 
 @mixin miniBackgroundGrid {
   // background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
-  background: repeating-linear-gradient(to bottom, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem), repeating-linear-gradient(to right, rgba(var(--overlayGrid), 0.1) 0, rgba(var(--overlayGrid), 0.1) 1px, transparent 1px, transparent mini2rem);
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(var(--overlayGrid), 0.1) 0,
+      rgba(var(--overlayGrid), 0.1) 1px,
+      transparent 1px,
+      transparent mini2rem
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(var(--overlayGrid), 0.1) 0,
+      rgba(var(--overlayGrid), 0.1) 1px,
+      transparent 1px,
+      transparent mini2rem
+    );
 }
 
 @mixin dotBackground($dotOpacity: 0.25, $bgOpacity: 0.05) {
-  background-image: 
-      linear-gradient(accent($bgOpacity), accent($bgOpacity)),
-      radial-gradient(accent($dotOpacity) 0.05em, transparent 0);
-  background-size: 
-      cover,
-      0.15em 0.15em;
-  background-position: 
-      top left,
-      top left;
-  background-repeat:
-      no-repeat,
-      repeat; 
+  background-image: linear-gradient(accent($bgOpacity), accent($bgOpacity)),
+    radial-gradient(accent($dotOpacity) 0.05em, transparent 0);
+  background-size: cover, 0.15em 0.15em;
+  background-position: top left, top left;
+  background-repeat: no-repeat, repeat;
 }

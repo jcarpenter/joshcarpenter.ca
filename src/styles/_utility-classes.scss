@@ -59,13 +59,15 @@ UTILITY CLASSES
 
 .large-text p,
 p.large-text {
-  @include baselineShiftTypography($fontSize: 1.33rem, $lineHeight: 2rem);
-
+  font-weight: 500;
+  @include baselineShiftTypography($fontSize: 1.5rem, $lineHeight: 2rem);
+  // @include baselineShiftTypography($fontSize: 1.33rem, $lineHeight: 2rem);
+  
   @include medium-screen {
+    font-weight: 400;
     @include baselineShiftTypography($fontSize: 1.6rem, $lineHeight: 2.5rem);
   }
 
-  font-weight: 400;
 
   &:last-of-type {
     margin-bottom: 0rem;
@@ -82,15 +84,16 @@ p.large-text {
 // Body text
 
 .body-text {
+
+  font-weight: 400;
   @include baselineShiftTypography($fontSize: 1.333rem, $lineHeight: 2rem);
 
   margin-bottom: 1rem;
   font-variant-numeric: oldstyle-nums;
-  font-weight: 400;
 
   a {
     text-decoration-line: underline;
-    text-underline-offset: 0.1em;
+    text-underline-offset: 2px;
   }
 }
 
@@ -102,7 +105,13 @@ p.body-text:last-of-type,
 // Small text
 
 .small-text {
+
+  font-weight: 500;
   @include baselineShiftTypography($fontSize: 1.2rem, $lineHeight: 1.75rem, $paddingTop: 0rem);
+
+  @include smaller-screen {
+    font-weight: 400;
+  }
 
   margin-bottom: 0;
 
@@ -132,11 +141,9 @@ p.body-text:last-of-type,
 .grid-12 {
   display: grid !important;
   overflow: hidden;
-
   grid-auto-flow: column;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-
   @include medium-screen {
     grid-template-columns: repeat(12, 1fr);
     gap: 2rem;

@@ -1,30 +1,29 @@
 // Base
-@use "fonts";
-@use "tables";
-@use "variables";
+@use 'fonts';
+@use 'tables';
+@use 'variables';
 
 // Copy: Styles grouped under .copy
-@use "copy";
+// @use 'copy';
 
 // Includes
-@use "about-the-author";
-@use "footer";
-@use "footnotes";
-@use "lightbox";
-@use "more-content";
-@use "navigation";
-@use "slideshow";
-@use "toggle-theme-button";
+@use 'about-the-author';
+@use 'footer';
+@use 'footnotes';
+@use 'lightbox';
+@use 'more-content';
+@use 'navigation';
+@use 'slideshow';
+@use 'toggle-theme-button';
 
 // Helpers
-@use "utility-classes";
-@use "mixins-and-functions" as *;
-@use "sass:math";
+@use 'utility-classes';
+@use 'mixins-and-functions' as *;
+@use 'sass:math';
 // @use "grid-helpers";
 // @use "charts";
 // @use "sanitize";
 // @use "reset";
-
 
 /*
 ========================================================
@@ -36,9 +35,9 @@ html {
 	font-size: var(--html-font-size);
 
 	// Universal box sizing with inheritance:
-	// Reset box-sizing to border-box for all elements (including 
-	// pseudo elements). Set on html, and then tell all elements 
-	// to inherit. This allows elements to override. 
+	// Reset box-sizing to border-box for all elements (including
+	// pseudo elements). Set on html, and then tell all elements
+	// to inherit. This allows elements to override.
 	// Per: https://css-tricks.com/box-sizing/
 	box-sizing: border-box;
 }
@@ -53,7 +52,7 @@ html {
 
 body {
 	margin: 0;
-	padding: 2rem 0rem;
+	padding: 2rem 0rem 0;
 	overflow-x: hidden;
 	position: relative;
 	color: onBackground(var(--base-text-alpha));
@@ -61,12 +60,12 @@ body {
 	transition: color 0.2s, background-color 0.2s;
 }
 
-// This stops a flash of white on page load. Then 
+// This stops a flash of white on page load. Then
 // toggle-theme.js sets the data-theme
 // value to 'light' or 'dark', and the page renders.
-body[data-theme=none] {
-  transition: none !important;
-  display: none;
+body[data-theme='none'] {
+	transition: none !important;
+	display: none;
 }
 
 // We hide the outline on main, or else it appears when main is clicked.
@@ -76,7 +75,6 @@ body[data-theme=none] {
 main:focus {
 	outline: none;
 }
-
 
 /*
 ========================================================
@@ -97,6 +95,42 @@ address {
 	font-style: normal;
 }
 
+/* -------------- Blockquote -------------- */
+
+// Shifted margin is to make room on side for ::before notch (see below).
+blockquote {
+	position: relative;
+	margin: 0 0 2rem 0;
+}
+
+blockquote p {
+	--color: var(--blockquote-text);
+	@include font-body;
+	@include links;
+	padding-left: 2rem;
+	margin: 0 0 1rem;
+}
+
+// Remove bottom margin from last paragraph inside blockqoute, or their margins combine and give us more than we want, breaking consistent vertical spacing.
+blockquote p:last-of-type {
+	margin-bottom: 0 !important;
+}
+
+// Border on left side. The ::before element gives us more control.
+blockquote::before {
+	content: '';
+	width: 0.2em;
+	position: absolute;
+	height: 100%;
+	border-radius: 2px;
+	box-sizing: content-box;
+	top: 0.5em;
+	// Reduce height so this visible box only extends as
+	// far as the baseline of the last line. If we don't
+	// do this, it extends to descender and bottom padding.
+	height: calc(100% - 1em);
+	background-color: var(--blockquote-border);
+}
 
 /* -------------- Buttons -------------- */
 
@@ -106,14 +140,56 @@ button {
 	padding: 0;
 }
 
+/* -------------- Code -------------- */
+
+// Code element inside paragraph (as opposed to inside `pre` block)
+:not(pre) > code {
+	color: code(1);
+	background-color: code(0.12) !important;
+
+	@include monoFont;
+	border-radius: 0.2em;
+	// Push vertical alignment up a few px.
+	// Code text is bit smaller than surrounding,
+	// So we need to vertically center it.
+	line-height: 0;
+	vertical-align: 0.05em;
+	padding: 0.075em 0.25em 0.15em;
+
+	// Prevent wrapping
+	// white-space: nowrap;
+}
+
+// Code inside paragraphs and lists should be slightly
+// smaller em font size. Otherwise it looks too big.
+// Code inside table should be same em size as other text.
+
+p code,
+li code {
+	font-size: 0.9em;
+	font-weight: 600;
+	@include medium-screen {
+		font-weight: normal;
+		font-size: 0.85em;
+	}
+}
+
+.table code {
+	font-size: 1em !important;
+	font-weight: 600;
+	@include medium-screen {
+		font-weight: normal;
+	}
+}
+
 /* -------------- h1, h2, h3 -------------- */
 
 h1,
 h2,
 h3 {
 	font-kerning: normal;
+	margin-top: 0;
 }
-
 
 /* -------------- Horizontal rule  -------------- */
 
@@ -140,8 +216,306 @@ a {
 }
 
 /* -------------- Paragraph -------------- */
-	
+
 p {
 	// By default, remove top margin
 	margin-top: 0;
+}
+
+/* -------------- Pre -------------- */
+
+pre {
+	padding: 0.5rem 0.8rem;
+	// Note: Add !important to `pre` styles to prevent Prism.js themes from overriding
+	margin-top: 2rem !important;
+	margin-bottom: 2rem !important;
+	border: none !important;
+	border-radius: var(--media-border-radius);
+
+	code {
+		@include monoFont;
+		font-size: 1.1rem;
+		line-height: 1.75rem;
+		white-space: pre-wrap !important;
+		margin-bottom: 1rem;
+	}
+}
+
+/*
+========================================================
+ARTICLE CONTENTS
+========================================================
+*/
+
+/* -------------- Figure -------------- */
+
+article #body figure {
+	// padding-top: 1rem;
+	margin: 0 0 2rem;
+	height: auto;
+	width: 100%;
+
+	@include smaller-screen {
+		min-width: 20rem;
+		// max-width: 42rem;
+
+		figcaption {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	// Media
+	img,
+	video,
+	iframe,
+	picture {
+		border-radius: var(--media-border-radius);
+
+		// Ensure media container expands to fit parent container.
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+
+		// Remove gap below media elements by changing them
+		// from display inline to block.
+		display: block;
+
+		// Add box-shadow
+		box-shadow: 0px 0px 2em rgba(0, 0, 0, 0.05);
+
+		// Ensure media container contents expand to fill the
+		// container. Need to set this because we container will
+		// not fit content exactly, because we crop container
+		// to fit the grid.
+		object-fit: cover;
+
+		transition: outline 250ms;
+		outline-color: transparent;
+
+		&:focus-visible {
+			@include outline-thin;
+			// outline-color: onBackground(0.7);
+		}
+	}
+
+	// We need to set the aspect-ratio property on the iframe.
+	// E.g. <iframe style="aspect-ratio: 4/3" ...>
+	iframe {
+		margin: 0;
+		background-color: black;
+	}
+
+	// We need to add overflow:hidden to make border-radius on
+	// picture crop <source> and <img> children.
+	picture {
+		overflow: hidden;
+	}
+}
+
+// Figcaption
+
+article #body figcaption {
+	// font-weight: 400;
+	padding-top: 1rem;
+	// margin-bottom: 1rem;
+
+	// Add hyphenation
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+/* -------------- Img -------------- */
+
+// While images load, slight background color is visible.
+article #body img {
+	background-color: accent(0.1);
+}
+
+/* -------------- Lists  -------------- */
+
+article #body {
+	li {
+		--color: var(--body-text);
+		@include font-body;
+		@include links;
+	}
+
+	ol,
+	ul {
+		padding-left: 0rem;
+	}
+
+	// Top-level lists
+	section > ol,
+	section > ul {
+		margin-bottom: 2rem;
+	}
+
+	// Marker indent from left:
+	// Mobile: Markers flush left
+	// Desktop: Markers indented slightly.
+	@media (max-width: 480px) {
+		& > ol,
+		& > ul {
+			margin-left: 0;
+		}
+	}
+
+	// @media (min-width: 481px) {
+	//     & > ol,
+	//     & > ul {
+	//         margin-left: 1rem;
+	//     }
+	// }
+
+	// Nested lists
+	& > * ul,
+	& > * ol {
+		// padding: 0;
+		// Reduce vertical margin (to keep consistent)
+		margin-top: 1rem;
+	}
+
+	& > ul li:last-of-type,
+	& > ol li:last-of-type {
+		margin-bottom: 0;
+	}
+
+	li {
+		margin-bottom: 0.5rem;
+
+		p {
+			// Add bit more vertical spacing between list items that
+			// contain paragraphs. Remove all other padding and margins
+			// (parent list items already provide margin)
+			padding: 0;
+			margin: 0 0 2rem;
+		}
+	}
+
+	// Remove margin-bottom from paragrapah inside last list item
+	// of top-level list, or else the top-level list
+	* > li:last-of-type p {
+		margin-bottom: 0;
+	}
+
+	// Numbers and bullets:
+	// We use ::before inside of ::marker, because we're extremely
+	// limited in how we can style the later.
+	li {
+		list-style: none;
+		position: relative;
+		margin-left: 2rem;
+		// margin-left: 0;
+		&::before {
+			position: absolute;
+		}
+	}
+
+	ol {
+		counter-reset: custom-counter;
+		li {
+			counter-increment: custom-counter;
+		}
+	}
+
+	// <ol> numbers
+	ol li::before {
+		content: counter(custom-counter) '.';
+		font-size: 1em;
+		left: -0.9rem;
+		transform: translateX(-100%);
+		// Push vertical alignment up a few px.
+		// Code text is bit smaller than surrounding,
+		// So we need to vertically center it.
+		// line-height: 0;
+		// vertical-align: 0.05em;
+
+		@include light {
+			color: inherit;
+			font-weight: 600;
+			@include medium-screen {
+				font-weight: 500;
+			}
+		}
+
+		@include dark {
+			font-weight: 500;
+			color: caption(1);
+			filter: brightness(1.2);
+		}
+	}
+
+	// <ul> bullets
+	ul li::before {
+		content: '•';
+		left: -1.75rem;
+		font-weight: 600;
+		// Increase size slightly
+		font-size: 1.1em;
+		// Nudge upwards by half the value of the size increase
+		// to vertically center the bullet (or else it's too low).
+		margin-top: -0.06em;
+		color: inherit;
+		@include dark {
+			color: caption(1);
+		}
+	}
+
+	// Nested lists
+	& > ol * li::before,
+	& > ul * li::before {
+		color: caption(1);
+		@include dark {
+			color: caption(0.8);
+		}
+	}
+}
+
+/* -------------- Strong  -------------- */
+
+article #body strong {
+	font-weight: 600; // TODO: Make this always +1 the surrounding weight
+	color: inherit;
+	@include light {
+		filter: brightness(0.9);
+	}
+	@include dark {
+		filter: brightness(1.1);
+	}
+}
+
+/* -------------- Sub and Sup -------------- */
+
+// Prevent sup and sub elements from altering line height of parent text.
+// Adapted from: https://gist.github.com/unruthless/413930
+article #body {
+	sub,
+	sup:not(.fn) {
+		// Specified in % so that the sup/sup is the right
+		// size relative to the surrounding text.
+		font-size: 0.75em;
+		// Zero out the line-height so that it doesn't interfere
+		// with the positioning that follows.
+		line-height: 0;
+		// Where the magic happens: makes all browsers position
+		// the sup/sup properly, relative to the surrounding text.
+		position: relative;
+		// Note that if you're using Eric Meyer's reset.css, this
+		// is already set and you can remove this rule.
+		vertical-align: baseline;
+	}
+
+	sup:not(.fn) {
+		// Move the superscripted text up.
+		top: -0.5em;
+	}
+
+	sub {
+		// Move the subscripted text down, but only half as far
+		// down as the superscript moved up.
+		bottom: -0.25em;
+	}
 }

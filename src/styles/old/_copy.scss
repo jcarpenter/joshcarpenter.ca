@@ -16,6 +16,11 @@ COPY STYLES
 	}
 }
 
+// .copy > section > *:last-child {
+// 	// outline: 1px solid red;
+// 	margin-bottom: 0 !important;
+// }
+
 /* -------------- Block quote -------------- */
 
 .copy {
@@ -127,11 +132,20 @@ COPY STYLES
 
 	p code,
 	li code {
-		font-size: 0.85em;
+		font-size: 0.9em;
+		font-weight: 600;
+		@include medium-screen {
+			font-weight: normal;
+			font-size: 0.85em;
+		}
 	}
 
 	.table code {
 		font-size: 1em !important;
+		font-weight: 600;
+		@include medium-screen {
+			font-weight: normal;
+		}
 	}
 }
 
@@ -204,7 +218,7 @@ COPY STYLES
 // Figcaption
 
 .copy figcaption {
-	font-weight: 400;
+	// font-weight: 400;
 
 	// Add hyphenation
 	word-wrap: break-word;
@@ -233,9 +247,13 @@ COPY STYLES
 	section > p > a,
 	& > div > p > a {
 
-		color: onBackground(var(--base-text-alpha));
-		text-decoration-color: onBackground(0.3);
-
+		color: onBackground(0.9);
+		text-decoration-color: onBackground(0.6);
+		@include medium-screen {
+			color: onBackground(0.8);
+			text-decoration-color: onBackground(0.3);
+		}
+		
 		&:hover {
 			color: onBackground(1);
 			text-decoration-color: onBackground(0.6);
@@ -346,7 +364,6 @@ COPY STYLES
 	// <ol> numbers
 	ol li::before {
 		content: counter(custom-counter) '.';
-		font-weight: 500;
 		font-size: 1em;
 		left: -0.9rem;
 		transform: translateX(-100%);
@@ -355,9 +372,19 @@ COPY STYLES
 		// So we need to vertically center it.
 		// line-height: 0;
 		// vertical-align: 0.05em;
-		color: inherit;
+
+		@include light {
+			color: inherit;
+			font-weight: 600;
+			@include medium-screen {
+				font-weight: 500;
+			}
+		}
+
 		@include dark {
+			font-weight: 500;
 			color: caption(1);
+			filter: brightness(1.2);
 		}
 	}
 
