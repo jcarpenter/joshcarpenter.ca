@@ -203,7 +203,11 @@ h2 {
 
   figure.wide {
     grid-column: 1 / -1;
-    a.thumb {
+  }
+
+  figure.wide a.thumb {
+    aspect-ratio: 3 / 2;
+    @include small-screen {
       aspect-ratio: 2 / 1;
     }
   }
