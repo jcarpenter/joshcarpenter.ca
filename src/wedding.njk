@@ -1,0 +1,239 @@
+---yaml
+title: "Katie & Josh"
+tags: []
+publish: true
+summary: "TODO"
+meta_image: "/img/wedding/meta.jpg"
+permalink: "/wedding/"
+date: 2022-03-31
+meta_twitter_card_type: "summary_large_image"
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ summary }}">
+
+        <!-- Prevent most search engines from indexing the page -->
+        <meta name="robots" content="noindex">
+
+        <!-- Social -->
+        <meta property="og:title" content="{{ title }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://joshcarpenter.ca{{ page.url }}">
+        <meta property="og:description" content="{{ summary }}">
+        <meta property="og:image" content="{{ meta_image }}">
+        <meta property="og:image:height" content="1200">
+        <meta property="og:image:width" content="630">
+        <meta property="og:updated_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+        <meta property="article:modified_time" content="{{ page.date | date("YYYY-MM-DD") }}">
+        <meta property="og:site_name" content="{{ title }}">
+        <meta property="og:locale" content="en_US">
+
+        <!-- Favicon -->
+        {# TODO #}
+
+        <!-- Fonts preload -->
+        <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/Inter-Italic.woff2" as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2">
+        <link rel="preload" href="/fonts/FuturaLT-Book.woff2" as="font" type="font/woff2" >
+        <link rel="preload" href="/fonts/FuturaLT.woff2" as="font" type="font/woff2" >
+        <link rel="preload" href="/fonts/FuturaLT-Bold.woff2" as="font" type="font/woff2" >
+
+        <!-- Images preload -->
+        <link rel="preload" as="image" href="/img/wedding/katie-and-josh.svg">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/wedding.css">
+        <link rel="stylesheet" href="https://use.typekit.net/ydr5hwf.css">
+
+        <!-- Scripts -->
+        <script src="/js/slideshow.js"></script>
+        <script src="/js/lightbox.js"></script>
+
+    </head>
+    <body data-theme="light">
+
+        {# <header id="navigation" class="content-wrapper" role="banner">
+            <div class="standard-width">
+                <h1>
+                    <a href="/index.html" class="name">Katie &#38; Josh</a>
+                    <span class="slash">&#47;</span>
+                    <a href="/wedding/" class="section">Wedding</a>
+                </h1>
+            </div>
+        </header> #}
+
+        <main role="main" aria-labelledby="title" class="{{ post_layout }}">
+
+            {# POSTER #}
+
+            <div id="poster">
+                <img class="logo" src="/img/wedding/katie-and-josh.svg">
+                <div class="bottom-blur">
+                    <div class="fun">
+                        Epic adventure<br>
+                        Romantic romance<br>
+                        High sea kayakin'
+                    </div>
+                    <h2 class="get-hitched">
+                        Get Hitched<br>
+                        May 28
+                    </h2>
+                    <div class="featuring">
+                        Featuring<br>
+                        <span class="name">Wee Billie Jayne</span><br>
+                        and friends
+                    </div>
+                    <img class="billie" src="/img/wedding/billie.jpg">
+                </div>
+                <img class="background" src="/img/wedding/ffbe8ca9fd9b0e89b085e867e0c22dba.jpg">
+            </div>
+
+            {# INTRO #}
+
+            <div id="the-day">
+                <h2>The Day</h2>
+                <p class="default-text">
+                    Join us on May 28 at <time>2:30 <span class="small-caps">PM</span></time> at <a href="">The Tides</a> for welcome drinks, followed by a <time>3:00 <span class="small-caps">PM</span></time> cermony. Celebrate with Katie, Josh and Billie on the lawn with drinks and games. A family-style dinner will be served outside, weather permitting), followed with music and dancing. At the end of the evening shuttles will pickup guests not staying at The Tides
+                </p>
+                <div id="schedule">
+                    <div>
+                        <h3>2:30</h3>
+                        <div class="what default-text">Arrive</div>
+                    </div>
+                    <div>
+                        <h3>3:00</h3>
+                        <div class="what default-text">Ceremony</div>
+                    </div>
+                    <div>
+                        <h3>5:00</h3>
+                        <div class="what default-text">Dinner</div>
+                    </div>
+                    <div>
+                        <h3>7:30</h3>
+                        <div class="what default-text">Dancing</div>
+                    </div>
+                    <div>
+                        <h3>12:30</h3>
+                        <div class="what default-text">Shuttle</div>
+                    </div>
+                </div>
+            </div>
+
+            {# LOCATION #}
+
+            <div id="location">
+                <h2>The Location</h2>
+                <address class="default-text">
+                    <a href="https://g.page/the-tides-cottages?share">
+                        The Tides Cottages<br>
+                        1329 MacKinnon Rd<br>
+                        Pender Island, BC<br>
+                    </a>
+                </address>
+                {# <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d42045.37370690307!2d-123.3390685475046!3d48.80411132599982!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3c35aaf4ad1b70cc!2sThe%20Tides%20Cottages!5e0!3m2!1sen!2sca!4v1650041358139!5m2!1sen!2sca" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> #}
+                <img class="background" src="/img/wedding/tides-pool.png">
+            </div>
+
+            <div id="location-details">
+                <p class="default-text">
+                    We're celebrating at <a href="https://www.thetidescottages.com/">The Tides Cottages</a>. Located just two minutes from Otter Bay Ferry Terminal, the Tides consist of a newly-restored 1928 heritage home and several cottages on 3-acres of oceanfront property. We'll have it entirely to ourselves for the weekend&#8212the better to enjoy the pool, hot-tub, firepit, and large lawn area for games.
+                </p>
+                {# <p class="default-text">
+                    <a href="https://www.thetidescottages.com/" target="_blank">thetidescottages.com</a>
+                    <span class="space"> | </span>
+                    <a href="https://g.page/the-tides-cottages?share">maps.google.com</a>
+                </p> #}
+            </div>
+
+            {# PHOTOS #}
+
+            <div class="photo-grid">
+                <img src="/img/wedding/tides-stairs.png" data-lightbox>
+                <img src="/img/wedding/tides-arbutus-bed.png" data-lightbox>
+                <img src="/img/wedding/tides-elm-deck.png" data-lightbox>
+            </div>
+
+            {# FERRIES #}
+
+            <div id="ferries">
+                <h2>Ferries</h2>
+                <p class="default-text">
+                    On Friday, most of us will be on the 2:25 <span class="small-caps">PM</span> sailing. For reservations, be sure to arrive at the ferry terminal 40-90 minutes prior to departure. The ticket agent will ask for your booking reference number, or the phone number used to make the booking.
+                </p>
+                <div class="days">
+                    <div id="friday">
+                        <h3>Friday</h3>
+                        <div class="schedule-grid default-text">
+                            <a href="https://goo.gl/maps/XcYMoeWyr2zfNWqu5">Tsawwassen</a>
+                            <span class="arrow">&#8594;</span>
+                            <a href="https://goo.gl/maps/fGR7KuPWdxsezJ1X9">Otter Bay</a>
+                            <time>2:25 <span class="small-caps">PM</span></time>
+                            <span class="arrow">&#8594;</span>
+                            <time>4:45 <span class="small-caps">PM</span></time>
+                            <time>7:20 <span class="small-caps">PM</span></time>
+                            <span class="arrow">&#8594;</span>
+                            <time>8:40 <span class="small-caps">PM</span></time>
+                        </div>
+                    </div>
+                    <div id="monday">
+                        <h3>Monday</h3>
+                        <div class="schedule-grid default-text">
+                            <a href="https://goo.gl/maps/fGR7KuPWdxsezJ1X9">Otter Bay</a>
+                            <span class="arrow">&#8594;</span>
+                            <a href="https://goo.gl/maps/XcYMoeWyr2zfNWqu5">Tsawwassen</a>
+                            <time>7:15 <span class="small-caps">AM</span></time>
+                            <span class="arrow">&#8594;</span>
+                            <time>9:20 <span class="small-caps">AM</span></time>
+                            <time>4:25 <span class="small-caps">PM</span></time>
+                            <span class="arrow">&#8594;</span>
+                            <time>6:30 <span class="small-caps">PM</span></time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# ACTIVITIES #}
+
+            <div id="activities">
+                <h2>Activities</h2>
+                {# <p class="default-text">
+                    We're also going to have fun on Friday and Sunday! Here's what we're thinking.
+                </p> #}
+                <div class="days">
+
+                    <p class="default-text">
+                        <strong>Friday:</strong> Sunset BBQ and drinks poolside at the Tides. For all who want to join, we're going to buy a bunch of meat and veggies and cook at the cottages. $10 per person for meat, and BYOB. Bring your swim suits!
+                    </p>
+                    
+                    <p class="default-text">
+                        <strong>Sunday:</strong> Afternoon beach fun! Meet us at the beach (location TBD) early-afternoon onwards for a relaxed hang. Hit the water on kayaks and paddle-boards (we'll rent several), hike woodland trails, or relax and enjoy a picnic on the beach.
+                    </p>
+                </div>
+            </div>
+            
+            {# WHAT TO BRING #}
+            <div id="what-to-bring"><div>
+
+            {# KIDS #}
+            <div id="kids"><div>
+
+            {# CONTACTS #}
+            <div id="contacts"><div>
+
+            {# <div id="shuttle" class="default-text">
+                <p>Transport to/from the venue on Saturday, starting at 11:00PM.</p>
+            </div> #}
+
+        </main>
+        {# {% include "footer.njk" %} #}
+        {% include "lightbox.njk" %}
+    </body>
+</html>
