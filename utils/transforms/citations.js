@@ -13,8 +13,8 @@ const citekeyRE = /\[[^\[\]\(\)]*?-?@[a-z0-9_][a-z0-9_:.#$%&\-+?<>~/]*?.*?\](?!\
 
 // Find components of cite keys (prefix, id, label, locator)
 // Does not support suffic yet.
-// Demo: https://regex101.com/r/TnsFFg/1
-const citekeyComponentsRE = /(?<prefix>[^\n\[\]\(\)]*?)?@(?<id>[a-zA-Z0-9_][^\s,;\]]+)(?:,\s(?<label>[\D]+)\s?(?<locator>[\w-,:]+))?/
+// Demo: https://regex101.com/r/4GhcAQ/1
+const citekeyComponentsRE = /(?<prefix>[^\n\[\]\(\)]*?)?@(?<id>[a-zA-Z0-9_][^\s,;\]]+)(?:,\s(?<label>[\D]+)\s?(?<locator>[\w\-,:]+))?/
 
 
 function makeCiteprocEngine() {

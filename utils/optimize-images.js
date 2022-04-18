@@ -227,6 +227,11 @@ const optimizeBitmap = require("./optimize-bitmap");
         picture.attr('data-lightbox', 'true')
       }
 
+      // Copy class attribute to picture
+      if ($(img).attr('class')) {
+        picture.attr('class', $(img).attr('class'))
+      }
+
       // Append children all to picture
       picture.append(source_webp)
       picture.append(source_jpeg)

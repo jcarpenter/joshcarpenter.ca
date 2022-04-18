@@ -24,7 +24,7 @@ const convert = require('xml-js')
  *   parentTerm: "page"
  * }
  * ```
- * @param {*} locale: Loaded xml file contetns. See CSL repo for full list of locales.
+ * @param {*} locale: Loaded xml file contents. See CSL repo for full list of locales.
  */
 module.exports = (locale) => {
 

@@ -56,11 +56,4 @@ NAVIGATION
     .section {
         color: onBackground(0.5);
     }
-
-    @include dark {
-        .name,
-        .section {
-            color: onBackground(0.87);
-        }
-    }
 }
