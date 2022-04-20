@@ -7,11 +7,12 @@
 :root {
   --accent: 255, 105, 180 !important;
   --text-color: #3e3e3e;
-  
+
   --block-padding-Y: 5rem;
-	@include small-screen {
-		--block-padding-Y: 7rem;
-	}
+
+  @include small-screen {
+    --block-padding-Y: 7rem;
+  }
 
   --block-padding-X: 2rem;
   --p-max-width: 56ch;
@@ -49,6 +50,15 @@ main>* {
   grid-column: 2;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+main > *:first-child {
+  margin-top: 1rem;
+}
+
+main > *:last-child {
+  margin-bottom: 2rem;
 }
 
 
@@ -135,6 +145,23 @@ h3 {
 }
 
 
+/* ----------------------- LINKS ----------------------- */
+
+#links {
+  font-family: "FuturaLT";
+  font-size: $text-size-1;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding: 1rem 0 0;
+  text-underline-offset: 0.1em;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
 /* ----------------------- POSTER ----------------------- */
 
 #poster {
@@ -165,12 +192,15 @@ h3 {
 
     h2.get-hitched {
       font-size: $text-size-4;
+
       @include small-screen {
         font-size: $text-size-6;
       }
+
       @include large-screen {
         font-size: $text-size-7;
       }
+
       text-transform: uppercase;
       line-height: 1.2em;
       letter-spacing: 0.4rem;
@@ -187,9 +217,11 @@ h3 {
     .fun,
     .featuring {
       display: none;
+
       @include small-screen {
         display: initial;
       }
+
       font-size: $text-size-3;
       font-weight: 300;
       line-height: 2.2rem;
@@ -213,7 +245,7 @@ h3 {
       .name {
         text-decoration: underline;
         text-underline-offset: 0.2em;
-        text-decoration-thickness: 0.02em;
+        text-decoration-thickness: 0.06em;
         text-decoration-color: var(--primary-color);
       }
     }
@@ -228,7 +260,7 @@ h3 {
       transform: translate(-50%, 50%);
       z-index: 10;
       filter: saturate(1.1);
-    }  
+    }
   }
 
   picture.background {
@@ -316,6 +348,7 @@ h3 {
   grid-auto-flow: column;
   grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
+  gap: 0.2rem;
 
   picture {
     aspect-ratio: 1/1;
@@ -323,7 +356,15 @@ h3 {
 
   img {
     object-fit: cover;
-    aspect-ratio: 1/1;
+  }
+
+  // We need to position some of the photos just-so
+  img[src="/img/wedding/chair.jpg"] {
+    transform: translate(0, -27%);
+  }
+
+  img[src="/img/wedding/waves.jpg"] {
+    transform: translate(34%, 10%) scale(2.8) rotateZ(318deg);
   }
 }
 
@@ -374,14 +415,15 @@ h3 {
 
 #location-details {
   padding: var(--block-padding-Y) var(--block-padding-X);
-  background-color: hsl(35, 44%, 78%);
-  // background-color: hsl(0, 0%, 97%);
+  background-color: #edc970;
+  // background-color: hsl(35, 44%, 78%);
   display: flex;
   flex-direction: column;
   align-items: center;
 
   p {
-    color: hsl(35, 24%, 34%);
+    color: #5a523d;
+    // color: hsl(35, 24%, 34%);
     max-width: var(--p-max-width);
     text-align: center;
     margin-bottom: 4rem;
@@ -470,36 +512,102 @@ h3 {
 
 }
 
+/* ------------------------ ORCAS ----------------------- */
+
+#orcas {
+  width: 100%;
+
+  img {
+    aspect-ratio: 3/1;
+    object-fit: cover;
+    object-position: 50% 70%;
+    filter: saturate(1.1) brightness(1.4);
+  }
+}
+
 /* --------------------- ACTIVITIES --------------------- */
 
 #activities {
+  padding: var(--block-padding-Y) 4rem;
+  background-color: hsl(0, 0%, 97%);
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .days h3 {
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 3rem;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* -------------------- WHAT TO BRING ------------------- */
+
+#what-to-bring {
   padding: var(--block-padding-Y) var(--block-padding-X);
   background-color: hsl(0, 0%, 97%);
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .days h3 {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     text-align: center;
   }
+}
 
-  .days {
-    // display: grid;
-    // grid-template-columns: 1fr 1fr;
-    // gap: 4rem;
+/* ------------------------ KIDS ------------------------ */
 
-    p {
-      strong {
-        font-weight: 700;
-      }
+#kids {
+  padding: var(--block-padding-Y) var(--block-padding-X);
+  background-color: hsl(0, 0%, 97%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      max-width: var(--p-max-width);
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+  p {
+    max-width: var(--p-max-width);
+  }
+}
 
-    p:last-of-type {
-      margin-bottom: 0;
-    }
+
+/* ---------------------- CONTACTS ---------------------- */
+
+#contacts {
+  padding: var(--block-padding-Y) var(--block-padding-X);
+  background-color: hsl(0, 0%, 97%);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  h2 {
+    grid-column: span 3;
+    text-align: center;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
