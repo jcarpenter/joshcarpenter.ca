@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>tabler:shoe</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="tabler:shoe" transform="translate(0.461995, 0.000000)">
+            <rect id="ViewBox" x="0" y="0" width="24" height="24"></rect>
+            <g id="Group" stroke-linecap="round" stroke-linejoin="round" transform="translate(3.000000, 6.000000)" stroke="#000000" stroke-width="1.5">
+                <path d="M1,0 L6.426,0 C6.78136249,0.000250103258 7.10989735,0.189071993 7.289,0.496 L8.353,2.319 C8.76612277,3.02743483 9.45125424,3.5358631 10.249,3.726 L14.926,4.84 C16.7276188,5.2687209 17.9993798,6.87807354 18,8.73 L18,11 C18,11.5522847 17.5522847,12 17,12 L1,12 C0.44771525,12 0,11.5522847 0,11 L0,1 C0,0.44771525 0.44771525,0 1,0 Z M11,7 L12,5" id="Shape"></path>
+                <path d="M5,12 L5,11 C5,8.790861 3.209139,7 1,7 L0,7 M7,6 L8.5,3" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
