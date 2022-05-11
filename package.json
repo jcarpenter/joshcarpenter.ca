@@ -13,6 +13,7 @@
         "copy:fonts": "cpy 'src/fonts/**' '_site/fonts'",
         "copy:json": "cpy 'js/**/*.json'  '../_site/' --cwd=src --parents",
         "copy:js:third-party": "cpy 'js/third-party/**/*' '../_site/' --cwd=src --parents",
+        "copy:pdf": "cpy 'src/pdf/**' '_site/pdf'",
         "copy:video": "cpy 'video/**/*' '../_site/' --cwd=src --parents",
         "copy": "run-p copy:*",
         "images": "mkdir -p _site/img && node utils/optimize-images.js",
