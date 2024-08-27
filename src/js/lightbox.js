@@ -372,11 +372,10 @@ Basic lightbox. Supports swiping through images with mouse or touch.
 
 
   function setup() {
-
     // Don't enable on mobile phones
-    // TODO: Add this in the future. Right now (2/19/2022) Mobile Safari 
+    // TODO: Add this in the future. Right now (2/19/2022) Mobile Safari
     // is giving me too many intractable problems.
-    const isMobilePhone = window.matchMedia("(hover: none) and (max-width: 480px)").matches
+    const isMobilePhone = window.matchMedia('(hover: none) and (max-width: 480px)').matches
     if (isMobilePhone) return
 
     // Get elements

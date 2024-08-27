@@ -31,7 +31,7 @@
         "watch": "run-p watch:*",
         "serve": "npm run browsersync & npm run watch",
         "dev": "npm run clean && run-p copy sass:dev js:dev && run-s eleventy images serve",
-        "build": "npm run clean && run-p copy sass:build js:build && run-s eleventy images format-html"
+        "build": "NODE_NO_WARNINGS=1 npm run clean && run-p copy sass:build js:build && run-s eleventy images format-html"
     },
     "author": "Josh Carpenter <rocarpenca@gmail.com>",
     "license": "MIT",

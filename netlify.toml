@@ -14,7 +14,7 @@
 
     # Specify node version
     # Per https://docs.netlify.com/configure-builds/manage-dependencies/#node-js-and-javascript
-    environment = { NODE_VERSION = "16.10" }
+    environment = { NODE_VERSION = "21" }
 
 [[headers]]
     for = "/*.woff2"
